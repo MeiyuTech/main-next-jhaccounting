@@ -1,3 +1,9 @@
+/**
+ * Home Page
+ * 
+ * 
+ */
+
 import Link from "next/link"
 import { Button } from "@/app/components/ui/button"
 import { Card, CardContent } from "@/app/components/ui/card"
@@ -15,27 +21,27 @@ export default function Home() {
               {
                 step: 1,
                 title: "简单回答10个问题",
-                description: "请您填写10条简单的问题调查表，这个调查不收费，也不代表任何承诺，只需几分钟就可以完成。"
+                description: "这个调查不收费，也不代表任何承诺，只需几分钟就可以完成。"
               },
               {
                 step: 2,
                 title: "接听电话",
-                description: "在几分钟内，我们会给您打电话，告诉您接下来的步骤，并为您提供您的抵免额的初步估计。"
+                description: "在几分钟内，我们会给您打电话，告诉您接下来的步骤，并为您提供初步估计。"
               },
               {
                 step: 3,
-                title: "签署合同 Engagement Letter",
-                description: "为我们的专家们提供授权，签署一份合同，这将正式启动您获得抵免返现的申请程序。"
+                title: "签署合同",
+                description: "为我们的专家们提供授权，签署一份合同，这将正式启动您申请程序。"
               },
               {
                 step: 4,
                 title: "收集必要的文件",
-                description: "我们将列出所有为您申请抵免所需要的文件！您的信息将被储存在安全加密云中。"
+                description: "我们将列出所有为您申请所需要的文件！您的信息将被储存在安全加密云中。"
               },
               {
                 step: 5,
-                title: "获得抵制",
-                description: "我们将向美国国税局提交您的员工保留税收抵免申请，您将收到美国财政部的支票。"
+                title: "完成",
+                description: "我们将向美国国税局提交所有资料，而您将收到支票。"
               }
             ].map((item, index) => (
               <div key={index} className="flex flex-col items-center">
@@ -47,7 +53,7 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <Button className="mt-12 bg-teal-500 hover:bg-teal-600">
+          <Button className="mt-12 bg-teal-500 hover:bg-teal-600 text-lg px-12 py-6 text-xl font-bold rounded-xl">
             现在就从回答几个简单的问题开始吧
           </Button>
         </div>
