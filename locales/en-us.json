@@ -1,0 +1,51 @@
+{
+  "Header": {
+    "appTitle": "SinoYoga",
+    "navLinks": {
+      "aboutUs": "ABOUT US"
+    }
+  },
+  "Footer": {
+    "socialMedia": {
+      "tiktok": "TikTok",
+      "youtube": "Youtube",
+      "weixin": "WeChat"
+    },
+    "companyName": "Your Company Name",
+    "copyright": "All rights reserved"
+  },
+  "Layout": {
+    "metaData": {
+      "title": "SinoYoga",
+      "description": "The SinoYoga Offical Website"
+    }
+  },
+  "Home": {
+    "introduction-1": "Embrace Eastern Wisdom and Traditional Medicine",
+    "introduction-2": "Promote Chinese Yoga",
+    "introduction-3": "Optimize Lifestyle",
+    "moreButton": "Explore More",
+    "slogan-1": "less is",
+    "slogan-2": "more."
+  },
+  "AboutUs": {
+    "title": "Yang Qi",
+    "description-1": "SinoYoga Founder",
+    "description-2": "Breath Wisdom ——【Breath Way】Founder",
+    "description-3": "Oxygen Juice Natural Therapy Pioneer",
+    "description-4": "24-year Yoga Teaching Senior Experience",
+    "description-5": "17-year Pure Plant Diet Practice Experience",
+    "description-6": "Million Students' Yoga Instructor",
+    "description-7": "Praised as \"The First Chinese Yoga Person\""
+  },
+  "InnerPage": {
+    "title": "SinoYoga Whole Package",
+    "subtitle": "SinoYoga consists of five modules: Alignment Yoga, Five Elements Practice, Breath Way • Wisdom Breathing, Emotional Healing, and Oxygen Kitchen",
+    "description-1": "Over 40 breathing techniques",
+    "description-2": "More than 150 sequence practices of Wood, Fire, Earth, Metal, and Water",
+    "description-3": "36 Forms of Five Elements Practice — Suitable for the whole family",
+    "description-4": "24 Solar Terms wellness and food therapy",
+    "description-5": "Simple wisdom, chanting and meditation",
+    "summary": "Suitable for beginners and yoga teachers for private and small group instruction."
+  }
+}
