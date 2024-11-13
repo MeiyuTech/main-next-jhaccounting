@@ -1,49 +1,38 @@
 "use client";
 
 import {
-  localeNames,
-  locales,
-  usePathname,
-  useRouter,
-  type Locale,
-} from "@/i18n.config";
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/app/components/ui/select"
+import { localeNames, locales, usePathname, useRouter, type Locale } from "@/i18n.config";
 
-export default function LocaleSwitcher({
-  locale,
-}: {
-  locale: Locale;
-}) {
-  /* `pathname` will contain the current
-   * route without the locale e.g. `/about`...
-   */
+export default function LocaleSwitcher({ locale }: { locale: Locale }) {
   const pathname = usePathname();
   const router = useRouter();
 
-  const changeLocale = (
-    event: React.ChangeEvent<HTMLSelectElement>,
-  ) => {
-    const newLocale = event.target.value as Locale;
-    /* ...if the user chose Arabic ("ar-eg"),
-     * router.replace() will prefix the pathname
-     * with this `newLocale`, effectively changing
-     * languages by navigating to `/ar-eg/about`.   
-     */
-    router.replace(pathname, { locale: newLocale });
+  const handleValueChange = (newLocale: string) => {
+    router.replace(pathname, { locale: newLocale as Locale });
   };
 
   return (
-    <div>
-      <select
-        value={locale}
-        onChange={changeLocale}
-        className="p-0 hover:bg-gray-100"
-      >
+    <Select value={locale} onValueChange={handleValueChange}>
+      <SelectTrigger className="w-[120px] text-lg font-medium border-none hover:text-primary">
+        <SelectValue placeholder="Select language" />
+      </SelectTrigger>
+      <SelectContent>
         {locales.map((loc) => (
-          <option key={loc} value={loc}>
+          <SelectItem
+            key={loc}
+            value={loc}
+            className="text-lg font-medium"
+          >
             {localeNames[loc]}
-          </option>
+          </SelectItem>
         ))}
-      </select>
-    </div>
+      </SelectContent>
+    </Select>
   );
 }

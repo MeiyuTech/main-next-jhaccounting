@@ -1,5 +1,8 @@
-import Link from "next/link"
 import Image from "next/image"
+import Link from "next/link"
+import { Locale } from "@/i18n.config";
+import { useLocale, useTranslations } from "next-intl";
+import LocaleSwitcher from './LocaleSwitcher';
 import { Button } from "@/app/components/ui/button"
 import {
   NavigationMenu,
@@ -13,6 +16,9 @@ import { Sheet, SheetContent, SheetTrigger } from "@/app/components/ui/sheet"
 import { Menu } from "lucide-react"
 
 export default function Header() {
+  // Retrieves the active locale
+  const locale = useLocale() as Locale;
+
   return (
     <>
       <header className="fixed top-0 left-0 right-0 border-b bg-white z-50">
@@ -191,6 +197,7 @@ export default function Header() {
               </SheetContent>
             </Sheet>
           </div>
+          <LocaleSwitcher locale={locale} />
         </div >
       </header >
       <div className="h-[144px]" />

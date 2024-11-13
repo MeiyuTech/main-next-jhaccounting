@@ -5,7 +5,7 @@ export type Locale = (typeof locales)[number];
 
 export const localeNames: Record<Locale, string> = {
   "en-us": "English",
-  "zh-cn": "简体中文（中国大陆）",
+  "zh-cn": "简体中文",
 };
 
 export const { Link, usePathname, useRouter } =
