@@ -26,9 +26,10 @@
       "phone-label": "电话：",
       "email-label": "邮箱：",
       "phone": "+1 (949) 300-4828",
-      "email": "info@jhaccounting.org",
-      "copyright": "Copyright © 2022 JIAHUA Accounting Services"
-    }
+      "email": "info@jhaccounting.org"
+    },
+    "company-name": "JIAHUA Accounting Services",
+    "copyright": "All rights reserved"
   },
   "Layout": {
     "metaData": {

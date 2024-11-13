@@ -52,7 +52,11 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className="container mx-auto mt-8 pt-8 border-t border-gray-600">
         <div className="text-sm">
-          {t('contact.copyright')}
+          &copy; {new Date().getFullYear()}
+          {` `}
+          {t('company-name')}.
+          {` `}
+          {t('copyright')}.
         </div>
       </div>
     </footer>
