@@ -14,10 +14,82 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from "@/app/components/ui/sheet"
 import { Menu } from "lucide-react"
 
+// Add these new types and data structures
+type NavItem = {
+  href: string;
+  label: string;
+  children?: NavItem[];
+};
+
 export default function Header() {
   const t = useTranslations('Header');
-  // Retrieves the active locale
   const locale = useLocale() as Locale;
+
+  // Define navigation structure
+  const navItems: NavItem[] = [
+    {
+      href: '/services',
+      label: t('services.title'),
+      children: [
+        { href: '/services/accounting', label: t('services.accounting') },
+        { href: '/services/corporate-tax-planning-strategy', label: t('services.corporate-tax-planning-strategy') },
+        { href: '/services/outsourcing-tax-and-accounting', label: t('services.outsourcing-tax-and-accounting') },
+        { href: '/services/tax-credit', label: t('services.tax-credit') },
+        { href: '/services/company-formation', label: t('services.company-formation') },
+        { href: '/services/itin-application', label: t('services.itin-application') },
+        { href: '/services/unclaimed-property-reporting-and-consulting', label: t('services.unclaimed-property-reporting-and-consulting') },
+      ]
+    },
+    {
+      href: '/blog',
+      label: t('blog')
+    },
+    {
+      href: '/about',
+      label: t('about.title'),
+      children: [
+        { href: '/about/contact-now', label: t('about.contact-now') },
+        { href: '/about/recruitment', label: t('about.recruitment') },
+      ]
+    }
+  ];
+
+  // Component for rendering dropdown menu items
+  const DropdownMenuItems = ({ items }: { items: NavItem[] }) => (
+    <ul className="grid w-[200px] gap-3 p-4">
+      {items.map((item) => (
+        <li key={item.href}>
+          <Link href={item.href}>
+            <NavigationMenuLink className="block p-2 hover:bg-slate-100 rounded-md">
+              {item.label}
+            </NavigationMenuLink>
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
+
+  // Component for mobile menu items
+  const MobileMenuItem = ({ item }: { item: NavItem }) => (
+    <div className="flex flex-col">
+      <Link href={item.href} className="text-lg font-medium p-2 hover:text-primary">
+        {item.label}
+      </Link>
+      {item.children && (
+        <div className="ml-4 flex flex-col gap-2">
+          {item.children.map((child) => (
+            <Link
+              key={child.href}
+              href={child.href}
+              className="text-base p-2 hover:text-primary"
+            >
+              {child.label}
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
+  );
 
   return (
     <>
@@ -35,120 +107,32 @@ export default function Header() {
 
           <div className="flex items-center gap-2 ml-auto">
             <nav className="hidden lg:flex items-center gap-1">
-              <NavigationMenu className="px-1">
-                <NavigationMenuList>
-                  <NavigationMenuItem>
-                    <NavigationMenuTrigger className="px-2">
-                      <Link href="/services" className="text-lg font-medium hover:text-primary">
-                        {t('services.title')}
-                      </Link>
-                    </NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                      <ul className="grid w-[200px] gap-3 p-4">
-                        <li>
-                          <Link href="/services/accounting">
-                            <NavigationMenuLink className="block p-2 hover:bg-slate-100 rounded-md">
-                              {t('services.accounting')}
-                            </NavigationMenuLink>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/services/corporate-tax-planning-strategy">
-                            <NavigationMenuLink className="block p-2 hover:bg-slate-100 rounded-md">
-                              {t('services.corporate-tax-planning-strategy')}
-                            </NavigationMenuLink>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/services/outsourcing-tax-and-accounting">
-                            <NavigationMenuLink className="block p-2 hover:bg-slate-100 rounded-md">
-                              {t('services.outsourcing-tax-and-accounting')}
-                            </NavigationMenuLink>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/services/tax-credit">
-                            <NavigationMenuLink className="block p-2 hover:bg-slate-100 rounded-md">
-                              {t('services.tax-credit')}
-                            </NavigationMenuLink>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/services/company-formation">
-                            <NavigationMenuLink className="block p-2 hover:bg-slate-100 rounded-md">
-                              {t('services.company-formation')}
-                            </NavigationMenuLink>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/services/itin-application">
-                            <NavigationMenuLink className="block p-2 hover:bg-slate-100 rounded-md">
-                              {t('services.itin-application')}
-                            </NavigationMenuLink>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/services/unclaimed-property-reporting-and-consulting">
-                            <NavigationMenuLink className="block p-2 hover:bg-slate-100 rounded-md">
-                              {t('services.unclaimed-property-reporting-and-consulting')}
-                            </NavigationMenuLink>
-                          </Link>
-                        </li>
-                      </ul>
-                    </NavigationMenuContent>
-                  </NavigationMenuItem>
-                </NavigationMenuList>
-              </NavigationMenu>
-              <NavigationMenu>
-                <NavigationMenuList>
-                  <NavigationMenuItem>
-                    {/* 
-                      * Using legacyBehavior and passHref to handle custom Link wrapping:
-                      *  - legacyBehavior: Enables old Link behavior where Link expects a single child component
-                      *  - passHref: Forces Link to pass the href prop to its child component (NavigationMenuLink)
-                      *
-                      * This combination is necessary when:
-                      *  1. Wrapping custom components (like NavigationMenuLink) with Next.js Link
-                      *  2. Preventing hydration errors by ensuring consistent server/client rendering
-                      *  3. Maintaining proper HTML semantics and SEO
-                      */}
-                    <Link href="/blog" legacyBehavior passHref>
-                      <NavigationMenuLink className="text-lg font-medium p-2 hover:text-primary">
-                        {t('blog')}
-                      </NavigationMenuLink>
-                    </Link>
-                  </NavigationMenuItem>
-                </NavigationMenuList>
-              </NavigationMenu>
-              <NavigationMenu>
-                <NavigationMenuList>
-                  <NavigationMenuItem>
-                    <NavigationMenuTrigger>
-                      <Link href="/about" className="text-lg font-medium hover:text-primary">
-                        {t('about.title')}
-                      </Link>
-                    </NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                      <ul className="grid w-[200px] gap-3 p-4">
-                        <li>
-                          <Link href="/about/contact-now">
-                            <NavigationMenuLink className="block p-2 hover:bg-slate-100 rounded-md">
-                              {t('about.contact-now')}
-                            </NavigationMenuLink>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/about/recruitment">
-                            <NavigationMenuLink className="block p-2 hover:bg-slate-100 rounded-md">
-                              {t('about.recruitment')}
-                            </NavigationMenuLink>
-                          </Link>
-                        </li>
-                      </ul>
-                    </NavigationMenuContent>
-                  </NavigationMenuItem>
-                </NavigationMenuList>
-              </NavigationMenu>
+              {navItems.map((item) => (
+                <NavigationMenu key={item.href} className="px-1">
+                  <NavigationMenuList>
+                    <NavigationMenuItem>
+                      {item.children ? (
+                        <>
+                          <NavigationMenuTrigger className="px-2">
+                            <Link href={item.href} className="text-xl font-medium hover:text-primary">
+                              {item.label}
+                            </Link>
+                          </NavigationMenuTrigger>
+                          <NavigationMenuContent>
+                            <DropdownMenuItems items={item.children} />
+                          </NavigationMenuContent>
+                        </>
+                      ) : (
+                        <Link href={item.href} legacyBehavior passHref>
+                          <NavigationMenuLink className="text-xl font-medium p-2 hover:text-primary">
+                            {item.label}
+                          </NavigationMenuLink>
+                        </Link>
+                      )}
+                    </NavigationMenuItem>
+                  </NavigationMenuList>
+                </NavigationMenu>
+              ))}
             </nav>
 
             <div className="lg:hidden">
@@ -160,50 +144,9 @@ export default function Header() {
                 </SheetTrigger>
                 <SheetContent side="right" className="w-[300px]">
                   <nav className="flex flex-col gap-4 mt-8">
-                    <div className="flex flex-col">
-                      <Link href="/services" className="text-lg font-medium p-2 hover:text-primary">
-                        {t('services.title')}
-                      </Link>
-                      <div className="ml-4 flex flex-col gap-2">
-                        <Link href="/services/accounting" className="text-base p-2 hover:text-primary">
-                          {t('services.accounting')}
-                        </Link>
-                        <Link href="/services/corporate-tax-planning-strategy" className="text-base p-2 hover:text-primary">
-                          {t('services.corporate-tax-planning-strategy')}
-                        </Link>
-                        <Link href="/services/outsourcing-tax-and-accounting" className="text-base p-2 hover:text-primary">
-                          {t('services.outsourcing-tax-and-accounting')}
-                        </Link>
-                        <Link href="/services/tax-credit" className="text-base p-2 hover:text-primary">
-                          {t('services.tax-credit')}
-                        </Link>
-                        <Link href="/services/company-formation" className="text-base p-2 hover:text-primary">
-                          {t('services.company-formation')}
-                        </Link>
-                        <Link href="/services/itin-application" className="text-base p-2 hover:text-primary">
-                          {t('services.itin-application')}
-                        </Link>
-                        <Link href="/services/unclaimed-property-reporting-and-consulting" className="text-base p-2 hover:text-primary">
-                          {t('services.unclaimed-property-reporting-and-consulting')}
-                        </Link>
-                      </div>
-                    </div>
-                    <Link href="/blog" className="text-lg font-medium p-2 hover:text-primary">
-                      {t('blog')}
-                    </Link>
-                    <div className="flex flex-col">
-                      <Link href="/about" className="text-lg font-medium p-2 hover:text-primary">
-                        {t('about.title')}
-                      </Link>
-                      <div className="ml-4 flex flex-col gap-2">
-                        <Link href="/about/contact-now" className="text-base p-2 hover:text-primary">
-                          {t('about.contact-now')}
-                        </Link>
-                        <Link href="/about/recruitment" className="text-base p-2 hover:text-primary">
-                          {t('about.recruitment')}
-                        </Link>
-                      </div>
-                    </div>
+                    {navItems.map((item) => (
+                      <MobileMenuItem key={item.href} item={item} />
+                    ))}
                   </nav>
                 </SheetContent>
               </Sheet>
