@@ -18,13 +18,14 @@
     }
   },
   "Footer": {
-    "socialMedia": {
-      "tiktok": "TikTok",
-      "youtube": "Youtube",
-      "weixin": "WeChat"
-    },
-    "companyName": "Your Company Name",
-    "copyright": "All rights reserved"
+    "contact": {
+      "title": "Contact Us",
+      "sf-office": "San Francisco Office: 851 Burlway Rd, Ste 605, Burlingame, CA 94010",
+      "miami-office": "Miami Office: 15321 South Dixie Highway, Suite 302B, Palmetto Bay, FL 33157",
+      "office-hours": "Pacific Time: 9:30 AM - 5:30 PM",
+      "phone-label": "Phone",
+      "email-label": "Email"
+    }
   },
   "Layout": {
     "metaData": {

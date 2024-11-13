@@ -21,19 +21,19 @@ export default function Footer() {
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Contact Information Column */}
         <div>
-          <h3 className="text-xl mb-4">联系我们</h3>
+          <h3 className="text-xl mb-4">{t('contact.title')}</h3>
           <div className="space-y-2">
-            <p>旧金山办公室：851 Burlway Rd, Ste 605, Burlingame, CA 94010</p>
-            <p>迈阿密办公室：15321 South Dixie Highway, Suite 302B, Palmetto Bay, FL 33157</p>
-            <p>太平洋时间：上午9：30 - 下午5：30</p>
+            <p>{t('contact.sf-office')}</p>
+            <p>{t('contact.miami-office')}</p>
+            <p>{t('contact.office-hours')}</p>
             <div className="flex items-center gap-2">
-              <span className="text-xl">电话：</span>
+              <span className="text-xl">{t('contact.phone-label')}：</span>
               <a href="tel:+19493004828" className="text-xl hover:text-teal-400">
                 +1 (949) 300-4828
               </a>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-xl">邮箱：</span>
+              <span className="text-xl">{t('contact.email-label')}：</span>
               <a href="mailto:info@jhaccounting.org" className="text-xl hover:text-teal-400">
                 info@jhaccounting.org
               </a>
