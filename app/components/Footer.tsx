@@ -10,8 +10,6 @@
  */
 
 import { useTranslations } from 'next-intl';
-import Link from 'next/link';
-import { FaFacebookF, FaLinkedinIn, FaTwitter } from 'react-icons/fa';
 
 export default function Footer() {
   const t = useTranslations('Footer');
@@ -21,21 +19,21 @@ export default function Footer() {
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Contact Information Column */}
         <div>
-          <h3 className="text-2xl font-semibold mb-6">{t('contact.title')}</h3>
+          <h3 className="text-2xl font-semibold mb-6 text-amber-400">{t('contact.title')}</h3>
           <div className="space-y-3 text-xl">
             <p>{t('contact.sf-office')}</p>
             <p>{t('contact.miami-office')}</p>
             <p>{t('contact.office-hours')}</p>
             <div className="flex items-center gap-2">
               <span>{t('contact.phone-label')}</span>
-              <a href="tel:+19493004828" className="hover:text-teal-400">
-                +1 (949) 300-4828
+              <a href={`tel:${t('contact.phone')}`} className="hover:text-teal-400">
+                {t('contact.phone')}
               </a>
             </div>
             <div className="flex items-center gap-2">
               <span>{t('contact.email-label')}</span>
-              <a href="mailto:info@jhaccounting.org" className="hover:text-teal-400">
-                info@jhaccounting.org
+              <a href={`mailto:${t('contact.email')}`} className="hover:text-teal-400">
+                {t('contact.email')}
               </a>
             </div>
           </div>
@@ -54,7 +52,7 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className="container mx-auto mt-8 pt-8 border-t border-gray-600">
         <div className="text-sm">
-          Copyright © 2022 JIAHUA Accounting Services
+          {t('contact.copyright')}
         </div>
       </div>
     </footer>

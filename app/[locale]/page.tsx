@@ -4,12 +4,14 @@
  * 
  */
 
-import Link from "next/link"
-import { Button } from "@/app/components/ui/button"
+import { useTranslations } from "next-intl"
 import { Card, CardContent } from "@/app/components/ui/card"
 import Image from "next/image"
 
 export default function Home() {
+  const t = useTranslations('Home');
+  const tFooter = useTranslations('Footer');
+
   return (
     <>
       {/* Hero Section */}
@@ -17,27 +19,79 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/50" /> {/* 暗色遮罩 */}
         <div className="container mx-auto px-4 h-full relative">
           <div className="flex flex-col justify-center h-full text-white">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              我们提供卓越的税务和会计服务
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-amber-400">
+              {t('hero-section.title')}
             </h1>
             <p className="text-lg md:text-xl mb-8 max-w-2xl">
-              通过我们的定制优化服务优化您的财务策略并减少纳税义务。依靠我们专业的税务准备、规划和申报，在当今竞争激烈的市场中取得成功。
+              {t('hero-section.description')}
             </p>
             <div className="flex items-center gap-6">
               <div className="flex items-center gap-2">
-                <span className="text-xl">电话：</span>
-                <a href="tel:+19493004828" className="text-xl hover:text-teal-400">
-                  +1 (949) 300-4828
+                <span className="text-xl">{tFooter('contact.phone-label')}</span>
+                <a href={`tel:${tFooter('contact.phone')}`} className="text-xl hover:text-teal-400">
+                  {tFooter('contact.phone')}
                 </a>
               </div>
             </div>
             <div className="flex items-center gap-6">
               <div className="flex items-center gap-2">
-                <span className="text-xl">邮箱：</span>
-                <a href="mailto:info@jhaccounting.org" className="text-xl hover:text-teal-400">
-                  info@jhaccounting.org
+                <span className="text-xl">{tFooter('contact.email-label')}</span>
+                <a href={`mailto:${tFooter('contact.email')}`} className="text-xl hover:text-teal-400">
+                  {tFooter('contact.email')}
                 </a>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Consultation Section */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div className="relative">
+              <Image
+                src="/consultation.png"
+                alt="Financial consultation"
+                width={800}
+                height={600}
+                className="rounded-lg"
+              />
+            </div>
+            <div>
+              <h2 className="text-2xl md:text-3xl font-bold text-teal-600 mb-6">
+                {t('consultation-section.title1')}
+                <br />
+                {t('consultation-section.title2')}
+              </h2>
+              <p className="mb-6 text-gray-700">
+                {t('consultation-section.description1')}
+              </p>
+              <p className="mb-6 text-gray-700">
+                {t('consultation-section.description2')}
+              </p>
+              <ul className="space-y-4 text-gray-700">
+                <li className="flex items-start gap-2">
+                  <span className="text-teal-600">•</span>
+                  {t('consultation-section.question1')}
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-teal-600">•</span>
+                  {t('consultation-section.question2')}
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-teal-600">•</span>
+                  {t('consultation-section.question3')}
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-teal-600">•</span>
+                  {t('consultation-section.question4')}
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-teal-600">•</span>
+                  {t('consultation-section.question5')}
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -46,34 +100,38 @@ export default function Home() {
       {/* Process Section */}
       <section className="py-16 bg-slate-800 text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">我们让申请变得简单</h2>
-          <p className="mb-12">完成这5个步骤，我们就可以处理剩下的所有事情。</p>
+          <h2 className="text-3xl font-bold mb-4 text-amber-400">
+            {t('process-section.title')}
+          </h2>
+          <p className="mb-12">
+            {t('process-section.description')}
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
             {[
               {
                 step: 1,
-                title: "简单回答10个问题",
-                description: "这个调查不收费，也不代表任何承诺，只需几分钟就可以完成。"
+                title: t('process-section.step1.title'),
+                description: t('process-section.step1.description')
               },
               {
                 step: 2,
-                title: "接听电话",
-                description: "在几分钟内，我们会给您打电话，告诉您接下来的步骤，并为您提供初步估计。"
+                title: t('process-section.step2.title'),
+                description: t('process-section.step2.description')
               },
               {
                 step: 3,
-                title: "签署合同",
-                description: "为我们的专家们提供授权，签署一份合同，这将正式启动您申请程序。"
+                title: t('process-section.step3.title'),
+                description: t('process-section.step3.description')
               },
               {
                 step: 4,
-                title: "收集必要的文件",
-                description: "我们将列出所有为您申请所需要的文件！您的信息将被储存在安全加密云中。"
+                title: t('process-section.step4.title'),
+                description: t('process-section.step4.description')
               },
               {
                 step: 5,
-                title: "完成",
-                description: "我们将根据您的需求完成相关服务。"
+                title: t('process-section.step5.title'),
+                description: t('process-section.step5.description')
               }
             ].map((item, index) => (
               <div key={index} className="flex flex-col items-center">
@@ -91,24 +149,28 @@ export default function Home() {
       {/* Why Choose Us Section */}
       <section className="py-16">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">为什么选择我们?</h2>
-          <p className="mb-12">我们会自始至终帮助您完成整个过程</p>
+          <h2 className="text-3xl font-bold mb-4 text-teal-600">
+            {t('why-choose-us-section.title')}
+          </h2>
+          <p className="mb-12">
+            {t('why-choose-us-section.description')}
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
                 icon: "📊",
-                title: "最专业服务团队",
-                description: "我们的注册会计师、律师、数据分析师和薪资专家等专业人员建立了一套专业系统，可以最大限度地提高您的信用。"
+                title: t('why-choose-us-section.part1.title'),
+                description: t('why-choose-us-section.part1.description')
               },
               {
                 icon: "💰",
-                title: "最快的通过率",
-                description: "Jiahua将为您提供便捷最快速且高通过率的申请"
+                title: t('why-choose-us-section.part2.title'),
+                description: t('why-choose-us-section.part2.description')
               },
               {
                 icon: "💻",
-                title: "最好技术支持",
-                description: "经过认证和便于申诉的报告，即使您的抵免收到以后也能确保安心。"
+                title: t('why-choose-us-section.part3.title'),
+                description: t('why-choose-us-section.part3.description')
               }
             ].map((item, index) => (
               <Card key={index} className="bg-gray-50">

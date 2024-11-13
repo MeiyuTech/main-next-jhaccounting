@@ -123,6 +123,12 @@ export default function Header() {
                           </NavigationMenuContent>
                         </>
                       ) : (
+                        /**
+                         * TODO:
+                         * "onClick" was passed to <Link> with `href` of `/zh-cn/blog` 
+                         * but "legacyBehavior" was set. 
+                         * The legacy behavior requires onClick be set on the child of next/link
+                         */
                         <Link href={item.href} legacyBehavior passHref>
                           <NavigationMenuLink className="text-xl font-medium p-2 hover:text-primary">
                             {item.label}

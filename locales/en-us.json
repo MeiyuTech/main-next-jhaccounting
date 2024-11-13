@@ -24,31 +24,74 @@
       "miami-office": "Miami Office: 15321 South Dixie Highway, Suite 302B, Palmetto Bay, FL, 33157",
       "office-hours": "Pacific Time: 9:30 AM - 5:30 PM",
       "phone-label": "Phone:",
-      "email-label": "Email:"
+      "email-label": "Email:",
+      "phone": "+1 (949) 300-4828",
+      "email": "info@jhaccounting.org",
+      "copyright": "Copyright © 2022 JIAHUA Accounting Services"
     }
   },
   "Layout": {
     "metaData": {
-      "title": "SinoYoga",
-      "description": "The SinoYoga Offical Website"
+      "title": "",
+      "description": ""
     }
   },
   "Home": {
-    "introduction-1": "Embrace Eastern Wisdom and Traditional Medicine",
-    "introduction-2": "Promote Chinese Yoga",
-    "introduction-3": "Optimize Lifestyle",
-    "moreButton": "Explore More",
-    "slogan-1": "less is",
-    "slogan-2": "more."
+    "hero-section": {
+      "title": "Superior Tax and Accounting Services",
+      "description": "Optimize your financial strategy and reduce tax liabilities through our customized optimization services. Rely on our professional tax preparation, planning, and filing to succeed in today's competitive market."
+    },
+    "consultation-section": {
+      "title1": "Your Integrated Finance Team is Just",
+      "title2": "ONE CALL AWAY",
+      "description1": "Contact Jiahua Accounting Services, our experienced team is ready to support you in achieving your financial goals.",
+      "description2": "In less than 0.5 hours, Jiahua financial experts will determine your company's needs by understanding the following:",
+      "question1": "What is your company's business and future growth goals?",
+      "question2": "What is your company's current financial situation? Does your company have a professional bookkeeper and accounting software?",
+      "question3": "How much time do you spend supporting your daily financial work?",
+      "question4": "What is your main reason for contacting us?",
+      "question5": "What is your budget?"
+    },
+    "process-section": {
+      "title": "Make it Simple",
+      "description": "With these 5 steps completed, we can take care of all the rest.",
+      "step1": {
+        "title": "Answer 10 Questions",
+        "description": "This survey is free of charge and does not represent any commitment. Only takes a few minutes to complete."
+      },
+      "step2": {
+        "title": "Take a 15-minute Call",
+        "description": "In less than 15 minutes, we will call you back to discuss your needs and provide you with an initial estimate."
+      },
+      "step3": {
+        "title": "Receive a Customized Plan",
+        "description": "We will provide you with a customized plan based on your needs and goals."
+      },
+      "step4": {
+        "title": "Upload Required Documents",
+        "description": "We will list all the documents required to make an application for you! Your information will be stored in a secure encrypted cloud."
+      },
+      "step5": {
+        "title": "Enjoy the Benefits",
+        "description": "You can now focus on your business while we handle your financial needs."
+      }
+    },
+    "why-choose-us-section": {
+      "title": "Why Choose Us?",
+      "description": "We will help you through the entire process",
+      "part1": {
+        "title": "The Most Professional Team",
+        "description": "Jiahua's accountants, lawyers, data analysts, and payroll experts have established a professional system that can maximize your credit"
+      },
+      "part2": {
+        "title": "The Most Efficient Process",
+        "description": "Jiahua Accounting Services provides you with the most convenient and efficient tax and accounting services"
+      },
+      "part3": {
+        "title": "The Best Follow-up Service",
+        "description": "After completing the service, there is no one to follow up? Don't worry, Jiahua will always be with you to provide follow-up service consultation."
+      }
+    }
   },
-  "About": {
-    "title": "Yang Qi",
-    "description-1": "SinoYoga Founder",
-    "description-2": "Breath Wisdom ——【Breath Way】Founder",
-    "description-3": "Oxygen Juice Natural Therapy Pioneer",
-    "description-4": "24-year Yoga Teaching Senior Experience",
-    "description-5": "17-year Pure Plant Diet Practice Experience",
-    "description-6": "Million Students' Yoga Instructor",
-    "description-7": "Praised as \"The First Chinese Yoga Person\""
-  }
+  "About": {}
 }
