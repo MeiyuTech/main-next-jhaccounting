@@ -1,8 +1,20 @@
 {
   "Header": {
-    "appTitle": "五行经络瑜伽",
-    "navLinks": {
-      "aboutUs": "关于我们"
+    "services": {
+      "title": "服务",
+      "accounting": "会计服务",
+      "corporate-tax-planning-strategy": "企业税务规划策略",
+      "outsourcing-tax-and-accounting": "税务外包",
+      "tax-credit": "税务减免",
+      "company-formation": "公司注册",
+      "itin-application": "ITIN申请",
+      "unclaimed-property-reporting-and-consulting": "未认领财产报告与咨询"
+    },
+    "blog": "博客",
+    "about": {
+      "title": "关于我们",
+      "contact-now": "现在联系",
+      "recruitment": "招聘计划"
     }
   },
   "Footer": {
@@ -28,7 +40,7 @@
     "slogan-1": "少",
     "slogan-2": "即是多"
   },
-  "AboutUs": {
+  "About": {
     "title": "杨淇",
     "description-1": "五⾏经络瑜伽创始⼈",
     "description-2": "智慧呼吸 ——【⽓道】创始⼈",
@@ -37,15 +49,5 @@
     "description-5": "17年纯植物饮⻝实践经验",
     "description-6": "百万学员之瑜伽导师",
     "description-7": "誉为\"中国式瑜伽第⼀⼈\""
-  },
-  "InnerPage": {
-    "title": "五行经络瑜伽全科系",
-    "subtitle": "五行经络瑜伽五大板块：正位瑜伽、五行功、气道•智慧呼吸、情志疗愈和氧气厨房",
-    "description-1": "40多种呼吸法",
-    "description-2": "150多个木火土金水的序列练习",
-    "description-3": "五行功36式 ——适合全家人练习",
-    "description-4": "24节气养生与食疗",
-    "description-5": "朴素智慧、唱诵冥想",
-    "summary": "适合初级练习者和瑜伽老师用于私教和小班课教学。"
   }
 }

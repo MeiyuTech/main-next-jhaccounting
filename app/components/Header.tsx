@@ -1,6 +1,5 @@
 import Image from "next/image"
-import Link from "next/link"
-import { Locale } from "@/i18n.config";
+import { Link, Locale } from "@/i18n.config";
 import { useLocale, useTranslations } from "next-intl";
 import LocaleSwitcher from './LocaleSwitcher';
 import { Button } from "@/app/components/ui/button"
@@ -16,6 +15,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/app/components/ui/sheet"
 import { Menu } from "lucide-react"
 
 export default function Header() {
+  const t = useTranslations('Header');
   // Retrieves the active locale
   const locale = useLocale() as Locale;
 
@@ -40,59 +40,59 @@ export default function Header() {
                   <NavigationMenuItem>
                     <NavigationMenuTrigger className="px-2">
                       <Link href="/services" className="text-lg font-medium hover:text-primary">
-                        服务
+                        {t('services.title')}
                       </Link>
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
                       <ul className="grid w-[200px] gap-3 p-4">
                         <li>
-                          <NavigationMenuLink asChild>
-                            <Link href="/services/accounting" className="block p-2 hover:bg-slate-100 rounded-md">
-                              会计服务
-                            </Link>
-                          </NavigationMenuLink>
+                          <Link href="/services/accounting">
+                            <NavigationMenuLink className="block p-2 hover:bg-slate-100 rounded-md">
+                              {t('services.accounting')}
+                            </NavigationMenuLink>
+                          </Link>
                         </li>
                         <li>
-                          <NavigationMenuLink asChild>
-                            <Link href="/services/tax-planning" className="block p-2 hover:bg-slate-100 rounded-md">
-                              公司税务筹划
-                            </Link>
-                          </NavigationMenuLink>
+                          <Link href="/services/corporate-tax-planning-strategy">
+                            <NavigationMenuLink className="block p-2 hover:bg-slate-100 rounded-md">
+                              {t('services.corporate-tax-planning-strategy')}
+                            </NavigationMenuLink>
+                          </Link>
                         </li>
                         <li>
-                          <NavigationMenuLink asChild>
-                            <Link href="/services/tax-outsourcing" className="block p-2 hover:bg-slate-100 rounded-md">
-                              财税外包
-                            </Link>
-                          </NavigationMenuLink>
+                          <Link href="/services/outsourcing-tax-and-accounting">
+                            <NavigationMenuLink className="block p-2 hover:bg-slate-100 rounded-md">
+                              {t('services.outsourcing-tax-and-accounting')}
+                            </NavigationMenuLink>
+                          </Link>
                         </li>
                         <li>
-                          <NavigationMenuLink asChild>
-                            <Link href="/services/tax-reduction" className="block p-2 hover:bg-slate-100 rounded-md">
-                              税务减免
-                            </Link>
-                          </NavigationMenuLink>
+                          <Link href="/services/tax-credit">
+                            <NavigationMenuLink className="block p-2 hover:bg-slate-100 rounded-md">
+                              {t('services.tax-credit')}
+                            </NavigationMenuLink>
+                          </Link>
                         </li>
                         <li>
-                          <NavigationMenuLink asChild>
-                            <Link href="/services/boi" className="block p-2 hover:bg-slate-100 rounded-md">
-                              BOI申报
-                            </Link>
-                          </NavigationMenuLink>
+                          <Link href="/services/company-formation">
+                            <NavigationMenuLink className="block p-2 hover:bg-slate-100 rounded-md">
+                              {t('services.company-formation')}
+                            </NavigationMenuLink>
+                          </Link>
                         </li>
                         <li>
-                          <NavigationMenuLink asChild>
-                            <Link href="/services/company-registration" className="block p-2 hover:bg-slate-100 rounded-md">
-                              公司注册
-                            </Link>
-                          </NavigationMenuLink>
+                          <Link href="/services/itin-application">
+                            <NavigationMenuLink className="block p-2 hover:bg-slate-100 rounded-md">
+                              {t('services.itin-application')}
+                            </NavigationMenuLink>
+                          </Link>
                         </li>
                         <li>
-                          <NavigationMenuLink asChild>
-                            <Link href="/services/itin" className="block p-2 hover:bg-slate-100 rounded-md">
-                              ITIN注册
-                            </Link>
-                          </NavigationMenuLink>
+                          <Link href="/services/unclaimed-property-reporting-and-consulting">
+                            <NavigationMenuLink className="block p-2 hover:bg-slate-100 rounded-md">
+                              {t('services.unclaimed-property-reporting-and-consulting')}
+                            </NavigationMenuLink>
+                          </Link>
                         </li>
                       </ul>
                     </NavigationMenuContent>
@@ -102,11 +102,11 @@ export default function Header() {
               <NavigationMenu>
                 <NavigationMenuList>
                   <NavigationMenuItem>
-                    <NavigationMenuTrigger>
-                      <Link href="/blog" className="text-lg font-medium p-2 hover:text-primary">
-                        博客
-                      </Link>
-                    </NavigationMenuTrigger>
+                    <Link href="/blog">
+                      <NavigationMenuLink className="text-lg font-medium p-2 hover:text-primary">
+                        {t('blog')}
+                      </NavigationMenuLink>
+                    </Link>
                   </NavigationMenuItem>
                 </NavigationMenuList>
               </NavigationMenu>
@@ -114,25 +114,25 @@ export default function Header() {
                 <NavigationMenuList>
                   <NavigationMenuItem>
                     <NavigationMenuTrigger>
-                      <Link href="/about" className="text-lg font-medium p-2 hover:text-primary">
-                        关于我们
+                      <Link href="/about" className="text-lg font-medium hover:text-primary">
+                        {t('about.title')}
                       </Link>
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
                       <ul className="grid w-[200px] gap-3 p-4">
                         <li>
-                          <NavigationMenuLink asChild>
-                            <Link href="/about" className="block p-2 hover:bg-slate-100 rounded-md">
-                              现在联系
-                            </Link>
-                          </NavigationMenuLink>
+                          <Link href="/about/contact-now">
+                            <NavigationMenuLink className="block p-2 hover:bg-slate-100 rounded-md">
+                              {t('about.contact-now')}
+                            </NavigationMenuLink>
+                          </Link>
                         </li>
                         <li>
-                          <NavigationMenuLink asChild>
-                            <Link href="/recruitment" className="block p-2 hover:bg-slate-100 rounded-md">
-                              招聘计划
-                            </Link>
-                          </NavigationMenuLink>
+                          <Link href="/about/recruitment">
+                            <NavigationMenuLink className="block p-2 hover:bg-slate-100 rounded-md">
+                              {t('about.recruitment')}
+                            </NavigationMenuLink>
+                          </Link>
                         </li>
                       </ul>
                     </NavigationMenuContent>
@@ -152,45 +152,45 @@ export default function Header() {
                   <nav className="flex flex-col gap-4 mt-8">
                     <div className="flex flex-col">
                       <Link href="/services" className="text-lg font-medium p-2 hover:text-primary">
-                        服务
+                        {t('services.title')}
                       </Link>
                       <div className="ml-4 flex flex-col gap-2">
                         <Link href="/services/accounting" className="text-base p-2 hover:text-primary">
-                          会计服务
+                          {t('services.accounting')}
                         </Link>
-                        <Link href="/services/tax-planning" className="text-base p-2 hover:text-primary">
-                          公司税务筹划
+                        <Link href="/services/corporate-tax-planning-strategy" className="text-base p-2 hover:text-primary">
+                          {t('services.corporate-tax-planning-strategy')}
                         </Link>
-                        <Link href="/services/tax-outsourcing" className="text-base p-2 hover:text-primary">
-                          财税外包
+                        <Link href="/services/outsourcing-tax-and-accounting" className="text-base p-2 hover:text-primary">
+                          {t('services.outsourcing-tax-and-accounting')}
                         </Link>
-                        <Link href="/services/tax-reduction" className="text-base p-2 hover:text-primary">
-                          税务减免
+                        <Link href="/services/tax-credit" className="text-base p-2 hover:text-primary">
+                          {t('services.tax-credit')}
                         </Link>
-                        <Link href="/services/boi" className="text-base p-2 hover:text-primary">
-                          BOI申报
+                        <Link href="/services/company-formation" className="text-base p-2 hover:text-primary">
+                          {t('services.company-formation')}
                         </Link>
-                        <Link href="/services/company-registration" className="text-base p-2 hover:text-primary">
-                          公司注册
+                        <Link href="/services/itin-application" className="text-base p-2 hover:text-primary">
+                          {t('services.itin-application')}
                         </Link>
-                        <Link href="/services/itin" className="text-base p-2 hover:text-primary">
-                          ITIN注册
+                        <Link href="/services/unclaimed-property-reporting-and-consulting" className="text-base p-2 hover:text-primary">
+                          {t('services.unclaimed-property-reporting-and-consulting')}
                         </Link>
                       </div>
                     </div>
                     <Link href="/blog" className="text-lg font-medium p-2 hover:text-primary">
-                      博客
+                      {t('blog')}
                     </Link>
                     <div className="flex flex-col">
                       <Link href="/about" className="text-lg font-medium p-2 hover:text-primary">
-                        关于我们
+                        {t('about.title')}
                       </Link>
                       <div className="ml-4 flex flex-col gap-2">
-                        <Link href="/about" className="text-base p-2 hover:text-primary">
-                          现在联系
+                        <Link href="/about/contact-now" className="text-base p-2 hover:text-primary">
+                          {t('about.contact-now')}
                         </Link>
-                        <Link href="/recruitment" className="text-base p-2 hover:text-primary">
-                          招聘计划
+                        <Link href="/about/recruitment" className="text-base p-2 hover:text-primary">
+                          {t('about.recruitment')}
                         </Link>
                       </div>
                     </div>

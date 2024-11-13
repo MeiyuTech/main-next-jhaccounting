@@ -39,7 +39,7 @@ export default function AboutUs({
           {/* Right side: Profile photo with yellow breathing effect circle */}
           <div className="w-full md:w-1/2 relative flex justify-center items-center mb-8 md:mb-0 order-1 md:order-2">
             <Image
-              src="/qy-2.1.png"
+              src="/.png"
               alt="Profile"
               width={240}
               height={240}
