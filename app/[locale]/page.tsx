@@ -73,7 +73,7 @@ export default function Home() {
               {
                 step: 5,
                 title: "完成",
-                description: "我们将向美国国税局提交所有资料，而您将收到支票。"
+                description: "我们将根据您的需求完成相关服务。"
               }
             ].map((item, index) => (
               <div key={index} className="flex flex-col items-center">
@@ -85,9 +85,6 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <Button className="mt-12 bg-teal-500 hover:bg-teal-600 text-lg px-12 py-6 text-xl font-bold rounded-xl">
-            现在就从回答几个简单的问题开始吧
-          </Button>
         </div>
       </section>
 

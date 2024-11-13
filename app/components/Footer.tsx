@@ -23,12 +23,11 @@ export default function Footer() {
         <div>
           <h3 className="text-xl mb-4">联系我们</h3>
           <div className="space-y-2">
+            <p>旧金山办公室：851 Burlway Rd, Ste 605, Burlingame, CA 94010</p>
             <p>迈阿密办公室：15321 South Dixie Highway, Suite 302B, Palmetto Bay, FL 33157</p>
-            <p>旧金山办公室：851 Burlway Rd, Ste 605 Burlingame, CA 94010</p>
-            <p>尔湾办公室：19800 MacArthur BLVD, STE 420 IRVINE, CA 92612</p>
             <p>太平洋时间：上午9：30 - 下午5：30</p>
             <p>电话：+1 (949) 300-4828</p>
-            <p>info@jhaccounting.org</p>
+            <p>邮箱：info@jhaccounting.org</p>
           </div>
         </div>
 

@@ -132,7 +132,6 @@ export default function Header() {
                 </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
-            <Button className="bg-teal-500 hover:bg-teal-600 text-lg px-8 py-3">开始咨询</Button>
           </nav>
 
           <div className="flex lg:hidden items-center gap-4">
@@ -191,9 +190,6 @@ export default function Header() {
                 </nav>
               </SheetContent>
             </Sheet>
-            <Button className="bg-teal-500 hover:bg-teal-600 text-lg px-8 py-3">
-              开始咨询
-            </Button>
           </div>
         </div >
       </header >
