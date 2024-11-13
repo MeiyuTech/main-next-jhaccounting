@@ -33,112 +33,115 @@ export default function Header() {
             />
           </Link>
 
-          <nav className="hidden lg:flex items-center gap-12">
-            <NavigationMenu>
-              <NavigationMenuList>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger>
-                    <Link href="/services" className="text-lg font-medium p-2 hover:text-primary">
-                      服务
-                    </Link>
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="grid w-[200px] gap-3 p-4">
-                      <li>
-                        <NavigationMenuLink asChild>
-                          <Link href="/services/accounting" className="block p-2 hover:bg-slate-100 rounded-md">
-                            会计服务
-                          </Link>
-                        </NavigationMenuLink>
-                      </li>
-                      <li>
-                        <NavigationMenuLink asChild>
-                          <Link href="/services/tax-planning" className="block p-2 hover:bg-slate-100 rounded-md">
-                            公司税务筹划
-                          </Link>
-                        </NavigationMenuLink>
-                      </li>
-                      <li>
-                        <NavigationMenuLink asChild>
-                          <Link href="/services/tax-outsourcing" className="block p-2 hover:bg-slate-100 rounded-md">
-                            财税外包
-                          </Link>
-                        </NavigationMenuLink>
-                      </li>
-                      <li>
-                        <NavigationMenuLink asChild>
-                          <Link href="/services/tax-reduction" className="block p-2 hover:bg-slate-100 rounded-md">
-                            税务减免
-                          </Link>
-                        </NavigationMenuLink>
-                      </li>
-                      <li>
-                        <NavigationMenuLink asChild>
-                          <Link href="/services/boi" className="block p-2 hover:bg-slate-100 rounded-md">
-                            BOI申报
-                          </Link>
-                        </NavigationMenuLink>
-                      </li>
-                      <li>
-                        <NavigationMenuLink asChild>
-                          <Link href="/services/company-registration" className="block p-2 hover:bg-slate-100 rounded-md">
-                            公司注册
-                          </Link>
-                        </NavigationMenuLink>
-                      </li>
-                      <li>
-                        <NavigationMenuLink asChild>
-                          <Link href="/services/itin" className="block p-2 hover:bg-slate-100 rounded-md">
-                            ITIN注册
-                          </Link>
-                        </NavigationMenuLink>
-                      </li>
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-              </NavigationMenuList>
-            </NavigationMenu>
-            <NavigationMenu>
-              <NavigationMenuList>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger>
-                    <Link href="/blog" className="text-lg font-medium p-2 hover:text-primary">
-                      博客
-                    </Link>
-                  </NavigationMenuTrigger>
-                </NavigationMenuItem>
-              </NavigationMenuList>
-            </NavigationMenu>
-            <NavigationMenu>
-              <NavigationMenuList>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger>
-                    <Link href="/about" className="text-lg font-medium p-2 hover:text-primary">
-                      关于我们
-                    </Link>
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="grid w-[200px] gap-3 p-4">
-                      <li>
-                        <NavigationMenuLink asChild>
-                          <Link href="/about" className="block p-2 hover:bg-slate-100 rounded-md">
-                            现在联系
-                          </Link>
-                        </NavigationMenuLink>
-                      </li>
-                      <li>
-                        <NavigationMenuLink asChild>
-                          <Link href="/recruitment" className="block p-2 hover:bg-slate-100 rounded-md">
-                            招聘计划
-                          </Link>
-                        </NavigationMenuLink>
-                      </li>
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-              </NavigationMenuList>
-            </NavigationMenu>
-          </nav>
+          <div className="hidden lg:flex items-center gap-2">
+            <nav className="flex items-center gap-1">
+              <NavigationMenu className="px-1">
+                <NavigationMenuList>
+                  <NavigationMenuItem>
+                    <NavigationMenuTrigger className="px-2">
+                      <Link href="/services" className="text-lg font-medium hover:text-primary">
+                        服务
+                      </Link>
+                    </NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      <ul className="grid w-[200px] gap-3 p-4">
+                        <li>
+                          <NavigationMenuLink asChild>
+                            <Link href="/services/accounting" className="block p-2 hover:bg-slate-100 rounded-md">
+                              会计服务
+                            </Link>
+                          </NavigationMenuLink>
+                        </li>
+                        <li>
+                          <NavigationMenuLink asChild>
+                            <Link href="/services/tax-planning" className="block p-2 hover:bg-slate-100 rounded-md">
+                              公司税务筹划
+                            </Link>
+                          </NavigationMenuLink>
+                        </li>
+                        <li>
+                          <NavigationMenuLink asChild>
+                            <Link href="/services/tax-outsourcing" className="block p-2 hover:bg-slate-100 rounded-md">
+                              财税外包
+                            </Link>
+                          </NavigationMenuLink>
+                        </li>
+                        <li>
+                          <NavigationMenuLink asChild>
+                            <Link href="/services/tax-reduction" className="block p-2 hover:bg-slate-100 rounded-md">
+                              税务减免
+                            </Link>
+                          </NavigationMenuLink>
+                        </li>
+                        <li>
+                          <NavigationMenuLink asChild>
+                            <Link href="/services/boi" className="block p-2 hover:bg-slate-100 rounded-md">
+                              BOI申报
+                            </Link>
+                          </NavigationMenuLink>
+                        </li>
+                        <li>
+                          <NavigationMenuLink asChild>
+                            <Link href="/services/company-registration" className="block p-2 hover:bg-slate-100 rounded-md">
+                              公司注册
+                            </Link>
+                          </NavigationMenuLink>
+                        </li>
+                        <li>
+                          <NavigationMenuLink asChild>
+                            <Link href="/services/itin" className="block p-2 hover:bg-slate-100 rounded-md">
+                              ITIN注册
+                            </Link>
+                          </NavigationMenuLink>
+                        </li>
+                      </ul>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+                </NavigationMenuList>
+              </NavigationMenu>
+              <NavigationMenu>
+                <NavigationMenuList>
+                  <NavigationMenuItem>
+                    <NavigationMenuTrigger>
+                      <Link href="/blog" className="text-lg font-medium p-2 hover:text-primary">
+                        博客
+                      </Link>
+                    </NavigationMenuTrigger>
+                  </NavigationMenuItem>
+                </NavigationMenuList>
+              </NavigationMenu>
+              <NavigationMenu>
+                <NavigationMenuList>
+                  <NavigationMenuItem>
+                    <NavigationMenuTrigger>
+                      <Link href="/about" className="text-lg font-medium p-2 hover:text-primary">
+                        关于我们
+                      </Link>
+                    </NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      <ul className="grid w-[200px] gap-3 p-4">
+                        <li>
+                          <NavigationMenuLink asChild>
+                            <Link href="/about" className="block p-2 hover:bg-slate-100 rounded-md">
+                              现在联系
+                            </Link>
+                          </NavigationMenuLink>
+                        </li>
+                        <li>
+                          <NavigationMenuLink asChild>
+                            <Link href="/recruitment" className="block p-2 hover:bg-slate-100 rounded-md">
+                              招聘计划
+                            </Link>
+                          </NavigationMenuLink>
+                        </li>
+                      </ul>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+                </NavigationMenuList>
+              </NavigationMenu>
+            </nav>
+            <LocaleSwitcher locale={locale} />
+          </div>
 
           <div className="flex lg:hidden items-center gap-4">
             <Sheet>
@@ -194,10 +197,14 @@ export default function Header() {
                     </div>
                   </div>
                 </nav>
+                <div className="mt-4 border-t pt-4">
+                  <LocaleSwitcher locale={locale} />
+                </div>
               </SheetContent>
+
             </Sheet>
           </div>
-          <LocaleSwitcher locale={locale} />
+
         </div >
       </header >
       <div className="h-[144px]" />
