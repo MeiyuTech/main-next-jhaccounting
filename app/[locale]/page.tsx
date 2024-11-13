@@ -7,10 +7,42 @@
 import Link from "next/link"
 import { Button } from "@/app/components/ui/button"
 import { Card, CardContent } from "@/app/components/ui/card"
+import Image from "next/image"
 
 export default function Home() {
   return (
     <>
+      {/* Hero Section */}
+      <section className="relative h-[600px] bg-cover bg-center" style={{ backgroundImage: 'url(/handshake.jpg)' }}>
+        <div className="absolute inset-0 bg-black/50" /> {/* 暗色遮罩 */}
+        <div className="container mx-auto px-4 h-full relative">
+          <div className="flex flex-col justify-center h-full text-white">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+              我们提供卓越的税务和会计服务
+            </h1>
+            <p className="text-lg md:text-xl mb-8 max-w-2xl">
+              通过我们的定制优化服务优化您的财务策略并减少纳税义务。依靠我们专业的税务准备、规划和申报，在当今竞争激烈的市场中取得成功。
+            </p>
+            <div className="flex items-center gap-6">
+              <div className="flex items-center gap-2">
+                <span className="text-xl">电话：</span>
+                <a href="tel:+19493004828" className="text-xl hover:text-teal-400">
+                  +1 (949) 300-4828
+                </a>
+              </div>
+            </div>
+            <div className="flex items-center gap-6">
+              <div className="flex items-center gap-2">
+                <span className="text-xl">邮箱：</span>
+                <a href="mailto:info@jhaccounting.org" className="text-xl hover:text-teal-400">
+                  info@jhaccounting.org
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Process Section */}
       <section className="py-16 bg-slate-800 text-white">
         <div className="container mx-auto px-4 text-center">
@@ -87,9 +119,6 @@ export default function Home() {
                   <div className="text-4xl mb-4">{item.icon}</div>
                   <h3 className="text-xl font-bold mb-2">{item.title}</h3>
                   <p className="text-gray-600 mb-4">{item.description}</p>
-                  <Link href="#" className="text-teal-500 hover:text-teal-600 inline-flex items-center">
-                    read more →
-                  </Link>
                 </CardContent>
               </Card>
             ))}

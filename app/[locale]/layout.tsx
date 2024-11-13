@@ -1,4 +1,5 @@
-import { Header } from "@/app/components/Header"
+import Header from "@/app/components/Header"
+import Footer from "@/app/components/Footer"
 import "@/app/globals.css"
 
 export const metadata = {
@@ -18,6 +19,7 @@ export default function RootLayout({
         <main className="flex-1">
           {children}
         </main>
+        <Footer />
       </body>
     </html>
   )

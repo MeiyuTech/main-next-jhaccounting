@@ -12,7 +12,7 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from "@/app/components/ui/sheet"
 import { Menu } from "lucide-react"
 
-export function Header() {
+export default function Header() {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 border-b bg-white z-50">
