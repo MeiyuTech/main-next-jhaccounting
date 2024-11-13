@@ -102,7 +102,17 @@ export default function Header() {
               <NavigationMenu>
                 <NavigationMenuList>
                   <NavigationMenuItem>
-                    <Link href="/blog">
+                    {/* 
+                      * Using legacyBehavior and passHref to handle custom Link wrapping:
+                      *  - legacyBehavior: Enables old Link behavior where Link expects a single child component
+                      *  - passHref: Forces Link to pass the href prop to its child component (NavigationMenuLink)
+                      *
+                      * This combination is necessary when:
+                      *  1. Wrapping custom components (like NavigationMenuLink) with Next.js Link
+                      *  2. Preventing hydration errors by ensuring consistent server/client rendering
+                      *  3. Maintaining proper HTML semantics and SEO
+                      */}
+                    <Link href="/blog" legacyBehavior passHref>
                       <NavigationMenuLink className="text-lg font-medium p-2 hover:text-primary">
                         {t('blog')}
                       </NavigationMenuLink>
