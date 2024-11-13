@@ -32,11 +32,6 @@ export function Header() {
               <NavigationMenuList>
                 <NavigationMenuItem>
                   <NavigationMenuTrigger className="text-lg font-medium hover:text-primary">
-                    主页
-                  </NavigationMenuTrigger>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-lg font-medium hover:text-primary">
                     服务
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
@@ -95,17 +90,7 @@ export function Header() {
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <NavigationMenuTrigger className="text-lg font-medium hover:text-primary">
-                    流程
-                  </NavigationMenuTrigger>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-lg font-medium hover:text-primary">
-                    FAQ
-                  </NavigationMenuTrigger>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-lg font-medium hover:text-primary">
-                    新闻
+                    博客
                   </NavigationMenuTrigger>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
