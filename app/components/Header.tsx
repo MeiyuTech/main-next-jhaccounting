@@ -31,8 +31,10 @@ export function Header() {
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-lg font-medium hover:text-primary">
-                    服务
+                  <NavigationMenuTrigger>
+                    <Link href="/services" className="text-lg font-medium p-2 hover:text-primary">
+                      服务
+                    </Link>
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid w-[200px] gap-3 p-4">
@@ -88,14 +90,26 @@ export function Header() {
                     </ul>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
+            <NavigationMenu>
+              <NavigationMenuList>
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-lg font-medium hover:text-primary">
-                    博客
+                  <NavigationMenuTrigger>
+                    <Link href="/blog" className="text-lg font-medium p-2 hover:text-primary">
+                      博客
+                    </Link>
                   </NavigationMenuTrigger>
                 </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
+            <NavigationMenu>
+              <NavigationMenuList>
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-lg font-medium hover:text-primary">
-                    关于我们
+                  <NavigationMenuTrigger>
+                    <Link href="/about" className="text-lg font-medium p-2 hover:text-primary">
+                      关于我们
+                    </Link>
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid w-[200px] gap-3 p-4">
@@ -130,9 +144,6 @@ export function Header() {
               </SheetTrigger>
               <SheetContent side="right" className="w-[300px]">
                 <nav className="flex flex-col gap-4 mt-8">
-                  <Link href="/" className="text-lg font-medium p-2 hover:text-primary">
-                    主页
-                  </Link>
                   <div className="flex flex-col">
                     <Link href="/services" className="text-lg font-medium p-2 hover:text-primary">
                       服务
@@ -161,14 +172,8 @@ export function Header() {
                       </Link>
                     </div>
                   </div>
-                  <Link href="/process" className="text-lg font-medium p-2 hover:text-primary">
-                    流程
-                  </Link>
-                  <Link href="/faq" className="text-lg font-medium p-2 hover:text-primary">
-                    FAQ
-                  </Link>
-                  <Link href="/news" className="text-lg font-medium p-2 hover:text-primary">
-                    新闻
+                  <Link href="/blog" className="text-lg font-medium p-2 hover:text-primary">
+                    博客
                   </Link>
                   <div className="flex flex-col">
                     <Link href="/about" className="text-lg font-medium p-2 hover:text-primary">
@@ -190,8 +195,8 @@ export function Header() {
               开始咨询
             </Button>
           </div>
-        </div>
-      </header>
+        </div >
+      </header >
       <div className="h-[144px]" />
     </>
   )
