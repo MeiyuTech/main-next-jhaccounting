@@ -2,7 +2,7 @@ import { useTranslations } from "next-intl"
 import { Card, CardContent, CardHeader } from "@/app/components/ui/card"
 import Image from "next/image"
 import { Link } from "@/i18n.config"
-import { unstable_setRequestLocale } from "next-intl/server"
+import { setRequestLocale } from "next-intl/server"
 
 // TODO: In production, this data should come from a database or CMS
 const newsPosts = [
@@ -29,7 +29,7 @@ const newsPosts = [
 export default function NewsPage({
   params: { locale },
 }: Readonly<{ params: { locale: string } }>) {
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
   const t = useTranslations('News');
 
   return (
