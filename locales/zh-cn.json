@@ -10,7 +10,7 @@
       "itin-application": "ITIN申请",
       "unclaimed-property-reporting-and-consulting": "未认领财产报告与咨询"
     },
-    "blog": "博客",
+    "news": "资讯",
     "about": {
       "title": "关于我们",
       "contact-now": "现在联系",
@@ -94,5 +94,13 @@
       }
     }
   },
-  "About": {}
+  "About": {},
+  "News": {
+    "title": "资讯",
+    "description": "了解最新的会计、税务资讯和政策更新",
+    "views": "{count} 次阅读"
+  },
+  "NewsPost": {
+    "views": "{count} 次阅读"
+  }
 }

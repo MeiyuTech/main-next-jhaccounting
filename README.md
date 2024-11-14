@@ -1,6 +1,7 @@
 # TODO
 
-- [ ] Add Blog (SEO)
+- [ ] Add News Feature (SEO)
+- [ ] Delete Blog Folder
 - [ ] Image Optimization
 - [ ] OpenGraph Image Generation
 - [ ] Fix onClick event handling in Link component with legacyBehavior

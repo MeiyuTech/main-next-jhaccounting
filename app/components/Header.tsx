@@ -41,8 +41,8 @@ export default function Header() {
       ]
     },
     {
-      href: '/blog',
-      label: t('blog')
+      href: '/news',
+      label: t('news')
     },
     {
       href: '/about',
@@ -125,7 +125,7 @@ export default function Header() {
                       ) : (
                         /**
                          * TODO:
-                         * "onClick" was passed to <Link> with `href` of `/zh-cn/blog` 
+                         * "onClick" was passed to <Link> with `href` of `/zh-cn/news` 
                          * but "legacyBehavior" was set. 
                          * The legacy behavior requires onClick be set on the child of next/link
                          */

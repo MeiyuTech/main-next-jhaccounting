@@ -10,7 +10,7 @@
       "itin-application": "ITIN Application",
       "unclaimed-property-reporting-and-consulting": "Unclaimed Property Reporting & Consulting"
     },
-    "blog": "Blog",
+    "news": "News",
     "about": {
       "title": "About",
       "contact-now": "Contact Now",
@@ -94,5 +94,13 @@
       }
     }
   },
-  "About": {}
+  "About": {},
+  "News": {
+    "title": "News",
+    "description": "Stay updated with the latest accounting and tax news",
+    "views": "{count} views"
+  },
+  "NewsPost": {
+    "views": "{count} views"
+  }
 }

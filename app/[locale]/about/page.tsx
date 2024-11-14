@@ -1,53 +1,190 @@
-/*
- * The About Us Page
- * Introducing the founder, Qi Yang
+/**
+ * Home Page
+ * 
+ * 
  */
 
-import Image from "next/image";
-import { useTranslations } from 'next-intl';
-import { unstable_setRequestLocale } from "next-intl/server";
+import { useTranslations } from "next-intl"
+import { Card, CardContent } from "@/app/components/ui/card"
+import Image from "next/image"
 
-export default function AboutUs({
-  params: { locale },
-}: Readonly<{ params: { locale: string } }>) {
-  unstable_setRequestLocale(locale);
-  const t = useTranslations('AboutUs');
+export default function Home() {
+  const t = useTranslations('Home');
+  const tFooter = useTranslations('Footer');
+
   return (
     <>
-      {/* Main container */}
-      <div className="w-full flex flex-col items-center">
-        {/* Title section - Reduced top margin, increased bottom margin */}
-        <div className="w-full text-center mb-20 mt-4">
-          <h1 className="text-3xl md:text-4xl font-bold">杨淇</h1>
-          <div className="w-24 h-1 bg-yellow-400 mx-auto mt-4"></div>
-        </div>
-
-        {/* Main content container */}
-        <div className="w-full flex flex-col md:flex-row items-center justify-center gap-8 px-4">
-          {/* Left side: Introduction text */}
-          <div className="w-full md:w-1/2 text-center md:text-left order-2 md:order-1">
-            <div className="mb-4">
-              {['description-1', 'description-2', 'description-3', 'description-4', 'description-5', 'description-6', 'description-7'].map((key) => (
-                <div key={key} className="grid grid-cols-[12px_1fr] gap-1 mb-2">
-                  <span>·</span>
-                  <span>{t(key)}</span>
-                </div>
-              ))}
+      {/* Hero Section */}
+      {/* TODO: Image Optimization */}
+      <section className="relative h-[600px] bg-cover bg-center" style={{ backgroundImage: 'url(/handshake.jpg)' }}>
+        <div className="absolute inset-0 bg-black/50" /> {/* 暗色遮罩 */}
+        <div className="container mx-auto px-4 h-full relative">
+          <div className="flex flex-col justify-center h-full text-white">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-amber-400">
+              {t('hero-section.title')}
+            </h1>
+            <p className="text-lg md:text-xl mb-8 max-w-2xl">
+              {t('hero-section.description')}
+            </p>
+            <div className="flex items-center gap-6">
+              <div className="flex items-center gap-2">
+                <span className="text-xl">{tFooter('contact.phone-label')}</span>
+                <a href={`tel:${tFooter('contact.phone')}`} className="text-xl hover:text-teal-400">
+                  {tFooter('contact.phone')}
+                </a>
+              </div>
+            </div>
+            <div className="flex items-center gap-6">
+              <div className="flex items-center gap-2">
+                <span className="text-xl">{tFooter('contact.email-label')}</span>
+                <a href={`mailto:${tFooter('contact.email')}`} className="text-xl hover:text-teal-400">
+                  {tFooter('contact.email')}
+                </a>
+              </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Right side: Profile photo with yellow breathing effect circle */}
-          <div className="w-full md:w-1/2 relative flex justify-center items-center mb-8 md:mb-0 order-1 md:order-2">
-            <Image
-              src="/.png"
-              alt="Profile"
-              width={240}
-              height={240}
-              className="relative z-10"
-            />
+      {/* Consultation Section */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div className="relative">
+              <Image
+                src="/consultation.png"
+                alt="Financial consultation"
+                width={800}
+                height={600}
+                className="rounded-lg"
+              />
+            </div>
+            <div>
+              <h2 className="text-2xl md:text-3xl font-bold text-teal-600 mb-6">
+                {t('consultation-section.title1')}
+                <br />
+                {t('consultation-section.title2')}
+              </h2>
+              <p className="mb-6 text-gray-700">
+                {t('consultation-section.description1')}
+              </p>
+              <p className="mb-6 text-gray-700">
+                {t('consultation-section.description2')}
+              </p>
+              <ul className="space-y-4 text-gray-700">
+                <li className="flex items-start gap-2">
+                  <span className="text-teal-600">•</span>
+                  {t('consultation-section.question1')}
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-teal-600">•</span>
+                  {t('consultation-section.question2')}
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-teal-600">•</span>
+                  {t('consultation-section.question3')}
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-teal-600">•</span>
+                  {t('consultation-section.question4')}
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-teal-600">•</span>
+                  {t('consultation-section.question5')}
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* Process Section */}
+      <section className="py-16 bg-slate-800 text-white">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-4 text-amber-400">
+            {t('process-section.title')}
+          </h2>
+          <p className="mb-12">
+            {t('process-section.description')}
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
+            {[
+              {
+                step: 1,
+                title: t('process-section.step1.title'),
+                description: t('process-section.step1.description')
+              },
+              {
+                step: 2,
+                title: t('process-section.step2.title'),
+                description: t('process-section.step2.description')
+              },
+              {
+                step: 3,
+                title: t('process-section.step3.title'),
+                description: t('process-section.step3.description')
+              },
+              {
+                step: 4,
+                title: t('process-section.step4.title'),
+                description: t('process-section.step4.description')
+              },
+              {
+                step: 5,
+                title: t('process-section.step5.title'),
+                description: t('process-section.step5.description')
+              }
+            ].map((item, index) => (
+              <div key={index} className="flex flex-col items-center">
+                <div className="w-16 h-16 rounded-full bg-white text-slate-800 flex items-center justify-center text-2xl font-bold mb-4">
+                  {item.step}
+                </div>
+                <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+                <p className="text-sm text-gray-300">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us Section */}
+      <section className="py-16">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-4 text-teal-600">
+            {t('why-choose-us-section.title')}
+          </h2>
+          <p className="mb-12">
+            {t('why-choose-us-section.description')}
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: "📊",
+                title: t('why-choose-us-section.part1.title'),
+                description: t('why-choose-us-section.part1.description')
+              },
+              {
+                icon: "💰",
+                title: t('why-choose-us-section.part2.title'),
+                description: t('why-choose-us-section.part2.description')
+              },
+              {
+                icon: "💻",
+                title: t('why-choose-us-section.part3.title'),
+                description: t('why-choose-us-section.part3.description')
+              }
+            ].map((item, index) => (
+              <Card key={index} className="bg-gray-50">
+                <CardContent className="p-6">
+                  <div className="text-4xl mb-4">{item.icon}</div>
+                  <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+                  <p className="text-gray-600 mb-4">{item.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
     </>
-  );
+  )
 }
