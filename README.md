@@ -1,3 +1,18 @@
+# TODO
+
+- [ ] Add Blog (SEO)
+- [ ] Image Optimization
+- [ ] OpenGraph Image Generation
+- [ ] Fix onClick event handling in Link component with legacyBehavior
+- [ ] Add i18n translations for missing keys in About section
+- [ ] Optimize image loading and implement proper image placeholders
+- [ ] Add error boundaries for better error handling
+- [ ] Implement proper SEO meta tags
+- [ ] Add loading states for dynamic content
+- [ ] Implement proper form validation
+- [ ] Add unit tests and integration tests
+- [ ] Add proper documentation for components and utilities
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started

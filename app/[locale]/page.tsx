@@ -15,6 +15,7 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
+      {/* TODO: Image Optimization */}
       <section className="relative h-[600px] bg-cover bg-center" style={{ backgroundImage: 'url(/handshake.jpg)' }}>
         <div className="absolute inset-0 bg-black/50" /> {/* 暗色遮罩 */}
         <div className="container mx-auto px-4 h-full relative">
