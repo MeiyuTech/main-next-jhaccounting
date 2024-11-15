@@ -51,12 +51,12 @@ export default function Header() {
       label: t('news')
     },
     {
-      href: '/about',
-      label: t('about.title'),
-      children: [
-        { href: '/about/contact-now', label: t('about.contact-now') },
-        { href: '/about/recruitment', label: t('about.recruitment') },
-      ]
+      href: '/contact-now',
+      label: t('contact-now')
+    },
+    {
+      href: '/recruitment',
+      label: t('recruitment'),
     }
   ];
 

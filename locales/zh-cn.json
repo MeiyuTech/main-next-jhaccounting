@@ -18,11 +18,8 @@
       "boi-reporting": "BOI 申报"
     },
     "news": "资讯",
-    "about": {
-      "title": "关于我们",
-      "contact-now": "现在联系",
-      "recruitment": "招聘计划"
-    }
+    "contact-now": "现在联系",
+    "recruitment": "招聘计划"
   },
   "Footer": {
     "contact": {
@@ -112,5 +109,65 @@
     "views": "{count} 次阅读",
     "backToNews": "返回资讯"
   },
-  "About": {}
+  "ContactNow": {
+    "title": "现在联系",
+    "description": "联系 Jiahua 会计师事务所，经验丰富的团队随时准备为实现您的财务目标提供支持。",
+    "sf-office-title": "旧金山办公室",
+    "sf-office": "851 Burlway Rd, Ste 605, Burlingame, CA, 94010",
+    "miami-office-title": "迈阿密办公室",
+    "miami-office": "15321 South Dixie Highway, Suite 302B, Palmetto Bay, FL, 33157",
+    "office-hours": "太平洋时间：上午9：30 - 下午5：30",
+    "phone-label": "电话：",
+    "phone": "+1 (949) 300-4828",
+    "email-label": "邮箱：",
+    "email": "info@jhaccounting.org"
+  },
+  "Recruitment": {
+    "title": "招聘计划",
+    "description": "加入 Jiahua 会计师事务所，与我们一起成长",
+    "accountant": {
+      "title": "Accountant",
+      "location": "San Francisco Office",
+      "duties": {
+        "1": "维护和管理公司的财务记录",
+        "2": "准备财务报表、报告和预算",
+        "3": "监督应付账款和应收账款，确保及时支付和收款",
+        "4": "监控和核对银行对账单、信用卡和总账",
+        "5": "管理工资、税务申报和员工福利",
+        "6": "进行审计并确保遵守财务法规和标准",
+        "7": "协助准备财务分析和预测",
+        "8": "与其他部门合作，确保财务数据准确性和一致性"
+      },
+      "requirements": {
+        "1": "会计、财务或相关领域的副学士学位或更高学位",
+        "2": "CPA 认证优先",
+        "3": "会计或财务经验",
+        "4": "会计软件和 Microsoft Excel 的熟练使用",
+        "5": "了解财务法规和会计原则",
+        "6": "强大的分析和解决问题的能力",
+        "7": "注重细节和准确性",
+        "8": "有效的沟通和人际交往能力"
+      }
+    },
+    "office-assistant": {
+      "title": "Office Assistant",
+      "location": "San Francisco Office",
+      "duties": {
+        "1": "整理和维护文件和记录",
+        "2": "整理和分发收件和准备寄件",
+        "3": "接听电话以记录信息或重定向到适当的同事",
+        "4": "安排和协调会议和约会",
+        "5": "协助办公室管理和组织程序",
+        "6": "执行其他办公室职责"
+      },
+      "requirements": {
+        "1": "会计、财务或相关领域的副学士学位或更高学位",
+        "2": "强大的组织和时间管理技能",
+        "3": "Microsoft Office 应用程序的熟练使用，特别是 Excel 和 Word",
+        "4": "优秀的口头和书面沟通能力",
+        "5": "在快节奏的环境中多任务处理和独立工作的能力",
+        "6": "注重细节和工作的准确性"
+      }
+    }
+  }
 }

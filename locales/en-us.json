@@ -18,11 +18,8 @@
       "boi-reporting": "BOI Reporting"
     },
     "news": "News",
-    "about": {
-      "title": "About",
-      "contact-now": "Contact Now",
-      "recruitment": "Recruitment"
-    }
+    "contact-now": "Contact Now",
+    "recruitment": "Recruitment"
   },
   "Footer": {
     "contact": {
@@ -112,5 +109,65 @@
     "views": "{count} views",
     "backToNews": "Back to News"
   },
-  "About": {}
+  "ContactNow": {
+    "title": "Contact Now",
+    "description": "Contact Jiahua Accounting Services, our experienced team is ready to support you in achieving your financial goals.",
+    "sf-office-title": "San Francisco Office",
+    "sf-office": "851 Burlway Rd, Ste 605, Burlingame, CA, 94010",
+    "miami-office-title": "Miami Office",
+    "miami-office": "15321 South Dixie Highway, Suite 302B, Palmetto Bay, FL, 33157",
+    "office-hours": "Pacific Time: 9:30 AM - 5:30 PM",
+    "phone-label": "Phone:",
+    "phone": "+1 (949) 300-4828",
+    "email-label": "Email:",
+    "email": "info@jhaccounting.org"
+  },
+  "Recruitment": {
+    "title": "Recruitment",
+    "description": "Join Jiahua Accounting Services, and grow with us",
+    "accountant": {
+      "title": "Accountant",
+      "location": "San Francisco Office",
+      "duties": {
+        "1": "Maintaining and managing the financial records of the company",
+        "2": "Preparing financial statements, reports, and budgets",
+        "3": "Overseeing accounts payable and receivable, ensuring timely payments and collections",
+        "4": "Monitoring and reconciling bank statements, credit cards, and general ledgers",
+        "5": "Managing payroll, tax filings, and employee benefits",
+        "6": "Conducting audits and ensuring compliance with financial regulations and standards",
+        "7": "Assisting in the preparation of financial analyses and forecasts",
+        "8": "Collaborating with other departments to ensure financial data accuracy and consistency"
+      },
+      "requirements": {
+        "1": "Associate's degree or higher in accounting, finance, or related field",
+        "2": "CPA certification preferred",
+        "3": "Experience in accounting or finance",
+        "4": "Proficiency in accounting software and Microsoft Excel",
+        "5": "Knowledge of financial regulations and accounting principles",
+        "6": "Strong analytical and problem-solving skills",
+        "7": "Attention to detail and accuracy",
+        "8": "Effective communication and interpersonal skills"
+      }
+    },
+    "office-assistant": {
+      "title": "Office Assistant",
+      "location": "San Francisco Office",
+      "duties": {
+        "1": "Organizing and maintaining files and records",
+        "2": "Sort and distribute incoming mail and prepare outgoing mail",
+        "3": "Answer the phone to take messages or redirect calls to appropriate colleagues",
+        "4": "Scheduling and coordinating meetings and appointments",
+        "5": "Assist in office management and organization procedures",
+        "6": "Perform other office duties as assigned"
+      },
+      "requirements": {
+        "1": "Associate's degree or higher in related field",
+        "2": "Strong organizational and time-management skills",
+        "3": "Proficiency in Microsoft Office applications, particularly Excel and Word",
+        "4": "Excellent verbal and written communication skills",
+        "5": "Ability to multitask and work independently in a fast-paced environment",
+        "6": "Attention to detail and accuracy in work"
+      }
+    }
+  }
 }

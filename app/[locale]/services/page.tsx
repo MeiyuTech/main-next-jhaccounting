@@ -50,7 +50,7 @@ export default async function ServicesPage({
                 </h2>
               </CardHeader>
               <CardContent className="p-4 pt-0 flex-1 flex flex-col">
-                <p className="text-gray-600 text-sm mb-4 h-[4.5rem] line-clamp-3">
+                <p className="text-gray-600 text-sm mb-4 h-[6rem] line-clamp-4">
                   {post.frontmatter.description as string}
                 </p>
               </CardContent>
