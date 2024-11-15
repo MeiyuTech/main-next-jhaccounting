@@ -19,8 +19,8 @@ export default async function ServicesPage({
       {/* News header section */}
       <div className="flex items-center justify-between mb-12">
         <div className="flex-1">
-          <h2 className="text-8xl font-bold text-gray-900">{t('title')}</h2>
-          <div className="w-20 h-1 bg-yellow-400 mt-2"></div>
+          <h2 className="text-8xl font-bold text-teal-600">{t('title')}</h2>
+          <div className="w-20 h-1 bg-amber-400 mt-2"></div>
           <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
             {t('description')}
           </p>
