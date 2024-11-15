@@ -5,7 +5,7 @@ import { getPost as getPostNotCached, getPosts } from '@/lib/posts'
 import { cache } from 'react'
 import { Link } from '@/i18n.config'
 
-const contentPath = '/posts/news'
+const contentPath = '/posts/services'
 
 const getPost = cache(
   async (contentPath: string, locale: string, slug: string) => await getPostNotCached(contentPath, locale, slug)
@@ -31,11 +31,11 @@ export async function generateMetadata({ params }: { params: { slug: string, loc
   }
 }
 
-export default async function NewsPost({
+export default async function ServicePost({
   params: { locale, slug },
 }: Readonly<{ params: { locale: string; slug: string } }>) {
   setRequestLocale(locale);
-  const t = await getTranslations('News');
+  const t = await getTranslations('Services');
 
   let postContent
   try {
@@ -47,13 +47,13 @@ export default async function NewsPost({
     <article className="prose container mx-auto px-4 py-8 max-w-4xl">
       {/* Back button */}
       <Link
-        href="/news"
+        href="/services"
         className="inline-flex items-center mb-6 text-gray-600 hover:text-gray-900 no-underline"
       >
         <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
         </svg>
-        {t('backToNews')}
+        {t('backToServices')}
       </Link>
 
       {/* Article header */}
@@ -61,13 +61,6 @@ export default async function NewsPost({
         <h1 className="text-3xl md:text-4xl font-bold mb-4">
           {postContent.frontmatter.title as string}
         </h1>
-        <div className="flex items-center gap-4 text-gray-600 mb-8">
-          <span>{postContent.frontmatter.author as string}</span>
-          <span>•</span>
-          <span>{postContent.frontmatter.date as string}</span>
-          <span>•</span>
-          <span>{t('views', { count: postContent.frontmatter.viewCount as number })}</span>
-        </div>
       </div>
 
       {/* Article content */}

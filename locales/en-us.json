@@ -100,11 +100,16 @@
       }
     }
   },
-  "About": {},
+  "Services": {
+    "title": "Services",
+    "description": "We will help you through the entire process",
+    "backToServices": "Back to Services"
+  },
   "News": {
     "title": "News",
     "description": "Stay updated with the latest accounting and tax news",
     "views": "{count} views",
     "backToNews": "Back to News"
-  }
+  },
+  "About": {}
 }

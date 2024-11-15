@@ -5,15 +5,16 @@ import { setRequestLocale } from "next-intl/server"
 import { getTranslations } from 'next-intl/server';
 import { getPosts } from '@/lib/posts'
 
-const contentPath = '/posts/news'
+const contentPath = '/posts/services'
 
-export default async function NewsPage({
+export default async function ServicesPage({
   params: { locale },
 }: Readonly<{ params: { locale: string } }>) {
   setRequestLocale(locale);
-  const t = await getTranslations('News');
-  const newsPosts = await getPosts(contentPath, locale)
+  const t = await getTranslations('Services');
+  const servicesPosts = await getPosts(contentPath, locale)
 
+  console.log(servicesPosts)
   return (
     <div className="container mx-auto px-4 py-8">
       {/* News header section */}
@@ -34,10 +35,10 @@ export default async function NewsPage({
       </div>
       {/* Blog posts grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {newsPosts.map((post) => (
+        {servicesPosts.map((post) => (
           <Link
             key={post.slug}
-            href={`/news/${post.slug}`}
+            href={`/services/${post.slug}`}
             className="transform transition duration-300 hover:-translate-y-1"
           >
             <Card className="h-full">
@@ -60,10 +61,6 @@ export default async function NewsPage({
                 <p className="text-gray-600 text-sm mb-4 line-clamp-3">
                   {post.frontmatter.description as string}
                 </p>
-                <div className="flex justify-between text-sm text-gray-500">
-                  <span>{post.frontmatter.date as string}</span>
-                  <span>{t('views', { count: post.frontmatter.viewCount as number })}</span>
-                </div>
               </CardContent>
             </Card>
           </Link>

@@ -100,11 +100,16 @@
       }
     }
   },
-  "About": {},
+  "Services": {
+    "title": "服务",
+    "description": "我们自始至终帮助您完成整个过程",
+    "backToServices": "返回服务"
+  },
   "News": {
     "title": "资讯",
     "description": "了解最新的会计、税务资讯和政策更新",
     "views": "{count} 次阅读",
     "backToNews": "返回资讯"
-  }
+  },
+  "About": {}
 }
