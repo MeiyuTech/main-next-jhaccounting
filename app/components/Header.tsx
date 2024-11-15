@@ -84,12 +84,12 @@ export default function Header() {
     <div className="flex flex-col">
       <Link
         href={item.href}
-        className={`text-lg font-medium p-2 hover:text-primary ${depth > 0 ? 'text-base' : ''}`}
+        className={`text-xl font-medium py-0.5 hover:text-primary ${depth > 0 ? '' : ''}`}
       >
         {item.label}
       </Link>
       {item.children && (
-        <div className="ml-4 flex flex-col gap-2">
+        <div className="ml-4 flex flex-col gap-0.5">
           {item.children.map((child) => (
             <MobileMenuItem
               key={child.href}
@@ -105,14 +105,14 @@ export default function Header() {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 border-b bg-white z-50">
-        <div className="container mx-auto px-8 py-8 flex items-center">
+        <div className="container mx-auto px-4 lg:px-8 py-4 lg:py-8 flex items-center">
           <Link href="/" className="flex-shrink-0">
             <Image
               src="/JH-logo-1.png"
               alt="JIAHUA US ACCOUNTING"
               width={300}
               height={100}
-              className="h-24 w-auto"
+              className="h-16 lg:h-24 w-auto"
             />
           </Link>
 
@@ -173,7 +173,7 @@ export default function Header() {
           </div>
         </div>
       </header>
-      <div className="h-[144px]" />
+      <div className="h-[96px] lg:h-[144px]" />
     </>
   )
 }

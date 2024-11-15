@@ -3,8 +3,12 @@
 - [ ] Add News Feature (SEO)
 - [ ] Delete Blog Folder
 - [ ] Image Optimization
+  - Currently marked in page.tsx and about/page.tsx
+  - Need to implement proper image optimization strategy
 - [ ] OpenGraph Image Generation
 - [ ] Fix onClick event handling in Link component with legacyBehavior
+  - Issue in Header.tsx with NavigationMenuLink
+  - Remove legacyBehavior and implement proper event handling
 - [ ] Add i18n translations for missing keys in About section
 - [ ] Optimize image loading and implement proper image placeholders
 - [ ] Add error boundaries for better error handling
@@ -14,6 +18,8 @@
 - [ ] Add unit tests and integration tests
 - [ ] Add proper documentation for components and utilities
 - [ ] Add Display order Feature for News page
+  - Currently marked in news/page.tsx
+  - Need to implement sorting/filtering functionality
 - [ ] Move components to root folder or lib to app folder
 - [ ] Format bullet points (•) for Tax Credits submenu items in `Header.tsx` instead of hardcoding them in translations
   - Currently, bullet points are hardcoded in `en-us.json`

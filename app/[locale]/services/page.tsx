@@ -14,7 +14,6 @@ export default async function ServicesPage({
   const t = await getTranslations('Services');
   const servicesPosts = await getPosts(contentPath, locale)
 
-  console.log(servicesPosts)
   return (
     <div className="container mx-auto px-4 py-8">
       {/* News header section */}
