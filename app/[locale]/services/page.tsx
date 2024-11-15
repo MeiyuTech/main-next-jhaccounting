@@ -17,21 +17,24 @@ export default async function ServicesPage({
   return (
     <div className="container mx-auto px-4 py-8">
       {/* News header section */}
-      <div className="text-center mb-16">
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
-          {t('title')}
-        </h1>
-        <div className="w-24 h-1 bg-yellow-400 mx-auto mt-4"></div>
-        <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
-          {t('description')}
-        </p>
+      <div className="flex items-center justify-between mb-12">
+        <div className="flex-1">
+          <h2 className="text-8xl font-bold text-gray-900">{t('title')}</h2>
+          <div className="w-20 h-1 bg-yellow-400 mt-2"></div>
+          <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+            {t('description')}
+          </p>
+        </div>
+        <div className="relative w-1/2 h-[420px]">
+          <Image
+            src="/services.png"
+            alt="Services Banner"
+            fill
+            className="object-cover rounded-lg"
+          />
+        </div>
       </div>
-      <hr />
 
-      {/* TODO: Add Display order Feature */}
-      <div className="mb-8">
-        <br />
-      </div>
       {/* Blog posts grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {servicesPosts.map((post) => (
@@ -40,24 +43,23 @@ export default async function ServicesPage({
             href={`/services/${post.slug}`}
             className="transform transition duration-300 hover:-translate-y-1"
           >
-            <Card className="h-full">
+            <Card className="h-full flex flex-col">
               <div className="relative h-48 w-full">
                 <Image
                   src={post.frontmatter.coverImageSrc as string}
                   alt={post.frontmatter.title as string}
-                  // the card img should be 480x190
                   width={480}
                   height={190}
                   className="object-cover rounded-t-lg"
                 />
               </div>
               <CardHeader className="p-4">
-                <h2 className="text-xl font-semibold line-clamp-2">
+                <h2 className="text-xl font-semibold h-[3rem] line-clamp-2">
                   {post.frontmatter.title as string}
                 </h2>
               </CardHeader>
-              <CardContent className="p-4 pt-0">
-                <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+              <CardContent className="p-4 pt-0 flex-1 flex flex-col">
+                <p className="text-gray-600 text-sm mb-4 h-[4.5rem] line-clamp-3">
                   {post.frontmatter.description as string}
                 </p>
               </CardContent>
