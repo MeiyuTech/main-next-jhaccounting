@@ -5,12 +5,12 @@
       "accounting": "Accounting",
       "corporate-tax-planning-strategy": "Corporate Tax Planning Strategy",
       "outsourcing-tax-and-accounting": "Outsourcing Tax & Accounting",
-      "tax-credit": {
+      "tax-credits": {
         "title": "Tax Credits",
         "_comment1": "Since those 2 are children of Tax Credits, add '• ' before it",
         "_comment2": "TODO: Format should be implement in Header.tsx",
-        "rd-tax-credit": "• R&D Tax Credits",
-        "self-employed-tax-credit": "• Self-Employed Tax Credits"
+        "rd-tax-credits": "• R&D Tax Credits",
+        "self-employed-tax-credits": "• Self-Employed Tax Credits"
       },
       "company-formation": "Company Formation Services",
       "itin-application": "ITIN Application",

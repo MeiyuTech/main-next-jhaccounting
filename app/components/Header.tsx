@@ -31,18 +31,18 @@ export default function Header() {
       href: '/services',
       label: t('services.title'),
       children: [
-        { href: '/services/accounting', label: t('services.accounting') },
-        { href: '/services/corporate-tax-planning-strategy', label: t('services.corporate-tax-planning-strategy') },
-        { href: '/services/outsourcing-tax-and-accounting', label: t('services.outsourcing-tax-and-accounting') },
+        { href: '/services/1-accounting-services', label: t('services.accounting') },
+        { href: '/services/2-corporate-tax-planning-strategy', label: t('services.corporate-tax-planning-strategy') },
+        { href: '/services/3-outsourcing-tax-and-accounting', label: t('services.outsourcing-tax-and-accounting') },
         {
-          href: '/services/tax-credit', label: t('services.tax-credit.title'), children: [
-            { href: '/services/rd-tax-credit', label: t('services.tax-credit.rd-tax-credit') },
-            { href: '/services/self-employed-tax-credit', label: t('services.tax-credit.self-employed-tax-credit') },
+          href: '/services/4-tax-credits', label: t('services.tax-credits.title'), children: [
+            { href: '/services/4-tax-credits', label: t('services.tax-credits.rd-tax-credits') },
+            { href: '/services/4-tax-credits', label: t('services.tax-credits.self-employed-tax-credits') },
           ]
         },
-        { href: '/services/company-formation', label: t('services.company-formation') },
-        { href: '/services/itin-application', label: t('services.itin-application') },
-        { href: '/services/unclaimed-property-reporting-and-consulting', label: t('services.unclaimed-property-reporting-and-consulting') },
+        { href: '/services/5-company-formation', label: t('services.company-formation') },
+        { href: '/services/6-itin-application', label: t('services.itin-application') },
+        { href: '/services/7-unclaimed-property-reporting-and-consulting', label: t('services.unclaimed-property-reporting-and-consulting') },
       ]
     },
     {

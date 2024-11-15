@@ -44,15 +44,6 @@ export default async function ServicesPage({
             className="transform transition duration-300 hover:-translate-y-1"
           >
             <Card className="h-full flex flex-col">
-              <div className="relative h-48 w-full">
-                <Image
-                  src={post.frontmatter.coverImageSrc as string}
-                  alt={post.frontmatter.title as string}
-                  width={480}
-                  height={190}
-                  className="object-cover rounded-t-lg"
-                />
-              </div>
               <CardHeader className="p-4">
                 <h2 className="text-xl font-semibold h-[3rem] line-clamp-2">
                   {post.frontmatter.title as string}

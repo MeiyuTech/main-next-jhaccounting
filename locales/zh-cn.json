@@ -5,12 +5,12 @@
       "accounting": "会计服务",
       "corporate-tax-planning-strategy": "企业税务规划策略",
       "outsourcing-tax-and-accounting": "税务外包",
-      "tax-credit": {
+      "tax-credits": {
         "title": "税务减免",
         "_comment1": "Since those 2 are children of Tax Credits, add '• ' before it",
         "_comment2": "TODO: Format should be implement in Header.tsx",
-        "rd-tax-credit": "• 研发税减免",
-        "self-employed-tax-credit": "• 自雇税减免"
+        "rd-tax-credits": "• 研发税减免",
+        "self-employed-tax-credits": "• 自雇税减免"
       },
       "company-formation": "公司注册",
       "itin-application": "ITIN申请",
