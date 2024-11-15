@@ -1,6 +1,5 @@
 import Image from "next/image"
 import { Card, CardContent, CardHeader } from "@/app/components/ui/card"
-import H1 from '@/app/components/h1'
 import { Link } from "@/i18n.config"
 import { setRequestLocale } from "next-intl/server"
 import { getTranslations } from 'next-intl/server';
@@ -11,7 +10,7 @@ export default async function NewsPage({
 }: Readonly<{ params: { locale: string } }>) {
   setRequestLocale(locale);
   const t = await getTranslations('News');
-  const newsPosts = await getPosts()
+  const newsPosts = await getPosts(locale)
 
   return (
     <div className="container mx-auto px-4 py-8">

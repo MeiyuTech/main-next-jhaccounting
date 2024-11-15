@@ -1,5 +1,4 @@
 import { getTranslations } from 'next-intl/server';
-import Image from "next/image"
 import { setRequestLocale } from "next-intl/server"
 import { notFound } from 'next/navigation'
 import { getPost as getPostNotCached, getPosts } from '@/lib/posts'
@@ -7,7 +6,7 @@ import { cache } from 'react'
 import { Link } from '@/i18n.config'
 
 const getPost = cache(
-  async (slug: string) => await getPostNotCached(slug)
+  async (slug: string, locale: string) => await getPostNotCached(slug, locale)
 )
 
 export async function generateStaticParams() {
@@ -17,9 +16,9 @@ export async function generateStaticParams() {
   }))
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
+export async function generateMetadata({ params }: { params: { slug: string, locale: string } }) {
   try {
-    const { frontmatter } = await getPost(params.slug)
+    const { frontmatter } = await getPost(params.slug, params.locale)
     return frontmatter
   } catch (e) {
     return {
@@ -32,11 +31,11 @@ export default async function NewsPost({
   params: { locale, slug },
 }: Readonly<{ params: { locale: string; slug: string } }>) {
   setRequestLocale(locale);
-  const t = await getTranslations('NewsPost');
+  const t = await getTranslations('News');
 
   let postContent
   try {
-    postContent = await getPost(slug)
+    postContent = await getPost(slug, locale)
   } catch (e) {
     notFound()
   }
