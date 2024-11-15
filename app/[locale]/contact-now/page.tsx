@@ -15,6 +15,11 @@ export default async function ContactNowPage() {
           <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
             <div className="flex items-center gap-6">
               <div className="flex items-center gap-2">
+                <span className="text-xl">{t('office-hours')}</span>
+              </div>
+            </div>
+            <div className="flex items-center gap-6">
+              <div className="flex items-center gap-2">
                 <span className="text-xl">{t('phone-label')}</span>
                 <a href={`tel:${t('phone')}`} className="text-xl hover:text-teal-400">
                   {t('phone')}
