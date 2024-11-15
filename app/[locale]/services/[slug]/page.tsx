@@ -58,7 +58,7 @@ export default async function ServicePost({
 
       {/* Article header */}
       <div className="mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold mb-4">
+        <h1 className="text-3xl md:text-4xl font-bold mb-4 text-center">
           {postContent.frontmatter.title as string}
         </h1>
       </div>
