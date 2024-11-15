@@ -3,6 +3,7 @@ import path from 'path'
 import { compileMDX } from 'next-mdx-remote/rsc'
 import H1 from '@/app/components/h1'
 import React from 'react'
+import remarkGfm from 'remark-gfm'
 
 export function loadPost(contentPath: string, locale: string, slug: string) {
   const filename = slug.endsWith('.mdx') ? slug : `${slug}.mdx`
@@ -21,7 +22,11 @@ export async function getPost(contentPath: string, locale: string, slug: string)
       h1: (props: any) => React.createElement(H1, props)
     },
     options: {
-      parseFrontmatter: true
+      parseFrontmatter: true,
+      mdxOptions: {
+        remarkPlugins: [remarkGfm],
+        format: 'mdx'
+      }
     }
   })
 }

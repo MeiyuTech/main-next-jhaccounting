@@ -43,6 +43,7 @@ export default function Header() {
         { href: '/services/5-company-formation', label: t('services.company-formation') },
         { href: '/services/6-itin-application', label: t('services.itin-application') },
         { href: '/services/7-unclaimed-property-reporting-and-consulting', label: t('services.unclaimed-property-reporting-and-consulting') },
+        { href: '/services/8-boi-reporting', label: t('services.boi-reporting') },
       ]
     },
     {

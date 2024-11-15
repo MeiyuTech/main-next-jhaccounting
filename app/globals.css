@@ -45,6 +45,7 @@ body {
     --color-4: 195 100% 63%;
     --color-5: 90 100% 63%;
   }
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -82,16 +83,50 @@ body {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
 }
 
 @keyframes breathe {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); }
-  50% { transform: translate(-50%, -50%) scale(0.9); }
+
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(0.9);
+  }
 }
 
 .animate-breathe {
   animation: breathe 4s ease-in-out infinite;
+}
+
+/* Add table styles for prose content */
+.prose table {
+  @apply w-full my-4 border-collapse;
+}
+
+.prose thead {
+  @apply bg-gray-50;
+}
+
+.prose th {
+  @apply px-4 py-2 text-left border border-gray-300 font-semibold;
+}
+
+.prose td {
+  @apply px-4 py-2 border border-gray-300;
+}
+
+.prose tr:nth-child(even) {
+  @apply bg-gray-50;
+}
+
+/* Ensure tables don't overflow on mobile */
+.prose table {
+  @apply block overflow-x-auto;
 }
