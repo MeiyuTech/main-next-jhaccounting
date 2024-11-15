@@ -13,6 +13,8 @@
 - [ ] Implement proper form validation
 - [ ] Add unit tests and integration tests
 - [ ] Add proper documentation for components and utilities
+- [ ] Add Display order Feature for News page
+- [ ] Move components to root folder or lib to app folder
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
