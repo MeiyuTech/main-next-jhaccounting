@@ -15,6 +15,9 @@
 - [ ] Add proper documentation for components and utilities
 - [ ] Add Display order Feature for News page
 - [ ] Move components to root folder or lib to app folder
+- [ ] Format bullet points (•) for Tax Credits submenu items in `Header.tsx` instead of hardcoding them in translations
+  - Currently, bullet points are hardcoded in `en-us.json`
+  - Should be implemented as part of the menu rendering logic in `Header.tsx`
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 

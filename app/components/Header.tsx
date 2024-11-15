@@ -34,7 +34,12 @@ export default function Header() {
         { href: '/services/accounting', label: t('services.accounting') },
         { href: '/services/corporate-tax-planning-strategy', label: t('services.corporate-tax-planning-strategy') },
         { href: '/services/outsourcing-tax-and-accounting', label: t('services.outsourcing-tax-and-accounting') },
-        { href: '/services/tax-credit', label: t('services.tax-credit') },
+        {
+          href: '/services/tax-credit', label: t('services.tax-credit.title'), children: [
+            { href: '/services/rd-tax-credit', label: t('services.tax-credit.rd-tax-credit') },
+            { href: '/services/self-employed-tax-credit', label: t('services.tax-credit.self-employed-tax-credit') },
+          ]
+        },
         { href: '/services/company-formation', label: t('services.company-formation') },
         { href: '/services/itin-application', label: t('services.itin-application') },
         { href: '/services/unclaimed-property-reporting-and-consulting', label: t('services.unclaimed-property-reporting-and-consulting') },
@@ -64,27 +69,33 @@ export default function Header() {
               {item.label}
             </NavigationMenuLink>
           </Link>
+          {item.children && (
+            <ul className="ml-4 mt-2">
+              <DropdownMenuItems items={item.children} />
+            </ul>
+          )}
         </li>
       ))}
     </ul>
   );
 
-  // Component for mobile menu items
-  const MobileMenuItem = ({ item }: { item: NavItem }) => (
+  // 修改 MobileMenuItem 组件以支持递归渲染
+  const MobileMenuItem = ({ item, depth = 0 }: { item: NavItem, depth?: number }) => (
     <div className="flex flex-col">
-      <Link href={item.href} className="text-lg font-medium p-2 hover:text-primary">
+      <Link
+        href={item.href}
+        className={`text-lg font-medium p-2 hover:text-primary ${depth > 0 ? 'text-base' : ''}`}
+      >
         {item.label}
       </Link>
       {item.children && (
         <div className="ml-4 flex flex-col gap-2">
           {item.children.map((child) => (
-            <Link
+            <MobileMenuItem
               key={child.href}
-              href={child.href}
-              className="text-base p-2 hover:text-primary"
-            >
-              {child.label}
-            </Link>
+              item={child}
+              depth={depth + 1}
+            />
           ))}
         </div>
       )}
