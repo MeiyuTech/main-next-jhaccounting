@@ -59,26 +59,26 @@
     },
     "process-section": {
       "title": "Make it Simple",
-      "description": "With these 5 steps completed, we can take care of all the rest.",
+      "description": "With these 5 steps completed, we can take care of all the rest",
       "step1": {
         "title": "Answer 10 Questions",
-        "description": "This survey is free of charge and does not represent any commitment. Only takes a few minutes to complete."
+        "description": "This survey is free of charge and does not represent any commitment. Only takes a few minutes to complete"
       },
       "step2": {
         "title": "Take a 15-minute Call",
-        "description": "In less than 15 minutes, we will call you back to discuss your needs and provide you with an initial estimate."
+        "description": "In less than 15 minutes, we will call you back to discuss your needs and provide you with an initial estimate"
       },
       "step3": {
         "title": "Receive a Customized Plan",
-        "description": "We will provide you with a customized plan based on your needs and goals."
+        "description": "We will provide you with a customized plan based on your needs and goals"
       },
       "step4": {
         "title": "Upload Required Documents",
-        "description": "We will list all the documents required to make an application for you! Your information will be stored in a secure encrypted cloud."
+        "description": "We will list all the documents required to make an application for you! Your information will be stored in a secure encrypted cloud"
       },
       "step5": {
         "title": "Enjoy the Benefits",
-        "description": "You can now focus on your business while we handle your financial needs."
+        "description": "You can now focus on your business while we handle your financial needs"
       }
     },
     "why-choose-us-section": {
@@ -94,7 +94,7 @@
       },
       "part3": {
         "title": "The Best Follow-up Service",
-        "description": "After completing the service, there is no one to follow up? Don't worry, Jiahua will always be with you to provide follow-up service consultation."
+        "description": "After completing the service, there is no one to follow up? Don't worry, Jiahua will always be with you to provide follow-up service consultation"
       }
     }
   },

@@ -62,7 +62,7 @@ export default function Header() {
 
   // Component for rendering dropdown menu items
   const DropdownMenuItems = ({ items }: { items: NavItem[] }) => (
-    <ul className="grid w-[200px] gap-3 p-4">
+    <ul className="grid w-[300px] gap-3 p-4">
       {items.map((item) => (
         <li key={item.href}>
           <Link href={item.href}>
