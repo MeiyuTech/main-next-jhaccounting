@@ -11,29 +11,25 @@ export default async function ContactNowPage() {
         <div className="flex-1">
           <h2 className="text-8xl font-bold text-teal-600">{t('title')}</h2>
           <div className="w-20 h-1 bg-amber-400 mt-2"></div>
-          <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
-            <div className="flex items-center gap-6">
-              <div className="flex items-center gap-2">
-                <span className="text-xl">{t('office-hours')}</span>
-              </div>
+          <div className="mt-4 text-gray-600 max-w-2xl mx-auto">
+            <div className="flex items-center gap-2">
+              <span className="text-xl">{t('office-hours')}</span>
             </div>
-            <div className="flex items-center gap-6">
-              <div className="flex items-center gap-2">
-                <span className="text-xl">{t('phone-label')}</span>
-                <a href={`tel:${t('phone')}`} className="text-xl hover:text-teal-400">
-                  {t('phone')}
-                </a>
-              </div>
+            <div className="flex items-center gap-2">
+              <span className="text-xl">{t('phone-label')}</span>
+              <a href={`tel:${t('phone')}`} className="text-xl hover:text-teal-400">
+                {t('phone')}
+              </a>
             </div>
-            <div className="flex items-center gap-6">
-              <div className="flex items-center gap-2">
-                <span className="text-xl">{t('email-label')}</span>
-                <a href={`mailto:${t('email')}`} className="text-xl hover:text-teal-400">
-                  {t('email')}
-                </a>
-              </div>
+
+            <div className="flex items-center gap-2">
+              <span className="text-xl">{t('email-label')}</span>
+              <a href={`mailto:${t('email')}`} className="text-xl hover:text-teal-400">
+                {t('email')}
+              </a>
             </div>
-          </p>
+          </div>
+
         </div>
         <div className="relative w-1/2 h-[420px]">
           <Image

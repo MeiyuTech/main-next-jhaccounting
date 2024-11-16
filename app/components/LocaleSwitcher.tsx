@@ -28,6 +28,7 @@ export default function LocaleSwitcher({ locale }: { locale: Locale }) {
             key={loc}
             value={loc}
             className="text-lg font-medium"
+            aria-label={`${localeNames[loc]} language`}
           >
             {localeNames[loc]}
           </SelectItem>
