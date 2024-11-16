@@ -156,7 +156,7 @@ export default function Header() {
             <div className="lg:hidden">
               <Sheet>
                 <SheetTrigger asChild>
-                  <Button variant="ghost">
+                  <Button variant="ghost" aria-label={t('menu')}>
                     <Menu className="h-6 w-8" />
                   </Button>
                 </SheetTrigger>
