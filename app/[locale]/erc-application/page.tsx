@@ -95,6 +95,7 @@ export default async function ERCPage() {
                       src={item.image}
                       alt={item.title}
                       fill
+                      loading="lazy"
                       className="object-contain"
                     />
                   </div>

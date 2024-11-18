@@ -15,10 +15,19 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      {/* TODO: Image Optimization */}
-      <section className="relative h-[600px] bg-cover bg-center" style={{ backgroundImage: 'url(/handshake.jpg)' }}>
-        <div className="absolute inset-0 bg-black/50" /> {/* 暗色遮罩 */}
-        <div className="container mx-auto px-4 h-full relative">
+      <section className="relative h-[600px]">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/handshake.jpg"
+            alt="Hero background"
+            fill
+            priority
+            className="object-cover"
+            quality={85}
+          />
+        </div>
+        <div className="absolute inset-0 bg-black/50 z-10" /> {/* 暗色遮罩 */}
+        <div className="container mx-auto px-4 h-full relative z-20"> {/* 增加 z-index 确保内容在最上层 */}
           <div className="flex flex-col justify-center h-full text-white">
             <h1 className="text-4xl md:text-5xl font-bold mb-4 text-amber-400">
               {t('hero-section.title')}
@@ -181,6 +190,7 @@ export default function Home() {
                       src={item.image}
                       alt={item.title}
                       fill
+                      loading="lazy"
                       className="object-contain"
                     />
                   </div>
