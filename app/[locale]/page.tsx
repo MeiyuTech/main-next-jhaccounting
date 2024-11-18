@@ -101,10 +101,10 @@ export default function Home() {
       {/* Process Section */}
       <section className="py-16 bg-slate-800 text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4 text-amber-400">
+          <h2 className="text-6xl font-bold mb-4 text-amber-400">
             {t('process-section.title')}
           </h2>
-          <p className="mb-12">
+          <p className="text-2xl mb-12 text-gray-300">
             {t('process-section.description')}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
@@ -139,46 +139,53 @@ export default function Home() {
                 <div className="w-16 h-16 rounded-full bg-white text-slate-800 flex items-center justify-center text-2xl font-bold mb-4">
                   {item.step}
                 </div>
-                <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                <p className="text-sm text-gray-300">{item.description}</p>
+                <h3 className="text-3xl font-bold mb-2 min-h-[4rem]">{item.title}</h3>
+                <p className="text-xl text-gray-300">{item.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Why Choose Us Section */}
+      {/* Why Us Section */}
       <section className="py-16">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4 text-teal-600">
+          <h2 className="text-6xl font-bold mb-4 text-teal-600">
             {t('why-choose-us-section.title')}
           </h2>
-          <p className="mb-12">
+          <p className="text-2xl mb-12 text-gray-400">
             {t('why-choose-us-section.description')}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                icon: "📊",
+                image: "/icon-why-1.png",
                 title: t('why-choose-us-section.part1.title'),
                 description: t('why-choose-us-section.part1.description')
               },
               {
-                icon: "💰",
+                image: "/icon-why-2.png",
                 title: t('why-choose-us-section.part2.title'),
                 description: t('why-choose-us-section.part2.description')
               },
               {
-                icon: "💻",
+                image: "/icon-why-3.png",
                 title: t('why-choose-us-section.part3.title'),
                 description: t('why-choose-us-section.part3.description')
               }
             ].map((item, index) => (
               <Card key={index} className="bg-gray-50">
                 <CardContent className="p-6">
-                  <div className="text-4xl mb-4">{item.icon}</div>
-                  <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                  <p className="text-gray-600 mb-4">{item.description}</p>
+                  <div className="relative w-16 h-16 mx-auto mb-4">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                  <h3 className="text-3xl font-bold mb-2 min-h-[4rem]">{item.title}</h3>
+                  <p className="text-xl text-gray-600 mb-4">{item.description}</p>
                 </CardContent>
               </Card>
             ))}

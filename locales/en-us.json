@@ -15,7 +15,8 @@
       "company-formation": "Company Formation Services",
       "itin-application": "ITIN Application",
       "unclaimed-property-reporting-and-consulting": "Unclaimed Property Reporting & Consulting",
-      "boi-reporting": "BOI Reporting"
+      "boi-reporting": "BOI Reporting",
+      "erc-application": "ERC Application"
     },
     "news": "News",
     "contact-now": "Contact Now",
@@ -66,7 +67,7 @@
         "description": "This survey is free of charge and does not represent any commitment. Only takes a few minutes to complete"
       },
       "step2": {
-        "title": "Take a 15-minute Call",
+        "title": "Take a Call",
         "description": "In less than 15 minutes, we will call you back to discuss your needs and provide you with an initial estimate"
       },
       "step3": {
@@ -83,7 +84,7 @@
       }
     },
     "why-choose-us-section": {
-      "title": "Why Choose Us?",
+      "title": "Why Us?",
       "description": "We will help you through the entire process",
       "part1": {
         "title": "The Most Professional Team",
@@ -103,6 +104,32 @@
     "title": "Services",
     "description": "We will help you through the entire process",
     "backToServices": "Back to Services"
+  },
+  "ERC-Application": {
+    "title": "ERC Application",
+    "description": "We will help you through the entire process",
+    "introduction-section": {
+      "title1": "Jiahua's team of CPAs, JDs, and payroll specialists have decades of experience in the accounting and professional services industry",
+      "description1": "They have combined this experience with their deep technical expertise to develop a cutting-edge platform designed to streamline the ERC process, while strategically maximizing the refundable credit for employers that took one or both PPP loans.",
+      "title2": "Pay Us After You Get Paid",
+      "description2": "Through our careful and calculated review and analysis of COVID-19 legislative relief packages and hundreds of pages of IRS guidance, our technical experts have developed a carefully supported strategy that has allowed many employers to access the full ERC – up to $26,000 per employee – even when they took a first and/or second-round PPP loan. We are so confident in our specialized approach, that our services are offered with a \"Pay Us After You Get Paid\" guaranteed."
+    },
+    "why-choose-us-section": {
+      "title": "What Makes Us Stand Out?",
+      "description": "We will help you through the entire process",
+      "part1": {
+        "title": "Experience",
+        "description": "We have used our years of experience in accounting and professional services and channeled this expertise towards helping business owners take full advantage of this highly complex COVID-19 relief measure. Our financial experts at EZ-ERC have helped hundreds of businesses navigate the ERC process and claim their tax credits!"
+      },
+      "part2": {
+        "title": "Expertise",
+        "description": "Our team has meticulously reviewed the CARES Act, Consolidated Appropriations Act, and American Rescue Plan to ensure that we are in full compliance with the ERC rules while ensuring that our clients take advantage of the full ERC benefits!"
+      },
+      "part3": {
+        "title": "Efficiency",
+        "description": "EZ-ERC's liquidity strategies and fast turnaround time ensure that you get your credit fast. EZ-ERC, qualifying clients, have an additional payment option not offered anywhere else and they may be eligible for an advance payment of their ERC through one of our advanced lending partners. Our goal is to get you your credit, fast!"
+      }
+    }
   },
   "News": {
     "title": "News",

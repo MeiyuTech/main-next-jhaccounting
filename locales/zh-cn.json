@@ -15,7 +15,8 @@
       "company-formation": "公司注册",
       "itin-application": "ITIN 申请",
       "unclaimed-property-reporting-and-consulting": "未认领财产报告与咨询",
-      "boi-reporting": "BOI 申报"
+      "boi-reporting": "BOI 申报",
+      "erc-application": "ERC 申请"
     },
     "news": "资讯",
     "contact-now": "现在联系",
@@ -103,6 +104,32 @@
     "title": "服务",
     "description": "我们自始至终帮助您完成整个过程",
     "backToServices": "返回服务"
+  },
+  "ERC-Application": {
+    "title": "ERC 申请",
+    "description": "我们自始至终帮助您完成整个过程",
+    "introduction-section": {
+      "title1": "Jiahua 的注册会计师、法学博士和薪资专家团队在会计和专业服务行业拥有数十年的经验",
+      "description1": "他们将这些经验与深厚的技术专长相结合，开发了一个尖端的平台，旨在简化ERC流程，同时最大限度地提高已获得第一轮和/或第二轮PPP贷款的雇主的员工保留税收抵免抵免。",
+      "title2": "收到抵免款再付服务费",
+      "description2": "通过我们仔细审查和分析 COVID-19 立法救济项目和数百页的国税局指导，我们的技术专家提供的策略，帮助许多即使获得了第一和/或第二轮PPP贷款的雇主能申请到上限，即每个员工 26000 美元。我们对我们的专业方法非常有信心，我们的服务保证“收到抵免款再付服务费”。"
+    },
+    "why-choose-us-section": {
+      "title": "我们的优势",
+      "description": "我们会自始至终帮助您完成整个过程",
+      "part1": {
+        "title": "经验",
+        "description": "Jiahua 利用在会计和专业服务行业的多年经验，并将其用于帮助企业主充分利用这一高度复杂的 COVID-19 救援措施。EZ-ERC 的财务专家帮助了数百家企业完成了 ERC 流程并获得了他们的税收减免！"
+      },
+      "part2": {
+        "title": "专业",
+        "description": "我们的团队仔细审查了《CARES法案》、《综合拨款法案》和《美国救援计划》，以确保我们完全遵守伦理委员会的规定，同时确保我们的客户充分享受员工保留税收抵免的好处。"
+      },
+      "part3": {
+        "title": "效率",
+        "description": "EZ-ERC 的流动性策略和快速周转时间确保您快速获得您的信用。Jiahua为符合条件的客户提供额外收款选项，这些客户有资格提前收到他们的员工保留税收抵免。我们的目标是让您尽快收到您的抵免款!"
+      }
+    }
   },
   "News": {
     "title": "资讯",
