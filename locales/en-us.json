@@ -10,13 +10,17 @@
         "_comment1": "Since those 2 are children of Tax Credits, add '• ' before it",
         "_comment2": "TODO: Format should be implement in Header.tsx",
         "rd-tax-credits": "• R&D Tax Credits",
-        "self-employed-tax-credits": "• Self-Employed Tax Credits"
+        "self-employed-tax-credits": "• Self-Employed Tax Credits",
+        "erc-application": "• ERC Application",
+        "erc-application-card": {
+          "title": "ERC Application",
+          "description": "The team of CPAs, JDs, and payroll experts at JIAHUA leverage decades of experience in accounting and professional services, combined with deep technical expertise, to develop a cutting-edge platform that simplifies the ERC process while maximizing refundable credits for employers who took one or both PPP loans."
+        }
       },
       "company-formation": "Company Formation Services",
       "itin-application": "ITIN Application",
       "unclaimed-property-reporting-and-consulting": "Unclaimed Property Reporting & Consulting",
-      "boi-reporting": "BOI Reporting",
-      "erc-application": "ERC Application"
+      "boi-reporting": "BOI Reporting"
     },
     "news": "News",
     "contact-now": "Contact Now",

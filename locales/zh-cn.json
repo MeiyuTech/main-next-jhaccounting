@@ -10,13 +10,17 @@
         "_comment1": "Since those 2 are children of Tax Credits, add '• ' before it",
         "_comment2": "TODO: Format should be implement in Header.tsx",
         "rd-tax-credits": "• 研发税减免",
-        "self-employed-tax-credits": "• 自雇税减免"
+        "self-employed-tax-credits": "• 自雇税减免",
+        "erc-application": "• ERC 申请",
+        "erc-application-card": {
+          "title": "ERC 申请",
+          "description": "Jiahua 的注册会计师、法学博士和薪资专家团队，凭借在会计和专业服务领域的数十年经验，结合深厚的技术专长，开发了一个尖端平台，简化 ERC 申请流程，同时帮助获得过第一轮和/或第二轮 PPP 贷款的雇主最大化申请员工保留税收抵免。"
+        }
       },
       "company-formation": "公司注册",
       "itin-application": "ITIN 申请",
       "unclaimed-property-reporting-and-consulting": "未认领财产报告与咨询",
-      "boi-reporting": "BOI 申报",
-      "erc-application": "ERC 申请"
+      "boi-reporting": "BOI 申报"
     },
     "news": "资讯",
     "contact-now": "现在联系",

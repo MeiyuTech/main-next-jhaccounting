@@ -38,13 +38,13 @@ export default function Header() {
           href: '/services/4-tax-credits', label: t('services.tax-credits.title'), children: [
             { href: '/services/4-tax-credits', label: t('services.tax-credits.rd-tax-credits') },
             { href: '/services/4-tax-credits', label: t('services.tax-credits.self-employed-tax-credits') },
+            { href: '/erc-application', label: t('services.tax-credits.erc-application') },
           ]
         },
         { href: '/services/5-company-formation', label: t('services.company-formation') },
         { href: '/services/6-itin-application', label: t('services.itin-application') },
         { href: '/services/7-unclaimed-property-reporting-and-consulting', label: t('services.unclaimed-property-reporting-and-consulting') },
         { href: '/services/8-boi-reporting', label: t('services.boi-reporting') },
-        { href: '/erc-application', label: t('services.erc-application') },
       ]
     },
     {

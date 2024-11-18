@@ -12,6 +12,7 @@ export default async function ServicesPage({
 }: Readonly<{ params: { locale: string } }>) {
   setRequestLocale(locale);
   const t = await getTranslations('Services');
+  const tHeader = await getTranslations('Header');
   const servicesPosts = await getPosts(contentPath, locale)
 
   return (
@@ -57,6 +58,22 @@ export default async function ServicesPage({
             </Card>
           </Link>
         ))}
+
+        {/* Add the ERC Application card */}
+        <Link href="/erc-application" className="transform transition duration-300 hover:-translate-y-1">
+          <Card className="h-full flex flex-col">
+            <CardHeader className="p-4">
+              <h2 className="text-xl font-semibold h-[4rem] line-clamp-2">
+                {tHeader('services.tax-credits.erc-application-card.title')}
+              </h2>
+            </CardHeader>
+            <CardContent className="p-4 pt-0 flex-1 flex flex-col">
+              <p className="text-gray-600 text-sm mb-4 h-[6rem] line-clamp-4">
+                {tHeader('services.tax-credits.erc-application-card.description')}
+              </p>
+            </CardContent>
+          </Card>
+        </Link>
       </div>
     </div>
   )
