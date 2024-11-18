@@ -45,7 +45,7 @@ export default async function ServicesPage({
           >
             <Card className="h-full flex flex-col">
               <CardHeader className="p-4">
-                <h2 className="text-xl font-semibold h-[3rem] line-clamp-2">
+                <h2 className="text-xl font-semibold h-[4rem] line-clamp-2">
                   {post.frontmatter.title as string}
                 </h2>
               </CardHeader>

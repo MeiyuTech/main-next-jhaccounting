@@ -59,7 +59,7 @@ export default async function NewsPage({
                 </h2>
               </CardHeader>
               <CardContent className="p-4 pt-0 flex-1 flex flex-col">
-                <p className="text-gray-600 text-sm mb-4 h-[4.5rem] line-clamp-3">
+                <p className="text-gray-600 text-sm mb-4 h-[6rem] line-clamp-3">
                   {post.frontmatter.description as string}
                 </p>
                 <div className="flex justify-between text-sm text-gray-500 mt-auto">
