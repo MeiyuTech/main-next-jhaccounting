@@ -5,7 +5,7 @@ import type { NextRequest } from 'next/server';
 
 // Define redirect mappings
 const redirects = new Map([
-  ['/en-us/pages_43', '/en-us'],
+  ['/en-us/pages_43', '/en-us/erc-application'],
   ['/en-us/en', '/en-us'],
   ['/en-us/en/aboutus', '/en-us'],
   ['/en-us/en/Services', '/en-us/services'],
