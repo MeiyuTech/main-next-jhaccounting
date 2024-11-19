@@ -1,6 +1,19 @@
 import createMiddleware from "next-intl/middleware";
 import { locales } from "@/i18n.config";
-export default createMiddleware({
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+
+// Define redirect mappings
+const redirects = new Map([
+  ['/en-us/pages_43', '/en-us'],
+  ['/en-us/en', '/en-us'],
+  ['/en-us/en/aboutus', '/en-us'],
+  ['/en-us/en/Services', '/en-us/services'],
+  // Add more redirects here if needed
+]);
+
+// Create the middleware handler for i18n routing
+const handleI18nRouting = createMiddleware({
   // Use this locale when we can't match
   // another with our user's preferred locales
   // and when no locale is explicitly set.
@@ -20,6 +33,21 @@ export default createMiddleware({
    */
   localePrefix: "always"
 });
+
+// Main middleware function to handle both redirects and i18n routing
+export default async function middleware(request: NextRequest) {
+  // Check if the current path needs to be redirected
+  const pathname = request.nextUrl.pathname;
+  const redirectTo = redirects.get(pathname);
+
+  if (redirectTo) {
+    return NextResponse.redirect(new URL(redirectTo, request.url));
+  }
+
+  // Continue with i18n routing if no redirect is needed
+  return handleI18nRouting(request);
+}
+
 // Our middleware only applies to routes that
 // match the following:
 export const config = {
@@ -28,5 +56,10 @@ export const config = {
     // - … if they start with `/api`, `/_next` or `/_vercel`
     // - … the ones containing a dot (e.g. `favicon.ico`)
     "/((?!api|_next|_vercel|.*\\..*).*)",
+    // Add specific redirect paths
+    "/en-us/pages_43",
+    "/en-us/en",
+    "/en-us/en/aboutus",
+    "/en-us/en/Services"
   ],
 };
