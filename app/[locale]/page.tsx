@@ -5,11 +5,9 @@
 import { useTranslations } from "next-intl"
 import { Card, CardContent } from "@/app/components/ui/card"
 import { setRequestLocale } from "next-intl/server";
-import { type Locale, locales } from "@/i18n.config";
 import Image from "next/image"
 
-export default function Home({ params: { locale } }: { params: { locale: Locale } }) {
-  setRequestLocale(locale);
+export default function Home() {
   const t = useTranslations('Home');
   const tFooter = useTranslations('Footer');
 
