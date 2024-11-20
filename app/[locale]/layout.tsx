@@ -1,13 +1,28 @@
 import Header from "@/app/components/Header"
 import Footer from "@/app/components/Footer"
 import "@/app/globals.css"
+import { getTranslations } from "next-intl/server"
 
-export const metadata = {
-  title: 'JIAHUA US ACCOUNTING',
-  description: 'Professional accounting services in the US',
+/*
+ * We pull in the current locale
+ * generated from `generateStaticParms`
+ * or the current request route.
+*/
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string };
+}) {
+  const t = await getTranslations({
+    locale,
+    namespace: "Layout.metaData",
+  });
+
+  return {
+    title: t("title"),
+    description: t("description"),
+  };
 }
-
-
 
 export default function RootLayout({
   children,

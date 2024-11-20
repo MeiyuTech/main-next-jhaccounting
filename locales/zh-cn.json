@@ -14,7 +14,7 @@
         "erc-application": "• ERC 申请",
         "erc-application-card": {
           "title": "ERC 申请",
-          "description": "Jiahua 的注册会计师、法学博士和薪资专家团队，凭借在会计和专业服务领域的数十年经验，结合深厚的技术专长，开发了一个尖端平台，简化 ERC 申请流程，同时帮助获得过第一轮和/或第二轮 PPP 贷款的雇主最大化申请员工保留税收抵免。"
+          "description": "JIAHUA 的注册会计师、法学博士和薪资专家团队，凭借在会计和专业服务领域的数十年经验，结合深厚的技术专长，开发了一个尖端平台，简化 ERC 申请流程，同时帮助获得过第一轮和/或第二轮 PPP 贷款的雇主最大化申请员工保留税收抵免。"
         }
       },
       "company-formation": "公司注册",
@@ -43,8 +43,8 @@
   },
   "Layout": {
     "metaData": {
-      "title": "",
-      "description": ""
+      "title": "JIAHUA 会计师事务所",
+      "description": "卓越的税务和会计服务"
     }
   },
   "Home": {
@@ -55,8 +55,8 @@
     "consultation-section": {
       "title1": "只需一个电话",
       "title2": "获得专属于您的综合财务团队",
-      "description1": "联系 Jiahua 会计师事务所，经验丰富的团队随时准备为实现您的财务目标提供支持。",
-      "description2": "不超过 0.5 小时的通话中，Jiahua 财务专家将通过了解以下内容来确定您公司的需求：",
+      "description1": "联系 JIAHUA 会计师事务所，经验丰富的团队随时准备为实现您的财务目标提供支持。",
+      "description2": "不超过 0.5 小时的通话中，JIAHUA 财务专家将通过了解以下内容来确定您公司的需求：",
       "question1": "您公司经营业务和未来增长目标是什么？",
       "question2": "您公司目前财务状况是什么？公司有无专业记账员和记账软件？",
       "question3": "您公司投入多少时间来支持您的日常财务工作？",
@@ -92,15 +92,15 @@
       "description": "我们会自始至终帮助您完成整个过程",
       "part1": {
         "title": "最专业的服务团队",
-        "description": "Jiahua 会计师事务所的会计师、律师、数据分析师和薪资专家等专业人员建立了一套专业系统，可以最大限度地提高您的信用"
+        "description": "JIAHUA 会计师事务所的会计师、律师、数据分析师和薪资专家等专业人员建立了一套专业系统，可以最大限度地提高您的信用"
       },
       "part2": {
         "title": "最效率的服务流程",
-        "description": "Jiahua 会计师事务所为您提供最便捷且效率的财税服务"
+        "description": "JIAHUA 会计师事务所为您提供最便捷且效率的财税服务"
       },
       "part3": {
         "title": "最好的后续服务",
-        "description": "完成服务后便无人回复？不必担心，Jiahua 会计师事务所始终陪伴在您身边，提供后续的服务咨询"
+        "description": "完成服务后便无人回复？不必担心，JIAHUA 会计师事务所始终陪伴在您身边，提供后续的服务咨询"
       }
     }
   },
@@ -113,7 +113,7 @@
     "title": "ERC 申请",
     "description": "我们自始至终帮助您完成整个过程",
     "introduction-section": {
-      "title1": "Jiahua 的注册会计师、法学博士和薪资专家团队在会计和专业服务行业拥有数十年的经验",
+      "title1": "JIAHUA 的注册会计师、法学博士和薪资专家团队在会计和专业服务行业拥有数十年的经验",
       "description1": "他们将这些经验与深厚的技术专长相结合，开发了一个尖端的平台，旨在简化ERC流程，同时最大限度地提高已获得第一轮和/或第二轮PPP贷款的雇主的员工保留税收抵免抵免。",
       "title2": "收到抵免款再付服务费",
       "description2": "通过我们仔细审查和分析 COVID-19 立法救济项目和数百页的国税局指导，我们的技术专家提供的策略，帮助许多即使获得了第一和/或第二轮PPP贷款的雇主能申请到上限，即每个员工 26000 美元。我们对我们的专业方法非常有信心，我们的服务保证“收到抵免款再付服务费”。"
@@ -123,7 +123,7 @@
       "description": "我们会自始至终帮助您完成整个过程",
       "part1": {
         "title": "经验",
-        "description": "Jiahua 利用在会计和专业服务行业的多年经验，并将其用于帮助企业主充分利用这一高度复杂的 COVID-19 救援措施。EZ-ERC 的财务专家帮助了数百家企业完成了 ERC 流程并获得了他们的税收减免！"
+        "description": "JIAHUA 利用在会计和专业服务行业的多年经验，并将其用于帮助企业主充分利用这一高度复杂的 COVID-19 救援措施。EZ-ERC 的财务专家帮助了数百家企业完成了 ERC 流程并获得了他们的税收减免！"
       },
       "part2": {
         "title": "专业",
@@ -143,7 +143,7 @@
   },
   "ContactNow": {
     "title": "现在联系",
-    "description": "联系 Jiahua 会计师事务所，经验丰富的团队随时准备为实现您的财务目标提供支持。",
+    "description": "联系 JIAHUA 会计师事务所，经验丰富的团队随时准备为实现您的财务目标提供支持。",
     "office-hours": "太平洋时间：上午9：30 - 下午5：30",
     "sf-office-title": "旧金山办公室",
     "sf-office": "851 Burlway Rd, Ste 605, Burlingame, CA, 94010",
@@ -156,7 +156,7 @@
   },
   "Recruitment": {
     "title": "招聘计划",
-    "description": "加入 Jiahua 会计师事务所，与我们一起成长",
+    "description": "加入 JIAHUA 会计师事务所，与我们一起成长",
     "accountant": {
       "title": "Accountant",
       "location": "San Francisco Office",
