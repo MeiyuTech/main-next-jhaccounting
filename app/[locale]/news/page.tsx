@@ -1,8 +1,7 @@
 import Image from "next/image"
 import { Card, CardContent, CardHeader } from "@/app/components/ui/card"
 import { Link } from "@/i18n.config"
-import { setRequestLocale } from "next-intl/server"
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from "next-intl/server"
 import { getPosts } from '@/lib/posts'
 
 const contentPath = '/posts/news'

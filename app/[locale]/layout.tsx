@@ -1,7 +1,12 @@
 import Header from "@/app/components/Header"
 import Footer from "@/app/components/Footer"
 import "@/app/globals.css"
-import { getTranslations } from "next-intl/server"
+import { getTranslations, setRequestLocale } from "next-intl/server"
+import { type Locale, locales } from "@/i18n.config";
+
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
 
 /*
  * We pull in the current locale
@@ -29,11 +34,14 @@ export async function generateMetadata({
 
 export default function RootLayout({
   children,
+  params: { locale },
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
+  params: { locale: string };
 }) {
+  setRequestLocale(locale);
   return (
-    <html lang="zh">
+    <html lang={locale}>
       <body className="flex flex-col min-h-screen">
         <Header />
         <main className="flex-1">

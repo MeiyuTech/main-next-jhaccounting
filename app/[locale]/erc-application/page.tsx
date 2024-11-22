@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Card, CardContent } from "@/app/components/ui/card"
 
 /*
@@ -23,7 +23,8 @@ export async function generateMetadata({
   };
 }
 
-export default async function ERCPage() {
+export default async function ERCPage({ params: { locale } }: { params: { locale: string } }) {
+  setRequestLocale(locale);
   const t = await getTranslations('ERC-Application');
 
   return (

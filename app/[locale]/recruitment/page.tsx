@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import JobPost from '@/app/components/JobPost';
 
 /*
@@ -23,7 +23,8 @@ export async function generateMetadata({
   };
 }
 
-export default async function RecruitmentPage() {
+export default async function RecruitmentPage({ params: { locale } }: { params: { locale: string } }) {
+  setRequestLocale(locale);
   const t = await getTranslations('Recruitment');
 
   const jobs = [

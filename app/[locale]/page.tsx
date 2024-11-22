@@ -28,7 +28,8 @@ export async function generateMetadata({
   };
 }
 
-export default function Home() {
+export default function Home({ params: { locale } }: { params: { locale: string } }) {
+  setRequestLocale(locale);
   const t = useTranslations('Home');
   const tFooter = useTranslations('Footer');
 

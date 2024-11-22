@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 /*
  * We pull in the current locale
@@ -22,7 +22,8 @@ export async function generateMetadata({
   };
 }
 
-export default async function ContactNowPage() {
+export default async function ContactNowPage({ params: { locale } }: { params: { locale: string } }) {
+  setRequestLocale(locale);
   const t = await getTranslations('ContactNow');
 
   return (
