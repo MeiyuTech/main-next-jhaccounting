@@ -1,15 +1,15 @@
 # TODO
 
-- [ ] Add News Feature (SEO)
-- [ ] Delete Blog Folder
-- [ ] Image Optimization
+- [X] Add News Feature (SEO)
+- [X] Delete Blog Folder
+- [X] Image Optimization
   - Currently marked in page.tsx and about/page.tsx
   - Need to implement proper image optimization strategy
 - [ ] OpenGraph Image Generation
 - [ ] Fix onClick event handling in Link component with legacyBehavior
   - Issue in Header.tsx with NavigationMenuLink
   - Remove legacyBehavior and implement proper event handling
-- [ ] Add i18n translations for missing keys in About section
+- [X] Add i18n translations for missing keys in About section
 - [ ] Optimize image loading and implement proper image placeholders
 - [ ] Add error boundaries for better error handling
 - [ ] Implement proper SEO meta tags
@@ -24,6 +24,10 @@
 - [ ] Format bullet points (•) for Tax Credits submenu items in `Header.tsx` instead of hardcoding them in translations
   - Currently, bullet points are hardcoded in `en-us.json`
   - Should be implemented as part of the menu rendering logic in `Header.tsx`
+
+
+
+
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
