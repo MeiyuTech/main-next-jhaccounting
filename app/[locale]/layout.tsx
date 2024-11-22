@@ -19,7 +19,10 @@ export async function generateMetadata({
   });
 
   return {
-    title: t("title"),
+    title: {
+      template: `%s | ${t("siteName")}`,
+      default: t("siteName"),
+    },
     description: t("description"),
   };
 }

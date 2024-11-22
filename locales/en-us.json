@@ -43,11 +43,15 @@
   },
   "Layout": {
     "metaData": {
-      "title": "JIAHUA US ACCOUNTING",
+      "siteName": "JIAHUA US ACCOUNTING",
       "description": "Superior Tax and Accounting Services"
     }
   },
   "Home": {
+    "metaData": {
+      "title": "Home | JIAHUA US ACCOUNTING",
+      "description": "The home page of JIAHUA US ACCOUNTING"
+    },
     "hero-section": {
       "title": "Superior Tax and Accounting Services",
       "description": "Experience a team of seasoned accountants, lawyers, data analysts, and payroll experts, providing comprehensive, customized financial and accounting solutions from financial planning to tax filing. Your financial needs are always covered."

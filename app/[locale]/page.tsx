@@ -4,8 +4,29 @@
 
 import { useTranslations } from "next-intl"
 import { Card, CardContent } from "@/app/components/ui/card"
-import { setRequestLocale } from "next-intl/server";
+import { setRequestLocale, getTranslations } from "next-intl/server";
 import Image from "next/image"
+
+/*
+ * We pull in the current locale
+ * generated from `generateStaticParms`
+ * or the current request route.
+*/
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string };
+}) {
+  const t = await getTranslations({
+    locale,
+    namespace: "Home.metaData",
+  });
+
+  return {
+    title: t("title"),
+    description: t("description"),
+  };
+}
 
 export default function Home() {
   const t = useTranslations('Home');

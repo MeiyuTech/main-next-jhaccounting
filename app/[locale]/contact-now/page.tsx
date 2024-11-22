@@ -1,6 +1,27 @@
 import Image from "next/image"
 import { getTranslations } from 'next-intl/server';
 
+/*
+ * We pull in the current locale
+ * generated from `generateStaticParms`
+ * or the current request route.
+*/
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string };
+}) {
+  const t = await getTranslations({
+    locale,
+    namespace: "ContactNow",
+  });
+
+  return {
+    title: t("title"),
+    description: t("description"),
+  };
+}
+
 export default async function ContactNowPage() {
   const t = await getTranslations('ContactNow');
 

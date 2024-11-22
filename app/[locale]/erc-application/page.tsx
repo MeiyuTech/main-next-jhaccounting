@@ -2,6 +2,27 @@ import Image from "next/image"
 import { getTranslations } from 'next-intl/server';
 import { Card, CardContent } from "@/app/components/ui/card"
 
+/*
+ * We pull in the current locale
+ * generated from `generateStaticParms`
+ * or the current request route.
+*/
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string };
+}) {
+  const t = await getTranslations({
+    locale,
+    namespace: "ERC-Application",
+  });
+
+  return {
+    title: t("title"),
+    description: t("description"),
+  };
+}
+
 export default async function ERCPage() {
   const t = await getTranslations('ERC-Application');
 

@@ -43,11 +43,15 @@
   },
   "Layout": {
     "metaData": {
-      "title": "JIAHUA 会计师事务所",
+      "siteName": "JIAHUA 会计师事务所",
       "description": "卓越的税务和会计服务"
     }
   },
   "Home": {
+    "metaData": {
+      "title": "首页 | JIAHUA 会计师事务所",
+      "description": "JIAHUA 会计师事务所首页"
+    },
     "hero-section": {
       "title": "我们提供卓越的税务和会计服务",
       "description": "经验丰富、专业高效的会计师组成的团队，为企业提供全面、定制化的财务与会计解决方案。从财务规划到税务申报，全程服务无忧。"

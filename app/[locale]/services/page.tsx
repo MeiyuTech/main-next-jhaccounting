@@ -1,11 +1,31 @@
 import Image from "next/image"
 import { Card, CardContent, CardHeader } from "@/app/components/ui/card"
 import { Link } from "@/i18n.config"
-import { setRequestLocale } from "next-intl/server"
-import { getTranslations } from 'next-intl/server';
+import { setRequestLocale, getTranslations } from "next-intl/server"
 import { getPosts } from '@/lib/posts'
 
 const contentPath = '/posts/services'
+
+/*
+ * We pull in the current locale
+ * generated from `generateStaticParms`
+ * or the current request route.
+*/
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string };
+}) {
+  const t = await getTranslations({
+    locale,
+    namespace: "Services",
+  });
+
+  return {
+    title: t("title"),
+    description: t("description"),
+  };
+}
 
 export default async function ServicesPage({
   params: { locale },
@@ -78,3 +98,4 @@ export default async function ServicesPage({
     </div>
   )
 }
+

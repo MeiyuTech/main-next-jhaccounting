@@ -2,7 +2,26 @@ import Image from "next/image"
 import { getTranslations } from 'next-intl/server';
 import JobPost from '@/app/components/JobPost';
 
+/*
+ * We pull in the current locale
+ * generated from `generateStaticParms`
+ * or the current request route.
+*/
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string };
+}) {
+  const t = await getTranslations({
+    locale,
+    namespace: "Recruitment",
+  });
 
+  return {
+    title: t("title"),
+    description: t("description"),
+  };
+}
 
 export default async function RecruitmentPage() {
   const t = await getTranslations('Recruitment');
