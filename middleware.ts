@@ -9,6 +9,10 @@ const redirects = new Map([
   ['/en-us/en', '/en-us/erc-application'],
   ['/en-us/en/aboutus', '/en-us'],
   ['/en-us/en/Services', '/en-us/services'],
+  ['/zh-cn/pages_43', '/zh-cn'],
+  ['/zh-cn/en', '/zh-cn/erc-application'],
+  ['/zh-cn/en/aboutus', '/zh-cn'],
+  ['/zh-cn/en/Services', '/zh-cn/services'],
   // Add more redirects here if needed
 ]);
 
@@ -60,6 +64,10 @@ export const config = {
     "/en-us/pages_43",
     "/en-us/en",
     "/en-us/en/aboutus",
-    "/en-us/en/Services"
+    "/en-us/en/Services",
+    "/zh-cn/pages_43",
+    "/zh-cn/en",
+    "/zh-cn/en/aboutus",
+    "/zh-cn/en/Services"
   ],
 };
