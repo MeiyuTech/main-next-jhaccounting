@@ -23,12 +23,40 @@ export async function generateMetadata({
     namespace: "Layout.metaData",
   });
 
+  const metadataBase = new URL(t("siteUrl"));
   return {
+    metadataBase,
     title: {
       template: `%s | ${t("siteName")}`,
       default: t("siteName"),
     },
     description: t("description"),
+    openGraph: {
+      title: t("siteName"),
+      description: t("description"),
+      url: t("siteUrl"),
+      siteName: t("siteName"),
+      images: [t("socialBanner")],
+      locale: "en_US",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("siteName"),
+      images: [t("socialBanner")],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        noimageindex: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
   };
 }
 
