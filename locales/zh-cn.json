@@ -44,7 +44,12 @@
   "Layout": {
     "metaData": {
       "siteName": "JIAHUA 会计师事务所",
-      "description": "卓越的税务和会计服务"
+      "description": "卓越的税务和会计服务",
+      "theme": "light",
+      "siteUrl": "https://www.jhaccounting.org",
+      "siteLogo": "/favicon.ico",
+      "socialBanner": "handshake.jpg",
+      "email": "info@jhaccounting.org"
     }
   },
   "Home": {
