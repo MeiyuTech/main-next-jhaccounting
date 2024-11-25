@@ -3,6 +3,7 @@ import Footer from "@/app/components/Footer"
 import "@/app/globals.css"
 import { getTranslations, setRequestLocale } from "next-intl/server"
 import { type Locale, locales } from "@/i18n.config";
+import Script from 'next/script'
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -60,7 +61,7 @@ export async function generateMetadata({
   };
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
   params: { locale },
 }: {
@@ -68,6 +69,11 @@ export default function RootLayout({
   params: { locale: string };
 }) {
   setRequestLocale(locale);
+  const t = await getTranslations({
+    locale,
+    namespace: "Layout.metaData",
+  });
+
   return (
     <html lang={locale}>
       <body className="flex flex-col min-h-screen">
@@ -76,6 +82,57 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <Script
+          id="schema-org"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "AccountingService",
+              "@id": t("siteUrl"),
+              "name": t("siteName"),
+              "description": t("description"),
+              "url": t("siteUrl"),
+              "logo": `${t("siteUrl")}${t("siteLogo")}`,
+              "image": `${t("siteUrl")}${t("socialBanner")}`,
+              "email": t("email"),
+              "telephone": "+1 (949) 300-4828",
+              "address": [{
+                "@type": "PostalAddress",
+                "addressLocality": "Burlingame",
+                "addressRegion": "CA",
+                "postalCode": "94010",
+                "streetAddress": "851 Burlway Rd, Ste 605",
+                "addressCountry": "US"
+              }, {
+                "@type": "PostalAddress",
+                "addressLocality": "Palmetto Bay",
+                "addressRegion": "FL",
+                "postalCode": "33157",
+                "streetAddress": "15321 South Dixie Highway, Suite 302B",
+                "addressCountry": "US"
+              }],
+              "openingHours": "Mo-Fr 09:30-17:30",
+              "areaServed": {
+                "@type": "Country",
+                "name": "United States"
+              },
+              "sameAs": [
+                // Add your social media URLs here
+                "https://atlantistaxgroup.com/"
+              ],
+              "priceRange": "$$",
+              "serviceType": [
+                "Accounting Services",
+                "Tax Planning",
+                "Tax Credits",
+                "Company Formation",
+                "ITIN Application",
+                "BOI Reporting"
+              ]
+            })
+          }}
+        />
       </body>
     </html>
   )

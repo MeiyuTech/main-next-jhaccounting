@@ -10,6 +10,7 @@
  */
 
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 
 export default function Footer() {
   const t = useTranslations('Footer');
@@ -41,10 +42,13 @@ export default function Footer() {
 
         {/* QR Code Column */}
         <div className="flex justify-center md:justify-end">
-          <img
+          <Image
             src="/QR-code.png"
             alt="QR Code"
+            width={160}
+            height={160}
             className="w-40 h-40"
+            priority={false}
           />
         </div>
       </div>
