@@ -111,7 +111,7 @@ export default function Header() {
           <Link href="/" className="flex-shrink-0">
             <Image
               src="/JH-logo-1.png"
-              alt="JIAHUA US ACCOUNTING"
+              alt="Jiahua US Accounting"
               width={300}
               height={100}
               className="h-16 lg:h-24 w-auto"
