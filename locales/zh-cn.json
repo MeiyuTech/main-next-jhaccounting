@@ -48,7 +48,7 @@
       "theme": "light",
       "siteUrl": "https://www.jhaccounting.org",
       "siteLogo": "/favicon.ico",
-      "socialBanner": "social-banner-zh_cn.png",
+      "socialBanner": "/social-banner-zh_cn.png",
       "email": "info@jhaccounting.org"
     }
   },
