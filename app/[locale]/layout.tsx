@@ -119,12 +119,8 @@ export default async function RootLayout({
               },
               "sameAs": [
                 // Add your social media URLs here
-                "https://atlantistaxgroup.com/"
               ],
               "priceRange": "$$",
-              "serviceType": [
-                "AccountingService",
-              ]
             })
           }}
         />
