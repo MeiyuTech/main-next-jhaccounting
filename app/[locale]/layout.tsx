@@ -88,7 +88,7 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Corporation",
+              "@type": "LocalBusiness",
               "@id": t("siteUrl"),
               "name": t("siteName"),
               "description": t("description"),
