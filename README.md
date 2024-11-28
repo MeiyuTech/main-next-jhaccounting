@@ -1,12 +1,18 @@
+# Thanksgiving Feature
+
+- [ ] Form System (validation)
+- [ ] Collect visitor comment, address and email address
+- [ ] Send email to them
+
 # TODO
 
-- [ ] favicon.ico should have no background!!!!!
+- [X] favicon.ico should have no background!!!!!
 - [X] Add News Feature (SEO)
 - [X] Delete Blog Folder
 - [X] Image Optimization
   - Currently marked in page.tsx and about/page.tsx
   - Need to implement proper image optimization strategy
-- [ ] OpenGraph Image Generation
+- [X] OpenGraph Image Generation
 - [ ] Fix onClick event handling in Link component with legacyBehavior
   - Issue in Header.tsx with NavigationMenuLink
   - Remove legacyBehavior and implement proper event handling
@@ -15,7 +21,6 @@
 - [ ] Add error boundaries for better error handling
 - [ ] Implement proper SEO meta tags
 - [ ] Add loading states for dynamic content
-- [ ] Implement proper form validation
 - [ ] Add unit tests and integration tests
 - [ ] Add proper documentation for components and utilities
 - [ ] Add Display order Feature for News page
