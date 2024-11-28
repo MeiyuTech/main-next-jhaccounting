@@ -167,8 +167,9 @@
     "title": "招聘计划",
     "description": "加入 Jiahua 会计师事务所，与我们一起成长",
     "accountant": {
-      "title": "Accountant",
-      "location": "San Francisco Office",
+      "title": "会计",
+      "location": "旧金山办公室",
+      "duties_title": "工作职责：",
       "duties": {
         "1": "维护和管理公司的财务记录",
         "2": "准备财务报表、报告和预算",
@@ -179,6 +180,7 @@
         "7": "协助准备财务分析和预测",
         "8": "与其他部门合作，确保财务数据准确性和一致性"
       },
+      "requirements_title": "要求：",
       "requirements": {
         "1": "会计、财务或相关领域的副学士学位或更高学位",
         "2": "CPA 认证优先",
@@ -191,8 +193,9 @@
       }
     },
     "office-assistant": {
-      "title": "Office Assistant",
-      "location": "San Francisco Office",
+      "title": "办公室助理",
+      "location": "旧金山办公室",
+      "duties_title": "工作职责：",
       "duties": {
         "1": "整理和维护文件和记录",
         "2": "整理和分发收件和准备寄件",
@@ -201,6 +204,7 @@
         "5": "协助办公室管理和组织程序",
         "6": "执行其他办公室职责"
       },
+      "requirements_title": "要求：",
       "requirements": {
         "1": "会计、财务或相关领域的副学士学位或更高学位",
         "2": "强大的组织和时间管理技能",
@@ -209,7 +213,8 @@
         "5": "在快节奏的环境中多任务处理和独立工作的能力",
         "6": "注重细节和工作的准确性"
       }
-    }
+    },
+    "contact_now_button": "现在联系"
   },
   "Form": {
     "title": "联系我们",

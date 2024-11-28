@@ -169,6 +169,7 @@
     "accountant": {
       "title": "Accountant",
       "location": "San Francisco Office",
+      "duties_title": "Job Duties and Responsibilities:",
       "duties": {
         "1": "Maintaining and managing the financial records of the company",
         "2": "Preparing financial statements, reports, and budgets",
@@ -179,6 +180,7 @@
         "7": "Assisting in the preparation of financial analyses and forecasts",
         "8": "Collaborating with other departments to ensure financial data accuracy and consistency"
       },
+      "requirements_title": "Requirements:",
       "requirements": {
         "1": "Associate's degree or higher in accounting, finance, or related field",
         "2": "CPA certification preferred",
@@ -193,6 +195,7 @@
     "office-assistant": {
       "title": "Office Assistant",
       "location": "San Francisco Office",
+      "duties_title": "Job Duties and Responsibilities:",
       "duties": {
         "1": "Organizing and maintaining files and records",
         "2": "Sort and distribute incoming mail and prepare outgoing mail",
@@ -201,6 +204,7 @@
         "5": "Assist in office management and organization procedures",
         "6": "Perform other office duties as assigned"
       },
+      "requirements_title": "Requirements:",
       "requirements": {
         "1": "Associate's degree or higher in related field",
         "2": "Strong organizational and time-management skills",
@@ -209,7 +213,8 @@
         "5": "Ability to multitask and work independently in a fast-paced environment",
         "6": "Attention to detail and accuracy in work"
       }
-    }
+    },
+    "contact_now_button": "Contact Now"
   },
   "Form": {
     "title": "Contact Us",

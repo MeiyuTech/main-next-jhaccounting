@@ -31,6 +31,7 @@ export default async function RecruitmentPage({ params: { locale } }: { params: 
     {
       title: t('accountant.title'),
       location: t('accountant.location'),
+      duties_title: t('accountant.duties_title'),
       duties: [
         t('accountant.duties.1'),
         t('accountant.duties.2'),
@@ -41,6 +42,7 @@ export default async function RecruitmentPage({ params: { locale } }: { params: 
         t('accountant.duties.7'),
         t('accountant.duties.8')
       ],
+      requirements_title: t('accountant.requirements_title'),
       requirements: [
         t('accountant.requirements.1'),
         t('accountant.requirements.2'),
@@ -50,11 +52,13 @@ export default async function RecruitmentPage({ params: { locale } }: { params: 
         t('accountant.requirements.6'),
         t('accountant.requirements.7'),
         t('accountant.requirements.8')
-      ]
+      ],
+      contact_now_button: t('contact_now_button')
     },
     {
       title: t('office-assistant.title'),
       location: t('office-assistant.location'),
+      duties_title: t('office-assistant.duties_title'),
       duties: [
         t('office-assistant.duties.1'),
         t('office-assistant.duties.2'),
@@ -63,6 +67,7 @@ export default async function RecruitmentPage({ params: { locale } }: { params: 
         t('office-assistant.duties.5'),
         t('office-assistant.duties.6')
       ],
+      requirements_title: t('office-assistant.requirements_title'),
       requirements: [
         t('office-assistant.requirements.1'),
         t('office-assistant.requirements.2'),
@@ -70,7 +75,8 @@ export default async function RecruitmentPage({ params: { locale } }: { params: 
         t('office-assistant.requirements.4'),
         t('office-assistant.requirements.5'),
         t('office-assistant.requirements.6')
-      ]
+      ],
+      contact_now_button: t('contact_now_button')
     }
   ];
 
