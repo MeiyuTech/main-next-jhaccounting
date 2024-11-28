@@ -220,24 +220,47 @@
     "title": "联系我们",
     "description": "请填写以下表单，我们会尽快与您联系。",
     "name": {
-      "label": "姓名"
+      "label": "姓名",
+      "validation": {
+        "min": "姓名至少需要 1 个字符",
+        "max": "姓名最多需要 20 个字符"
+      }
     },
     "email": {
-      "label": "电子邮箱"
+      "label": "电子邮箱",
+      "validation": {
+        "invalid": "无效的电子邮箱格式"
+      }
     },
     "phone": {
-      "label": "电话号码"
+      "label": "电话号码",
+      "validation": {
+        "invalid": "无效的电话号码格式"
+      }
     },
     "wechat": {
-      "label": "微信号"
+      "label": "微信号",
+      "validation": {
+        "min": "微信号至少需要 6 个字符",
+        "max": "微信号最多需要 20 个字符",
+        "format": "无效的微信号格式"
+      }
     },
     "address": {
-      "label": "地址"
+      "label": "地址",
+      "validation": {
+        "min": "地址至少需要 5 个字符",
+        "max": "地址最多需要 250 个字符"
+      }
     },
     "message": {
-      "label": "留言"
+      "label": "留言",
+      "validation": {
+        "min": "留言至少需要 10 个字符",
+        "max": "留言最多需要 250 个字符"
+      }
     },
-    "submit": "发送消息",
-    "submitting": "发送中..."
+    "submit": "提交",
+    "submitting": "提交中..."
   }
 }

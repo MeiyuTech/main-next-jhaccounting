@@ -16,36 +16,90 @@ import { Input } from "@/app/components/ui/input"
 import { Textarea } from "@/app/components/ui/textarea"
 import { useState } from "react"
 
-// 定义表单字段验证规则
-const formSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Please enter a valid email address"),
-  phone: z.string().optional(),
-  wechat: z.string().optional(),
-  address: z.string().optional(),
-  message: z.string().min(10, "Message must be at least 10 characters"),
-})
-
-// Props 类型定义
+// Props type definition, used to pass translations to the Client Component
 interface ContactFormProps {
   translations: {
-    name: string
-    email: string
-    phone: string
-    wechat: string
-    address: string
-    message: string
-    submit: string
+    name: {
+      label: string
+      validation: {
+        min: string
+        max: string
+      }
+    },
+    email: {
+      label: string
+      validation: {
+        invalid: string
+      }
+    },
+    phone: {
+      label: string
+      validation: {
+        invalid: string
+      }
+    },
+    wechat: {
+      label: string
+      validation: {
+        min: string
+        max: string
+        format: string
+      }
+    },
+    address: {
+      label: string
+      validation: {
+        min: string
+        max: string
+      }
+    },
+    message: {
+      label: string
+      validation: {
+        min: string
+        max: string
+      }
+    },
+    submit: string,
     submitting: string
   }
 }
 
+// Define form validation schema
+const formSchema = (translations: ContactFormProps['translations']) => z.object({
+  name: z.string()
+    .min(1, translations.name.validation.min)
+    .max(20, translations.name.validation.max),
+
+  email: z.string().email(translations.email.validation.invalid),
+
+  phone: z.string().regex(/^\+?[1-9]\d{1,14}$/, translations.phone.validation.invalid)
+    .optional(),
+
+  wechat: z.string()
+    .regex(/^[a-zA-Z0-9_-]{6,20}$/, translations.wechat.validation.format)
+    .min(6, translations.wechat.validation.min)
+    .max(20, translations.wechat.validation.max)
+    .optional(),
+
+  address: z.string()
+    .min(5, translations.address.validation.min)
+    .max(250, translations.address.validation.max)
+    .optional(),
+
+  message: z.string()
+    .min(10, translations.message.validation.min)
+    .max(250, translations.message.validation.max),
+})
+
+
 export default function ContactForm({ translations }: ContactFormProps) {
+  // Track form submission state
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  // 初始化表单
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  // Initialize form with validation schema
+  const form = useForm<z.infer<ReturnType<typeof formSchema>>>({
+    resolver: zodResolver(formSchema(translations)),
     defaultValues: {
       name: "",
       email: "",
@@ -56,11 +110,11 @@ export default function ContactForm({ translations }: ContactFormProps) {
     },
   })
 
-  // 表单提交处理
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  // Handle form submission
+  async function onSubmit(values: z.infer<ReturnType<typeof formSchema>>) {
     setIsSubmitting(true)
     try {
-      // TODO: 实现表单提交逻辑
+      // TODO: Implement form submission logic
       console.log(values)
     } catch (error) {
       console.error(error)
@@ -78,7 +132,7 @@ export default function ContactForm({ translations }: ContactFormProps) {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{translations.name}</FormLabel>
+                <FormLabel>{translations.name.label}</FormLabel>
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
@@ -91,7 +145,7 @@ export default function ContactForm({ translations }: ContactFormProps) {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{translations.email}</FormLabel>
+                <FormLabel>{translations.email.label}</FormLabel>
                 <FormControl>
                   <Input type="email" {...field} />
                 </FormControl>
@@ -104,7 +158,7 @@ export default function ContactForm({ translations }: ContactFormProps) {
             name="phone"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{translations.phone}</FormLabel>
+                <FormLabel>{translations.phone.label}</FormLabel>
                 <FormControl>
                   <Input type="tel" {...field} />
                 </FormControl>
@@ -117,7 +171,7 @@ export default function ContactForm({ translations }: ContactFormProps) {
             name="wechat"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{translations.wechat}</FormLabel>
+                <FormLabel>{translations.wechat.label}</FormLabel>
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
@@ -130,7 +184,7 @@ export default function ContactForm({ translations }: ContactFormProps) {
             name="address"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{translations.address}</FormLabel>
+                <FormLabel>{translations.address.label}</FormLabel>
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
@@ -144,7 +198,7 @@ export default function ContactForm({ translations }: ContactFormProps) {
           name="message"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{translations.message}</FormLabel>
+              <FormLabel>{translations.message.label}</FormLabel>
               <FormControl>
                 <Textarea rows={6} {...field} />
               </FormControl>

@@ -30,14 +30,49 @@ export default async function ContactNowPage({ params: { locale } }: { params: {
 
   // Pass translation content to client component via props
   const translations = {
-    name: formT('name.label'),
-    email: formT('email.label'),
-    phone: formT('phone.label'),
-    wechat: formT('wechat.label'),
-    address: formT('address.label'),
-    message: formT('message.label'),
+    name: {
+      label: formT('name.label'),
+      validation: {
+        min: formT('name.validation.min'),
+        max: formT('name.validation.max'),
+      }
+    },
+    email: {
+      label: formT('email.label'),
+      validation: {
+        invalid: formT('email.validation.invalid'),
+      }
+    },
+    phone: {
+      label: formT('phone.label'),
+      validation: {
+        invalid: formT('phone.validation.invalid'),
+      }
+    },
+    wechat: {
+      label: formT('wechat.label'),
+      validation: {
+        min: formT('wechat.validation.min'),
+        max: formT('wechat.validation.max'),
+        format: formT('wechat.validation.format'),
+      }
+    },
+    address: {
+      label: formT('address.label'),
+      validation: {
+        min: formT('address.validation.min'),
+        max: formT('address.validation.max'),
+      }
+    },
+    message: {
+      label: formT('message.label'),
+      validation: {
+        min: formT('message.validation.min'),
+        max: formT('message.validation.max'),
+      }
+    },
     submit: formT('submit'),
-    submitting: formT('submitting')
+    submitting: formT('submitting'),
   }
 
   return (

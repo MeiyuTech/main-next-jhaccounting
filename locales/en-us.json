@@ -220,24 +220,47 @@
     "title": "Contact Us",
     "description": "Please fill out the form below and we'll get back to you as soon as possible.",
     "name": {
-      "label": "Name"
+      "label": "Name",
+      "validation": {
+        "min": "Minimum length is 1 characters",
+        "max": "Maximum length is 20 characters"
+      }
     },
     "email": {
-      "label": "Email"
+      "label": "Email",
+      "validation": {
+        "invalid": "Invalid email address"
+      }
     },
     "phone": {
-      "label": "Phone Number"
+      "label": "Phone Number",
+      "validation": {
+        "invalid": "Invalid phone number"
+      }
     },
     "wechat": {
-      "label": "WeChat ID"
+      "label": "WeChat ID",
+      "validation": {
+        "min": "Minimum length is 6 characters",
+        "max": "Maximum length is 20 characters",
+        "format": "Invalid WeChat ID format"
+      }
     },
     "address": {
-      "label": "Address"
+      "label": "Address",
+      "validation": {
+        "min": "Minimum length is 5 characters",
+        "max": "Maximum length is 250 characters"
+      }
     },
     "message": {
-      "label": "Message"
+      "label": "Message",
+      "validation": {
+        "min": "Minimum length is 10 characters",
+        "max": "Maximum length is 250 characters"
+      }
     },
-    "submit": "Send Message",
-    "submitting": "Sending..."
+    "submit": "Submit",
+    "submitting": "Submitting..."
   }
 }
