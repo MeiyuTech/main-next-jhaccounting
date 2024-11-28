@@ -210,5 +210,29 @@
         "6": "Attention to detail and accuracy in work"
       }
     }
+  },
+  "Form": {
+    "title": "Contact Us",
+    "description": "Please fill out the form below and we'll get back to you as soon as possible.",
+    "name": {
+      "label": "Name"
+    },
+    "email": {
+      "label": "Email"
+    },
+    "phone": {
+      "label": "Phone Number"
+    },
+    "wechat": {
+      "label": "WeChat ID"
+    },
+    "address": {
+      "label": "Address"
+    },
+    "message": {
+      "label": "Message"
+    },
+    "submit": "Send Message",
+    "submitting": "Sending..."
   }
 }

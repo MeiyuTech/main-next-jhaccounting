@@ -210,5 +210,29 @@
         "6": "注重细节和工作的准确性"
       }
     }
+  },
+  "Form": {
+    "title": "联系我们",
+    "description": "请填写以下表单，我们会尽快与您联系。",
+    "name": {
+      "label": "姓名"
+    },
+    "email": {
+      "label": "电子邮箱"
+    },
+    "phone": {
+      "label": "电话号码"
+    },
+    "wechat": {
+      "label": "微信号"
+    },
+    "address": {
+      "label": "地址"
+    },
+    "message": {
+      "label": "留言"
+    },
+    "submit": "发送消息",
+    "submitting": "发送中..."
   }
 }

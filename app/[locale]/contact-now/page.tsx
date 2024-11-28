@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+import ContactForm from '@/app/components/ContactForm'
 
 /*
  * We pull in the current locale
@@ -24,7 +25,20 @@ export async function generateMetadata({
 
 export default async function ContactNowPage({ params: { locale } }: { params: { locale: string } }) {
   setRequestLocale(locale);
-  const t = await getTranslations('ContactNow');
+  const t = await getTranslations('ContactNow')
+  const formT = await getTranslations('Form')
+
+  // Pass translation content to client component via props
+  const translations = {
+    name: formT('name.label'),
+    email: formT('email.label'),
+    phone: formT('phone.label'),
+    wechat: formT('wechat.label'),
+    address: formT('address.label'),
+    message: formT('message.label'),
+    submit: formT('submit'),
+    submitting: formT('submitting')
+  }
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -104,6 +118,15 @@ export default async function ContactNowPage({ params: { locale } }: { params: {
           <div className="space-y-4">
             {/* Add office locations with icons */}
           </div>
+        </div>
+      </div>
+
+      {/* Contact Form section */}
+      <div className="mt-16">
+        <div className="bg-white p-8 rounded-lg shadow-lg max-w-4xl mx-auto">
+          <h3 className="text-2xl font-semibold mb-6">{formT('title')}</h3>
+          <p className="text-gray-600 mb-8">{formT('description')}</p>
+          <ContactForm translations={translations} />
         </div>
       </div>
     </div>
