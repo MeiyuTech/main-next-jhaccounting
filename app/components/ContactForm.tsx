@@ -73,19 +73,63 @@ const formSchema = (translations: ContactFormProps['translations']) => z.object(
 
   email: z.string().email(translations.email.validation.invalid),
 
-  phone: z.string().regex(/^\+?[1-9]\d{1,14}$/, translations.phone.validation.invalid)
-    .optional(),
+  phone: z.string()
+    .transform(val => val === "" ? undefined : val)
+    .optional()
+    .superRefine((val, ctx) => {
+      if (val && !val.match(/^\+?[1-9]\d{1,14}$/)) {
+        ctx.addIssue({
+          code: "custom",
+          message: translations.phone.validation.invalid,
+        });
+      }
+    }),
 
   wechat: z.string()
-    .regex(/^[a-zA-Z0-9_-]{6,20}$/, translations.wechat.validation.format)
-    .min(6, translations.wechat.validation.min)
-    .max(20, translations.wechat.validation.max)
-    .optional(),
+    .transform(val => val === "" ? undefined : val)
+    .optional()
+    .superRefine((val, ctx) => {
+      if (val) {
+        if (!val.match(/^[a-zA-Z0-9_-]{6,20}$/)) {
+          ctx.addIssue({
+            code: "custom",
+            message: translations.wechat.validation.format,
+          });
+        } else if (val.length < 6) {
+          ctx.addIssue({
+            code: "too_small",
+            minimum: 6,
+            type: "string",
+            inclusive: true,
+            message: translations.wechat.validation.min,
+          });
+        } else if (val.length > 20) {
+          ctx.addIssue({
+            code: "too_big",
+            maximum: 20,
+            type: "string",
+            inclusive: true,
+            message: translations.wechat.validation.max,
+          });
+        }
+      }
+    }),
 
   address: z.string()
-    .min(5, translations.address.validation.min)
-    .max(250, translations.address.validation.max)
-    .optional(),
+    .transform(val => val === "" ? undefined : val)
+    .optional()
+    .superRefine((val, ctx) => {
+      if (val && (val.length < 5 || val.length > 250)) {
+        ctx.addIssue({
+          code: val.length < 5 ? "too_small" : "too_big",
+          minimum: 5,
+          maximum: 250,
+          type: "string",
+          inclusive: true,
+          message: val.length < 5 ? translations.address.validation.min : translations.address.validation.max,
+        });
+      }
+    }),
 
   message: z.string()
     .min(10, translations.message.validation.min)
