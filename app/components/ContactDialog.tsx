@@ -14,7 +14,7 @@ interface ContactDialogProps {
 export default function ContactDialog({
   formTranslations,
   buttonText,
-  buttonClassName = "transition-all duration-200 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-2 px-6 rounded-lg"
+  buttonClassName = "text-2xl transition-all duration-200 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-2 px-6 rounded-lg"
 }: ContactDialogProps) {
   const [open, setOpen] = useState(false)
 

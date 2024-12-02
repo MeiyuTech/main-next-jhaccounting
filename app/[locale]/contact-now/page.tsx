@@ -1,7 +1,6 @@
 import Image from "next/image"
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import ContactForm from '@/app/components/ContactForm'
-import ContactDialog from '@/app/components/ContactDialog'
 import { getContactFormTranslations } from '@/lib/translations/form'
 
 /*
@@ -120,10 +119,6 @@ export default async function ContactNowPage({ params: { locale } }: { params: {
           <p className="text-gray-600 mb-8">{formT('description')}</p>
           <ContactForm translations={contactFormTranslations} />
         </div>
-        {/* TODO: Remove Contact Dialog After Testing */}
-        {/* <div className="bg-white p-8 rounded-lg shadow-lg max-w-4xl mx-auto">
-          <ContactDialog formTranslations={contactFormTranslations} buttonText={t('button')} />
-        </div> */}
       </div>
     </div>
   )

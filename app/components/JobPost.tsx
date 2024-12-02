@@ -38,7 +38,7 @@ export default async function JobPost({ title, location, duties_title, duties, r
           ))}
         </ul>
       </div>
-      {/* <ContactDialog formTranslations={contactFormTranslations} buttonText={contact_now_button} /> */}
+      <ContactDialog formTranslations={contactFormTranslations} buttonText={contact_now_button} />
     </div>
   );
 } 

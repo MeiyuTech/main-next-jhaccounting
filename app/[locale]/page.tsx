@@ -1,11 +1,11 @@
 /**
  * Home Page
  */
-
-import { useTranslations } from "next-intl"
-import { Card, CardContent } from "@/app/components/ui/card"
-import { setRequestLocale, getTranslations } from "next-intl/server";
 import Image from "next/image"
+import { setRequestLocale, getTranslations } from "next-intl/server";
+import { Card, CardContent } from "@/app/components/ui/card"
+import ContactDialog from "@/app/components/ContactDialog"
+import { getContactFormTranslations } from "@/lib/translations/form"
 
 /*
  * We pull in the current locale
@@ -30,8 +30,9 @@ export async function generateMetadata({
 
 export default async function Home({ params: { locale } }: { params: { locale: string } }) {
   setRequestLocale(locale);
-  const t = useTranslations('Home');
-  const tFooter = useTranslations('Footer');
+  const t = await getTranslations('Home');
+  const tFooter = await getTranslations('Footer');
+  const contactFormTranslations = await getContactFormTranslations()
 
   return (
     <>
@@ -56,6 +57,7 @@ export default async function Home({ params: { locale } }: { params: { locale: s
             <p className="text-lg md:text-xl mb-8 max-w-2xl">
               {t('hero-section.description')}
             </p>
+
             <div className="flex items-center gap-6">
               <div className="flex items-center gap-2">
                 <span className="text-xl">{tFooter('contact.phone-label')}</span>
@@ -72,6 +74,12 @@ export default async function Home({ params: { locale } }: { params: { locale: s
                 </a>
               </div>
             </div>
+            <section className="mt-8 mb-8">
+              <ContactDialog
+                formTranslations={contactFormTranslations}
+                buttonText={t('hero-section.contactbutton')}
+              />
+            </section>
           </div>
         </div>
       </section>
