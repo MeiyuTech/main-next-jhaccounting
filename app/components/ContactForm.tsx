@@ -81,6 +81,7 @@ export interface ContactFormProps {
       }
     }
   }
+  onSubmitSuccess?: () => void
 }
 
 // Define form validation schema
@@ -167,7 +168,7 @@ const formSchema = (translations: ContactFormProps['translations']) => z.object(
 })
 
 
-export default function ContactForm({ translations }: ContactFormProps) {
+export default function ContactForm({ translations, onSubmitSuccess }: ContactFormProps) {
   const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -198,6 +199,7 @@ export default function ContactForm({ translations }: ContactFormProps) {
       })
 
       form.reset()
+      onSubmitSuccess?.()
     } catch (error) {
       toast({
         title: translations.toast.error.title,
