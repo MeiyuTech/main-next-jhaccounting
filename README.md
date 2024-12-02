@@ -67,3 +67,58 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+# Jiahua US Accounting Website
+
+## Environment Setup
+
+### Supabase Configuration
+
+1. Environment Variables
+
+```
+NEXT_PUBLIC_SUPABASE_URL=<your_supabase_project_url>
+NEXT_PUBLIC_SUPABASE_ANON_KEY=<your_supabase_anon_key>
+```
+
+2. Deployment Steps
+
+- Local development: Use `.env.local` file
+- Production: Add environment variables in your deployment platform (e.g., Vercel)
+  - Go to Project Settings
+  - Navigate to Environment Variables section
+  - Add both `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+  - Redeploy the application
+
+3. Database Setup
+
+- Create `contact_submissions` table:
+
+  ```sql
+  create table public.contact_submissions (
+    id uuid default gen_random_uuid() primary key,
+    created_at timestamp with time zone default now(),
+    name varchar not null,
+    email varchar not null,
+    phone varchar,
+    wechat varchar,
+    address text,
+    message text not null,
+    staus varchar
+  );
+  ```
+- Enable Row Level Security and create policies:
+
+  ```sql
+  -- Enable Row Level Security (RLS)
+  alter table public.contact_submissions enable row level security;
+
+  -- Allow inserts for all users
+  alter policy "Enable insert for all users"
+  on "public"."contact_submissions"
+  to public
+  for insert
+  with check (
+    true
+  );
+  ```
