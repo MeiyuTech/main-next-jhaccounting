@@ -1,6 +1,7 @@
 import Image from "next/image"
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import ContactForm from '@/app/components/ContactForm'
+import { createClient } from '@/utils/supabase/server'
 
 /*
  * We pull in the current locale
@@ -27,6 +28,12 @@ export default async function ContactNowPage({ params: { locale } }: { params: {
   setRequestLocale(locale);
   const t = await getTranslations('ContactNow')
   const formT = await getTranslations('Form')
+
+  const client = await createClient()
+  // TODO: Remove this after testing
+  // console.log(
+  //   await client.from('contact_submissions').select('*')
+  // )
 
   // Pass translation content to client component via props
   const translations = {

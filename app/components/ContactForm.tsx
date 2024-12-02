@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
@@ -14,7 +15,8 @@ import {
 import { Button } from "@/app/components/ui/button"
 import { Input } from "@/app/components/ui/input"
 import { Textarea } from "@/app/components/ui/textarea"
-import { useState } from "react"
+import { createContactSubmission } from "@/lib/actions"
+import { useToast } from "@/hooks/use-toast"
 
 // Props type definition, used to pass translations to the Client Component
 interface ContactFormProps {
@@ -138,7 +140,7 @@ const formSchema = (translations: ContactFormProps['translations']) => z.object(
 
 
 export default function ContactForm({ translations }: ContactFormProps) {
-  // Track form submission state
+  const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   // Initialize form with validation schema
@@ -158,9 +160,23 @@ export default function ContactForm({ translations }: ContactFormProps) {
   async function onSubmit(values: z.infer<ReturnType<typeof formSchema>>) {
     setIsSubmitting(true)
     try {
-      // TODO: Implement form submission logic
-      console.log(values)
+      await createContactSubmission(values)
+
+      // Show success message
+      toast({
+        title: "Success",
+        description: "Your message has been sent successfully.",
+      })
+
+      // Reset form
+      form.reset()
     } catch (error) {
+      // Show error message
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive",
+      })
       console.error(error)
     } finally {
       setIsSubmitting(false)

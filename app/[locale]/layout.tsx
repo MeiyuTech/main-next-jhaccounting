@@ -4,6 +4,7 @@ import "@/app/globals.css"
 import { getTranslations, setRequestLocale } from "next-intl/server"
 import { type Locale, locales } from "@/i18n.config";
 import Script from 'next/script'
+import { Toaster } from "@/app/components/ui/toaster"
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -124,6 +125,7 @@ export default async function RootLayout({
             })
           }}
         />
+        <Toaster />
       </body>
     </html>
   )
