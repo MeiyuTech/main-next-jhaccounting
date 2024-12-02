@@ -71,6 +71,12 @@ export default async function ContactNowPage({ params: { locale } }: { params: {
         max: formT('address.validation.max'),
       }
     },
+    zipcode: {
+      label: formT('zipcode.label'),
+      validation: {
+        invalid: formT('zipcode.validation.invalid'),
+      }
+    },
     message: {
       label: formT('message.label'),
       validation: {

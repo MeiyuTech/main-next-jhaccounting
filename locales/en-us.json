@@ -253,6 +253,12 @@
         "max": "Maximum length is 250 characters"
       }
     },
+    "zipcode": {
+      "label": "Zipcode",
+      "validation": {
+        "invalid": "Invalid zipcode"
+      }
+    },
     "message": {
       "label": "Message",
       "validation": {

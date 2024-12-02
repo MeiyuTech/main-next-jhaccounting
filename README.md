@@ -103,6 +103,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=<your_supabase_anon_key>
     phone varchar,
     wechat varchar,
     address text,
+    zipcode varchar,
     message text not null,
     staus varchar
   );

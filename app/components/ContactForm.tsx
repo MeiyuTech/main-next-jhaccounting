@@ -55,6 +55,12 @@ interface ContactFormProps {
         max: string
       }
     },
+    zipcode: {
+      label: string
+      validation: {
+        invalid: string
+      }
+    },
     message: {
       label: string
       validation: {
@@ -133,6 +139,18 @@ const formSchema = (translations: ContactFormProps['translations']) => z.object(
       }
     }),
 
+  zipcode: z.string()
+    .transform(val => val === "" ? undefined : val)
+    .optional()
+    .superRefine((val, ctx) => {
+      if (val && !val.match(/^\d{5,6}$/)) {
+        ctx.addIssue({
+          code: "custom",
+          message: translations.zipcode.validation.invalid,
+        });
+      }
+    }),
+
   message: z.string()
     .min(10, translations.message.validation.min)
     .max(250, translations.message.validation.max),
@@ -152,6 +170,7 @@ export default function ContactForm({ translations }: ContactFormProps) {
       phone: "",
       wechat: "",
       address: "",
+      zipcode: "",
       message: "",
     },
   })
@@ -162,20 +181,21 @@ export default function ContactForm({ translations }: ContactFormProps) {
     try {
       await createContactSubmission(values)
 
-      // Show success message
+      // Updated success toast with custom text color
       toast({
         title: "Success",
         description: "Your message has been sent successfully.",
+        className: "text-teal-400",
       })
 
-      // Reset form
       form.reset()
     } catch (error) {
-      // Show error message
+      // Updated error toast with custom text color
       toast({
         title: "Error",
         description: "Failed to send message. Please try again.",
         variant: "destructive",
+        className: "text-red-500",
       })
       console.error(error)
     } finally {
@@ -245,6 +265,19 @@ export default function ContactForm({ translations }: ContactFormProps) {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>{translations.address.label}</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="zipcode"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{translations.zipcode.label}</FormLabel>
                 <FormControl>
                   <Input {...field} />
                 </FormControl>

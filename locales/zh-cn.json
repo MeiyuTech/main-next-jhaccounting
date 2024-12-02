@@ -253,6 +253,12 @@
         "max": "地址最多需要 250 个字符"
       }
     },
+    "zipcode": {
+      "label": "邮编",
+      "validation": {
+        "invalid": "无效的邮编格式"
+      }
+    },
     "message": {
       "label": "留言",
       "validation": {
