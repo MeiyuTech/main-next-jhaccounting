@@ -19,7 +19,7 @@ import { createContactSubmission } from "@/lib/actions"
 import { useToast } from "@/hooks/use-toast"
 
 // Props type definition, used to pass translations to the Client Component
-interface ContactFormProps {
+export interface ContactFormProps {
   translations: {
     name: {
       label: string

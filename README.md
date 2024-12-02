@@ -1,8 +1,9 @@
 # Thanksgiving Feature
 
-- [ ] Form System (validation)
-- [ ] Collect visitor comment, address and email address
+- [X] Form System (validation)
+- [X] Collect visitor comment, address and email address
 - [ ] Send email to them
+- [ ] Create a scheduling Edge Fucntion to send weekily(?) report to info@jhaccounting.org
 
 # TODO
 
