@@ -86,6 +86,16 @@ export default async function ContactNowPage({ params: { locale } }: { params: {
     },
     submit: formT('submit'),
     submitting: formT('submitting'),
+    toast: {
+      success: {
+        title: formT('toast.success.title'),
+        description: formT('toast.success.description'),
+      },
+      error: {
+        title: formT('toast.error.title'),
+        description: formT('toast.error.description'),
+      }
+    }
   }
 
   return (

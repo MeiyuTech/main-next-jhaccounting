@@ -267,6 +267,16 @@
       }
     },
     "submit": "Submit",
-    "submitting": "Submitting..."
+    "submitting": "Submitting...",
+    "toast": {
+      "success": {
+        "title": "Success",
+        "description": "Your message has been sent successfully."
+      },
+      "error": {
+        "title": "Error",
+        "description": "Failed to send message. Please try again."
+      }
+    }
   }
 }

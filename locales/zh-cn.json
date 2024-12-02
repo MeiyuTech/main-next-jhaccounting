@@ -267,6 +267,16 @@
       }
     },
     "submit": "提交",
-    "submitting": "提交中..."
+    "submitting": "提交中...",
+    "toast": {
+      "success": {
+        "title": "成功",
+        "description": "您的消息已成功发送。"
+      },
+      "error": {
+        "title": "错误",
+        "description": "发送消息失败，请重试。"
+      }
+    }
   }
 }

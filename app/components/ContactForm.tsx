@@ -69,7 +69,17 @@ interface ContactFormProps {
       }
     },
     submit: string,
-    submitting: string
+    submitting: string,
+    toast: {
+      success: {
+        title: string
+        description: string
+      }
+      error: {
+        title: string
+        description: string
+      }
+    }
   }
 }
 
@@ -181,21 +191,19 @@ export default function ContactForm({ translations }: ContactFormProps) {
     try {
       await createContactSubmission(values)
 
-      // Updated success toast with custom text color
       toast({
-        title: "Success",
-        description: "Your message has been sent successfully.",
+        title: translations.toast.success.title,
+        description: translations.toast.success.description,
         className: "text-teal-400",
       })
 
       form.reset()
     } catch (error) {
-      // Updated error toast with custom text color
       toast({
-        title: "Error",
-        description: "Failed to send message. Please try again.",
+        title: translations.toast.error.title,
+        description: translations.toast.error.description,
         variant: "destructive",
-        className: "text-red-500",
+        className: "text-gray-900",
       })
       console.error(error)
     } finally {
