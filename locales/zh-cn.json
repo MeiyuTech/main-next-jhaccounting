@@ -161,7 +161,8 @@
     "phone-label": "电话：",
     "phone": "+1 (949) 300-4828",
     "email-label": "邮箱：",
-    "email": "info@jhaccounting.org"
+    "email": "info@jhaccounting.org",
+    "button": "现在联系"
   },
   "Recruitment": {
     "title": "招聘计划",
@@ -213,10 +214,9 @@
         "5": "在快节奏的环境中多任务处理和独立工作的能力",
         "6": "注重细节和工作的准确性"
       }
-    },
-    "contact_now_button": "现在联系"
+    }
   },
-  "Form": {
+  "ContactForm": {
     "title": "联系我们",
     "description": "请填写以下表单，我们会尽快与您联系。",
     "name": {

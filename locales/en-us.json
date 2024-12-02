@@ -161,7 +161,8 @@
     "phone-label": "Phone:",
     "phone": "+1 (949) 300-4828",
     "email-label": "Email:",
-    "email": "info@jhaccounting.org"
+    "email": "info@jhaccounting.org",
+    "button": "Contact Now"
   },
   "Recruitment": {
     "title": "Recruitment",
@@ -213,10 +214,9 @@
         "5": "Ability to multitask and work independently in a fast-paced environment",
         "6": "Attention to detail and accuracy in work"
       }
-    },
-    "contact_now_button": "Contact Now"
+    }
   },
-  "Form": {
+  "ContactForm": {
     "title": "Contact Us",
     "description": "Please fill out the form below and we'll get back to you as soon as possible.",
     "name": {

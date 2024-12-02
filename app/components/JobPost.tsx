@@ -1,4 +1,5 @@
-import Link from "next/link";
+import ContactDialog from '@/app/components/ContactDialog'
+import { getContactFormTranslations } from '@/lib/translations/form'
 
 interface JobPostProps {
   title: string;
@@ -10,7 +11,9 @@ interface JobPostProps {
   contact_now_button: string;
 }
 
-export default function JobPost({ title, location, duties_title, duties, requirements_title, requirements, contact_now_button }: JobPostProps) {
+export default async function JobPost({ title, location, duties_title, duties, requirements_title, requirements, contact_now_button }: JobPostProps) {
+  const contactFormTranslations = await getContactFormTranslations()
+
   return (
     <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
       <div className="mb-6">
@@ -28,17 +31,14 @@ export default function JobPost({ title, location, duties_title, duties, require
       </div>
 
       <div className="mb-6">
-        <h4 className="text-lg font-semibold text-gray-900 mb-3">{requirements_title}</h4>
+        <h4 className="text-lg font-semibold text-gray-900 mb-3">{duties_title}</h4>
         <ul className="list-disc pl-5 space-y-2">
           {requirements.map((requirement, index) => (
             <li key={index} className="text-gray-700">{requirement}</li>
           ))}
         </ul>
       </div>
-
-      <button className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-2 px-6 rounded-lg transition-colors">
-        <Link href="/contact-now">{contact_now_button}</Link>
-      </button>
+      {/* <ContactDialog formTranslations={contactFormTranslations} buttonText={contact_now_button} /> */}
     </div>
   );
 } 

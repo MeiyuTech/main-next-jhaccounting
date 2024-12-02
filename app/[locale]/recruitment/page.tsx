@@ -26,6 +26,7 @@ export async function generateMetadata({
 export default async function RecruitmentPage({ params: { locale } }: { params: { locale: string } }) {
   setRequestLocale(locale);
   const t = await getTranslations('Recruitment');
+  const contactNowT = await getTranslations('ContactNow');
 
   const jobs = [
     {
@@ -53,7 +54,7 @@ export default async function RecruitmentPage({ params: { locale } }: { params: 
         t('accountant.requirements.7'),
         t('accountant.requirements.8')
       ],
-      contact_now_button: t('contact_now_button')
+      contact_now_button: contactNowT('button')
     },
     {
       title: t('office-assistant.title'),
@@ -76,7 +77,7 @@ export default async function RecruitmentPage({ params: { locale } }: { params: 
         t('office-assistant.requirements.5'),
         t('office-assistant.requirements.6')
       ],
-      contact_now_button: t('contact_now_button')
+      contact_now_button: contactNowT('button')
     }
   ];
 
