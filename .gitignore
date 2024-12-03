@@ -50,6 +50,7 @@ FAQ.md
 FAQ.pdf
 YangQi.pdf
 Yangqi.md
+*.zip
 
 # Optional: Cache directories
 .npm

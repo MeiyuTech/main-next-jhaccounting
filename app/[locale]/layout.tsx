@@ -59,6 +59,11 @@ export async function generateMetadata({
         "max-snippet": -1,
       },
     },
+    appleWebApp: {
+      title: t("siteName"),
+      statusBarStyle: 'default',
+      capable: true,
+    },
   };
 }
 
