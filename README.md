@@ -3,7 +3,7 @@
 - [X] Form System (validation)
 - [X] Collect visitor comment, address and email address
 - [ ] Send email to them
-- [ ] Create a scheduling Edge Fucntion to send weekily(?) report to info@jhaccounting.org
+- [x] Create a scheduling Edge Fucntion to send weekily(?) report to info@jhaccounting.org
 
 # TODO
 
@@ -36,7 +36,13 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+First, install the dependencies:
+
+```bash
+npm install
+``` 
+
+Then, run the development server:
 
 ```bash
 npm run dev
