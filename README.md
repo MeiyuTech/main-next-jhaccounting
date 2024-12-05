@@ -3,7 +3,7 @@
 - [X] Form System (validation)
 - [X] Collect visitor comment, address and email address
 - [ ] Send email to them
-- [x] Create a scheduling Edge Fucntion to send weekily(?) report to info@jhaccounting.org
+- [X] Create a scheduling Edge Fucntion to send weekily(?) report to info@jhaccounting.org
 
 # TODO
 
@@ -32,56 +32,12 @@
   - Currently, bullet points are hardcoded in `en-us.json`
   - Should be implemented as part of the menu rendering logic in `Header.tsx`
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-## Getting Started
-
-First, install the dependencies:
-
-```bash
-npm install
-``` 
-
-Then, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Before Deployment
-
-There is a Github Account, MeiyuTech, belongs to Meiyu Group and forks this repository. MeiyuTech needs to pull the latest changes from this repository and merge them into its own repository, and then deploy to Vercel.
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
 # Jiahua US Accounting Website
 
 ## Environment Setup
+
+Copy `.env.local.example` to `.env.local` and fill in the following variables:
+
 ```
 NEXT_PUBLIC_SUPABASE_URL=<your_supabase_project_url>
 NEXT_PUBLIC_SUPABASE_ANON_KEY=<your_supabase_anon_key>
@@ -180,18 +136,21 @@ create policy "Service role can insert heartbeats"
 ### 3. Setup Files
 
 The repository includes two key files for the keep-alive system:
+
 - `scripts/keep-alive.ts`: Script that sends heartbeat to Supabase
 - `.github/workflows/keep-alive.yml`: GitHub Actions workflow configuration
 
 ### 4. Schedule
 
 The keep-alive script runs automatically:
+
 - Every Monday and Friday at 8:00 AM Pacific Time
 - Can be manually triggered from the GitHub Actions tab
 
 ### 5. Monitoring
 
 Monitor the keep-alive system:
+
 1. Go to your GitHub repository's "Actions" tab
 2. Look for the "Supabase Keep-Alive" workflow
 3. Check the run history and logs
@@ -200,6 +159,52 @@ Monitor the keep-alive system:
 ### 6. Verification
 
 You can verify the system is working by:
+
 - Checking the GitHub Actions run logs
 - Viewing the `heartbeats` table in your Supabase dashboard
 - Monitoring your database's active status
+
+## Run the Development Server
+
+First, install the dependencies:
+
+```bash
+npm install
+```
+
+Then, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Before Deployment
+
+There is a Github Account, MeiyuTech, belongs to Meiyu Group and forks this repository. MeiyuTech needs to pull the latest changes from this repository and merge them into its own repository, and then deploy to Vercel.
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
