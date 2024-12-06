@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import UserForm from "@/components/user-form"
+import FCEForm from "@/app/components/FCE-Form"
 
 export const metadata: Metadata = {
     title: "User Information Form",
@@ -11,7 +11,7 @@ export default function FormPage() {
         <div className="container mx-auto py-10">
             <div className="max-w-2xl mx-auto">
                 <h1 className="text-2xl font-bold mb-6">用户信息表单</h1>
-                <UserForm />
+                <FCEForm />
             </div>
         </div>
     )
