@@ -90,6 +90,23 @@ const formSchema = z.object({
         secondDegree: z.object({
             quantity: z.number().min(0).default(0),
         }),
+        coursebyCourse: z.object({
+            firstDegree: z.object({
+                speed: z.enum(["8day", "5day", "3day", "24hour"]),
+            }),
+            secondDegree: z.object({
+                quantity: z.number().min(0).default(0),
+            }),
+        }),
+        professionalExperience: z.object({
+            speed: z.enum(["21day", "7day", "3day"]).optional(),
+        }),
+        positionEvaluation: z.object({
+            speed: z.enum(["10day", "5day", "3day", "2day"]).optional(),
+        }),
+        translation: z.object({
+            required: z.boolean().default(false),
+        }),
     }),
     deliveryMethod: z.enum([
         "usps_domestic",
@@ -215,17 +232,63 @@ function getDaysInMonth(month: string, year: string) {
 }
 
 // Add new constant for service pricing
-const FIRST_DEGREE_SERVICES = [
+const FCE_FIRST_DEGREE = [
     { value: "7day", label: "7 business day service", price: 100 },
     { value: "3day", label: "3 business day service", price: 150 },
     { value: "24hour", label: "24-hour service", price: 200 },
     { value: "sameday", label: "Same-day service", price: 250 },
 ] as const
 
+const CoursebyCourse_FIRST_DEGREE = [
+    { value: "8day", label: "8 business day service", price: 180 },
+    { value: "5day", label: "5 business day service", price: 210 },
+    { value: "3day", label: "3 business day service", price: 280 },
+    { value: "24hour", label: "24-hour service", price: 350 },
+] as const
+
 // 在 FCEForm 组件内添加一个函数来获取 second degree 的单价
-function getSecondDegreePrice(firstDegreeSpeed: string) {
-    return firstDegreeSpeed === "7day" ? 30 : 40
+function getFCESecondDegreePrice(secondDegreeSpeed: string) {
+    return secondDegreeSpeed === "7day" ? 30 : 40
 }
+
+// 修改 second degree 价格计算函数
+function getCoursebyCourseSecondDegreePrice(firstDegreeSpeed: string) {
+    // 如果选择了 8 天服务，单价是 40，其他都是 60
+    return firstDegreeSpeed === "8day" ? 40 : 60
+}
+
+// 添加 Professional Experience 服务的常量
+const PROFESSIONAL_EXPERIENCE = [
+    { value: "21day", label: "21 business day service", price: 600 },
+    { value: "7day", label: "7 business day service", price: 700 },
+    { value: "3day", label: "3 business day service", price: 800 },
+] as const
+
+// 添加 Position Evaluation 服务的常量
+const POSITION_EVALUATION = [
+    { value: "10day", label: "10 business day service", price: 300 },
+    { value: "5day", label: "5 business day service", price: 400 },
+    { value: "3day", label: "3 business day service", price: 500 },
+    { value: "2day", label: "2 business day service", price: 600 },
+] as const
+
+// 添加 Delivery 选项常量
+const DELIVERY_OPTIONS = [
+    { value: "usps_domestic", label: "USPS First Class Mail (Regular Mail) - U.S. domestic", price: 7 },
+    { value: "usps_international", label: "USPS First Class Mail (Regular Mail) - International", price: 13 },
+    { value: "usps_priority_domestic", label: "USPS Priority Mail- U.S. Domestic", price: 17 },
+    { value: "usps_express_domestic", label: "USPS Express Mail-US Domestic", price: 32 },
+    { value: "ups_express_domestic", label: "UPS Express Mail-US Domestic", price: 58 },
+    { value: "usps_express_international", label: "USPS Express Mail- International", price: 71 },
+    { value: "fedex_express_international", label: "FedEx Express Mail- International", price: 93 },
+] as const
+
+// 添加 Additional Services 常量
+const ADDITIONAL_SERVICES = [
+    { id: "extra_copy", label: "Extra Hard Copy Report", price: 20 },
+    { id: "pdf_with_hard_copy", label: "PDF Report with Hard Copy", price: 20 },
+    { id: "pdf_only", label: "PDF Report Only (without Hard Copy)", price: 10 },
+] as const
 
 export default function FCEForm() {
     const { toast } = useToast()
@@ -241,6 +304,23 @@ export default function FCEForm() {
                 },
                 secondDegree: {
                     quantity: 0,
+                },
+                coursebyCourse: {
+                    firstDegree: {
+                        speed: "8day",
+                    },
+                    secondDegree: {
+                        quantity: 0,
+                    },
+                },
+                professionalExperience: {
+                    speed: undefined,
+                },
+                positionEvaluation: {
+                    speed: undefined,
+                },
+                translation: {
+                    required: false,
                 },
             },
             deliveryMethod: "usps_domestic",
@@ -268,7 +348,11 @@ export default function FCEForm() {
 
     // 然后在组件内使用 watch 来监听 first degree 的选择
     const firstDegreeSpeed = form.watch("serviceType.firstDegree.speed")
-    const secondDegreePrice = getSecondDegreePrice(firstDegreeSpeed)
+    const secondDegreePrice = getFCESecondDegreePrice(firstDegreeSpeed)
+
+    // 获取 course by course first degree 的选择
+    const coursebyCourseFirstDegreeSpeed = form.watch("serviceType.coursebyCourse.firstDegree.speed")
+    const coursebyCourseSecondDegreePrice = getCoursebyCourseSecondDegreePrice(coursebyCourseFirstDegreeSpeed)
 
     return (
         <Form {...form}>
@@ -587,7 +671,7 @@ export default function FCEForm() {
                         />
                     </div>
 
-                    {/* 添加生日选择 */}
+                    {/* 添加生择 */}
                     <div className="space-y-2">
                         <FormLabel>出生日期</FormLabel>
                         <div className="grid grid-cols-3 gap-4">
@@ -737,7 +821,7 @@ export default function FCEForm() {
                         <div className="grid grid-cols-2 gap-4">
                             {/* 入学时间 */}
                             <div className="space-y-2">
-                                <FormLabel className="text-sm text-gray-500">入学时</FormLabel>
+                                <FormLabel className="text-sm text-gray-500">入学时间</FormLabel>
                                 <div className="grid grid-cols-2 gap-2">
                                     <FormField
                                         control={form.control}
@@ -862,6 +946,37 @@ export default function FCEForm() {
                     </div>
                 </div>
 
+                {/* Document Submission Section */}
+                <div className="space-y-4">
+                    <h2 className="text-xl font-semibold">3. DOCUMENT SUBMISSION</h2>
+                    <div className="space-y-4 text-sm">
+                        <p>
+                            Company/attorney/individuals may submit documents along this application form via email to{' '}
+                            <a href="mailto:info@aet21.com" className="text-blue-600 hover:underline">
+                                info@aet21.com
+                            </a>
+                            , or via fax to (954) 644-7787 (Headquarter), or via email to{' '}
+                            <a href="mailto:ca2@aet21.com" className="text-blue-600 hover:underline">
+                                ca2@aet21.com
+                            </a>
+                            {' '}(California Office), or via email to{' '}
+                            <a href="mailto:boston@aet21.com" className="text-blue-600 hover:underline">
+                                boston@aet21.com
+                            </a>
+                            {' '}(Boston Office), or via email to{' '}
+                            <a href="mailto:nyc@aet21.com" className="text-blue-600 hover:underline">
+                                nyc@aet21.com
+                            </a>
+                            {' '}(New York Office).
+                        </p>
+                        <p className="text-gray-600">
+                            Applications should arrive before 1:00PM EST in order to be processed the same day.
+                            Applications that arrive after 1:00PM EST will be processed the next business day.
+                            Application would be processed after payment is cleared.
+                        </p>
+                    </div>
+                </div>
+
                 {/* 4. SERVICE SELECTION */}
                 <div className="space-y-4">
                     <h2 className="text-xl font-semibold">4. Type of Service</h2>
@@ -889,7 +1004,7 @@ export default function FCEForm() {
                                                     defaultValue={field.value}
                                                     className="flex flex-col space-y-2"
                                                 >
-                                                    {FIRST_DEGREE_SERVICES.map((service) => (
+                                                    {FCE_FIRST_DEGREE.map((service) => (
                                                         <FormItem
                                                             key={service.value}
                                                             className="flex items-center space-x-3 space-y-0"
@@ -938,6 +1053,277 @@ export default function FCEForm() {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div className="space-y-8">
+                        {/* Course-by-course Evaluation Section */}
+                        <div className="space-y-4">
+                            <h3 className="font-medium">2) Course-by-course Evaluation (including GPA)</h3>
+                            <p className="text-sm text-gray-500 italic">* Payment and documents must be received by 1:00pm EST.</p>
+
+                            {/* First Degree */}
+                            <div className="space-y-4 pl-6">
+                                <h4 className="font-medium">a) First Degree</h4>
+                                <FormField
+                                    control={form.control}
+                                    name="serviceType.coursebyCourse.firstDegree.speed"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormControl>
+                                                <RadioGroup
+                                                    onValueChange={field.onChange}
+                                                    defaultValue={field.value}
+                                                    className="flex flex-col space-y-2"
+                                                >
+                                                    {CoursebyCourse_FIRST_DEGREE.map((service) => (
+                                                        <FormItem
+                                                            key={service.value}
+                                                            className="flex items-center space-x-3 space-y-0"
+                                                        >
+                                                            <FormControl>
+                                                                <RadioGroupItem value={service.value} />
+                                                            </FormControl>
+                                                            <FormLabel className="font-normal">
+                                                                {service.label}
+                                                                <span className="ml-2 text-gray-500">
+                                                                    ${service.price}
+                                                                </span>
+                                                            </FormLabel>
+                                                        </FormItem>
+                                                    ))}
+                                                </RadioGroup>
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
+
+                            {/* Second Degree */}
+                            <div className="space-y-4 pl-6">
+                                <h4 className="font-medium">b) Second Degree</h4>
+                                <div className="flex items-center gap-4">
+                                    <FormField
+                                        control={form.control}
+                                        name="serviceType.coursebyCourse.secondDegree.quantity"
+                                        render={({ field }) => (
+                                            <FormItem className="w-48">
+                                                <FormLabel>Quantity (${coursebyCourseSecondDegreePrice}/ea.)</FormLabel>
+                                                <FormControl>
+                                                    <Input
+                                                        type="number"
+                                                        min="0"
+                                                        {...field}
+                                                        onChange={e => field.onChange(parseInt(e.target.value) || 0)}
+                                                    />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="space-y-4">
+                        <h3 className="font-medium">3) Professional Experience Evaluation</h3>
+
+                        <div className="space-y-4 pl-6">
+                            <FormField
+                                control={form.control}
+                                name="serviceType.professionalExperience.speed"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormControl>
+                                            <RadioGroup
+                                                onValueChange={field.onChange}
+                                                defaultValue={field.value}
+                                                className="flex flex-col space-y-2"
+                                            >
+                                                {PROFESSIONAL_EXPERIENCE.map((service) => (
+                                                    <FormItem
+                                                        key={service.value}
+                                                        className="flex items-center space-x-3 space-y-0"
+                                                    >
+                                                        <FormControl>
+                                                            <RadioGroupItem value={service.value} />
+                                                        </FormControl>
+                                                        <FormLabel className="font-normal">
+                                                            {service.label}
+                                                            <span className="ml-2 text-gray-500">
+                                                                ${service.price}
+                                                            </span>
+                                                        </FormLabel>
+                                                    </FormItem>
+                                                ))}
+                                            </RadioGroup>
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+                    </div>
+                    <div className="space-y-4">
+                        <h3 className="font-medium">4) Position Evaluation</h3>
+
+                        <div className="space-y-4 pl-6">
+                            <FormField
+                                control={form.control}
+                                name="serviceType.positionEvaluation.speed"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormControl>
+                                            <RadioGroup
+                                                onValueChange={field.onChange}
+                                                defaultValue={field.value}
+                                                className="flex flex-col space-y-2"
+                                            >
+                                                {POSITION_EVALUATION.map((service) => (
+                                                    <FormItem
+                                                        key={service.value}
+                                                        className="flex items-center space-x-3 space-y-0"
+                                                    >
+                                                        <FormControl>
+                                                            <RadioGroupItem value={service.value} />
+                                                        </FormControl>
+                                                        <FormLabel className="font-normal">
+                                                            {service.label}
+                                                            <span className="ml-2 text-gray-500">
+                                                                ${service.price}
+                                                            </span>
+                                                        </FormLabel>
+                                                    </FormItem>
+                                                ))}
+                                            </RadioGroup>
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+                    </div>
+                    <div className="space-y-4">
+                        <h3 className="font-medium">5) Type of Delivery</h3>
+
+                        <div className="space-y-4 pl-6">
+                            <FormField
+                                control={form.control}
+                                name="deliveryMethod"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormControl>
+                                            <RadioGroup
+                                                onValueChange={field.onChange}
+                                                defaultValue={field.value}
+                                                className="flex flex-col space-y-2"
+                                            >
+                                                {DELIVERY_OPTIONS.map((option) => (
+                                                    <FormItem
+                                                        key={option.value}
+                                                        className="flex items-center space-x-3 space-y-0"
+                                                    >
+                                                        <FormControl>
+                                                            <RadioGroupItem value={option.value} />
+                                                        </FormControl>
+                                                        <FormLabel className="font-normal">
+                                                            {option.label}
+                                                            <span className="ml-2 text-gray-500">
+                                                                ${option.price.toFixed(2)}
+                                                            </span>
+                                                        </FormLabel>
+                                                    </FormItem>
+                                                ))}
+                                            </RadioGroup>
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                {/* Translation Service Section */}
+                <div className="space-y-4">
+                    <h3 className="font-medium">6) Translation Service</h3>
+
+                    <div className="space-y-4 pl-6">
+                        <FormField
+                            control={form.control}
+                            name="serviceType.translation.required"
+                            render={({ field }) => (
+                                <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                                    <FormControl>
+                                        <Checkbox
+                                            checked={field.value}
+                                            onCheckedChange={field.onChange}
+                                        />
+                                    </FormControl>
+                                    <div className="space-y-1 leading-none">
+                                        <FormLabel>
+                                            Translation
+                                            <span className="ml-2 text-sm text-gray-500">
+                                                (Per the quote provided upon request)
+                                            </span>
+                                        </FormLabel>
+                                    </div>
+                                </FormItem>
+                            )}
+                        />
+                    </div>
+                </div>
+
+                {/* Additional Service Section */}
+                <div className="space-y-4">
+                    <h3 className="font-medium">7) Additional Service</h3>
+
+                    <div className="space-y-4 pl-6">
+                        <FormField
+                            control={form.control}
+                            name="additionalServices"
+                            render={() => (
+                                <FormItem>
+                                    <div className="space-y-2">
+                                        {ADDITIONAL_SERVICES.map((service) => (
+                                            <FormField
+                                                key={service.id}
+                                                control={form.control}
+                                                name="additionalServices"
+                                                render={({ field }) => {
+                                                    return (
+                                                        <FormItem
+                                                            key={service.id}
+                                                            className="flex flex-row items-start space-x-3 space-y-0"
+                                                        >
+                                                            <FormControl>
+                                                                <Checkbox
+                                                                    checked={field.value?.includes(service.id)}
+                                                                    onCheckedChange={(checked) => {
+                                                                        return checked
+                                                                            ? field.onChange([...field.value, service.id])
+                                                                            : field.onChange(
+                                                                                field.value?.filter(
+                                                                                    (value) => value !== service.id
+                                                                                )
+                                                                            )
+                                                                    }}
+                                                                />
+                                                            </FormControl>
+                                                            <FormLabel className="font-normal">
+                                                                {service.label}
+                                                                <span className="ml-2 text-gray-500">
+                                                                    ${service.price.toFixed(2)} Each
+                                                                </span>
+                                                            </FormLabel>
+                                                        </FormItem>
+                                                    )
+                                                }}
+                                            />
+                                        ))}
+                                    </div>
+                                </FormItem>
+                            )}
+                        />
                     </div>
                 </div>
 
