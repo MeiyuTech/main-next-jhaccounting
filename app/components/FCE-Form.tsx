@@ -83,12 +83,14 @@ const formSchema = z.object({
     }),
 
     // 4. SERVICE SELECTION
-    serviceType: z.enum([
-        "7day",
-        "3day",
-        "24hour",
-        "sameday"
-    ]),
+    serviceType: z.object({
+        firstDegree: z.object({
+            speed: z.enum(["7day", "3day", "24hour", "sameday"]),
+        }),
+        secondDegree: z.object({
+            quantity: z.number().min(0).default(0),
+        }),
+    }),
     deliveryMethod: z.enum([
         "usps_domestic",
         "usps_international",
@@ -212,6 +214,19 @@ function getDaysInMonth(month: string, year: string) {
     })
 }
 
+// Add new constant for service pricing
+const FIRST_DEGREE_SERVICES = [
+    { value: "7day", label: "7 business day service", price: 100 },
+    { value: "3day", label: "3 business day service", price: 150 },
+    { value: "24hour", label: "24-hour service", price: 200 },
+    { value: "sameday", label: "Same-day service", price: 250 },
+] as const
+
+// 在 FCEForm 组件内添加一个函数来获取 second degree 的单价
+function getSecondDegreePrice(firstDegreeSpeed: string) {
+    return firstDegreeSpeed === "7day" ? 30 : 40
+}
+
 export default function FCEForm() {
     const { toast } = useToast()
     const form = useForm<z.infer<typeof formSchema>>({
@@ -220,7 +235,14 @@ export default function FCEForm() {
             title: "mr",
             gender: "male",
             purpose: "education",
-            serviceType: "7day",
+            serviceType: {
+                firstDegree: {
+                    speed: "7day",
+                },
+                secondDegree: {
+                    quantity: 0,
+                },
+            },
             deliveryMethod: "usps_domestic",
             additionalServices: [],
             dateOfBirth: {
@@ -243,6 +265,10 @@ export default function FCEForm() {
     const watchedDateOfBirth = form.watch("dateOfBirth")
     const selectedMonth = watchedDateOfBirth.month
     const selectedYear = watchedDateOfBirth.year
+
+    // 然后在组件内使用 watch 来监听 first degree 的选择
+    const firstDegreeSpeed = form.watch("serviceType.firstDegree.speed")
+    const secondDegreePrice = getSecondDegreePrice(firstDegreeSpeed)
 
     return (
         <Form {...form}>
@@ -711,7 +737,7 @@ export default function FCEForm() {
                         <div className="grid grid-cols-2 gap-4">
                             {/* 入学时间 */}
                             <div className="space-y-2">
-                                <FormLabel className="text-sm text-gray-500">入学时间</FormLabel>
+                                <FormLabel className="text-sm text-gray-500">入学时</FormLabel>
                                 <div className="grid grid-cols-2 gap-2">
                                     <FormField
                                         control={form.control}
@@ -838,42 +864,81 @@ export default function FCEForm() {
 
                 {/* 4. SERVICE SELECTION */}
                 <div className="space-y-4">
-                    <h2 className="text-xl font-semibold">4. 服务选择</h2>
+                    <h2 className="text-xl font-semibold">4. Type of Service</h2>
+                    <p className="text-sm text-gray-500">
+                        Actual prices may vary. All prices in this document are only for your reference purpose.
+                        AET offices will give you an official quote / price based on your specific situation and requests.
+                    </p>
 
-                    <FormField
-                        control={form.control}
-                        name="serviceType"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>服务类型</FormLabel>
-                                <FormControl>
-                                    <RadioGroup
-                                        onValueChange={field.onChange}
-                                        defaultValue={field.value}
-                                        className="flex flex-col space-y-2"
-                                    >
-                                        <FormItem className="flex items-center space-x-2">
-                                            <RadioGroupItem value="7day" />
-                                            <FormLabel className="font-normal">7个工作日服务 ($100)</FormLabel>
+                    <div className="space-y-8">
+                        {/* Educational Foreign Credential Evaluation Report Section */}
+                        <div className="space-y-4">
+                            <h3 className="font-medium">1) Educational Foreign Credential Evaluation Report (document-by-document)</h3>
+
+                            {/* First Degree */}
+                            <div className="space-y-4 pl-6">
+                                <h4 className="font-medium">a) First Degree</h4>
+                                <FormField
+                                    control={form.control}
+                                    name="serviceType.firstDegree.speed"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormControl>
+                                                <RadioGroup
+                                                    onValueChange={field.onChange}
+                                                    defaultValue={field.value}
+                                                    className="flex flex-col space-y-2"
+                                                >
+                                                    {FIRST_DEGREE_SERVICES.map((service) => (
+                                                        <FormItem
+                                                            key={service.value}
+                                                            className="flex items-center space-x-3 space-y-0"
+                                                        >
+                                                            <FormControl>
+                                                                <RadioGroupItem value={service.value} />
+                                                            </FormControl>
+                                                            <FormLabel className="font-normal">
+                                                                {service.label}
+                                                                <span className="ml-2 text-gray-500">
+                                                                    ${service.price}
+                                                                </span>
+                                                            </FormLabel>
+                                                        </FormItem>
+                                                    ))}
+                                                </RadioGroup>
+                                            </FormControl>
+                                            <FormMessage />
                                         </FormItem>
-                                        <FormItem className="flex items-center space-x-2">
-                                            <RadioGroupItem value="3day" />
-                                            <FormLabel className="font-normal">3个工作日服务 ($150)</FormLabel>
-                                        </FormItem>
-                                        <FormItem className="flex items-center space-x-2">
-                                            <RadioGroupItem value="24hour" />
-                                            <FormLabel className="font-normal">24小时服务 ($200)</FormLabel>
-                                        </FormItem>
-                                        <FormItem className="flex items-center space-x-2">
-                                            <RadioGroupItem value="sameday" />
-                                            <FormLabel className="font-normal">当日服务 ($250)</FormLabel>
-                                        </FormItem>
-                                    </RadioGroup>
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
+                                    )}
+                                />
+                            </div>
+
+                            {/* Second Degree */}
+                            <div className="space-y-4 pl-6">
+                                <h4 className="font-medium">b) Second Degree</h4>
+                                <div className="flex items-center gap-4">
+                                    <FormField
+                                        control={form.control}
+                                        name="serviceType.secondDegree.quantity"
+                                        render={({ field }) => (
+                                            <FormItem className="w-48">
+                                                <FormLabel>Quantity (${secondDegreePrice}/ea.)</FormLabel>
+                                                <FormControl>
+                                                    <Input
+                                                        type="number"
+                                                        min="0"
+                                                        {...field}
+                                                        onChange={e => field.onChange(parseInt(e.target.value) || 0)}
+                                                    />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <Button type="submit" className="w-full">提交申请</Button>
