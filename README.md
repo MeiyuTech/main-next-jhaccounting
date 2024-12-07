@@ -1,3 +1,10 @@
+# Create New Multi Form
+
+- [ ] Maybe use Formity for the form?
+- [ ] Add e-signature feature
+- [ ] Add payment feature
+- [ ] Some fields are not required (e.g. fax number, address only required if need mail address)
+
 # Thanksgiving Feature
 
 - [X] Form System (validation)

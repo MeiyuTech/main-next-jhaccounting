@@ -374,7 +374,7 @@ export default function FCEForm() {
                             </FormItem>
                         )}
                     />
-
+                    {/* TODO： Make it optional, only required if need mail address */}
                     <FormField
                         control={form.control}
                         name="streetAddress"
@@ -599,6 +599,7 @@ export default function FCEForm() {
                         name="title"
                         render={({ field }) => (
                             <FormItem>
+                                {/* TODO: Only keep Mr. and Mrs. */}
                                 <FormLabel>称谓</FormLabel>
                                 <Select
                                     onValueChange={field.onChange}
