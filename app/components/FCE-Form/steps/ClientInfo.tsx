@@ -34,36 +34,38 @@ export function ClientInfo() {
         )}
       />
 
-      <FormField
-        control={form.control}
-        name="streetAddress"
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>街道地址</FormLabel>
-            <FormControl>
-              <Input placeholder="1234 Main St" {...field} />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
+      <div className="grid grid-cols-2 gap-4">
+        <FormField
+          control={form.control}
+          name="streetAddress"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>街道地址</FormLabel>
+              <FormControl>
+                <Input placeholder="1234 Main St" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-      <FormField
-        control={form.control}
-        name="streetAddress2"
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>
-              街道地址 2
-              <span className="text-sm text-gray-500 ml-2">(可选)</span>
-            </FormLabel>
-            <FormControl>
-              <Input placeholder="Apartment, suite, unit, etc." {...field} />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
+        <FormField
+          control={form.control}
+          name="streetAddress2"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>
+                街道地址 2
+                <span className="text-sm text-gray-500 ml-2">(可选)</span>
+              </FormLabel>
+              <FormControl>
+                <Input placeholder="Apartment, suite, unit, etc." {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      </div>
 
       <div className="grid grid-cols-2 gap-4">
         <FormField
@@ -104,39 +106,15 @@ export function ClientInfo() {
         />
       </div>
 
-      <FormField
-        control={form.control}
-        name="zipCode"
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>邮编</FormLabel>
-            <FormControl>
-              <Input placeholder="12345" maxLength={10} {...field} />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
-
       <div className="grid grid-cols-2 gap-4">
         <FormField
           control={form.control}
-          name="phone"
+          name="zipCode"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>电话号码</FormLabel>
+              <FormLabel>邮编</FormLabel>
               <FormControl>
-                <Input
-                  placeholder="123-456-7890"
-                  {...field}
-                  onChange={(e) => {
-                    const value = e.target.value.replace(/\D/g, '')
-                    if (value.length <= 10) {
-                      const formatted = value.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')
-                      field.onChange(formatted)
-                    }
-                  }}
-                />
+                <Input placeholder="12345" maxLength={10} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -171,19 +149,45 @@ export function ClientInfo() {
         />
       </div>
 
-      <FormField
-        control={form.control}
-        name="email"
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>电子邮箱</FormLabel>
-            <FormControl>
-              <Input type="email" placeholder="your@email.com" {...field} />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
+      <div className="grid grid-cols-2 gap-4">
+        <FormField
+          control={form.control}
+          name="phone"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>电话号码</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder="123-456-7890"
+                  {...field}
+                  onChange={(e) => {
+                    const value = e.target.value.replace(/\D/g, '')
+                    if (value.length <= 10) {
+                      const formatted = value.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')
+                      field.onChange(formatted)
+                    }
+                  }}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>电子邮箱</FormLabel>
+              <FormControl>
+                <Input type="email" placeholder="your@email.com" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      </div>
 
       <FormField
         control={form.control}

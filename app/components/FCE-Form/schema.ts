@@ -22,19 +22,18 @@ export const formSchema = z.object({
   purposeOther: z.string().optional(),
 
   // 2. EVALUEE INFORMATION
-  title: z.enum(["mr", "ms", "mrs", "mx", "dr", "prof"], {
+  title: z.enum(["mr", "ms", "mx"], {
     required_error: "请选择称谓",
   }),
-  firstName: z.string().min(1, { message: "请输入名字" }),
-  lastName: z.string().min(1, { message: "请输入姓氏" }),
+  firstName: z.string({ required_error: "请输入名" }),
+  lastName: z.string({ required_error: "请输入姓" }),
   middleName: z.string().optional(),
-  gender: z.enum(["male", "female"]),
   dateOfBirth: z.object({
     month: z.string({ required_error: "请选择月份" }),
     date: z.string({ required_error: "请选择日期" }),
-    year: z.string({ required_error: "请选择年份" }),
+    year: z.string({ required_error: "请选择年份" })
   }),
-  countryOfStudy: z.string().min(1, { message: "请输入学习国家" }),
+  countryOfStudy: z.string({ required_error: "请输入学习国家" }),
   degreeObtained: z.string().min(1, { message: "请输入获得的学位" }),
   schoolName: z.string().min(1, { message: "请输入学校名称" }),
   studyDuration: z.object({

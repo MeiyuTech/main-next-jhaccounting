@@ -93,37 +93,6 @@ export function EvalueeInfo() {
           />
         </div>
 
-        <FormField
-          control={form.control}
-          name="gender"
-          render={({ field }) => (
-            <FormItem className="space-y-3">
-              <FormLabel>性别</FormLabel>
-              <FormControl>
-                <RadioGroup
-                  onValueChange={field.onChange}
-                  value={field.value}
-                  className="flex flex-row space-x-4"
-                >
-                  <FormItem className="flex items-center space-x-2">
-                    <FormControl>
-                      <RadioGroupItem value="male" />
-                    </FormControl>
-                    <FormLabel className="font-normal">男</FormLabel>
-                  </FormItem>
-                  <FormItem className="flex items-center space-x-2">
-                    <FormControl>
-                      <RadioGroupItem value="female" />
-                    </FormControl>
-                    <FormLabel className="font-normal">女</FormLabel>
-                  </FormItem>
-                </RadioGroup>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
         {/* Date of Birth */}
         <div className="space-y-2">
           <FormLabel>出生日期</FormLabel>

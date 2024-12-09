@@ -81,7 +81,7 @@ export default function FCEForm() {
       case FormStep.CLIENT_INFO:
         return ["firmName", "streetAddress", "city", "state", "zipCode", "phone", "email", "purpose"]
       case FormStep.EVALUEE_INFO:
-        return ["title", "firstName", "lastName", "gender", "dateOfBirth", "countryOfStudy"]
+        return ["title", "firstName", "lastName", "dateOfBirth", "countryOfStudy"]
       // ... fields for other steps
       default:
         return []
@@ -113,7 +113,13 @@ export default function FCEForm() {
     // Don't do anything if clicking current step
     if (targetStep === currentStep) return
 
-    // Validate current step first
+    // If going backwards, allow direct navigation without validation
+    if (targetStep < currentStep) {
+      setCurrentStep(targetStep)
+      return
+    }
+
+    // If going forwards, validate current step first
     const currentFields = getFieldsToValidate(currentStep)
     const isCurrentStepValid = await form.trigger(currentFields)
 
