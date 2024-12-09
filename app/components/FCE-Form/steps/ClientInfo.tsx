@@ -40,7 +40,10 @@ export function ClientInfo() {
           name="streetAddress"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>街道地址</FormLabel>
+              <FormLabel>
+                街道地址
+                <span className="text-sm text-gray-500 ml-2">(仅限美国地址)</span>
+              </FormLabel>
               <FormControl>
                 <Input placeholder="1234 Main St" {...field} />
               </FormControl>

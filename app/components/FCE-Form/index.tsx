@@ -98,7 +98,7 @@ export default function FCEForm() {
       case FormStep.CLIENT_INFO:
         return ["firmName", "streetAddress", "city", "state", "zipCode", "phone", "email", "purpose"]
       case FormStep.EVALUEE_INFO:
-        return ["title", "firstName", "lastName", "dateOfBirth", "countryOfStudy"]
+        return ["title", "firstName", "lastName", "dateOfBirth", "educations"]
       // ... fields for other steps
       default:
         return []
