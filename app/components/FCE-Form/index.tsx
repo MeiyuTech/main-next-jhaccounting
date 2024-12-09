@@ -11,6 +11,9 @@ import { formSchema } from "./schema"
 import { StepIndicator } from "./StepIndicator"
 import { useFormStore } from "./store"
 import { ClientInfo } from "./steps/ClientInfo"
+import { EvalueeInfo } from "./steps/EvalueeInfo"
+import { ServiceSelection } from "./steps/ServiceSelection"
+import { Review } from "./steps/Review"
 // 导入其他步骤组件...
 
 export default function FCEForm() {
@@ -47,7 +50,12 @@ export default function FCEForm() {
     switch (currentStep) {
       case FormStep.CLIENT_INFO:
         return <ClientInfo />
-      // 其他步骤...
+      case FormStep.EVALUEE_INFO:
+        return <EvalueeInfo />
+      case FormStep.SERVICE_SELECTION:
+        return <ServiceSelection />
+      case FormStep.REVIEW:
+        return <Review />
       default:
         return null
     }
