@@ -1,6 +1,6 @@
 import * as z from "zod"
 
-// 从原来的 FCE-Form.tsx 迁移验证规则
+// Validation rules migrated from FCE-Form.tsx
 export const formSchema = z.object({
   // 1. CLIENT INFORMATION
   firmName: z.string().min(2, { message: "请输入公司/个人名称" }),

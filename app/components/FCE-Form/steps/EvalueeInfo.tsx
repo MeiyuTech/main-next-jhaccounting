@@ -21,7 +21,7 @@ export function EvalueeInfo() {
     <div className="space-y-4">
       <h2 className="text-xl font-semibold">评估对象信息</h2>
 
-      {/* 基本信息 */}
+      {/* Basic Information */}
       <div className="space-y-4">
         <FormField
           control={form.control}
@@ -124,7 +124,7 @@ export function EvalueeInfo() {
           )}
         />
 
-        {/* 出生日期 */}
+        {/* Date of Birth */}
         <div className="space-y-2">
           <FormLabel>出生日期</FormLabel>
           <div className="grid grid-cols-3 gap-4">
@@ -204,7 +204,7 @@ export function EvalueeInfo() {
         </div>
       </div>
 
-      {/* 学习信息 */}
+      {/* Study Information */}
       <div className="space-y-4 pt-6">
         <h3 className="font-medium">学习信息</h3>
 
@@ -250,11 +250,11 @@ export function EvalueeInfo() {
           )}
         />
 
-        {/* 学习时间 */}
+        {/* Study Period */}
         <div className="space-y-2">
           <FormLabel>学习时间</FormLabel>
           <div className="grid grid-cols-2 gap-4">
-            {/* 入学时间 */}
+            {/* Start Date */}
             <div className="space-y-2">
               <FormLabel className="text-sm text-gray-500">入学时间</FormLabel>
               <div className="grid grid-cols-2 gap-2">
@@ -304,7 +304,7 @@ export function EvalueeInfo() {
               </div>
             </div>
 
-            {/* 毕业时间 */}
+            {/* End Date */}
             <div className="space-y-2">
               <FormLabel className="text-sm text-gray-500">毕业时间</FormLabel>
               <div className="grid grid-cols-2 gap-2">

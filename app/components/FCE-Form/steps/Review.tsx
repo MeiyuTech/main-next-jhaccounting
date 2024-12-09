@@ -17,7 +17,7 @@ export function Review() {
   const form = useFormContext<FormData>()
   const formData = form.getValues()
 
-  // 计算总价格
+  // Calculate total price
   const calculateTotalPrice = () => {
     let total = 0
 
@@ -88,7 +88,7 @@ export function Review() {
     <div className="space-y-8">
       <h2 className="text-xl font-semibold">确认信息</h2>
 
-      {/* 客户信息 */}
+      {/* Client Information */}
       <div className="space-y-4">
         <h3 className="font-medium">1. 客户信息</h3>
         <div className="grid grid-cols-2 gap-4 text-sm">
@@ -122,7 +122,7 @@ export function Review() {
         </div>
       </div>
 
-      {/* 评估对象信息 */}
+      {/* Evaluee Information */}
       <div className="space-y-4">
         <h3 className="font-medium">2. 评估对象信息</h3>
         <div className="grid grid-cols-2 gap-4 text-sm">
@@ -168,7 +168,7 @@ export function Review() {
         </div>
       </div>
 
-      {/* 服务选择 */}
+      {/* Service Selection */}
       <div className="space-y-4">
         <h3 className="font-medium">3. 服务选择</h3>
         <div className="space-y-6 text-sm">

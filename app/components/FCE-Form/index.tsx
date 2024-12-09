@@ -14,7 +14,7 @@ import { ClientInfo } from "./steps/ClientInfo"
 import { EvalueeInfo } from "./steps/EvalueeInfo"
 import { ServiceSelection } from "./steps/ServiceSelection"
 import { Review } from "./steps/Review"
-// 导入其他步骤组件...
+// Import other step components...
 
 export default function FCEForm() {
   const { toast } = useToast()
@@ -35,17 +35,17 @@ export default function FCEForm() {
     defaultValues: formData as FormData,
   })
 
-  // 当表单数据变化时保存草稿
+  // Save draft when form data changes
   useEffect(() => {
     const subscription = form.watch((value) => {
       setFormData(value as Partial<FormData>)
-      // 可以添加防抖来减少保存频率
+      // Can add debounce to reduce save frequency
       saveDraft()
     })
     return () => subscription.unsubscribe()
   }, [form.watch, setFormData, saveDraft])
 
-  // 根据当前步骤渲染相应的组件
+  // Render component based on current step
   const renderStep = () => {
     switch (currentStep) {
       case FormStep.CLIENT_INFO:
@@ -62,10 +62,10 @@ export default function FCEForm() {
   }
 
   const handleNext = async () => {
-    // 根据当前步骤获取需要验证的字段
+    // Get fields to validate based on current step
     const fieldsToValidate = getFieldsToValidate(currentStep)
 
-    // 验证字段
+    // Validate fields
     const isValid = await form.trigger(fieldsToValidate)
 
     if (isValid) {
@@ -75,14 +75,14 @@ export default function FCEForm() {
     }
   }
 
-  // 辅助函数：根据步骤返回需要验证的字段
+  // Helper function: Return fields to validate based on step
   const getFieldsToValidate = (step: FormStep): (keyof FormData)[] => {
     switch (step) {
       case FormStep.CLIENT_INFO:
         return ["firmName", "streetAddress", "city", "state", "zipCode", "phone", "email", "purpose"]
       case FormStep.EVALUEE_INFO:
         return ["title", "firstName", "lastName", "gender", "dateOfBirth", "countryOfStudy"]
-      // ... 其他步骤的字段
+      // ... fields for other steps
       default:
         return []
     }

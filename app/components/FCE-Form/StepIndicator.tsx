@@ -12,14 +12,14 @@ export function StepIndicator({ currentStep }: { currentStep: FormStep }) {
   return (
     <div className="mb-8">
       <div className="relative">
-        {/* 背景线 */}
+        {/* Background line */}
         <div className="absolute top-5 left-0 w-full h-[2px] bg-gray-200" />
 
-        {/* 步骤指示器 */}
+        {/* Step indicator */}
         <div className="relative flex justify-between">
           {steps.map((step, index) => (
             <div key={step.step} className="flex flex-col items-center">
-              {/* 圆圈和连接线 */}
+              {/* Circle and connecting line */}
               <div
                 className={cn(
                   "w-10 h-10 rounded-full border-2 flex items-center justify-center bg-white",
@@ -35,7 +35,7 @@ export function StepIndicator({ currentStep }: { currentStep: FormStep }) {
                 )}
               </div>
 
-              {/* 标题 */}
+              {/* Title */}
               <span
                 className={cn(
                   "mt-2 text-sm font-medium",
