@@ -1,7 +1,12 @@
 import { cn } from "@/lib/utils"
 import { FormStep } from "./types"
 
-export function StepIndicator({ currentStep }: { currentStep: FormStep }) {
+interface StepIndicatorProps {
+  currentStep: FormStep;
+  onStepClick: (step: FormStep) => void;
+}
+
+export function StepIndicator({ currentStep, onStepClick }: StepIndicatorProps) {
   const steps = [
     { title: "客户信息", step: FormStep.CLIENT_INFO },
     { title: "评估对象信息", step: FormStep.EVALUEE_INFO },
@@ -18,14 +23,19 @@ export function StepIndicator({ currentStep }: { currentStep: FormStep }) {
         {/* Step indicator */}
         <div className="relative flex justify-between">
           {steps.map((step, index) => (
-            <div key={step.step} className="flex flex-col items-center">
+            <div
+              key={step.step}
+              className="flex flex-col items-center cursor-pointer group"
+              onClick={() => onStepClick(step.step)}
+            >
               {/* Circle and connecting line */}
               <div
                 className={cn(
-                  "w-10 h-10 rounded-full border-2 flex items-center justify-center bg-white",
+                  "w-10 h-10 rounded-full border-2 flex items-center justify-center bg-white transition-all duration-200",
+                  "hover:shadow-md hover:scale-105",
                   currentStep === step.step && "border-primary bg-primary text-white",
                   currentStep > step.step && "border-primary bg-primary text-white",
-                  currentStep < step.step && "border-gray-300 text-gray-500"
+                  currentStep < step.step && "border-gray-300 text-gray-500 hover:border-primary/50"
                 )}
               >
                 {currentStep > step.step ? (
@@ -38,10 +48,10 @@ export function StepIndicator({ currentStep }: { currentStep: FormStep }) {
               {/* Title */}
               <span
                 className={cn(
-                  "mt-2 text-sm font-medium",
+                  "mt-2 text-sm font-medium transition-colors duration-200",
                   currentStep === step.step && "text-primary",
                   currentStep > step.step && "text-primary",
-                  currentStep < step.step && "text-gray-500"
+                  currentStep < step.step && "text-gray-500 group-hover:text-primary/70"
                 )}
               >
                 {step.title}

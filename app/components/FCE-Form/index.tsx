@@ -35,38 +35,15 @@ export default function FCEForm() {
     defaultValues: formData as FormData,
   })
 
-  // Load saved form data from localStorage when component mounts
-  useEffect(() => {
-    const savedData = localStorage.getItem('fce-form-data')
-    const savedStep = localStorage.getItem('fce-form-step')
-
-    if (savedData) {
-      const parsedData = JSON.parse(savedData) as Partial<FormData>
-      setFormData(parsedData)
-      form.reset(parsedData as FormData)
-    }
-
-    if (savedStep) {
-      setCurrentStep(Number(savedStep))
-    }
-  }, [])
-
-  // Save form data to localStorage when it changes
+  // Save draft when form data changes
   useEffect(() => {
     const subscription = form.watch((value) => {
       setFormData(value as Partial<FormData>)
-      // Save to localStorage
-      localStorage.setItem('fce-form-data', JSON.stringify(value))
       // Can add debounce to reduce save frequency
       saveDraft()
     })
     return () => subscription.unsubscribe()
   }, [form.watch, setFormData, saveDraft])
-
-  // Save current step to localStorage when it changes
-  useEffect(() => {
-    localStorage.setItem('fce-form-step', currentStep.toString())
-  }, [currentStep])
 
   // Render component based on current step
   const renderStep = () => {
@@ -118,10 +95,6 @@ export default function FCEForm() {
   const onSubmit = async (data: FormData) => {
     try {
       await submitForm()
-      // Clear saved form data after successful submission
-      localStorage.removeItem('fce-form-data')
-      localStorage.removeItem('fce-form-step')
-
       toast({
         title: "申请已提交",
         description: "我们将尽快处理您的申请",
@@ -135,6 +108,28 @@ export default function FCEForm() {
     }
   }
 
+  // Add this new function to handle step navigation
+  const handleStepClick = async (targetStep: FormStep) => {
+    // Don't do anything if clicking current step
+    if (targetStep === currentStep) return
+
+    // Validate current step first
+    const currentFields = getFieldsToValidate(currentStep)
+    const isCurrentStepValid = await form.trigger(currentFields)
+
+    if (!isCurrentStepValid) {
+      toast({
+        title: "请完成当前步骤",
+        description: "请先填写完必填项",
+        variant: "destructive",
+      })
+      return
+    }
+
+    // If current step is valid, allow navigation
+    setCurrentStep(targetStep)
+  }
+
   if (isLoading) {
     return <div>Loading...</div>
   }
@@ -142,7 +137,10 @@ export default function FCEForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <StepIndicator currentStep={currentStep} />
+        <StepIndicator
+          currentStep={currentStep}
+          onStepClick={handleStepClick}
+        />
 
         {renderStep()}
 
