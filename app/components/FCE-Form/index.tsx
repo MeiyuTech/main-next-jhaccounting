@@ -35,15 +35,32 @@ export default function FCEForm() {
     defaultValues: formData as FormData,
   })
 
-  // Save draft when form data changes
+  // Load saved form data when component mounts
+  useEffect(() => {
+    const savedData = localStorage.getItem('fce-form-data')
+    const savedStep = localStorage.getItem('fce-form-step')
+
+    if (savedData) {
+      const parsedData = JSON.parse(savedData) as Partial<FormData>
+      setFormData(parsedData)
+      form.reset(parsedData as FormData)
+    }
+
+    if (savedStep) {
+      setCurrentStep(Number(savedStep))
+    }
+  }, [])
+
+  // Save form data when it changes
   useEffect(() => {
     const subscription = form.watch((value) => {
       setFormData(value as Partial<FormData>)
-      // Can add debounce to reduce save frequency
+      localStorage.setItem('fce-form-data', JSON.stringify(value))
+      localStorage.setItem('fce-form-step', currentStep.toString())
       saveDraft()
     })
     return () => subscription.unsubscribe()
-  }, [form.watch, setFormData, saveDraft])
+  }, [form.watch, setFormData, saveDraft, currentStep])
 
   // Render component based on current step
   const renderStep = () => {

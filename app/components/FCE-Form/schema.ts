@@ -25,8 +25,12 @@ export const formSchema = z.object({
   title: z.enum(["mr", "ms", "mx"], {
     required_error: "请选择称谓",
   }),
-  firstName: z.string({ required_error: "请输入名" }),
-  lastName: z.string({ required_error: "请输入姓" }),
+  firstName: z.string()
+    .min(1, { message: "名字不能为空" })
+    .refine((val) => val.trim().length > 0, { message: "名字不能只包含空格" }),
+  lastName: z.string()
+    .min(1, { message: "姓氏不能为空" })
+    .refine((val) => val.trim().length > 0, { message: "姓氏不能只包含空格" }),
   middleName: z.string().optional(),
   dateOfBirth: z.object({
     month: z.string({ required_error: "请选择月份" }),
