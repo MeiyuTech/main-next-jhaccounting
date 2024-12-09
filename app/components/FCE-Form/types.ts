@@ -2,10 +2,19 @@ import * as z from "zod"
 import { formSchema } from "./schema"
 
 export enum FormStep {
-  CLIENT_INFO = 0,        // 客户信息
-  EVALUEE_INFO = 1,       // 待评估人员信息
-  SERVICE_SELECTION = 2,  // 服务选择
-  REVIEW = 3,            // 确认信息
+  CLIENT_INFO = 0,        // Client Information
+  EVALUEE_INFO = 1,       // Evaluee Information
+  SERVICE_SELECTION = 2,  // Service Selection
+  REVIEW = 3,            // Review Information
 }
 
 export type FormData = z.infer<typeof formSchema>
+
+export interface FormDraft {
+  id: string
+  form_data: Partial<FormData>
+  status: 'draft' | 'completed'
+  current_step: FormStep
+  created_at: string
+  updated_at: string
+}
