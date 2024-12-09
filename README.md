@@ -1,6 +1,7 @@
 # Create New Multi Form
 
-- [ ] Maybe use Formity for the form?
+- [X] Maybe use Formity for the form?
+  - [X] Formity is not even as good as mine!!!
 - [ ] Add e-signature feature
 - [ ] Add payment feature
 - [ ] Some fields are not required (e.g. fax number, address only required if need mail address)
