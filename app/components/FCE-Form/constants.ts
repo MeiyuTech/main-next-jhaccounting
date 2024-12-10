@@ -1,3 +1,5 @@
+import { Country, State } from 'country-state-city'
+
 export const PURPOSE_OPTIONS = [
   { value: "immigration", label: "Immigration" },
   { value: "employment", label: "Employment" },
@@ -137,3 +139,21 @@ export const ADDITIONAL_SERVICES = [
   { id: "pdf_with_hard_copy", label: "PDF Report with Hard Copy", price: 20 },
   { id: "pdf_only", label: "PDF Report Only (without Hard Copy)", price: 10 },
 ] as const
+
+export const getRegionConfig = (countryCode: string) => {
+  const states = State.getStatesOfCountry(countryCode)
+
+  const regionLabels: Record<string, string> = {
+    US: "州",
+    CN: "省",
+    // 可以添加更多国家的翻译
+  }
+
+  return {
+    label: regionLabels[countryCode] || "地区",
+    options: states.map(state => ({
+      value: state.isoCode,
+      label: state.name
+    }))
+  }
+}

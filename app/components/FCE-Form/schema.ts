@@ -39,6 +39,74 @@ const educationSchema = z.object({
   }),
 })
 
+// Define speed options and their display values
+const speedOptions = {
+  firstDegree: {
+    "7day": "7 Business Days",
+    "3day": "3 Business Days",
+    "24hour": "24 Hours",
+    "sameday": "Same Day"
+  },
+  coursebyCourse: {
+    "8day": "8 Business Days",
+    "5day": "5 Business Days",
+    "3day": "3 Business Days",
+    "24hour": "24 Hours"
+  },
+  professionalExperience: {
+    "21day": "21 Business Days",
+    "7day": "7 Business Days",
+    "3day": "3 Business Days"
+  },
+  positionEvaluation: {
+    "10day": "10 Business Days",
+    "5day": "5 Business Days",
+    "3day": "3 Business Days",
+    "2day": "2 Business Days"
+  }
+} as const
+
+// Update the service selection part of the schema
+const serviceTypeSchema = z.object({
+  firstDegree: z.object({
+    speed: z.enum(["7day", "3day", "24hour", "sameday"] as const).optional(),
+  }),
+  secondDegree: z.object({
+    quantity: z.number().min(0).default(0),
+  }),
+  coursebyCourse: z.object({
+    firstDegree: z.object({
+      speed: z.enum(["8day", "5day", "3day", "24hour"] as const).optional(),
+    }),
+    secondDegree: z.object({
+      quantity: z.number().min(0).default(0),
+    }),
+  }),
+  professionalExperience: z.object({
+    speed: z.enum(["21day", "7day", "3day"] as const).optional(),
+  }),
+  positionEvaluation: z.object({
+    speed: z.enum(["10day", "5day", "3day", "2day"] as const).optional(),
+  }),
+  translation: z.object({
+    required: z.boolean().default(false),
+  }),
+}).refine(
+  (data) => {
+    // At least one evaluation service must be selected
+    return !!(
+      data.firstDegree.speed ||
+      data.coursebyCourse.firstDegree.speed ||
+      data.professionalExperience.speed ||
+      data.positionEvaluation.speed
+    )
+  },
+  {
+    message: "Please select at least one evaluation service",
+    path: ["firstDegree", "speed"], // Show error on first degree field
+  }
+)
+
 // Validation rules migrated from FCE-Form.tsx
 export const formSchema = z.object({
   // 1. CLIENT INFORMATION
@@ -46,7 +114,9 @@ export const formSchema = z.object({
   streetAddress: z.string().min(5, { message: "Please enter street address" }),
   streetAddress2: z.string().optional(),
   city: z.string().min(2, { message: "Please enter city name" }),
-  state: z.string().length(2, { message: "Please select state" }),
+  state: z.string({
+    required_error: "请选择地区"
+  }),
   zipCode: z.string().regex(/^\d{5}(-\d{4})?$/, { message: "Please enter a valid ZIP code" }),
   phone: z.string().regex(/^\d{3}-\d{3}-\d{4}$/, {
     message: "Please enter a valid phone number in format: 123-456-7890"
@@ -105,31 +175,7 @@ export const formSchema = z.object({
     .min(1, { message: "At least one degree is required" }),
 
   // 3. SERVICE SELECTION
-  serviceType: z.object({
-    firstDegree: z.object({
-      speed: z.enum(["7day", "3day", "24hour", "sameday"]),
-    }),
-    secondDegree: z.object({
-      quantity: z.number().min(0).default(0),
-    }),
-    coursebyCourse: z.object({
-      firstDegree: z.object({
-        speed: z.enum(["8day", "5day", "3day", "24hour"]),
-      }),
-      secondDegree: z.object({
-        quantity: z.number().min(0).default(0),
-      }),
-    }),
-    professionalExperience: z.object({
-      speed: z.enum(["21day", "7day", "3day"]).optional(),
-    }),
-    positionEvaluation: z.object({
-      speed: z.enum(["10day", "5day", "3day", "2day"]).optional(),
-    }),
-    translation: z.object({
-      required: z.boolean().default(false),
-    }),
-  }),
+  serviceType: serviceTypeSchema,
   deliveryMethod: z.enum([
     "usps_domestic",
     "usps_international",
@@ -144,7 +190,14 @@ export const formSchema = z.object({
     "pdf_with_hard_copy",
     "pdf_only"
   ])),
+  country: z.string({
+    required_error: "请选择国家",
+  }),
 })
 
 // You might want to export the education schema for reuse
 export type EducationSchema = z.infer<typeof educationSchema>
+
+// Export the speed options and types for use in the UI
+export const SERVICE_SPEED_OPTIONS = speedOptions
+export type ServiceTypeSchema = z.infer<typeof serviceTypeSchema>

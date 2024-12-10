@@ -136,10 +136,6 @@ export function Review() {
             </div>
           </div>
           <div>
-            <div className="font-medium">性别</div>
-            <div>{formData.gender ? (formData.gender === "male" ? "男" : "女") : '未填写'}</div>
-          </div>
-          <div>
             <div className="font-medium">出生日期</div>
             <div>
               {formData.dateOfBirth ? (
@@ -151,19 +147,26 @@ export function Review() {
           </div>
           <div>
             <div className="font-medium">学习信息</div>
-            <div>国家: {formData.countryOfStudy || '未填写'}</div>
-            <div>学位: {formData.degreeObtained || '未填写'}</div>
-            <div>学校: {formData.schoolName || '未填写'}</div>
-            <div>
-              学习时间: {
-                formData.studyDuration ? (
-                  `${formData.studyDuration.startDate.month}/${formData.studyDuration.startDate.year} -
-                   ${formData.studyDuration.endDate.month}/${formData.studyDuration.endDate.year}`
-                ) : (
-                  '未填写'
-                )
-              }
-            </div>
+            {formData.educations.map((education, index) => (
+              <div key={index} className="mt-2">
+                <div className="font-medium text-sm text-gray-600">学位 {index + 1}</div>
+                <div className="pl-4">
+                  <div>国家: {education.countryOfStudy || '未填写'}</div>
+                  <div>学位: {education.degreeObtained || '未填写'}</div>
+                  <div>学校: {education.schoolName || '未填写'}</div>
+                  <div>
+                    学习时间: {
+                      education.studyDuration ? (
+                        `${education.studyDuration.startDate.month}/${education.studyDuration.startDate.year} -
+                         ${education.studyDuration.endDate.month}/${education.studyDuration.endDate.year}`
+                      ) : (
+                        '未填写'
+                      )
+                    }
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
