@@ -15,7 +15,7 @@ import {
 import { Input } from "@/app/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/app/components/ui/select"
 import { Button } from "@/app/components/ui/button"
-import { TITLE_OPTIONS, MONTH_OPTIONS, YEAR_OPTIONS } from "../constants"
+import { PRONOUN_OPTIONS, MONTH_OPTIONS, YEAR_OPTIONS } from "../constants"
 import { FormData } from "../types"
 
 
@@ -224,16 +224,16 @@ export function EvalueeInfo() {
       <div className="space-y-4">
         <FormField
           control={form.control}
-          name="title"
+          name="pronouns"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>称谓</FormLabel>
+              <FormLabel>Pronouns</FormLabel>
               <Select onValueChange={field.onChange} value={field.value}>
                 <SelectTrigger>
-                  <SelectValue placeholder="选择称谓" />
+                  <SelectValue placeholder="Select your pronouns" />
                 </SelectTrigger>
                 <SelectContent>
-                  {TITLE_OPTIONS.map((option) => (
+                  {PRONOUN_OPTIONS.map((option) => (
                     <SelectItem key={option.value} value={option.value}>
                       {option.label}
                     </SelectItem>
@@ -251,7 +251,7 @@ export function EvalueeInfo() {
             name="firstName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>名</FormLabel>
+                <FormLabel>First Name</FormLabel>
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
@@ -265,7 +265,7 @@ export function EvalueeInfo() {
             name="lastName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>姓</FormLabel>
+                <FormLabel>Last Name</FormLabel>
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
@@ -280,8 +280,8 @@ export function EvalueeInfo() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  中间名
-                  <span className="text-sm text-gray-500 ml-2">(可选)</span>
+                  Middle Name
+                  <span className="text-sm text-gray-500 ml-2">(Optional)</span>
                 </FormLabel>
                 <FormControl>
                   <Input {...field} />
@@ -294,7 +294,7 @@ export function EvalueeInfo() {
 
         {/* Date of Birth */}
         <div className="space-y-2">
-          <FormLabel>出生日期</FormLabel>
+          <FormLabel>Date of Birth</FormLabel>
           <div className="grid grid-cols-3 gap-4">
             <FormField
               control={form.control}
@@ -303,7 +303,7 @@ export function EvalueeInfo() {
                 <FormItem>
                   <Select onValueChange={field.onChange} value={field.value}>
                     <SelectTrigger>
-                      <SelectValue placeholder="月" />
+                      <SelectValue placeholder="Month" />
                     </SelectTrigger>
                     <SelectContent>
                       {MONTH_OPTIONS.map((month) => (
@@ -329,7 +329,7 @@ export function EvalueeInfo() {
                     disabled={!birthMonth}
                   >
                     <SelectTrigger>
-                      <SelectValue placeholder="日" />
+                      <SelectValue placeholder="Day" />
                     </SelectTrigger>
                     <SelectContent>
                       {Array.from({ length: daysInMonth }, (_, i) => {
@@ -354,7 +354,7 @@ export function EvalueeInfo() {
                 <FormItem>
                   <Select onValueChange={field.onChange} value={field.value}>
                     <SelectTrigger>
-                      <SelectValue placeholder="年" />
+                      <SelectValue placeholder="Year" />
                     </SelectTrigger>
                     <SelectContent>
                       {YEAR_OPTIONS.map((year) => (

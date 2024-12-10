@@ -30,17 +30,21 @@ export function ClientInfo() {
   // Get region type based on selected country
   const regionConfig = useMemo(() => {
     if (!selectedCountry) {
-      return { label: "地区", options: [] }
+      return { label: "Region", options: [] }
     }
     const states = State.getStatesOfCountry(selectedCountry)
     const regionLabels: Record<string, string> = {
-      US: "州",
-      CN: "省",
-      // 可以添加更多国家的翻译
+      US: "State",
+      CN: "Province",
+      CA: "Province",
+      GB: "County",
+      AU: "State",
+      NZ: "Region",
+      // Add more countries here
     }
 
     return {
-      label: regionLabels[selectedCountry] || "地区",
+      label: regionLabels[selectedCountry] || "Region",
       options: states.map(state => ({
         value: state.isoCode,
         label: state.name
@@ -53,7 +57,7 @@ export function ClientInfo() {
 
   return (
     <div className="space-y-4">
-      <h2 className="text-xl font-semibold">客户信息</h2>
+      <h2 className="text-xl font-semibold">Client Information</h2>
 
       <div className="grid grid-cols-2 gap-4">
         <FormField
@@ -61,7 +65,7 @@ export function ClientInfo() {
           name="firmName"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>公司/个人名称</FormLabel>
+              <FormLabel>Company/Individual Name</FormLabel>
               <FormControl>
                 <Input {...field} />
               </FormControl>
@@ -75,10 +79,10 @@ export function ClientInfo() {
           name="country"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>国家</FormLabel>
+              <FormLabel>Country</FormLabel>
               <Select onValueChange={field.onChange} value={field.value}>
                 <SelectTrigger>
-                  <SelectValue placeholder="选择国家" />
+                  <SelectValue placeholder="Select country" />
                 </SelectTrigger>
                 <SelectContent>
                   {COUNTRIES.map((country) => (
@@ -101,7 +105,7 @@ export function ClientInfo() {
           render={({ field }) => (
             <FormItem>
               <FormLabel>
-                街道地址
+                Street Address
               </FormLabel>
               <FormControl>
                 <Input placeholder="1234 Main St" {...field} />
@@ -117,8 +121,8 @@ export function ClientInfo() {
           render={({ field }) => (
             <FormItem>
               <FormLabel>
-                街道地址 2
-                <span className="text-sm text-gray-500 ml-2">(可选)</span>
+                Street Address 2
+                <span className="text-sm text-gray-500 ml-2">(Optional)</span>
               </FormLabel>
               <FormControl>
                 <Input placeholder="Apartment, suite, unit, etc." {...field} />
@@ -135,7 +139,7 @@ export function ClientInfo() {
           name="city"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>城市</FormLabel>
+              <FormLabel>City</FormLabel>
               <FormControl>
                 <Input {...field} />
               </FormControl>
@@ -152,7 +156,7 @@ export function ClientInfo() {
               <FormLabel>{regionLabel.label}</FormLabel>
               <Select onValueChange={field.onChange} value={field.value}>
                 <SelectTrigger>
-                  <SelectValue placeholder={`选择${regionLabel}`} />
+                  <SelectValue placeholder={`Select ${regionLabel.label}`} />
                 </SelectTrigger>
                 <SelectContent>
                   {regionConfig.options.map((option) => (
@@ -174,7 +178,7 @@ export function ClientInfo() {
           name="zipCode"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>邮编</FormLabel>
+              <FormLabel>Zip Code</FormLabel>
               <FormControl>
                 <Input placeholder="12345" maxLength={10} {...field} />
               </FormControl>
@@ -189,8 +193,8 @@ export function ClientInfo() {
           render={({ field }) => (
             <FormItem>
               <FormLabel>
-                传真号码
-                <span className="text-sm text-gray-500 ml-2">(可选)</span>
+                Fax
+                <span className="text-sm text-gray-500 ml-2">(Optional)</span>
               </FormLabel>
               <FormControl>
                 <Input
@@ -217,7 +221,7 @@ export function ClientInfo() {
           name="phone"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>电话号码</FormLabel>
+              <FormLabel>Phone</FormLabel>
               <FormControl>
                 <Input
                   placeholder="123-456-7890"
@@ -241,7 +245,7 @@ export function ClientInfo() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>电子邮箱</FormLabel>
+              <FormLabel>Email</FormLabel>
               <FormControl>
                 <Input type="email" placeholder="your@email.com" {...field} />
               </FormControl>
@@ -256,10 +260,10 @@ export function ClientInfo() {
         name="purpose"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>评估目的</FormLabel>
+            <FormLabel>Purpose</FormLabel>
             <Select onValueChange={field.onChange} value={field.value}>
               <SelectTrigger>
-                <SelectValue placeholder="选择评估目的" />
+                <SelectValue placeholder="Select purpose" />
               </SelectTrigger>
               <SelectContent>
                 {PURPOSE_OPTIONS.map((option) => (
@@ -281,7 +285,7 @@ export function ClientInfo() {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input placeholder="请说明其他评估目的" {...field} />
+                <Input placeholder="Please specify other purpose" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

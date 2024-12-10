@@ -8,27 +8,27 @@ interface StepIndicatorProps {
 
 export function StepIndicator({ currentStep, onStepClick }: StepIndicatorProps) {
   const steps = [
-    { title: "客户信息", step: FormStep.CLIENT_INFO },
-    { title: "评估对象信息", step: FormStep.EVALUEE_INFO },
-    { title: "服务选择", step: FormStep.SERVICE_SELECTION },
-    { title: "确认信息", step: FormStep.REVIEW },
+    { title: "Client Info", step: FormStep.CLIENT_INFO },
+    { title: "Evaluee Info", step: FormStep.EVALUEE_INFO },
+    { title: "Services", step: FormStep.SERVICE_SELECTION },
+    { title: "Review", step: FormStep.REVIEW },
   ]
 
   return (
     <div className="mb-8">
-      <div className="relative">
+      {/* Buttons container */}
+      <div className="relative w-[80%] mx-auto">
         {/* Background line */}
-        <div className="absolute top-5 left-0 w-full h-[2px] bg-gray-200" />
+        <div className="absolute top-5 w-full h-[2px] bg-gray-200" />
 
-        {/* Step indicator */}
+        {/* Circles/buttons container */}
         <div className="relative flex justify-between">
           {steps.map((step, index) => (
             <div
               key={step.step}
-              className="flex flex-col items-center cursor-pointer group"
+              className="cursor-pointer"
               onClick={() => onStepClick(step.step)}
             >
-              {/* Circle and connecting line */}
               <div
                 className={cn(
                   "w-10 h-10 rounded-full border-2 flex items-center justify-center bg-white transition-all duration-200",
@@ -44,21 +44,26 @@ export function StepIndicator({ currentStep, onStepClick }: StepIndicatorProps) 
                   <span>{index + 1}</span>
                 )}
               </div>
-
-              {/* Title */}
-              <span
-                className={cn(
-                  "mt-2 text-sm font-medium transition-colors duration-200",
-                  currentStep === step.step && "text-primary",
-                  currentStep > step.step && "text-primary",
-                  currentStep < step.step && "text-gray-500 group-hover:text-primary/70"
-                )}
-              >
-                {step.title}
-              </span>
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Titles container */}
+      <div className="flex justify-between w-full mt-2">
+        {steps.map((step) => (
+          <span
+            key={step.step}
+            className={cn(
+              "text-sm font-medium transition-colors duration-200 text-center flex-1",
+              currentStep === step.step && "text-primary",
+              currentStep > step.step && "text-primary",
+              currentStep < step.step && "text-gray-500"
+            )}
+          >
+            {step.title}
+          </span>
+        ))}
       </div>
     </div>
   )

@@ -5,11 +5,11 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/app/components/ui/ca
 import { FormData } from "../types"
 import {
   PURPOSE_OPTIONS,
-  TITLE_OPTIONS,
+  PRONOUN_OPTIONS,
   EVALUATION_SERVICES,
   DELIVERY_OPTIONS,
   ADDITIONAL_SERVICES,
-  getCountryLabel
+  getCountryLabel,
 } from "../constants"
 
 export function Review() {
@@ -127,17 +127,17 @@ export function Review() {
 
             <div>
               <dt className="font-medium">Phone</dt>
-              <dd className="text-muted-foreground">{formData.phone || '未填写'}</dd>
+              <dd className="text-muted-foreground">{formData.phone || 'Not provided'}</dd>
             </div>
 
             <div>
               <dt className="font-medium">Fax</dt>
-              <dd className="text-muted-foreground">{formData.fax || '未填写'}</dd>
+              <dd className="text-muted-foreground">{formData.fax || 'Not provided'}</dd>
             </div>
 
             <div>
               <dt className="font-medium">Email</dt>
-              <dd className="text-muted-foreground">{formData.email || '未填写'}</dd>
+              <dd className="text-muted-foreground">{formData.email || 'Not provided'}</dd>
             </div>
 
             <div>
@@ -163,7 +163,7 @@ export function Review() {
             <div>
               <dt className="font-medium">Name</dt>
               <dd className="text-muted-foreground">
-                {TITLE_OPTIONS.find(o => o.value === formData.title)?.label || ''}{' '}
+                {PRONOUN_OPTIONS.find(o => o.value === formData.pronouns)?.label || ''}{' '}
                 {formData.firstName || ''}{' '}
                 {formData.middleName ? `${formData.middleName} ` : ''}{' '}
                 {formData.lastName || '未填写'}
@@ -178,6 +178,13 @@ export function Review() {
                 ) : (
                   '未填写'
                 )}
+              </dd>
+            </div>
+
+            <div>
+              <dt className="font-medium">Pronouns</dt>
+              <dd className="text-muted-foreground">
+                {PRONOUN_OPTIONS.find(o => o.value === formData.pronouns)?.label || 'Not provided'}
               </dd>
             </div>
 

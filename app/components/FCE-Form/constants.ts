@@ -14,13 +14,12 @@ export const getRegionLabel = (countryCode: string) => {
   const states = State.getStatesOfCountry(countryCode)
 
   const regionLabels: Record<string, string> = {
-    US: "州",
-    CN: "省",
-    // 可以添加更多国家的翻译
+    US: "State",
+    CN: "Province",
   }
 
   return {
-    label: regionLabels[countryCode] || "地区",
+    label: regionLabels[countryCode] || "Region",
     options: states.map(state => ({
       value: state.isoCode,
       label: state.name
@@ -35,7 +34,7 @@ export const PURPOSE_OPTIONS = [
   { value: "other", label: "Other" },
 ] as const
 
-export const TITLE_OPTIONS = [
+export const PRONOUN_OPTIONS = [
   { value: "mr", label: "Mr. (he/him)" },
   { value: "ms", label: "Ms. (she/her)" },
   { value: "mx", label: "Mx. (they/them)" },

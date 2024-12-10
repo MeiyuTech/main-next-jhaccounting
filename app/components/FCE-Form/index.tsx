@@ -112,7 +112,7 @@ export default function FCEForm() {
       case FormStep.CLIENT_INFO:
         return ["firmName", "streetAddress", "city", "state", "zipCode", "phone", "email", "purpose"]
       case FormStep.EVALUEE_INFO:
-        return ["title", "firstName", "lastName", "dateOfBirth", "educations"]
+        return ["pronouns", "firstName", "lastName", "dateOfBirth", "educations"]
       // ... fields for other steps
       default:
         return []
@@ -127,13 +127,13 @@ export default function FCEForm() {
     try {
       await submitForm()
       toast({
-        title: "申请已提交",
-        description: "我们将尽快处理您的申请",
+        title: "Application Submitted",
+        description: "We will process your application as soon as possible",
       })
     } catch (error) {
       toast({
-        title: "提交失败",
-        description: "请稍后重试",
+        title: "Submission Failed",
+        description: "Please try again later",
         variant: "destructive",
       })
     }
@@ -156,8 +156,8 @@ export default function FCEForm() {
 
     if (!isCurrentStepValid) {
       toast({
-        title: "请完成当前步骤",
-        description: "请先填写完必填项",
+        title: "Please Complete Current Step",
+        description: "Please fill in all required fields",
         variant: "destructive",
       })
       return
@@ -183,7 +183,7 @@ export default function FCEForm() {
       email: "",
       purpose: undefined,
       purposeOther: "",
-      title: undefined,
+      pronouns: undefined,
       firstName: "",
       lastName: "",
       middleName: "",
@@ -224,8 +224,9 @@ export default function FCEForm() {
       }
     })
     toast({
-      title: "表单已重置",
-      description: "您可以重新开始填写申请表",
+      title: "Form Reset",
+      description: "You can start filling out the application again",
+      variant: "destructive"
     })
   }
 
@@ -250,32 +251,31 @@ export default function FCEForm() {
             onClick={handlePrevious}
             disabled={currentStep === FormStep.CLIENT_INFO}
           >
-            上一步
+            Previous
           </Button>
 
           <div className="flex gap-2">
             <AlertDialog>
               <AlertDialogTrigger asChild>
                 <Button
-                  variant="outline"
-                  size="sm"
-                  className="gap-2"
+                  variant="destructive"
+                  className="bg-gray-100 text-red-600 hover:bg-red-200 hover:text-red-700"
                 >
-                  <RotateCcw className="h-4 w-4" />
-                  重新申请
+                  <RotateCcw className="h-4 w-4 mr-2" />
+                  Reset Application
                 </Button>
               </AlertDialogTrigger>
               <AlertDialogContent>
                 <AlertDialogHeader>
-                  <AlertDialogTitle>确定要重新申请吗？</AlertDialogTitle>
+                  <AlertDialogTitle>Are you sure you want to reset the application?</AlertDialogTitle>
                   <AlertDialogDescription>
-                    此操作将清空所有已填写的信息，您需要重新开始填写申请表。此操作无法撤销。
+                    This action will clear all filled information, and you will need to start filling out the application again. This action cannot be undone.
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
-                  <AlertDialogCancel>取消</AlertDialogCancel>
-                  <AlertDialogAction onClick={handleReset}>
-                    确定重置
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction onClick={handleReset} className="bg-red-500 text-white hover:bg-red-600">
+                    Confirm Reset
                   </AlertDialogAction>
                 </AlertDialogFooter>
               </AlertDialogContent>
@@ -283,7 +283,7 @@ export default function FCEForm() {
 
             {currentStep === FormStep.REVIEW ? (
               <Button type="submit" disabled={isSaving}>
-                {isSaving ? "提交中..." : "提交申请"}
+                {isSaving ? "Submitting..." : "Submit Application"}
               </Button>
             ) : (
               <Button
@@ -291,7 +291,7 @@ export default function FCEForm() {
                 onClick={handleNext}
                 disabled={isSaving}
               >
-                {isSaving ? "保存中..." : "下一步"}
+                {isSaving ? "Saving..." : "Next"}
               </Button>
             )}
           </div>
@@ -299,7 +299,7 @@ export default function FCEForm() {
 
         {draftId && (
           <p className="text-sm text-gray-500 text-center">
-            草稿已保存 (ID: {draftId})
+            Draft Saved (ID: {draftId})
           </p>
         )}
       </form>

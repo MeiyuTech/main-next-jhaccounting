@@ -129,8 +129,8 @@ export const formSchema = z.object({
   purposeOther: z.string().optional(),
 
   // 2. EVALUEE INFORMATION
-  title: z.enum(["mr", "ms", "mx"], {
-    required_error: "Please select title",
+  pronouns: z.enum(["mr", "ms", "mx"], {
+    required_error: "Please select your pronouns",
   }),
   firstName: z.string()
     .min(1, { message: "First name cannot be empty" })
