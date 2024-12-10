@@ -2,10 +2,22 @@
 
 import { useEffect } from "react"
 import { useForm } from "react-hook-form"
+import { RotateCcw } from "lucide-react"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useToast } from "@/hooks/use-toast"
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger
+} from "@/app/components/ui/alert-dialog"
 import { Button } from "@/app/components/ui/button"
 import { Form } from "@/app/components/ui/form"
-import { useToast } from "@/hooks/use-toast"
 import { FormStep, FormData } from "./types"
 import { formSchema } from "./schema"
 import { StepIndicator } from "./StepIndicator"
@@ -14,6 +26,7 @@ import { ClientInfo } from "./steps/ClientInfo"
 import { EvalueeInfo } from "./steps/EvalueeInfo"
 import { ServiceSelection } from "./steps/ServiceSelection"
 import { Review } from "./steps/Review"
+
 // Import other step components...
 
 export default function FCEForm() {
@@ -27,7 +40,8 @@ export default function FCEForm() {
     setFormData,
     setCurrentStep,
     saveDraft,
-    submitForm
+    submitForm,
+    resetForm
   } = useFormStore()
 
   const form = useForm<FormData>({
@@ -153,6 +167,68 @@ export default function FCEForm() {
     setCurrentStep(targetStep)
   }
 
+  // Add reset handler
+  const handleReset = () => {
+    resetForm()
+    // Reset React Hook Form with empty values
+    form.reset({
+      firmName: "",
+      streetAddress: "",
+      streetAddress2: "",
+      city: "",
+      state: "",
+      zipCode: "",
+      phone: "",
+      fax: "",
+      email: "",
+      purpose: undefined,
+      purposeOther: "",
+      title: undefined,
+      firstName: "",
+      lastName: "",
+      middleName: "",
+      dateOfBirth: {
+        month: "",
+        date: "",
+        year: "",
+      },
+      educations: [{
+        countryOfStudy: "",
+        degreeObtained: "",
+        schoolName: "",
+        studyDuration: {
+          startDate: { month: "", year: "" },
+          endDate: { month: "", year: "" }
+        }
+      }],
+      country: "",
+      serviceType: {
+        foreignCredentialEvaluation: {
+          firstDegree: { speed: undefined },
+          secondDegrees: 0
+        },
+        coursebyCourse: {
+          firstDegree: { speed: undefined },
+          secondDegrees: 0
+        },
+        professionalExperience: { speed: undefined },
+        positionEvaluation: { speed: undefined },
+        translation: { required: false }
+      },
+      deliveryMethod: undefined,
+      additionalServices: [],
+      additionalServicesQuantity: {
+        extra_copy: 0,
+        pdf_with_hard_copy: 0,
+        pdf_only: 0,
+      }
+    })
+    toast({
+      title: "表单已重置",
+      description: "您可以重新开始填写申请表",
+    })
+  }
+
   if (isLoading) {
     return <div>Loading...</div>
   }
@@ -177,19 +253,48 @@ export default function FCEForm() {
             上一步
           </Button>
 
-          {currentStep === FormStep.REVIEW ? (
-            <Button type="submit" disabled={isSaving}>
-              {isSaving ? "提交中..." : "提交申请"}
-            </Button>
-          ) : (
-            <Button
-              type="button"
-              onClick={handleNext}
-              disabled={isSaving}
-            >
-              {isSaving ? "保存中..." : "下一步"}
-            </Button>
-          )}
+          <div className="flex gap-2">
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="gap-2"
+                >
+                  <RotateCcw className="h-4 w-4" />
+                  重新申请
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>确定要重新申请吗？</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    此操作将清空所有已填写的信息，您需要重新开始填写申请表。此操作无法撤销。
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>取消</AlertDialogCancel>
+                  <AlertDialogAction onClick={handleReset}>
+                    确定重置
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+
+            {currentStep === FormStep.REVIEW ? (
+              <Button type="submit" disabled={isSaving}>
+                {isSaving ? "提交中..." : "提交申请"}
+              </Button>
+            ) : (
+              <Button
+                type="button"
+                onClick={handleNext}
+                disabled={isSaving}
+              >
+                {isSaving ? "保存中..." : "下一步"}
+              </Button>
+            )}
+          </div>
         </div>
 
         {draftId && (

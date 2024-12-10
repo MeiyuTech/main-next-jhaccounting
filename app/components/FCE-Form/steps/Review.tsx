@@ -37,7 +37,7 @@ export function Review() {
         }
       }
 
-      // Course by Course
+      // Course by Course Evaluation
       const cbeSpeed = formData.serviceType.coursebyCourse.firstDegree.speed
       const cbeService = cbeSpeed && EVALUATION_SERVICES.COURSE_BY_COURSE.FIRST_DEGREE[cbeSpeed]
       if (cbeService) {
@@ -53,7 +53,7 @@ export function Review() {
         }
       }
 
-      // Professional Experience
+      // Professional Experience Evaluation
       const profExpSpeed = formData.serviceType.professionalExperience.speed
       const profExpService = profExpSpeed && EVALUATION_SERVICES.PROFESSIONAL_EXPERIENCE[profExpSpeed]
       if (profExpService) {
@@ -324,10 +324,10 @@ export function Review() {
             </div>
           )}
 
-          {/* Delivery Method */}
+          {/* Type of Delivery */}
           {formData.deliveryMethod && (
             <div>
-              <div className="font-medium">Delivery Method</div>
+              <div className="font-medium">Type of Delivery</div>
               <div className="pl-4">
                 {(() => {
                   const method = formData.deliveryMethod
@@ -373,15 +373,14 @@ export function Review() {
             <div className="text-xs text-muted-foreground mt-1">
               * Actual price may vary. We will provide an official quote based on your specific situation.
             </div>
+
+
           </div>
         </CardContent>
       </Card>
-
-      <Card>
-        <CardContent className="text-sm text-muted-foreground">
-          <p>Please review all information carefully. We will process your application as soon as possible after submission.</p>
-        </CardContent>
-      </Card>
+      <div className="text-muted-foreground mt-1">
+        Please review all information carefully. We will process your application as soon as possible after submission.
+      </div>
     </div>
   )
 }
