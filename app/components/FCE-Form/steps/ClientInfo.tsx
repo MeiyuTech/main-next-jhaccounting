@@ -1,6 +1,8 @@
 "use client"
 
+import { useMemo } from "react"
 import { useFormContext } from "react-hook-form"
+import { Country, State } from 'country-state-city'
 import {
   FormControl,
   FormField,
@@ -10,60 +12,126 @@ import {
 } from "@/app/components/ui/form"
 import { Input } from "@/app/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/app/components/ui/select"
-import { PURPOSE_OPTIONS, US_STATES } from "../constants"
+import { PURPOSE_OPTIONS, COUNTRIES, getRegionLabel } from "../constants"
 import { FormData } from "../types"
 
 export function ClientInfo() {
   const form = useFormContext<FormData>()
+  const countries = useMemo(() =>
+    Country.getAllCountries().map(country => ({
+      value: country.isoCode,
+      label: country.name
+    }))
+    , [])
+
+  // Get selected country
+  const selectedCountry = form.watch("country")
+
+  // Get region type based on selected country
+  const regionConfig = useMemo(() => {
+    if (!selectedCountry) {
+      return { label: "Region", options: [] }
+    }
+    const states = State.getStatesOfCountry(selectedCountry)
+    const regionLabels: Record<string, string> = {
+      US: "State",
+      CN: "Province",
+      CA: "Province",
+      GB: "County",
+      AU: "State",
+      NZ: "Region",
+      // Add more countries here
+    }
+
+    return {
+      label: regionLabels[selectedCountry] || "Region",
+      options: states.map(state => ({
+        value: state.isoCode,
+        label: state.name
+      }))
+    }
+  }, [selectedCountry])
+
+  const country = form.watch('country')
+  const regionLabel = getRegionLabel(country)
 
   return (
     <div className="space-y-4">
-      <h2 className="text-xl font-semibold">客户信息</h2>
+      <h2 className="text-xl font-semibold">Client Information</h2>
 
-      <FormField
-        control={form.control}
-        name="firmName"
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>公司/个人名称</FormLabel>
-            <FormControl>
-              <Input {...field} />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
+      <div className="grid grid-cols-2 gap-4">
+        <FormField
+          control={form.control}
+          name="firmName"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Company/Individual Name</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-      <FormField
-        control={form.control}
-        name="streetAddress"
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>街道地址</FormLabel>
-            <FormControl>
-              <Input placeholder="1234 Main St" {...field} />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
+        <FormField
+          control={form.control}
+          name="country"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Country</FormLabel>
+              <Select onValueChange={field.onChange} value={field.value}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select country" />
+                </SelectTrigger>
+                <SelectContent>
+                  {COUNTRIES.map((country) => (
+                    <SelectItem key={country.value} value={country.value}>
+                      {country.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      </div>
 
-      <FormField
-        control={form.control}
-        name="streetAddress2"
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>
-              街道地址 2
-              <span className="text-sm text-gray-500 ml-2">(可选)</span>
-            </FormLabel>
-            <FormControl>
-              <Input placeholder="Apartment, suite, unit, etc." {...field} />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
+      <div className="grid grid-cols-2 gap-4">
+        <FormField
+          control={form.control}
+          name="streetAddress"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>
+                Street Address
+              </FormLabel>
+              <FormControl>
+                <Input placeholder="1234 Main St" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="streetAddress2"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>
+                Street Address 2
+                <span className="text-sm text-gray-500 ml-2">(Optional)</span>
+              </FormLabel>
+              <FormControl>
+                <Input placeholder="Apartment, suite, unit, etc." {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      </div>
 
       <div className="grid grid-cols-2 gap-4">
         <FormField
@@ -71,7 +139,7 @@ export function ClientInfo() {
           name="city"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>城市</FormLabel>
+              <FormLabel>City</FormLabel>
               <FormControl>
                 <Input {...field} />
               </FormControl>
@@ -85,15 +153,15 @@ export function ClientInfo() {
           name="state"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>州</FormLabel>
+              <FormLabel>{regionLabel.label}</FormLabel>
               <Select onValueChange={field.onChange} value={field.value}>
                 <SelectTrigger>
-                  <SelectValue placeholder="选择州" />
+                  <SelectValue placeholder={`Select ${regionLabel.label}`} />
                 </SelectTrigger>
                 <SelectContent>
-                  {US_STATES.map((state) => (
-                    <SelectItem key={state.value} value={state.value}>
-                      {state.label}
+                  {regionConfig.options.map((option) => (
+                    <SelectItem key={option.value} value={option.value}>
+                      {option.label}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -104,39 +172,15 @@ export function ClientInfo() {
         />
       </div>
 
-      <FormField
-        control={form.control}
-        name="zipCode"
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>邮编</FormLabel>
-            <FormControl>
-              <Input placeholder="12345" maxLength={10} {...field} />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
-
       <div className="grid grid-cols-2 gap-4">
         <FormField
           control={form.control}
-          name="phone"
+          name="zipCode"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>电话号码</FormLabel>
+              <FormLabel>Zip Code</FormLabel>
               <FormControl>
-                <Input
-                  placeholder="123-456-7890"
-                  {...field}
-                  onChange={(e) => {
-                    const value = e.target.value.replace(/\D/g, '')
-                    if (value.length <= 10) {
-                      const formatted = value.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')
-                      field.onChange(formatted)
-                    }
-                  }}
-                />
+                <Input placeholder="12345" maxLength={10} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -149,8 +193,8 @@ export function ClientInfo() {
           render={({ field }) => (
             <FormItem>
               <FormLabel>
-                传真号码
-                <span className="text-sm text-gray-500 ml-2">(可选)</span>
+                Fax
+                <span className="text-sm text-gray-500 ml-2">(Optional)</span>
               </FormLabel>
               <FormControl>
                 <Input
@@ -171,29 +215,55 @@ export function ClientInfo() {
         />
       </div>
 
-      <FormField
-        control={form.control}
-        name="email"
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>电子邮箱</FormLabel>
-            <FormControl>
-              <Input type="email" placeholder="your@email.com" {...field} />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
+      <div className="grid grid-cols-2 gap-4">
+        <FormField
+          control={form.control}
+          name="phone"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Phone</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder="123-456-7890"
+                  {...field}
+                  onChange={(e) => {
+                    const value = e.target.value.replace(/\D/g, '')
+                    if (value.length <= 10) {
+                      const formatted = value.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')
+                      field.onChange(formatted)
+                    }
+                  }}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Email</FormLabel>
+              <FormControl>
+                <Input type="email" placeholder="your@email.com" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      </div>
 
       <FormField
         control={form.control}
         name="purpose"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>评估目的</FormLabel>
+            <FormLabel>Purpose</FormLabel>
             <Select onValueChange={field.onChange} value={field.value}>
               <SelectTrigger>
-                <SelectValue placeholder="选择评估目的" />
+                <SelectValue placeholder="Select purpose" />
               </SelectTrigger>
               <SelectContent>
                 {PURPOSE_OPTIONS.map((option) => (
@@ -215,7 +285,7 @@ export function ClientInfo() {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input placeholder="请说明其他评估目的" {...field} />
+                <Input placeholder="Please specify other purpose" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

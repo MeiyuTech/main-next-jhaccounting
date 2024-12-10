@@ -1,5 +1,5 @@
 import * as z from "zod"
-import { formSchema } from "./schema"
+import { formSchema, EducationSchema } from "./schema"
 
 export enum FormStep {
   CLIENT_INFO = 0,        // Client Information
@@ -18,3 +18,6 @@ export interface FormDraft {
   created_at: string
   updated_at: string
 }
+
+// Re-export EducationSchema type
+export type { EducationSchema }

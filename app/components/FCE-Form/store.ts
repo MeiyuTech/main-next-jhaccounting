@@ -27,6 +27,9 @@ interface FormState {
   submitForm: () => Promise<void>
   // Load draft from Supabase
   loadDraft: (draftId: string) => Promise<void>
+
+  // Add reset action
+  resetForm: () => void
 }
 
 export const useFormStore = create<FormState>()(
@@ -128,7 +131,19 @@ export const useFormStore = create<FormState>()(
         } finally {
           set({ isLoading: false })
         }
-      }
+      },
+
+      resetForm: () => {
+        set({
+          formData: {},
+          currentStep: FormStep.CLIENT_INFO,
+          draftId: null,
+          status: null,
+        })
+        // Clear local storage
+        localStorage.removeItem('fce-form-data')
+        localStorage.removeItem('fce-form-step')
+      },
     }),
     {
       name: 'fce-form-storage',
