@@ -10,12 +10,14 @@ import {
   PROFESSIONAL_EXPERIENCE,
   POSITION_EVALUATION,
   DELIVERY_OPTIONS,
-  ADDITIONAL_SERVICES
+  ADDITIONAL_SERVICES,
+  getCountryLabel
 } from "../constants"
+import { Card, CardHeader, CardTitle, CardContent } from "@/app/components/ui/card"
 
 export function Review() {
-  const form = useFormContext<FormData>()
-  const formData = form.getValues()
+  const { watch } = useFormContext<FormData>()
+  const formData = watch()
 
   // Calculate total price
   const calculateTotalPrice = () => {
@@ -85,42 +87,67 @@ export function Review() {
   }
 
   return (
-    <div className="space-y-8">
-      <h2 className="text-xl font-semibold">确认信息</h2>
+    <div className="space-y-6">
+      {/* Client Information Section */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Client Information</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <dl className="grid grid-cols-2 gap-4">
+            <div>
+              <dt className="font-medium">Company/Individual Name</dt>
+              <dd className="text-muted-foreground">{formData.firmName}</dd>
+            </div>
 
-      {/* Client Information */}
-      <div className="space-y-4">
-        <h3 className="font-medium">1. 客户信息</h3>
-        <div className="grid grid-cols-2 gap-4 text-sm">
-          <div>
-            <div className="font-medium">公司/个人名称</div>
-            <div>{formData.firmName || '未填写'}</div>
-          </div>
-          <div>
-            <div className="font-medium">地址</div>
-            <div>{formData.streetAddress || '未填写'}</div>
-            {formData.streetAddress2 && <div>{formData.streetAddress2}</div>}
             <div>
-              {formData.city ? `${formData.city}, ` : ''}{formData.state || ''} {formData.zipCode || ''}
+              <dt className="font-medium">Country</dt>
+              <dd className="text-muted-foreground">{getCountryLabel(formData.country)}</dd>
             </div>
-          </div>
-          <div>
-            <div className="font-medium">联系方式</div>
-            <div>电话: {formData.phone || '未填写'}</div>
-            {formData.fax && <div>传真: {formData.fax}</div>}
-            <div>邮箱: {formData.email || '未填写'}</div>
-          </div>
-          <div>
-            <div className="font-medium">评估目的</div>
+
             <div>
-              {PURPOSE_OPTIONS.find(o => o.value === formData.purpose)?.label || '未填写'}
-              {formData.purpose === "other" && formData.purposeOther && (
-                <span> - {formData.purposeOther}</span>
-              )}
+              <dt className="font-medium">Street Address</dt>
+              <dd className="text-muted-foreground">
+                {formData.streetAddress}
+                {formData.streetAddress2 && <br />}
+                {formData.streetAddress2}
+              </dd>
             </div>
-          </div>
-        </div>
-      </div>
+
+            <div>
+              <dt className="font-medium">Address</dt>
+              <dd className="text-muted-foreground">
+                {formData.city ? `${formData.city}, ` : ''}{formData.state || ''} {formData.zipCode || ''}
+              </dd>
+            </div>
+
+            <div>
+              <dt className="font-medium">Phone</dt>
+              <dd className="text-muted-foreground">{formData.phone || '未填写'}</dd>
+            </div>
+
+            <div>
+              <dt className="font-medium">Fax</dt>
+              <dd className="text-muted-foreground">{formData.fax || '未填写'}</dd>
+            </div>
+
+            <div>
+              <dt className="font-medium">Email</dt>
+              <dd className="text-muted-foreground">{formData.email || '未填写'}</dd>
+            </div>
+
+            <div>
+              <dt className="font-medium">Purpose</dt>
+              <dd className="text-muted-foreground">
+                {PURPOSE_OPTIONS.find(o => o.value === formData.purpose)?.label || '未填写'}
+                {formData.purpose === "other" && formData.purposeOther && (
+                  <span> - {formData.purposeOther}</span>
+                )}
+              </dd>
+            </div>
+          </dl>
+        </CardContent>
+      </Card>
 
       {/* Evaluee Information */}
       <div className="space-y-4">

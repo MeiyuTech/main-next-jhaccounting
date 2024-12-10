@@ -14,6 +14,7 @@ import { PURPOSE_OPTIONS } from "../constants"
 import { FormData } from "../types"
 import { useMemo } from "react"
 import { Country, State } from 'country-state-city'
+import { COUNTRIES, getRegionLabel } from "../constants"
 
 export function ClientInfo() {
   const form = useFormContext<FormData>()
@@ -48,6 +49,9 @@ export function ClientInfo() {
     }
   }, [selectedCountry])
 
+  const country = form.watch('country')
+  const regionLabel = getRegionLabel(country)
+
   return (
     <div className="space-y-4">
       <h2 className="text-xl font-semibold">客户信息</h2>
@@ -78,7 +82,7 @@ export function ClientInfo() {
                   <SelectValue placeholder="选择国家" />
                 </SelectTrigger>
                 <SelectContent>
-                  {countries.map((country) => (
+                  {COUNTRIES.map((country) => (
                     <SelectItem key={country.value} value={country.value}>
                       {country.label}
                     </SelectItem>
@@ -146,10 +150,10 @@ export function ClientInfo() {
           name="state"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{regionConfig.label}</FormLabel>
+              <FormLabel>{regionLabel.label}</FormLabel>
               <Select onValueChange={field.onChange} value={field.value}>
                 <SelectTrigger>
-                  <SelectValue placeholder={`选择${regionConfig.label}`} />
+                  <SelectValue placeholder={`选择${regionLabel}`} />
                 </SelectTrigger>
                 <SelectContent>
                   {regionConfig.options.map((option) => (

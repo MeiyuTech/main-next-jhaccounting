@@ -140,7 +140,16 @@ export const ADDITIONAL_SERVICES = [
   { id: "pdf_only", label: "PDF Report Only (without Hard Copy)", price: 10 },
 ] as const
 
-export const getRegionConfig = (countryCode: string) => {
+export const COUNTRIES = Country.getAllCountries().map(country => ({
+  value: country.isoCode,
+  label: country.name
+}))
+
+export const getCountryLabel = (countryCode: string) => {
+  return COUNTRIES.find(country => country.value === countryCode)?.label || countryCode
+}
+
+export const getRegionLabel = (countryCode: string) => {
   const states = State.getStatesOfCountry(countryCode)
 
   const regionLabels: Record<string, string> = {
