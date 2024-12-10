@@ -1,5 +1,9 @@
 "use client"
 
+import dayjs from "dayjs"
+import { Plus, Trash2 } from "lucide-react"
+import { useCallback, useMemo } from "react"
+import countryList from 'react-select-country-list'
 import { useFormContext, useFieldArray } from "react-hook-form"
 import {
   FormControl,
@@ -13,10 +17,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/app/components/ui/button"
 import { TITLE_OPTIONS, MONTH_OPTIONS, YEAR_OPTIONS } from "../constants"
 import { FormData } from "../types"
-import dayjs from "dayjs"
-import { Plus, Trash2 } from "lucide-react"
-import { useCallback, useMemo } from "react"
-import countryList from 'react-select-country-list'
+
 
 function EducationFields({ index, onRemove }: { index: number, onRemove?: () => void }) {
   const form = useFormContext<FormData>()

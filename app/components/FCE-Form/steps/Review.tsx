@@ -1,19 +1,16 @@
 "use client"
 
 import { useFormContext } from "react-hook-form"
+import { Card, CardHeader, CardTitle, CardContent } from "@/app/components/ui/card"
 import { FormData } from "../types"
 import {
   PURPOSE_OPTIONS,
   TITLE_OPTIONS,
-  FCE_FIRST_DEGREE,
-  COURSE_BY_COURSE_FIRST_DEGREE,
-  PROFESSIONAL_EXPERIENCE,
-  POSITION_EVALUATION,
+  EVALUATION_SERVICES,
   DELIVERY_OPTIONS,
   ADDITIONAL_SERVICES,
   getCountryLabel
 } from "../constants"
-import { Card, CardHeader, CardTitle, CardContent } from "@/app/components/ui/card"
 
 export function Review() {
   const { watch } = useFormContext<FormData>()
@@ -24,62 +21,69 @@ export function Review() {
     let total = 0
 
     if (formData.serviceType) {
-      // FCE First Degree
-      const fceFirstDegree = FCE_FIRST_DEGREE.find(
-        s => s.value === formData.serviceType?.firstDegree?.speed
-      )
-      if (fceFirstDegree) {
-        total += fceFirstDegree.price
-        // Second Degree
-        if (formData.serviceType.secondDegree?.quantity) {
-          total += formData.serviceType.secondDegree.quantity *
-            (formData.serviceType.firstDegree?.speed === "7day" ? 30 : 40)
+      // Foreign Credential Evaluation
+      const fceSpeed = formData.serviceType.foreignCredentialEvaluation.firstDegree.speed
+      const fceService = fceSpeed && EVALUATION_SERVICES.FOREIGN_CREDENTIAL.FIRST_DEGREE[fceSpeed]
+      if (fceService) {
+        total += fceService.price
+
+        // Second Degrees
+        if (formData.serviceType.foreignCredentialEvaluation.secondDegrees > 0) {
+          const secondDegreePrice = fceSpeed === "7day"
+            ? EVALUATION_SERVICES.FOREIGN_CREDENTIAL.SECOND_DEGREE["7day"].price
+            : EVALUATION_SERVICES.FOREIGN_CREDENTIAL.SECOND_DEGREE.DEFAULT.price
+
+          total += secondDegreePrice * formData.serviceType.foreignCredentialEvaluation.secondDegrees
         }
       }
 
       // Course by Course
-      const courseFirstDegree = COURSE_BY_COURSE_FIRST_DEGREE.find(
-        s => s.value === formData.serviceType?.coursebyCourse?.firstDegree?.speed
-      )
-      if (courseFirstDegree) {
-        total += courseFirstDegree.price
-        // Second Degree
-        if (formData.serviceType.coursebyCourse?.secondDegree?.quantity) {
-          total += formData.serviceType.coursebyCourse.secondDegree.quantity *
-            (formData.serviceType.coursebyCourse.firstDegree?.speed === "8day" ? 40 : 60)
+      const cbeSpeed = formData.serviceType.coursebyCourse.firstDegree.speed
+      const cbeService = cbeSpeed && EVALUATION_SERVICES.COURSE_BY_COURSE.FIRST_DEGREE[cbeSpeed]
+      if (cbeService) {
+        total += cbeService.price
+
+        // Second Degrees
+        if (formData.serviceType.coursebyCourse.secondDegrees > 0) {
+          const secondDegreePrice = cbeSpeed === "8day"
+            ? EVALUATION_SERVICES.COURSE_BY_COURSE.SECOND_DEGREE["8day"].price
+            : EVALUATION_SERVICES.COURSE_BY_COURSE.SECOND_DEGREE.DEFAULT.price
+
+          total += secondDegreePrice * formData.serviceType.coursebyCourse.secondDegrees
         }
       }
 
       // Professional Experience
-      const profExp = PROFESSIONAL_EXPERIENCE.find(
-        s => s.value === formData.serviceType?.professionalExperience?.speed
-      )
-      if (profExp) {
-        total += profExp.price
+      const profExpSpeed = formData.serviceType.professionalExperience.speed
+      const profExpService = profExpSpeed && EVALUATION_SERVICES.PROFESSIONAL_EXPERIENCE[profExpSpeed]
+      if (profExpService) {
+        total += profExpService.price
       }
 
       // Position Evaluation
-      const posEval = POSITION_EVALUATION.find(
-        s => s.value === formData.serviceType?.positionEvaluation?.speed
-      )
-      if (posEval) {
-        total += posEval.price
+      const posEvalSpeed = formData.serviceType.positionEvaluation.speed
+      const posEvalService = posEvalSpeed && EVALUATION_SERVICES.POSITION[posEvalSpeed]
+      if (posEvalService) {
+        total += posEvalService.price
       }
     }
 
     // Delivery
-    const delivery = DELIVERY_OPTIONS.find(
-      o => o.value === formData.deliveryMethod
-    )
-    if (delivery) {
-      total += delivery.price
+    const deliveryService = formData.deliveryMethod && DELIVERY_OPTIONS[formData.deliveryMethod]
+    if (deliveryService) {
+      total += deliveryService.price
     }
 
     // Additional Services
     formData.additionalServices?.forEach(serviceId => {
-      const service = ADDITIONAL_SERVICES.find(s => s.id === serviceId)
+      const service = ADDITIONAL_SERVICES[serviceId]
       if (service) {
-        total += service.price
+        if ('quantity' in service) {
+          const quantity = formData.additionalServicesQuantity?.[serviceId] || 0
+          total += service.price * quantity
+        } else {
+          total += service.price
+        }
       }
     })
 
@@ -150,114 +154,134 @@ export function Review() {
       </Card>
 
       {/* Evaluee Information */}
-      <div className="space-y-4">
-        <h3 className="font-medium">2. 评估对象信息</h3>
-        <div className="grid grid-cols-2 gap-4 text-sm">
-          <div>
-            <div className="font-medium">姓名</div>
+      <Card>
+        <CardHeader>
+          <CardTitle>Evaluee Information</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <dl className="grid grid-cols-2 gap-4">
             <div>
-              {TITLE_OPTIONS.find(o => o.value === formData.title)?.label || ''}{' '}
-              {formData.firstName || ''}{' '}
-              {formData.middleName ? `${formData.middleName} ` : ''}{' '}
-              {formData.lastName || '未填写'}
+              <dt className="font-medium">Name</dt>
+              <dd className="text-muted-foreground">
+                {TITLE_OPTIONS.find(o => o.value === formData.title)?.label || ''}{' '}
+                {formData.firstName || ''}{' '}
+                {formData.middleName ? `${formData.middleName} ` : ''}{' '}
+                {formData.lastName || '未填写'}
+              </dd>
             </div>
-          </div>
-          <div>
-            <div className="font-medium">出生日期</div>
+
             <div>
-              {formData.dateOfBirth ? (
-                `${formData.dateOfBirth.month}/${formData.dateOfBirth.date}/${formData.dateOfBirth.year}`
-              ) : (
-                '未填写'
-              )}
+              <dt className="font-medium">Date of Birth</dt>
+              <dd className="text-muted-foreground">
+                {formData.dateOfBirth ? (
+                  `${formData.dateOfBirth.month}/${formData.dateOfBirth.date}/${formData.dateOfBirth.year}`
+                ) : (
+                  '未填写'
+                )}
+              </dd>
             </div>
-          </div>
-          <div>
-            <div className="font-medium">学习信息</div>
-            {formData.educations.map((education, index) => (
-              <div key={index} className="mt-2">
-                <div className="font-medium text-sm text-gray-600">学位 {index + 1}</div>
-                <div className="pl-4">
-                  <div>国家: {education.countryOfStudy || '未填写'}</div>
-                  <div>学位: {education.degreeObtained || '未填写'}</div>
-                  <div>学校: {education.schoolName || '未填写'}</div>
-                  <div>
-                    学习时间: {
-                      education.studyDuration ? (
-                        `${education.studyDuration.startDate.month}/${education.studyDuration.startDate.year} -
-                         ${education.studyDuration.endDate.month}/${education.studyDuration.endDate.year}`
-                      ) : (
-                        '未填写'
-                      )
-                    }
+
+            <div className="col-span-2">
+              <dt className="font-medium mb-2">Education Information</dt>
+              <dd className="space-y-4">
+                {formData.educations.map((education, index) => (
+                  <div key={index} className="pl-4 border-l-2 border-muted">
+                    <h4 className="font-medium text-sm mb-2">Degree {index + 1}</h4>
+                    <dl className="grid grid-cols-2 gap-2 text-sm">
+                      <div>
+                        <dt className="text-muted-foreground">Country</dt>
+                        <dd>{education.countryOfStudy || '未填写'}</dd>
+                      </div>
+                      <div>
+                        <dt className="text-muted-foreground">Degree</dt>
+                        <dd>{education.degreeObtained || '未填写'}</dd>
+                      </div>
+                      <div>
+                        <dt className="text-muted-foreground">School</dt>
+                        <dd>{education.schoolName || '未填写'}</dd>
+                      </div>
+                      <div>
+                        <dt className="text-muted-foreground">Study Period</dt>
+                        <dd>
+                          {education.studyDuration ? (
+                            `${education.studyDuration.startDate.month}/${education.studyDuration.startDate.year} -
+                             ${education.studyDuration.endDate.month}/${education.studyDuration.endDate.year}`
+                          ) : (
+                            '未填写'
+                          )}
+                        </dd>
+                      </div>
+                    </dl>
                   </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+                ))}
+              </dd>
+            </div>
+          </dl>
+        </CardContent>
+      </Card>
 
       {/* Service Selection */}
-      <div className="space-y-4">
-        <h3 className="font-medium">3. 服务选择</h3>
-        <div className="space-y-6 text-sm">
-          {/* FCE First Degree */}
-          {formData.serviceType?.firstDegree && (
+      <Card>
+        <CardHeader>
+          <CardTitle>Selected Services</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          {/* Foreign Credential Evaluation */}
+          {formData.serviceType?.foreignCredentialEvaluation?.firstDegree?.speed && (
             <div>
-              <div className="font-medium">Educational Foreign Credential Evaluation</div>
+              <h4 className="font-medium mb-2">Educational Foreign Credential Evaluation</h4>
               <div className="pl-4 space-y-2">
-                <div>
-                  First Degree: {
-                    FCE_FIRST_DEGREE.find(
-                      s => s.value === formData.serviceType?.firstDegree?.speed
-                    )?.label
-                  } - ${
-                    FCE_FIRST_DEGREE.find(
-                      s => s.value === formData.serviceType?.firstDegree?.speed
-                    )?.price
-                  }
-                </div>
-                {formData.serviceType?.secondDegree?.quantity > 0 && (
-                  <div>
-                    Second Degree: {formData.serviceType.secondDegree.quantity} × ${
-                      formData.serviceType.firstDegree?.speed === "7day" ? "30" : "40"
-                    } = ${
-                      formData.serviceType.secondDegree.quantity *
-                      (formData.serviceType.firstDegree?.speed === "7day" ? 30 : 40)
-                    }
-                  </div>
-                )}
+                {(() => {
+                  const speed = formData.serviceType.foreignCredentialEvaluation.firstDegree.speed
+                  const service = speed && EVALUATION_SERVICES.FOREIGN_CREDENTIAL.FIRST_DEGREE[speed]
+                  return service && (
+                    <>
+                      <div>
+                        First Degree: {service.label} - ${service.price}
+                      </div>
+                      {formData.serviceType.foreignCredentialEvaluation.secondDegrees > 0 && (
+                        <div>
+                          Second Degree: {formData.serviceType.foreignCredentialEvaluation.secondDegrees} × ${
+                            EVALUATION_SERVICES.FOREIGN_CREDENTIAL.SECOND_DEGREE["7day"].price
+                          } = ${
+                            EVALUATION_SERVICES.FOREIGN_CREDENTIAL.SECOND_DEGREE["7day"].price *
+                            formData.serviceType.foreignCredentialEvaluation.secondDegrees
+                          }
+                        </div>
+                      )}
+                    </>
+                  )
+                })()}
               </div>
             </div>
           )}
 
           {/* Course by Course */}
-          {formData.serviceType?.coursebyCourse?.firstDegree && (
+          {formData.serviceType?.coursebyCourse?.firstDegree?.speed && (
             <div>
               <div className="font-medium">Course-by-course Evaluation</div>
               <div className="pl-4 space-y-2">
-                <div>
-                  First Degree: {
-                    COURSE_BY_COURSE_FIRST_DEGREE.find(
-                      s => s.value === formData.serviceType?.coursebyCourse?.firstDegree?.speed
-                    )?.label
-                  } - ${
-                    COURSE_BY_COURSE_FIRST_DEGREE.find(
-                      s => s.value === formData.serviceType?.coursebyCourse?.firstDegree?.speed
-                    )?.price
-                  }
-                </div>
-                {formData.serviceType?.coursebyCourse?.secondDegree?.quantity > 0 && (
-                  <div>
-                    Second Degree: {formData.serviceType.coursebyCourse.secondDegree.quantity} × ${
-                      formData.serviceType.coursebyCourse.firstDegree?.speed === "8day" ? "40" : "60"
-                    } = ${
-                      formData.serviceType.coursebyCourse.secondDegree.quantity *
-                      (formData.serviceType.coursebyCourse.firstDegree?.speed === "8day" ? 40 : 60)
-                    }
-                  </div>
-                )}
+                {(() => {
+                  const speed = formData.serviceType.coursebyCourse.firstDegree.speed
+                  const service = speed && EVALUATION_SERVICES.COURSE_BY_COURSE.FIRST_DEGREE[speed]
+                  return service && (
+                    <>
+                      <div>
+                        First Degree: {service.label} - ${service.price}
+                      </div>
+                      {formData.serviceType.coursebyCourse.secondDegrees > 0 && (
+                        <div>
+                          Second Degree: {formData.serviceType.coursebyCourse.secondDegrees} × ${
+                            EVALUATION_SERVICES.COURSE_BY_COURSE.SECOND_DEGREE["8day"].price
+                          } = ${
+                            EVALUATION_SERVICES.COURSE_BY_COURSE.SECOND_DEGREE["8day"].price *
+                            formData.serviceType.coursebyCourse.secondDegrees
+                          }
+                        </div>
+                      )}
+                    </>
+                  )
+                })()}
               </div>
             </div>
           )}
@@ -267,13 +291,11 @@ export function Review() {
             <div>
               <div className="font-medium">Professional Experience Evaluation</div>
               <div className="pl-4">
-                {PROFESSIONAL_EXPERIENCE.find(
-                  s => s.value === formData.serviceType?.professionalExperience?.speed
-                )?.label} - ${
-                  PROFESSIONAL_EXPERIENCE.find(
-                    s => s.value === formData.serviceType?.professionalExperience?.speed
-                  )?.price
-                }
+                {(() => {
+                  const speed = formData.serviceType.professionalExperience.speed
+                  const service = speed && EVALUATION_SERVICES.PROFESSIONAL_EXPERIENCE[speed]
+                  return service ? `${service.label} - $${service.price}` : null
+                })()}
               </div>
             </div>
           )}
@@ -283,13 +305,11 @@ export function Review() {
             <div>
               <div className="font-medium">Position Evaluation</div>
               <div className="pl-4">
-                {POSITION_EVALUATION.find(
-                  s => s.value === formData.serviceType?.positionEvaluation?.speed
-                )?.label} - ${
-                  POSITION_EVALUATION.find(
-                    s => s.value === formData.serviceType?.positionEvaluation?.speed
-                  )?.price
-                }
+                {(() => {
+                  const speed = formData.serviceType.positionEvaluation.speed
+                  const service = speed && EVALUATION_SERVICES.POSITION[speed]
+                  return service ? `${service.label} - $${service.price}` : null
+                })()}
               </div>
             </div>
           )}
@@ -309,13 +329,11 @@ export function Review() {
             <div>
               <div className="font-medium">Delivery Method</div>
               <div className="pl-4">
-                {DELIVERY_OPTIONS.find(
-                  o => o.value === formData.deliveryMethod
-                )?.label} - ${
-                  DELIVERY_OPTIONS.find(
-                    o => o.value === formData.deliveryMethod
-                  )?.price.toFixed(2)
-                }
+                {(() => {
+                  const method = formData.deliveryMethod
+                  const service = method && DELIVERY_OPTIONS[method]
+                  return service ? `${service.label} - $${service.price.toFixed(2)}` : null
+                })()}
               </div>
             </div>
           )}
@@ -326,12 +344,24 @@ export function Review() {
               <div className="font-medium">Additional Services</div>
               <div className="pl-4 space-y-1">
                 {formData.additionalServices.map((serviceId) => {
-                  const service = ADDITIONAL_SERVICES.find(s => s.id === serviceId)
-                  return (
-                    <div key={serviceId}>
-                      {service?.label} - ${service?.price.toFixed(2)}
-                    </div>
-                  )
+                  const service = ADDITIONAL_SERVICES[serviceId]
+                  if (service) {
+                    if (serviceId === 'extra_copy' && 'quantity' in service) {  // 只处理 extra_copy 的数量
+                      const quantity = formData.additionalServicesQuantity.extra_copy
+                      return (
+                        <div key={serviceId}>
+                          {service.label} × {quantity} = ${(service.price * quantity).toFixed(2)}
+                        </div>
+                      )
+                    } else {
+                      return (
+                        <div key={serviceId}>
+                          {service.label} - ${service.price.toFixed(2)}
+                        </div>
+                      )
+                    }
+                  }
+                  return null
                 })}
               </div>
             </div>
@@ -339,17 +369,19 @@ export function Review() {
 
           {/* Total Price */}
           <div className="pt-4 border-t">
-            <div className="font-medium">预估总价: ${calculateTotalPrice()}</div>
-            <div className="text-xs text-gray-500 mt-1">
-              * 实际价格可能会有所变动。我们将根据您的具体情况提供正式报价。
+            <div className="font-medium">Estimated Total: ${calculateTotalPrice()}</div>
+            <div className="text-xs text-muted-foreground mt-1">
+              * Actual price may vary. We will provide an official quote based on your specific situation.
             </div>
           </div>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
 
-      <div className="rounded-lg bg-gray-50 p-4 text-sm">
-        <p>请仔细检查以上信息是否正确。提交后，我们将尽快处理您的申请。</p>
-      </div>
+      <Card>
+        <CardContent className="text-sm text-muted-foreground">
+          <p>Please review all information carefully. We will process your application as soon as possible after submission.</p>
+        </CardContent>
+      </Card>
     </div>
   )
 }

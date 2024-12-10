@@ -1,6 +1,8 @@
 "use client"
 
+import { useMemo } from "react"
 import { useFormContext } from "react-hook-form"
+import { Country, State } from 'country-state-city'
 import {
   FormControl,
   FormField,
@@ -10,11 +12,8 @@ import {
 } from "@/app/components/ui/form"
 import { Input } from "@/app/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/app/components/ui/select"
-import { PURPOSE_OPTIONS } from "../constants"
+import { PURPOSE_OPTIONS, COUNTRIES, getRegionLabel } from "../constants"
 import { FormData } from "../types"
-import { useMemo } from "react"
-import { Country, State } from 'country-state-city'
-import { COUNTRIES, getRegionLabel } from "../constants"
 
 export function ClientInfo() {
   const form = useFormContext<FormData>()

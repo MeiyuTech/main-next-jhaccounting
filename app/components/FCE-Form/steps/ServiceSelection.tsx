@@ -1,57 +1,15 @@
 "use client"
 
 import { useFormContext } from "react-hook-form"
-import { SERVICE_SPEED_OPTIONS } from "../schema"
 import { Card, CardContent } from "@/app/components/ui/card"
 import { RadioGroup, RadioGroupItem } from "@/app/components/ui/radio-group"
 import { Label } from "@/app/components/ui/label"
-import { cn } from "@/lib/utils"
-
-const DELIVERY_OPTIONS = {
-  usps_domestic: {
-    label: "USPS First Class Mail (Domestic)",
-    price: "Free"
-  },
-  usps_international: {
-    label: "USPS First Class Mail (International)",
-    price: "$10"
-  },
-  usps_priority_domestic: {
-    label: "USPS Priority Mail (Domestic)",
-    price: "$15"
-  },
-  usps_express_domestic: {
-    label: "USPS Express Mail (Domestic)",
-    price: "$35"
-  },
-  ups_express_domestic: {
-    label: "UPS Express (Domestic)",
-    price: "$45"
-  },
-  usps_express_international: {
-    label: "USPS Express Mail (International)",
-    price: "$55"
-  },
-  fedex_express_international: {
-    label: "FedEx Express (International)",
-    price: "$75"
-  }
-} as const
-
-const ADDITIONAL_SERVICES = {
-  extra_copy: {
-    label: "Extra Copy of Evaluation Report",
-    price: "$25/copy"
-  },
-  pdf_with_hard_copy: {
-    label: "PDF Copy with Hard Copy",
-    price: "$15"
-  },
-  pdf_only: {
-    label: "PDF Copy Only",
-    price: "$10"
-  }
-} as const
+import { Input } from "@/app/components/ui/input"
+import {
+  DELIVERY_OPTIONS,
+  ADDITIONAL_SERVICES,
+  EVALUATION_SERVICES
+} from "../constants"
 
 export function ServiceSelection() {
   const { register, watch, formState: { errors } } = useFormContext()
@@ -72,58 +30,92 @@ export function ServiceSelection() {
             </p>
           )}
 
-          {/* Educational Foreign Credential Evaluation Report */}
+          {/* Foreign Credential Evaluation Report */}
           <div className="mb-6">
-            <h4 className="font-medium mb-3">Educational Foreign Credential Evaluation Report (document-by-document)</h4>
+            <h4 className="font-medium mb-3">Foreign Credential Evaluation Report (Document-by-Document)</h4>
             <RadioGroup
               className="grid grid-cols-2 gap-4"
-              {...register("serviceType.firstDegree.speed")}
+              {...register("serviceType.foreignCredentialEvaluation.firstDegree.speed")}
             >
-              {Object.entries(SERVICE_SPEED_OPTIONS.firstDegree).map(([value, label]) => (
+              {Object.entries(EVALUATION_SERVICES.FOREIGN_CREDENTIAL.FIRST_DEGREE).map(([value, service]) => (
                 <div key={value} className="flex items-center space-x-2">
                   <RadioGroupItem value={value} id={`first-degree-${value}`} />
                   <Label
                     htmlFor={`first-degree-${value}`}
                     className="flex justify-between w-full"
                   >
-                    {renderLabel(label, value)}
-                    <span className="text-muted-foreground">
-                      {value === "7day" && "$100"}
-                      {value === "3day" && "$150"}
-                      {value === "24hour" && "$200"}
-                      {value === "sameday" && "$250"}
-                    </span>
+                    <div className="flex-1">{renderLabel(service.label, value)}</div>
+                    <div className="w-20 text-left text-muted-foreground">
+                      ${service.price}
+                    </div>
                   </Label>
                 </div>
               ))}
             </RadioGroup>
+
+            <div className="mt-4 ml-6">
+              <Label>Additional Degrees</Label>
+              <Input
+                type="number"
+                min={0}
+                defaultValue={0}
+                className="w-24"
+                {...register("serviceType.foreignCredentialEvaluation.secondDegrees", {
+                  valueAsNumber: true,
+                  min: 0,
+                  value: 0,
+                })}
+              />
+              <p className="text-sm text-muted-foreground mt-1">
+                {watch("serviceType.foreignCredentialEvaluation.firstDegree.speed") === "7day"
+                  ? `$${EVALUATION_SERVICES.FOREIGN_CREDENTIAL.SECOND_DEGREE["7day"].price} per additional degree`
+                  : `$${EVALUATION_SERVICES.FOREIGN_CREDENTIAL.SECOND_DEGREE.DEFAULT.price} per additional degree`}
+              </p>
+            </div>
           </div>
 
           {/* Course-by-Course Evaluation */}
           <div className="mb-6">
-            <h4 className="font-medium mb-3">Course-by-Course Evaluation (including GPA)</h4>
+            <h4 className="font-medium mb-3">Course-by-Course Evaluation (Including GPA)</h4>
             <RadioGroup
               className="grid grid-cols-2 gap-4"
               {...register("serviceType.coursebyCourse.firstDegree.speed")}
             >
-              {Object.entries(SERVICE_SPEED_OPTIONS.coursebyCourse).map(([value, label]) => (
+              {Object.entries(EVALUATION_SERVICES.COURSE_BY_COURSE.FIRST_DEGREE).map(([value, service]) => (
                 <div key={value} className="flex items-center space-x-2">
                   <RadioGroupItem value={value} id={`course-${value}`} />
                   <Label
                     htmlFor={`course-${value}`}
                     className="flex justify-between w-full"
                   >
-                    {renderLabel(label, value)}
-                    <span className="text-muted-foreground">
-                      {value === "8day" && "$150"}
-                      {value === "5day" && "$200"}
-                      {value === "3day" && "$250"}
-                      {value === "24hour" && "$300"}
-                    </span>
+                    <div className="flex-1">{renderLabel(service.label, value)}</div>
+                    <div className="w-20 text-left text-muted-foreground">
+                      ${service.price}
+                    </div>
                   </Label>
                 </div>
               ))}
             </RadioGroup>
+
+            <div className="mt-4 ml-6">
+              <Label>Additional Degrees</Label>
+              <Input
+                type="number"
+                min={0}
+                defaultValue={0}
+                className="w-24"
+                {...register("serviceType.coursebyCourse.secondDegrees", {
+                  valueAsNumber: true,
+                  min: 0,
+                  value: 0,
+                })}
+              />
+              <p className="text-sm text-muted-foreground mt-1">
+                {watch("serviceType.coursebyCourse.firstDegree.speed") === "8day"
+                  ? `$${EVALUATION_SERVICES.COURSE_BY_COURSE.SECOND_DEGREE["8day"].price} per additional degree`
+                  : `$${EVALUATION_SERVICES.COURSE_BY_COURSE.SECOND_DEGREE.DEFAULT.price} per additional degree`}
+              </p>
+            </div>
           </div>
 
           {/* Professional Experience Evaluation */}
@@ -133,19 +125,17 @@ export function ServiceSelection() {
               className="grid grid-cols-2 gap-4"
               {...register("serviceType.professionalExperience.speed")}
             >
-              {Object.entries(SERVICE_SPEED_OPTIONS.professionalExperience).map(([value, label]) => (
+              {Object.entries(EVALUATION_SERVICES.PROFESSIONAL_EXPERIENCE).map(([value, service]) => (
                 <div key={value} className="flex items-center space-x-2">
                   <RadioGroupItem value={value} id={`prof-exp-${value}`} />
                   <Label
                     htmlFor={`prof-exp-${value}`}
                     className="flex justify-between w-full"
                   >
-                    <span>{label}</span>
-                    <span className="text-muted-foreground">
-                      {value === "21day" && "$400"}
-                      {value === "7day" && "$500"}
-                      {value === "3day" && "$600"}
-                    </span>
+                    <div className="flex-1">{renderLabel(service.label, value)}</div>
+                    <div className="w-20 text-left text-muted-foreground">
+                      ${service.price}
+                    </div>
                   </Label>
                 </div>
               ))}
@@ -159,20 +149,17 @@ export function ServiceSelection() {
               className="grid grid-cols-2 gap-4"
               {...register("serviceType.positionEvaluation.speed")}
             >
-              {Object.entries(SERVICE_SPEED_OPTIONS.positionEvaluation).map(([value, label]) => (
+              {Object.entries(EVALUATION_SERVICES.POSITION).map(([value, service]) => (
                 <div key={value} className="flex items-center space-x-2">
                   <RadioGroupItem value={value} id={`pos-eval-${value}`} />
                   <Label
                     htmlFor={`pos-eval-${value}`}
                     className="flex justify-between w-full"
                   >
-                    <span>{label}</span>
-                    <span className="text-muted-foreground">
-                      {value === "10day" && "$200"}
-                      {value === "5day" && "$250"}
-                      {value === "3day" && "$300"}
-                      {value === "2day" && "$350"}
-                    </span>
+                    <div className="flex-1">{renderLabel(service.label, value)}</div>
+                    <div className="w-20 text-left text-muted-foreground">
+                      ${service.price}
+                    </div>
                   </Label>
                 </div>
               ))}
@@ -206,7 +193,7 @@ export function ServiceSelection() {
         </CardContent>
       </Card>
 
-      {/* Delivery Method - Optional */}
+      {/* Type of Delivery - Optional */}
       <Card>
         <CardContent className="pt-6">
           <div className="flex items-center justify-between mb-4">
@@ -224,8 +211,10 @@ export function ServiceSelection() {
                   htmlFor={`delivery-${value}`}
                   className="flex justify-between w-full"
                 >
-                  <span>{label}</span>
-                  <span className="text-muted-foreground">{price}</span>
+                  <div className="flex-1">{label}</div>
+                  <div className="w-20 text-left text-muted-foreground">
+                    ${price}
+                  </div>
                 </Label>
               </div>
             ))}
@@ -241,7 +230,7 @@ export function ServiceSelection() {
             <span className="text-sm text-muted-foreground">(Optional)</span>
           </div>
           <div className="space-y-3">
-            {Object.entries(ADDITIONAL_SERVICES).map(([value, { label, price }]) => (
+            {Object.entries(ADDITIONAL_SERVICES).map(([value, service]) => (
               <div key={value} className="flex items-center space-x-2">
                 <input
                   type="checkbox"
@@ -254,8 +243,31 @@ export function ServiceSelection() {
                   htmlFor={`additional-${value}`}
                   className="flex justify-between w-full"
                 >
-                  <span>{label}</span>
-                  <span className="text-muted-foreground">{price}</span>
+                  <div className="flex-1">
+                    {service.label}
+                    {'quantity' in service && (
+                      <div className="mt-2">
+                        <Input
+                          type="number"
+                          min={0}
+                          defaultValue={0}
+                          className="w-24"
+                          {...register(`additionalServicesQuantity.${value}`, {
+                            valueAsNumber: true,
+                            min: 0,
+                            value: 0,
+                          })}
+                        />
+                      </div>
+                    )}
+                  </div>
+                  <div className="w-20 text-left text-muted-foreground">
+                    {'quantity' in service ? (
+                      `$${service.price} each`
+                    ) : (
+                      `$${service.price}`
+                    )}
+                  </div>
                 </Label>
               </div>
             ))}

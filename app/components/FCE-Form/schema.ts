@@ -41,7 +41,7 @@ const educationSchema = z.object({
 
 // Define speed options and their display values
 const speedOptions = {
-  firstDegree: {
+  foreignCredentialEvaluation: {
     "7day": "7 Business Days",
     "3day": "3 Business Days",
     "24hour": "24 Hours",
@@ -68,19 +68,17 @@ const speedOptions = {
 
 // Update the service selection part of the schema
 const serviceTypeSchema = z.object({
-  firstDegree: z.object({
-    speed: z.enum(["7day", "3day", "24hour", "sameday"] as const).optional(),
-  }),
-  secondDegree: z.object({
-    quantity: z.number().min(0).default(0),
+  foreignCredentialEvaluation: z.object({
+    firstDegree: z.object({
+      speed: z.enum(["7day", "3day", "24hour", "sameday"] as const).optional(),
+    }),
+    secondDegrees: z.number().min(0).default(0),
   }),
   coursebyCourse: z.object({
     firstDegree: z.object({
       speed: z.enum(["8day", "5day", "3day", "24hour"] as const).optional(),
     }),
-    secondDegree: z.object({
-      quantity: z.number().min(0).default(0),
-    }),
+    secondDegrees: z.number().min(0).default(0),
   }),
   professionalExperience: z.object({
     speed: z.enum(["21day", "7day", "3day"] as const).optional(),
@@ -95,7 +93,7 @@ const serviceTypeSchema = z.object({
   (data) => {
     // At least one evaluation service must be selected
     return !!(
-      data.firstDegree.speed ||
+      data.foreignCredentialEvaluation.firstDegree.speed ||
       data.coursebyCourse.firstDegree.speed ||
       data.professionalExperience.speed ||
       data.positionEvaluation.speed
@@ -103,7 +101,7 @@ const serviceTypeSchema = z.object({
   },
   {
     message: "Please select at least one evaluation service",
-    path: ["firstDegree", "speed"], // Show error on first degree field
+    path: ["foreignCredentialEvaluation", "firstDegree", "speed"],
   }
 )
 
@@ -190,6 +188,15 @@ export const formSchema = z.object({
     "pdf_with_hard_copy",
     "pdf_only"
   ])),
+  additionalServicesQuantity: z.object({
+    extra_copy: z.number().min(0).default(0),
+    pdf_with_hard_copy: z.number().min(0).default(0),
+    pdf_only: z.number().min(0).default(0),
+  }).default({
+    extra_copy: 0,
+    pdf_with_hard_copy: 0,
+    pdf_only: 0,
+  }),
   country: z.string({
     required_error: "请选择国家",
   }),
