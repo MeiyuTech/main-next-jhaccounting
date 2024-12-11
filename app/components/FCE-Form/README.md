@@ -100,6 +100,136 @@ export default function FormPage() {
 }
 ```
 
+## Supabase Configuration
+
+```sql
+
+
+
+-- 主表：FCE申请表
+create table fce_applications (
+  id uuid primary key default gen_random_uuid(),
+  status text not null default 'draft' check (
+    status in ('draft', 'submitted', 'processing', 'completed', 'cancelled')
+  ),
+  current_step smallint not null default 0,
+
+  -- Client Information
+  name text not null,
+  country text not null,
+  street_address text not null,
+  street_address2 text,
+  city text not null,
+  region text not null,
+  zip_code text not null check (zip_code ~ '^\d{5}(-\d{4})?$'),
+  fax text check (fax ~ '^\d{3}-\d{3}-\d{4}$'),
+  phone text not null check (phone ~ '^\d{3}-\d{3}-\d{4}$'),
+  email text not null check (email ~ '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$'),
+  purpose text not null check (
+    purpose in ('immigration', 'employment', 'education', 'other')
+  ),
+  purpose_other text,
+
+  -- Evaluee Information
+  pronouns text not null check (
+    pronouns in ('mr', 'ms', 'mx')
+  ),
+  first_name text not null,
+  last_name text not null,
+  middle_name text,
+  date_of_birth date not null,
+
+  -- Service Selection
+  service_type jsonb not null,
+  delivery_method text not null check (
+    delivery_method in (
+      'no_delivery_needed',
+      'usps_first_class_domestic',
+      'usps_first_class_international',
+      'usps_priority_domestic',
+      'usps_express_domestic',
+      'ups_express_domestic',
+      'usps_express_international',
+      'fedex_express_international'
+    )
+  ),
+  additional_services text[] default '{}',
+  additional_services_quantity jsonb default '{
+    "extra_copy": 0,
+    "pdf_with_hard_copy": 0,
+    "pdf_only": 0
+  }'::jsonb,
+
+  -- Metadata
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now(),
+  submitted_at timestamptz,
+
+  -- Validation
+  constraint valid_purpose_other check (
+    (purpose = 'other' and purpose_other is not null) or
+    (purpose != 'other' and purpose_other is null)
+  )
+);
+
+-- 教育经历表（简化版，移除了时间戳）
+create table fce_educations (
+  id uuid primary key default gen_random_uuid(),
+  application_id uuid not null references fce_applications(id) on delete cascade,
+
+  country_of_study text not null,
+  degree_obtained text not null,
+  school_name text not null,
+  study_start_date jsonb not null, -- 存储 { month: string, year: string }
+  study_end_date jsonb not null    -- 存储 { month: string, year: string }
+);
+
+-- 创建索引
+create index idx_fce_applications_status on fce_applications(status);
+create index idx_fce_applications_email on fce_applications(email);
+create index idx_fce_educations_application on fce_educations(application_id);
+
+-- 创建更新时间触发器
+create or replace function update_updated_at()
+returns trigger as $$
+begin
+  new.updated_at = now();
+  return new;
+end;
+$$ language plpgsql;
+
+create trigger update_fce_applications_updated_at
+  before update on fce_applications
+  for each row
+  execute function update_updated_at();
+
+
+-- 启用 RLS
+alter table fce_applications enable row level security;
+alter table fce_educations enable row level security;
+
+-- 允许创建新申请
+create policy "Anyone can create applications"
+  on fce_applications for insert
+  to public
+  with check (true);
+
+-- 允许通过 ID 查看申请
+create policy "Anyone can view applications with ID"
+  on fce_applications for select
+  using (true);
+
+-- 只允许修改草稿状态的申请
+create policy "Anyone can update draft applications"
+  on fce_applications for update
+  using (status = 'draft');
+
+-- 教育经历表的访问策略
+create policy "Anyone can manage educations"
+  on fce_educations for all
+  using (true);
+```
+
 ## Key Features Implementation
 
 ### Progress Indicator

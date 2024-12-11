@@ -62,7 +62,7 @@ export function ClientInfo() {
       <div className="grid grid-cols-2 gap-4">
         <FormField
           control={form.control}
-          name="firmName"
+          name="name"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Company/Individual Name</FormLabel>
@@ -150,7 +150,7 @@ export function ClientInfo() {
 
         <FormField
           control={form.control}
-          name="state"
+          name="region"
           render={({ field }) => (
             <FormItem>
               <FormLabel>{regionLabel.label}</FormLabel>

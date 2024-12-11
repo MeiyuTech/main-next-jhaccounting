@@ -108,12 +108,15 @@ const serviceTypeSchema = z.object({
 // Validation rules migrated from FCE-Form.tsx
 export const formSchema = z.object({
   // 1. CLIENT INFORMATION
-  firmName: z.string().min(2, { message: "Please enter company/individual name" }),
+  name: z.string().min(2, { message: "Please enter company/individual name" }),
+  country: z.string({
+    required_error: "Please select country",
+  }),
   streetAddress: z.string().min(5, { message: "Please enter street address" }),
   streetAddress2: z.string().optional(),
   city: z.string().min(2, { message: "Please enter city name" }),
-  state: z.string({
-    required_error: "请选择地区"
+  region: z.string({
+    required_error: "Please select region"
   }),
   zipCode: z.string().regex(/^\d{5}(-\d{4})?$/, { message: "Please enter a valid ZIP code" }),
   phone: z.string().regex(/^\d{3}-\d{3}-\d{4}$/, {
@@ -175,13 +178,14 @@ export const formSchema = z.object({
   // 3. SERVICE SELECTION
   serviceType: serviceTypeSchema,
   deliveryMethod: z.enum([
-    "usps_domestic",
-    "usps_international",
-    "usps_priority_domestic",
-    "usps_express_domestic",
-    "ups_express_domestic",
-    "usps_express_international",
-    "fedex_express_international"
+    'no_delivery_needed',
+    'usps_first_class_domestic',
+    'usps_first_class_international',
+    'usps_priority_domestic',
+    'usps_express_domestic',
+    'ups_express_domestic',
+    'usps_express_international',
+    'fedex_express_international'
   ]),
   additionalServices: z.array(z.enum([
     "extra_copy",
@@ -196,9 +200,6 @@ export const formSchema = z.object({
     extra_copy: 0,
     pdf_with_hard_copy: 0,
     pdf_only: 0,
-  }),
-  country: z.string({
-    required_error: "请选择国家",
   }),
 })
 

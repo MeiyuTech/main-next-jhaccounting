@@ -110,7 +110,7 @@ export default function FCEForm() {
   const getFieldsToValidate = (step: FormStep): (keyof FormData)[] => {
     switch (step) {
       case FormStep.CLIENT_INFO:
-        return ["firmName", "streetAddress", "city", "state", "zipCode", "phone", "email", "purpose"]
+        return ["name", "streetAddress", "city", "region", "zipCode", "phone", "email", "purpose"]
       case FormStep.EVALUEE_INFO:
         return ["pronouns", "firstName", "lastName", "dateOfBirth", "educations"]
       // ... fields for other steps
@@ -172,11 +172,12 @@ export default function FCEForm() {
     resetForm()
     // Reset React Hook Form with empty values
     form.reset({
-      firmName: "",
+      name: "",
+      country: "",
       streetAddress: "",
       streetAddress2: "",
       city: "",
-      state: "",
+      region: "",
       zipCode: "",
       phone: "",
       fax: "",
@@ -201,7 +202,6 @@ export default function FCEForm() {
           endDate: { month: "", year: "" }
         }
       }],
-      country: "",
       serviceType: {
         foreignCredentialEvaluation: {
           firstDegree: { speed: undefined },
