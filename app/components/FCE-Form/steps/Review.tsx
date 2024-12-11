@@ -122,7 +122,7 @@ export function Review() {
             <div>
               <dt className="font-medium">Address</dt>
               <dd className="text-muted-foreground">
-                {formData.city ? `${formData.city}, ` : ''}{formData.state || ''} {formData.zipCode || ''}
+                {formData.city ? `${formData.city}, ` : ''}{formData.region || ''} {formData.zipCode || ''}
               </dd>
             </div>
 
