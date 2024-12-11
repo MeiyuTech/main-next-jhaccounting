@@ -29,18 +29,18 @@ export interface DatabaseApplication {
   current_step: FormStep;
 
   // Client Information
-  firm_name: string;
+  name: string;
+  country: string;
   street_address: string;
   street_address2: string | null;
   city: string;
-  state: string;
+  region: string;
   zip_code: string;
   phone: string;
   fax: string | null;
   email: string;
   purpose: 'immigration' | 'employment' | 'education' | 'other';
   purpose_other: string | null;
-  country: string;
 
   // Evaluee Information
   pronouns: 'mr' | 'ms' | 'mx';

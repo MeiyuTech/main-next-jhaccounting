@@ -102,7 +102,7 @@ export function Review() {
           <dl className="grid grid-cols-2 gap-4">
             <div>
               <dt className="font-medium">Company/Individual Name</dt>
-              <dd className="text-muted-foreground">{formData.firmName}</dd>
+              <dd className="text-muted-foreground">{formData.name}</dd>
             </div>
 
             <div>

@@ -23,7 +23,7 @@ import { format } from "date-fns"
 // TODO: Make sure which fields are required or optional!!!
 const formSchema = z.object({
   // 1. CLIENT INFORMATION
-  firmName: z.string().min(2, { message: "请输入公司/个人名称" }),
+  name: z.string().min(2, { message: "请输入公司/个人名称" }),
   streetAddress: z.string().min(5, { message: "请输入街道地址" }),
   streetAddress2: z.string().optional(),
   city: z.string().min(2, { message: "请输入城市名称" }),

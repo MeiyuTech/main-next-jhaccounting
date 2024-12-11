@@ -75,11 +75,11 @@ export const formatUtils = {
       current_step: currentStep,
 
       // Client Information
-      firm_name: formData.firmName!,
+      name: formData.name!,
       street_address: formData.streetAddress!,
       street_address2: formData.streetAddress2 || null,
       city: formData.city!,
-      state: formData.state!,
+      region: formData.region!,
       zip_code: formData.zipCode!,
       phone: formData.phone!,
       fax: formData.fax || null,
@@ -111,18 +111,18 @@ export const formatUtils = {
   toFormData(dbData: DatabaseApplication): Partial<FormData> {
     return {
       // Client Information
-      firmName: dbData.firm_name,
+      name: dbData.name,
+      country: dbData.country,
       streetAddress: dbData.street_address,
       streetAddress2: dbData.street_address2 || undefined,
       city: dbData.city,
-      state: dbData.state,
+      region: dbData.region,
       zipCode: dbData.zip_code,
       phone: dbData.phone,
       fax: dbData.fax || undefined,
       email: dbData.email,
       purpose: dbData.purpose,
       purposeOther: dbData.purpose_other || undefined,
-      country: dbData.country,
 
       // Evaluee Information
       pronouns: dbData.pronouns,
