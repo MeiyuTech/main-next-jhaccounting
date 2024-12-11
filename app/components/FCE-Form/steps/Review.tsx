@@ -69,7 +69,8 @@ export function Review() {
     }
 
     // Delivery
-    const deliveryService = formData.deliveryMethod && DELIVERY_OPTIONS[formData.deliveryMethod]
+    const deliveryService = formData.deliveryMethod &&
+      DELIVERY_OPTIONS[formData.deliveryMethod as keyof typeof DELIVERY_OPTIONS]
     if (deliveryService) {
       total += deliveryService.price
     }
@@ -338,7 +339,8 @@ export function Review() {
               <div className="pl-4">
                 {(() => {
                   const method = formData.deliveryMethod
-                  const service = method && DELIVERY_OPTIONS[method]
+                  const service = method &&
+                    DELIVERY_OPTIONS[method as keyof typeof DELIVERY_OPTIONS]
                   return service ? `${service.label} - $${service.price.toFixed(2)}` : null
                 })()}
               </div>

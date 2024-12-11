@@ -175,13 +175,14 @@ export const formSchema = z.object({
   // 3. SERVICE SELECTION
   serviceType: serviceTypeSchema,
   deliveryMethod: z.enum([
-    "usps_domestic",
-    "usps_international",
-    "usps_priority_domestic",
-    "usps_express_domestic",
-    "ups_express_domestic",
-    "usps_express_international",
-    "fedex_express_international"
+    'no_delivery_needed',
+    'usps_first_class_domestic',
+    'usps_first_class_international',
+    'usps_priority_domestic',
+    'usps_express_domestic',
+    'ups_express_domestic',
+    'usps_express_international',
+    'fedex_express_international'
   ]),
   additionalServices: z.array(z.enum([
     "extra_copy",
