@@ -100,6 +100,105 @@ export default function FormPage() {
 }
 ```
 
+## Supabase Configuration
+
+```sql
+-- 主表：FCE申请表
+create table fce_applications (
+  id uuid primary key default gen_random_uuid(),
+  status text not null check (status in ('draft', 'submitted', 'processing', 'completed', 'cancelled')),
+  current_step smallint not null default 0,
+
+  -- Client Information
+  firm_name text not null,
+  street_address text not null,
+  street_address2 text,
+  city text not null,
+  state text not null,
+  zip_code text not null,
+  phone text not null,
+  fax text,
+  email text not null,
+  purpose text not null,
+  purpose_other text,
+  country text not null,
+
+  -- Evaluee Information
+  pronouns text not null,
+  first_name text not null,
+  last_name text not null,
+  middle_name text,
+  date_of_birth date not null,
+
+  -- Service Selection
+  service_type jsonb not null, -- 存储复杂的service type选择
+  delivery_method text not null,
+  additional_services text[], -- 存储选择的额外服务数组
+  additional_services_quantity jsonb not null default '{}'::jsonb,
+
+  -- Metadata
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now(),
+  submitted_at timestamptz,
+  total_price numeric(10,2)
+);
+
+-- 教育经历表（一对多关系）
+create table fce_educations (
+  id uuid primary key default gen_random_uuid(),
+  application_id uuid not null references fce_applications(id) on delete cascade,
+
+  country_of_study text not null,
+  degree_obtained text not null,
+  school_name text not null,
+  study_start_date date not null,
+  study_end_date date not null,
+
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+-- 文件上传表
+create table fce_documents (
+  id uuid primary key default gen_random_uuid(),
+  application_id uuid not null references fce_applications(id) on delete cascade,
+
+  file_path text not null,
+  file_type text not null,
+  original_name text not null,
+  size_in_bytes bigint not null,
+
+  uploaded_at timestamptz not null default now()
+);
+
+-- 审核记录表
+create table fce_reviews (
+  id uuid primary key default gen_random_uuid(),
+  application_id uuid not null references fce_applications(id) on delete cascade,
+
+  reviewer_id uuid not null,
+  status text not null check (status in ('pending', 'approved', 'rejected')),
+  notes text,
+
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+-- RLS 策略
+alter table fce_applications enable row level security;
+alter table fce_educations enable row level security;
+alter table fce_documents enable row level security;
+alter table fce_reviews enable row level security;
+
+-- 创建索引
+create index idx_fce_applications_status on fce_applications(status);
+create index idx_fce_applications_email on fce_applications(email);
+create index idx_fce_educations_application on fce_educations(application_id);
+create index idx_fce_documents_application on fce_documents(application_id);
+create index idx_fce_reviews_application on fce_reviews(application_id);
+```
+
+
 ## Key Features Implementation
 
 ### Progress Indicator
