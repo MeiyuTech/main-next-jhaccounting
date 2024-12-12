@@ -46,7 +46,16 @@ export default function FCEForm() {
 
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
-    defaultValues: formData as FormData,
+    defaultValues: {
+      ...formData as FormData,
+      deliveryMethod: formData?.deliveryMethod || "no_delivery_needed",
+      additionalServices: formData?.additionalServices || [],
+      additionalServicesQuantity: formData?.additionalServicesQuantity || {
+        extra_copy: 0,
+        pdf_with_hard_copy: 0,
+        pdf_only: 0,
+      }
+    },
   })
 
   // Load saved form data when component mounts
@@ -93,6 +102,9 @@ export default function FCEForm() {
   }
 
   const handleNext = async () => {
+    // 防止表单提交
+    event?.preventDefault()
+
     // Get fields to validate based on current step
     const fieldsToValidate = getFieldsToValidate(currentStep)
 
@@ -113,7 +125,18 @@ export default function FCEForm() {
         return ["name", "streetAddress", "city", "region", "zipCode", "phone", "email", "purpose"]
       case FormStep.EVALUEE_INFO:
         return ["pronouns", "firstName", "lastName", "dateOfBirth", "educations"]
-      // ... fields for other steps
+      case FormStep.SERVICE_SELECTION:
+        return ["serviceType"]
+      case FormStep.REVIEW:
+        // 在 Review 步骤时验证所有必填字段（不包括可选字段）
+        return [
+          // Client Info
+          "name", "streetAddress", "city", "region", "zipCode", "phone", "email", "purpose",
+          // Evaluee Info
+          "pronouns", "firstName", "lastName", "dateOfBirth", "educations",
+          // Service Selection
+          "serviceType"
+        ]
       default:
         return []
     }
@@ -124,16 +147,44 @@ export default function FCEForm() {
   }
 
   const onSubmit = async (data: FormData) => {
+    console.log("Starting form submission...", { currentStep, data })
+
+    if (currentStep !== FormStep.REVIEW) {
+      console.log("Not in review step, cannot submit")
+      return
+    }
+
     try {
+      const isValid = await form.trigger()
+      if (!isValid) {
+        // ... validation error handling ...
+        return
+      }
+
+      console.log("Form is valid, submitting data:", data)
       await submitForm()
+
+      // Clear local storage after successful submission
+      localStorage.removeItem('fce-form-data')
+      localStorage.removeItem('fce-form-step')
+
       toast({
-        title: "Application Submitted",
-        description: "We will process your application as soon as possible",
+        title: "Application Submitted Successfully",
+        description: "Your application has been received. We will review it shortly.",
       })
+
+      // 可选：重定向到成功页面
+      // router.push('/application-submitted')
+
+      // 或者重置表单
+      handleReset()
+      setCurrentStep(FormStep.CLIENT_INFO)
+
     } catch (error) {
+      console.error("Submission error:", error)
       toast({
         title: "Submission Failed",
-        description: "Please try again later",
+        description: "There was an error submitting your application. Please try again later.",
         variant: "destructive",
       })
     }
@@ -237,6 +288,14 @@ export default function FCEForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <div className="text-xs text-gray-400">
+          Current Step: {currentStep} (Review = {FormStep.REVIEW})
+          <br />
+          Form Valid: {String(!Object.keys(form.formState.errors).length)}
+          <br />
+          Validation Errors: {Object.keys(form.formState.errors).join(', ')}
+        </div>
+
         <StepIndicator
           currentStep={currentStep}
           onStepClick={handleStepClick}
@@ -288,7 +347,10 @@ export default function FCEForm() {
             ) : (
               <Button
                 type="button"
-                onClick={handleNext}
+                onClick={(e) => {
+                  e.preventDefault()
+                  handleNext()
+                }}
                 disabled={isSaving}
               >
                 {isSaving ? "Saving..." : "Next"}

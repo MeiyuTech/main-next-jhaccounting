@@ -122,9 +122,18 @@ export const formSchema = z.object({
   phone: z.string().regex(/^\d{3}-\d{3}-\d{4}$/, {
     message: "Please enter a valid phone number in format: 123-456-7890"
   }),
-  fax: z.string().regex(/^\d{3}-\d{3}-\d{4}$/, {
-    message: "Please enter a valid fax number in format: 123-456-7890"
-  }).optional(),
+  fax: z.string()
+    .transform(val => val === "" ? undefined : val)
+    .optional()
+    .superRefine((val, ctx) => {
+      if (val && !val.match(/^\d{3}-\d{3}-\d{4}$/)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "Please enter a valid fax number in format: 123-456-7890",
+          path: ["fax"]
+        })
+      }
+    }),
   email: z.string().email({ message: "Please enter a valid email address" }),
   purpose: z.enum(["immigration", "employment", "education", "other"], {
     required_error: "Please select evaluation purpose",
@@ -186,7 +195,9 @@ export const formSchema = z.object({
     'ups_express_domestic',
     'usps_express_international',
     'fedex_express_international'
-  ]),
+  ])
+    .nullish()
+    .transform(val => val || undefined),
   additionalServices: z.array(z.enum([
     "extra_copy",
     "pdf_with_hard_copy",
