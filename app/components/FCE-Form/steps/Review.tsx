@@ -341,7 +341,7 @@ export function Review() {
                   const method = formData.deliveryMethod
                   const service = method &&
                     DELIVERY_OPTIONS[method as keyof typeof DELIVERY_OPTIONS]
-                  return service ? `${service.label} - $${service.price.toFixed(2)}` : null
+                  return service ? `${service.label} - $${service.price.toFixed(2)}` : "No Delivery Needed - Free"
                 })()}
               </div>
             </div>

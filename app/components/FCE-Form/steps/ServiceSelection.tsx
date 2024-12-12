@@ -17,9 +17,17 @@ import {
   ADDITIONAL_SERVICES,
   EVALUATION_SERVICES
 } from "../constants"
+import { useEffect } from "react"
 
 export function ServiceSelection() {
   const { register, watch, formState: { errors }, setValue } = useFormContext()
+
+  useEffect(() => {
+    const currentValue = watch("deliveryMethod")
+    if (!currentValue) {
+      setValue("deliveryMethod", "no_delivery_needed")
+    }
+  }, [])
 
   const renderLabel = (label: string, value: string) => {
     const needsNote = value === "24hour" || value === "sameday"
@@ -240,15 +248,15 @@ export function ServiceSelection() {
           <h3 className="text-lg font-semibold mb-4">Type of Delivery</h3>
           <Select
             onValueChange={(value) => {
-              setValue("deliveryMethod", value === "none" ? undefined : value)
+              setValue("deliveryMethod", value)
             }}
-            defaultValue={watch("deliveryMethod") || "none"}
+            value={watch("deliveryMethod") || "no_delivery_needed"}
           >
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Select delivery method" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="none">
+              <SelectItem value="no_delivery_needed">
                 <div className="flex justify-between w-full">
                   <span>No delivery needed</span>
                 </div>

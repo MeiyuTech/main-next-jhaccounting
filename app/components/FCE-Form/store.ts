@@ -1,6 +1,9 @@
+'use client'
+
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { FormData, FormStep } from './types'
+import { submitFCEApplication } from '@/lib/actions'
 
 interface FormState {
   // Form data
@@ -35,7 +38,15 @@ interface FormState {
 export const useFormStore = create<FormState>()(
   persist(
     (set, get) => ({
-      formData: {},
+      formData: {
+        deliveryMethod: "no_delivery_needed",
+        additionalServices: [],
+        additionalServicesQuantity: {
+          extra_copy: 0,
+          pdf_with_hard_copy: 0,
+          pdf_only: 0,
+        }
+      },
       currentStep: FormStep.CLIENT_INFO,
       draftId: null,
       status: null,
@@ -87,20 +98,18 @@ export const useFormStore = create<FormState>()(
         set({ isLoading: true })
 
         try {
-          // TODO: Implement Supabase submit logic
-          // Update status to completed
-          // Example:
-          // const { data, error } = await supabase
-          //   .from('fce_forms')
-          //   .update({
-          //     status: 'completed',
-          //     form_data: state.formData
-          //   })
-          //   .eq('id', state.draftId)
+          const result = await submitFCEApplication(state.formData as FormData)
 
-          set({ status: 'completed' })
+          if (result.success) {
+            set({
+              status: 'completed',
+              draftId: result.applicationId
+            })
+          }
+
         } catch (error) {
           console.error('Failed to submit form:', error)
+          throw error
         } finally {
           set({ isLoading: false })
         }

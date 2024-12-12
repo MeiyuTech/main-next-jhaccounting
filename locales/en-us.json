@@ -271,7 +271,7 @@
     "submitting": "Submitting...",
     "toast": {
       "success": {
-        "title": "Success",
+        "title": "Submitted Successfully",
         "description": "Your message has been sent successfully."
       },
       "error": {

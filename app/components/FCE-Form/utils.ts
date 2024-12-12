@@ -97,7 +97,7 @@ export const formatUtils = {
 
       // Service Selection
       service_type: formData.serviceType!,
-      delivery_method: formData.deliveryMethod!,
+      delivery_method: formData.deliveryMethod || "no_delivery_needed",
       additional_services: formData.additionalServices || [],
       additional_services_quantity: formData.additionalServicesQuantity || {
         extra_copy: 0,
