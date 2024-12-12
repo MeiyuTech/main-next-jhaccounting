@@ -334,7 +334,7 @@ export default function FCEForm() {
       }
     })
     toast({
-      title: "Submission Complete",
+      title: "Submitted Successfully",
       description: "Your message has been sent successfully.",
       className: "text-teal-400",
     })
