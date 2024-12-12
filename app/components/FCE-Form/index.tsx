@@ -168,16 +168,11 @@ export default function FCEForm() {
       localStorage.removeItem('fce-form-data')
       localStorage.removeItem('fce-form-step')
 
-      toast({
-        title: "Application Submitted Successfully",
-        description: "Your application has been received. We will review it shortly.",
-      })
-
-      // 可选：重定向到成功页面
+      // redirect to success page
       // router.push('/application-submitted')
 
-      // 或者重置表单
-      handleReset()
+      // reset form
+      handleComplete()
       setCurrentStep(FormStep.CLIENT_INFO)
 
     } catch (error) {
@@ -277,7 +272,71 @@ export default function FCEForm() {
     toast({
       title: "Form Reset",
       description: "You can start filling out the application again",
-      variant: "destructive"
+      variant: "destructive",
+    })
+  }
+
+  // Add complete handler
+  const handleComplete = () => {
+    console.log("Form complete")
+    resetForm()
+    // Reset React Hook Form with empty values
+    form.reset({
+      name: "",
+      country: "",
+      streetAddress: "",
+      streetAddress2: "",
+      city: "",
+      region: "",
+      zipCode: "",
+      phone: "",
+      fax: "",
+      email: "",
+      purpose: undefined,
+      purposeOther: "",
+      pronouns: undefined,
+      firstName: "",
+      lastName: "",
+      middleName: "",
+      dateOfBirth: {
+        month: "",
+        date: "",
+        year: "",
+      },
+      educations: [{
+        countryOfStudy: "",
+        degreeObtained: "",
+        schoolName: "",
+        studyDuration: {
+          startDate: { month: "", year: "" },
+          endDate: { month: "", year: "" }
+        }
+      }],
+      serviceType: {
+        foreignCredentialEvaluation: {
+          firstDegree: { speed: undefined },
+          secondDegrees: 0
+        },
+        coursebyCourse: {
+          firstDegree: { speed: undefined },
+          secondDegrees: 0
+        },
+        professionalExperience: { speed: undefined },
+        positionEvaluation: { speed: undefined },
+        translation: { required: false }
+      },
+      deliveryMethod: undefined,
+      additionalServices: [],
+      additionalServicesQuantity: {
+        extra_copy: 0,
+        pdf_with_hard_copy: 0,
+        pdf_only: 0,
+      }
+    })
+    toast({
+      title: "Submission Complete",
+      description: "Your message has been sent successfully.",
+      className: "text-teal-400",
     })
   }
 
@@ -288,13 +347,14 @@ export default function FCEForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        {/* // Debugging information
         <div className="text-xs text-gray-400">
           Current Step: {currentStep} (Review = {FormStep.REVIEW})
           <br />
           Form Valid: {String(!Object.keys(form.formState.errors).length)}
           <br />
           Validation Errors: {Object.keys(form.formState.errors).join(', ')}
-        </div>
+        </div> */}
 
         <StepIndicator
           currentStep={currentStep}
