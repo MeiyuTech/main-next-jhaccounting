@@ -383,32 +383,6 @@ export default function FCEForm() {
           </Button>
 
           <div className="flex gap-2">
-            <AlertDialog>
-              <AlertDialogTrigger asChild>
-                <Button
-                  variant="destructive"
-                  className="bg-gray-100 text-red-600 hover:bg-red-200 hover:text-red-700"
-                >
-                  <RotateCcw className="h-4 w-4 mr-2" />
-                  Reset Application
-                </Button>
-              </AlertDialogTrigger>
-              <AlertDialogContent>
-                <AlertDialogHeader>
-                  <AlertDialogTitle>Are you sure you want to reset the application?</AlertDialogTitle>
-                  <AlertDialogDescription>
-                    This action will clear all filled information, and you will need to start filling out the application again. This action cannot be undone.
-                  </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <AlertDialogAction onClick={handleReset} className="bg-red-500 text-white hover:bg-red-600">
-                    Confirm Reset
-                  </AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
-
             {currentStep === FormStep.REVIEW ? (
               <Button type="submit" disabled={isSaving}>
                 {isSaving ? "Submitting..." : "Submit Application"}
@@ -426,6 +400,33 @@ export default function FCEForm() {
               </Button>
             )}
           </div>
+        </div>
+        <div className="flex justify-end">
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button
+                variant="destructive"
+                className="bg-gray-100 text-red-600 hover:bg-red-200 hover:text-red-700"
+              >
+                <RotateCcw className="h-4 w-4 mr-2" />
+                Reset Application
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Are you sure you want to reset the application?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  This action will clear all filled information, and you will need to start filling out the application again. This action cannot be undone.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction onClick={handleReset} className="bg-red-500 text-white hover:bg-red-600">
+                  Confirm Reset
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         </div>
 
         {draftId && (
