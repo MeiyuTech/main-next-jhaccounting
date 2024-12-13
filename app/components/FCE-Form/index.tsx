@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form"
 import { RotateCcw } from "lucide-react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useToast } from "@/hooks/use-toast"
+import { useRouter } from "next/navigation"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -31,6 +32,7 @@ import { Review } from "./steps/Review"
 
 export default function FCEForm() {
   const { toast } = useToast()
+  const router = useRouter()
   const {
     formData,
     currentStep,
@@ -54,8 +56,17 @@ export default function FCEForm() {
         extra_copy: 0,
         pdf_with_hard_copy: 0,
         pdf_only: 0,
-      }
-    },
+      },
+      educations: formData?.educations || [{
+        countryOfStudy: "",
+        degreeObtained: "",
+        schoolName: "",
+        studyDuration: {
+          startDate: { month: "", year: "" },
+          endDate: { month: "", year: "" }
+        }
+      }],
+    }
   })
 
   // Load saved form data when component mounts
@@ -157,7 +168,6 @@ export default function FCEForm() {
     try {
       const isValid = await form.trigger()
       if (!isValid) {
-        // ... validation error handling ...
         return
       }
 
@@ -168,12 +178,11 @@ export default function FCEForm() {
       localStorage.removeItem('fce-form-data')
       localStorage.removeItem('fce-form-step')
 
-      // redirect to success page
-      // router.push('/application-submitted')
-
       // reset form
       handleComplete()
       setCurrentStep(FormStep.CLIENT_INFO)
+      // 修改这里：提交成功后跳转到 checkout 页面
+      router.push('/checkout')
 
     } catch (error) {
       console.error("Submission error:", error)
