@@ -58,6 +58,41 @@ export default async function ServicesPage({
 
       {/* Blog posts grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Add the ERC Application card */}
+        <Link href="/erc-application" className="transform transition duration-300 hover:-translate-y-1">
+          <Card className="h-full flex flex-col">
+            <CardHeader className="p-4">
+              <h2 className="text-xl font-semibold h-[4rem] line-clamp-2">
+                {tHeader('services.tax-credits.erc-application-card.title')}
+              </h2>
+            </CardHeader>
+            <CardContent className="p-4 pt-0 flex-1 flex flex-col">
+              <p className="text-gray-600 text-sm mb-4 h-[6rem] line-clamp-4">
+                {tHeader('services.tax-credits.erc-application-card.description')}
+              </p>
+            </CardContent>
+          </Card>
+        </Link>
+
+        {/* Add the Real Estate Broker Commission Claim card */}
+        <Link href="/real-estate-broker-commission-claim" className="transform transition duration-300 hover:-translate-y-1">
+          <Card className="h-full flex flex-col">
+            <CardHeader className="p-4">
+              <h2 className="text-xl font-semibold h-[4rem] line-clamp-2">
+                {tHeader('services.tax-credits.real-estate-broker-commission-claim-card.title')}
+              </h2>
+            </CardHeader>
+            <CardContent className="p-4 pt-0 flex-1 flex flex-col">
+              <p className="text-gray-600 text-sm mb-4 h-[6rem] line-clamp-4">
+                {tHeader('services.tax-credits.real-estate-broker-commission-claim-card.description')}
+              </p>
+            </CardContent>
+          </Card>
+        </Link>
+      </div>
+
+      {/* Blog posts grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pt-8">
         {servicesPosts.map((post) => (
           <Link
             key={post.slug}
@@ -78,22 +113,6 @@ export default async function ServicesPage({
             </Card>
           </Link>
         ))}
-
-        {/* Add the ERC Application card */}
-        <Link href="/erc-application" className="transform transition duration-300 hover:-translate-y-1">
-          <Card className="h-full flex flex-col">
-            <CardHeader className="p-4">
-              <h2 className="text-xl font-semibold h-[4rem] line-clamp-2">
-                {tHeader('services.tax-credits.erc-application-card.title')}
-              </h2>
-            </CardHeader>
-            <CardContent className="p-4 pt-0 flex-1 flex flex-col">
-              <p className="text-gray-600 text-sm mb-4 h-[6rem] line-clamp-4">
-                {tHeader('services.tax-credits.erc-application-card.description')}
-              </p>
-            </CardContent>
-          </Card>
-        </Link>
       </div>
     </div>
   )

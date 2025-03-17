@@ -16,6 +16,10 @@
         "erc-application-card": {
           "title": "ERC Application",
           "description": "The team of CPAs, JDs, and payroll experts at Jiahua leverage decades of experience in accounting and professional services, combined with deep technical expertise, to develop a cutting-edge platform that simplifies the ERC process while maximizing refundable credits for employers who took one or both PPP loans."
+        },
+        "real-estate-broker-commission-claim-card": {
+          "title": "Real Estate Broker Commission Claim",
+          "description": "Jiahua takes an in-depth look at the National Association of Realtors (NAR) $1 billion settlement agreement and provides full professional application services for homeowners who sold their property between April 2014 and February 2024 and paid a commission."
         }
       },
       "company-formation": "Company Formation Services",
