@@ -39,6 +39,7 @@ export default function Header() {
             { href: '/services/4-tax-credits', label: t('services.tax-credits.rd-tax-credits') },
             { href: '/services/4-tax-credits', label: t('services.tax-credits.self-employed-tax-credits') },
             { href: '/erc-application', label: t('services.tax-credits.erc-application') },
+            { href: '/real-estate-broker-commission-claim', label: t('services.tax-credits.real-estate-broker-commission-claim') },
           ]
         },
         { href: '/services/5-company-formation', label: t('services.company-formation') },
@@ -143,8 +144,8 @@ export default function Header() {
                       ) : (
                         /**
                          * TODO:
-                         * "onClick" was passed to <Link> with `href` of `/zh-cn/news` 
-                         * but "legacyBehavior" was set. 
+                         * "onClick" was passed to <Link> with `href` of `/zh-cn/news`
+                         * but "legacyBehavior" was set.
                          * The legacy behavior requires onClick be set on the child of next/link
                          */
                         <Link href={item.href} legacyBehavior passHref>
