@@ -33,7 +33,7 @@ export default async function REBCCPage({ params: { locale } }: { params: { loca
       <div className="container mx-auto px-4 py-8">
         <div className="flex items-center justify-between mb-12">
           <div className="flex-1">
-            <h2 className="text-8xl font-bold text-teal-600">{t('title')}</h2>
+            <h2 className="text-6xl font-bold text-teal-600">{t('title')}</h2>
             <div className="w-20 h-1 bg-amber-400 mt-2"></div>
             <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
               {t('description')}
@@ -86,10 +86,10 @@ export default async function REBCCPage({ params: { locale } }: { params: { loca
       {/* Why Us Section */}
       <section className="py-16">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-6xl font-bold mb-4 text-teal-600">
+          <h2 className="text-4xl font-bold mb-2 text-teal-600">
             {t('why-choose-us-section.title')}
           </h2>
-          <p className="text-2xl mb-12 text-gray-400">
+          <p className="text-xl mb-6 text-gray-400 whitespace-pre-line">
             {t('why-choose-us-section.description')}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
