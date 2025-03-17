@@ -64,11 +64,11 @@ export default function Header() {
 
   // Component for rendering dropdown menu items
   const DropdownMenuItems = ({ items }: { items: NavItem[] }) => (
-    <ul className="grid w-[300px] gap-3 p-4">
+    <ul className="grid w-[400px] gap-3 p-4">
       {items.map((item) => (
         <li key={item.href}>
           <Link href={item.href}>
-            <NavigationMenuLink className="block p-2 hover:bg-slate-100 rounded-md">
+            <NavigationMenuLink className="block p-2 hover:bg-slate-100 rounded-md whitespace-normal break-words">
               {item.label}
             </NavigationMenuLink>
           </Link>
@@ -82,17 +82,28 @@ export default function Header() {
     </ul>
   );
 
-  // 修改 MobileMenuItem 组件以支持递归渲染
+  // 修改 MobileMenuItem 组件以支持递归渲染并提升视觉效果
   const MobileMenuItem = ({ item, depth = 0 }: { item: NavItem, depth?: number }) => (
     <div className="flex flex-col">
       <Link
         href={item.href}
-        className={`text-xl font-medium py-0.5 hover:text-primary ${depth > 0 ? '' : ''}`}
+        className={`
+          ${depth === 0 ? 'text-xl font-semibold py-2 border-b border-gray-100' :
+            depth === 1 ? 'text-base font-medium py-1.5 pl-2' :
+            'text-sm py-1.5 pl-4'}
+          ${depth === 2 ? 'flex items-center gap-2' : ''}
+          hover:text-primary transition-colors duration-200 whitespace-normal break-words
+        `}
       >
+        {depth === 2}
         {item.label}
       </Link>
       {item.children && (
-        <div className="ml-4 flex flex-col gap-0.5">
+        <div className={`
+          flex flex-col
+          ${depth === 0 ? 'mt-1 mb-3' : 'mt-0.5 mb-1'}
+          ${depth === 0 ? 'border-l-2 border-gray-200 pl-3' : 'pl-2'}
+        `}>
           {item.children.map((child) => (
             <MobileMenuItem
               key={child.href}
@@ -167,8 +178,11 @@ export default function Header() {
                     <Menu className="h-6 w-8" />
                   </Button>
                 </SheetTrigger>
-                <SheetContent side="right" className="w-[300px]">
-                  <nav className="flex flex-col gap-4 mt-8">
+                <SheetContent side="right" className="w-[300px] p-0 pt-10">
+                  <div className="px-4 py-2 border-b border-gray-100">
+                    <h2 className="text-2xl font-bold text-primary mb-1">菜单</h2>
+                  </div>
+                  <nav className="flex flex-col p-4">
                     {navItems.map((item) => (
                       <MobileMenuItem key={item.href} item={item} />
                     ))}
