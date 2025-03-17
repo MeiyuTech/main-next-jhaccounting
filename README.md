@@ -94,11 +94,11 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=<your_supabase_anon_key>
   -- Enable Row Level Security (RLS)
   alter table public.contact_submissions enable row level security;
 
-  -- Allow inserts for all users
-  alter policy "Enable insert for all users"
-  on "public"."contact_submissions"
-  to public
+  -- Create a new policy to allow inserts for all users
+  create policy "Enable insert for all users"
+  on public.contact_submissions
   for insert
+  to public
   with check (
     true
   );
