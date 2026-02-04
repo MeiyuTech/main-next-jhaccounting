@@ -246,6 +246,37 @@
         "5": "Ability to multitask and work independently in a fast-paced environment",
         "6": "Attention to detail and accuracy in work"
       }
+    },
+    "managerial-accountant": {
+      "title": "Managerial Accountant",
+      "location": "San Francisco Office",
+      "duties_title": "Job Description:",
+      "duties": {
+        "1": "Examine client bookkeeping records (P&L, Balance Sheet, Cash Flow) and financial statements to identify trends, cost drivers, opportunities, and areas of concern.",
+        "2": "Prepare clear financial reports and performance insights to support executive and client decision-making.",
+        "3": "Develop and maintain client-specific budget models and cash flow forecasts.",
+        "4": "Conduct scenario-based financial modeling to help clients anticipate upcoming needs and optimize resource allocation.",
+        "5": "Provide corporate tax planning strategies to minimize liabilities while ensuring compliance with federal and state regulations.",
+        "6": "Inform clients of regulatory changes affecting their businesses and ensure compliance with periodic reporting requirements.",
+        "7": "Review financial processes to identify inefficiencies and recommend improvements for accuracy, compliance, and operational efficiency.",
+        "8": "Strengthen internal controls and support best practices in bookkeeping, payroll, and financial reporting.",
+        "9": "Assist clients with company formation, registration, and licensing, including preparation and submission of Beneficial Ownership Information (BOI) reports.",
+        "10": "Communicate with clients to gather necessary financial data, answer tax-related questions, and provide guidance on accounting and compliance matters.",
+        "11": "Research federal and state tax issues, including available tax credits, deductions, and incentives, and prepare written summaries for internal and client use."
+      },
+      "requirements_title": "Minimum Requirements:",
+      "requirements": {
+        "1": "2 years of full-time work experience in accounting.",
+        "2": "Deep understanding of GAAP and financial analysis.",
+        "3": "Excellent communication, interpersonal, and analytic skills.",
+        "4": "Proficient with Microsoft Office and Spreadsheet modeling."
+      },
+      "how_to_apply_title": "How to Apply:",
+      "how_to_apply": {
+        "1": "Interested Candidates may submit their cover letter and resume to",
+        "2": "Jiahua US Accounting Services, Corp",
+        "3": "851 Burlway Rd, Ste 605, Burlingame, CA, 94010"
+      }
     }
   },
   "ContactForm": {
