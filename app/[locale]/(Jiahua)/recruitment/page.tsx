@@ -54,7 +54,41 @@ export default async function RecruitmentPage({ params: { locale } }: { params: 
         t('accountant.requirements.7'),
         t('accountant.requirements.8')
       ],
-      contact_now_button: contactNowT('button')
+      contact_now_button: contactNowT('button'),
+      show_contact_button: false
+    },
+    {
+      title: t('managerial-accountant.title'),
+      location: t('managerial-accountant.location'),
+      duties_title: t('managerial-accountant.duties_title'),
+      duties: [
+        t('managerial-accountant.duties.1'),
+        t('managerial-accountant.duties.2'),
+        t('managerial-accountant.duties.3'),
+        t('managerial-accountant.duties.4'),
+        t('managerial-accountant.duties.5'),
+        t('managerial-accountant.duties.6'),
+        t('managerial-accountant.duties.7'),
+        t('managerial-accountant.duties.8'),
+        t('managerial-accountant.duties.9'),
+        t('managerial-accountant.duties.10'),
+        t('managerial-accountant.duties.11')
+      ],
+      requirements_title: t('managerial-accountant.requirements_title'),
+      requirements: [
+        t('managerial-accountant.requirements.1'),
+        t('managerial-accountant.requirements.2'),
+        t('managerial-accountant.requirements.3'),
+        t('managerial-accountant.requirements.4')
+      ],
+      how_to_apply_title: t('managerial-accountant.how_to_apply_title'),
+      how_to_apply_lines: [
+        t('managerial-accountant.how_to_apply.1'),
+        t('managerial-accountant.how_to_apply.2'),
+        t('managerial-accountant.how_to_apply.3')
+      ],
+      contact_now_button: contactNowT('button'),
+      show_contact_button: false
     },
     {
       title: t('office-assistant.title'),
@@ -77,7 +111,8 @@ export default async function RecruitmentPage({ params: { locale } }: { params: 
         t('office-assistant.requirements.5'),
         t('office-assistant.requirements.6')
       ],
-      contact_now_button: contactNowT('button')
+      contact_now_button: contactNowT('button'),
+      show_contact_button: false
     }
   ];
 
