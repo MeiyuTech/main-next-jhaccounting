@@ -6,6 +6,13 @@ const withNextIntl = createNextIntlPlugin();
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+  outputFileTracingExcludes: {
+    '*': [
+      '.pnpm-store/**',
+      '.git/**',
+      '.next/trace',
+    ],
+  },
 };
 
 const withMDX = createMDX({
