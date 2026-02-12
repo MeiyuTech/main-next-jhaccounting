@@ -90,6 +90,29 @@ export default async function ContactNowPage({ params: { locale } }: { params: {
             {/* Add office locations with icons */}
           </div>
         </div>
+
+        <div className="bg-white p-8 rounded-lg shadow-lg">
+          <h3 className="text-2xl font-semibold mb-6">{t('la-office-title')}</h3>
+          <h3 className="text-2xl font-semibold mb-6 h-[4rem]">{t('la-office')}</h3>
+          {/* Add an embedded map here */}
+          <div className="h-[300px] bg-gray-100 rounded-lg mb-6 overflow-hidden flex items-center justify-center text-gray-500">
+            {/* Placeholder for LA Office Map */}
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3320.9893541738743!2d-117.86467612450893!3d33.67088487330263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dcde7d53063f25%3A0xe539462589574d75!2s19800%20MacArthur%20Blvd%20STE%20570%2C%20Irvine%2C%20CA%2092612!5e0!3m2!1sen!2sus!4v1731711168671!5m2!1sen!2sus"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+          {/* Office details with icons */}
+          <div className="space-y-4">
+            {/* Add office locations with icons */}
+          </div>
+        </div>
+
         <div className="bg-white p-8 rounded-lg shadow-lg">
           <h3 className="text-2xl font-semibold mb-6">{t('miami-office-title')}</h3>
           <h3 className="text-2xl font-semibold mb-6 h-[4rem]">{t('miami-office')}</h3>

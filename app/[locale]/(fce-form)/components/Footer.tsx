@@ -23,6 +23,7 @@ export default function Footer() {
           <h3 className="text-2xl font-semibold mb-6 text-amber-400">{t('contact.title')}</h3>
           <div className="space-y-3 text-xl">
             <p>{t('contact.sf-office')}</p>
+            <p>{t('contact.la-office')}</p>
             <p>{t('contact.miami-office')}</p>
             <p>{t('contact.office-hours')}</p>
             <div className="flex items-center gap-2">
