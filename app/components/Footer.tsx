@@ -26,10 +26,14 @@ export default function Footer() {
             <p>{t('contact.la-office')}</p>
             <p>{t('contact.miami-office')}</p>
             <p>{t('contact.office-hours')}</p>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 flex-wrap">
               <span>{t('contact.phone-label')}</span>
-              <a href={`tel:${t('contact.phone')}`} className="hover:text-teal-400">
-                {t('contact.phone')}
+              <a href={`tel:${t('contact.sf-phone')}`} className="hover:text-teal-400">
+                {t('contact.sf-phone')}
+              </a>
+              <span className="text-gray-400">|</span>
+              <a href={`tel:${t('contact.la-phone')}`} className="hover:text-teal-400">
+                {t('contact.la-phone')}
               </a>
             </div>
             <div className="flex items-center gap-2">

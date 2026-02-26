@@ -41,7 +41,8 @@
       "office-hours": "Pacific Time: 9:30 AM - 5:30 PM",
       "phone-label": "Phone:",
       "email-label": "Email:",
-      "phone": "+1 (949) 300-4828",
+      "sf-phone": "+1 (650) 226-8118",
+      "la-phone": "+1 (949) 300-4828",
       "email": "info@jhaccounting.org"
     },
     "company-name": "Jiahua US Accounting",
@@ -194,7 +195,8 @@
     "miami-office-title": "Miami Office",
     "miami-office": "15321 South Dixie Highway, Suite 302B, Palmetto Bay, FL, 33157",
     "phone-label": "Phone:",
-    "phone": "+1 (949) 300-4828",
+    "sf-phone": "+1 (650) 226-8118",
+    "la-phone": "+1 (949) 300-4828",
     "email-label": "Email:",
     "email": "info@jhaccounting.org",
     "button": "Contact Now"

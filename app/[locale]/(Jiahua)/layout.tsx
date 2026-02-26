@@ -102,21 +102,31 @@ export default async function RootLayout({
               "logo": `${t("siteUrl")}${t("siteLogo")}`,
               "image": `${t("siteUrl")}${t("socialBanner")}`,
               "email": t("email"),
-              "telephone": "+1 (949) 300-4828",
+              "telephone": ["+1 (650) 226-8118", "+1 (949) 300-4828"],
               "address": [{
                 "@type": "PostalAddress",
                 "addressLocality": "Burlingame",
                 "addressRegion": "CA",
                 "postalCode": "94010",
                 "streetAddress": "851 Burlway Rd, Ste 605",
-                "addressCountry": "US"
+                "addressCountry": "US",
+                "telephone": "+1 (650) 226-8118"
+              }, {
+                "@type": "PostalAddress",
+                "addressLocality": "Irvine",
+                "addressRegion": "CA",
+                "postalCode": "92612",
+                "streetAddress": "19800 Macarthur Blvd Ste 420",
+                "addressCountry": "US",
+                "telephone": "+1 (949) 300-4828"
               }, {
                 "@type": "PostalAddress",
                 "addressLocality": "Palmetto Bay",
                 "addressRegion": "FL",
                 "postalCode": "33157",
                 "streetAddress": "15321 South Dixie Highway, Suite 302B",
-                "addressCountry": "US"
+                "addressCountry": "US",
+                "telephone": "+1 (949) 300-4828"
               }],
               "openingHours": "Mo-Fr 09:30-17:30",
               "areaServed": {

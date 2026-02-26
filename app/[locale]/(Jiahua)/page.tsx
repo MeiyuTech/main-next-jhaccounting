@@ -59,10 +59,14 @@ export default async function Home({ params: { locale } }: { params: { locale: s
             </p>
 
             <div className="flex items-center gap-6">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 flex-wrap">
                 <span className="text-xl">{tFooter('contact.phone-label')}</span>
-                <a href={`tel:${tFooter('contact.phone')}`} className="text-xl hover:text-teal-400">
-                  {tFooter('contact.phone')}
+                <a href={`tel:${tFooter('contact.sf-phone')}`} className="text-xl hover:text-teal-400">
+                  {tFooter('contact.sf-phone')}
+                </a>
+                <span className="text-gray-400">|</span>
+                <a href={`tel:${tFooter('contact.la-phone')}`} className="text-xl hover:text-teal-400">
+                  {tFooter('contact.la-phone')}
                 </a>
               </div>
             </div>

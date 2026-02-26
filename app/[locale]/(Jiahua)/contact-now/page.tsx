@@ -42,10 +42,14 @@ export default async function ContactNowPage({ params: { locale } }: { params: {
             <div className="flex items-center gap-2">
               <span className="text-xl">{t('office-hours')}</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 flex-wrap">
               <span className="text-xl">{t('phone-label')}</span>
-              <a href={`tel:${t('phone')}`} className="text-xl hover:text-teal-400">
-                {t('phone')}
+              <a href={`tel:${t('sf-phone')}`} className="text-xl hover:text-teal-400">
+                {t('sf-phone')}
+              </a>
+              <span className="text-gray-400">|</span>
+              <a href={`tel:${t('la-phone')}`} className="text-xl hover:text-teal-400">
+                {t('la-phone')}
               </a>
             </div>
 
@@ -85,9 +89,14 @@ export default async function ContactNowPage({ params: { locale } }: { params: {
               referrerPolicy="no-referrer-when-downgrade"
             />
           </div>
-          {/* Office details with icons */}
+          {/* Office phone */}
           <div className="space-y-4">
-            {/* Add office locations with icons */}
+            <div className="flex items-center gap-2 text-gray-700">
+              <span className="font-medium">{t('phone-label')}</span>
+              <a href={`tel:${t('sf-phone')}`} className="hover:text-teal-600 transition-colors">
+                {t('sf-phone')}
+              </a>
+            </div>
           </div>
         </div>
 
@@ -107,9 +116,14 @@ export default async function ContactNowPage({ params: { locale } }: { params: {
               referrerPolicy="no-referrer-when-downgrade"
             />
           </div>
-          {/* Office details with icons */}
+          {/* Office phone */}
           <div className="space-y-4">
-            {/* Add office locations with icons */}
+            <div className="flex items-center gap-2 text-gray-700">
+              <span className="font-medium">{t('phone-label')}</span>
+              <a href={`tel:${t('la-phone')}`} className="hover:text-teal-600 transition-colors">
+                {t('la-phone')}
+              </a>
+            </div>
           </div>
         </div>
 
@@ -128,9 +142,14 @@ export default async function ContactNowPage({ params: { locale } }: { params: {
               referrerPolicy="no-referrer-when-downgrade"
             />
           </div>
-          {/* Office details with icons */}
+          {/* Office phone */}
           <div className="space-y-4">
-            {/* Add office locations with icons */}
+            <div className="flex items-center gap-2 text-gray-700">
+              <span className="font-medium">{t('phone-label')}</span>
+              <a href={`tel:${t('la-phone')}`} className="hover:text-teal-600 transition-colors">
+                {t('la-phone')}
+              </a>
+            </div>
           </div>
         </div>
       </div>
