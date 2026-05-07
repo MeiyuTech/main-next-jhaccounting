@@ -5,6 +5,17 @@ import H1 from '@/app/components/h1'
 import React from 'react'
 import remarkGfm from 'remark-gfm'
 
+function getPostTimestamp(frontmatter: Record<string, unknown>) {
+  const date = frontmatter.date
+
+  if (typeof date !== 'string') {
+    return 0
+  }
+
+  const timestamp = Date.parse(date)
+  return Number.isNaN(timestamp) ? 0 : timestamp
+}
+
 export function loadPost(contentPath: string, locale: string, slug: string) {
   const filename = slug.endsWith('.mdx') ? slug : `${slug}.mdx`
 
@@ -55,5 +66,14 @@ export async function getPosts(contentPath: string, locale: string = 'en-us') {
       }
     })
   )
-  return posts
+
+  return posts.sort((a, b) => {
+    const dateDiff = getPostTimestamp(b.frontmatter) - getPostTimestamp(a.frontmatter)
+
+    if (dateDiff !== 0) {
+      return dateDiff
+    }
+
+    return a.slug.localeCompare(b.slug)
+  })
 }
