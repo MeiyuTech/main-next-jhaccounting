@@ -116,7 +116,7 @@ export default async function RootLayout({
                 "addressLocality": "Irvine",
                 "addressRegion": "CA",
                 "postalCode": "92612",
-                "streetAddress": "19800 Macarthur Blvd Ste 420",
+                "streetAddress": "19800 Macarthur Blvd Ste 570",
                 "addressCountry": "US",
                 "telephone": "+1 (949) 300-4828"
               }, {
