@@ -1,167 +1,149 @@
-import Image from "next/image"
-import { getTranslations, setRequestLocale } from 'next-intl/server';
-import ContactForm from '@/app/components/ContactForm'
-import { getContactFormTranslations } from '@/lib/translations/form'
+import Image from "next/image";
+import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
-/*
- * We pull in the current locale
- * generated from `generateStaticParms`
- * or the current request route.
-*/
+import ContactForm from "@/app/components/ContactForm";
+import { getContactFormTranslations } from "@/lib/translations/form";
+
 export async function generateMetadata({
   params: { locale },
 }: {
   params: { locale: string };
 }) {
-  const t = await getTranslations({
-    locale,
-    namespace: "ContactNow",
-  });
-
-  return {
-    title: t("title"),
-    description: t("description"),
-  };
+  const t = await getTranslations({ locale, namespace: "ContactNow" });
+  return { title: t("title"), description: t("description") };
 }
 
-export default async function ContactNowPage({ params: { locale } }: { params: { locale: string } }) {
+export default async function ContactNowPage({
+  params: { locale },
+}: {
+  params: { locale: string };
+}) {
   setRequestLocale(locale);
-  const t = await getTranslations('ContactNow')
-  const formT = await getTranslations('ContactForm')
+  const t = await getTranslations("ContactNow");
+  const formT = await getTranslations("ContactForm");
+  const fundingT = await getTranslations("Funding");
+  const contactFormTranslations = await getContactFormTranslations();
 
-  const contactFormTranslations = await getContactFormTranslations()
+  const offices = [
+    {
+      key: "miami",
+      title: t("miami-office-title"),
+      address: t("miami-office"),
+      map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3597.308721601592!2d-80.34370852375291!3d25.627877377436235!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d9c69fb4299d93%3A0xb454cb3e5515c4c9!2s15321%20S%20Dixie%20Hwy%20%23302b%2C%20Palmetto%20Bay%2C%20FL%2033157!5e0!3m2!1sen!2sus!4v1731711168671!5m2!1sen!2sus",
+    },
+    {
+      key: "irvine",
+      title: t("la-office-title"),
+      address: t("la-office"),
+      map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3320.9893541738743!2d-117.86467612450893!3d33.67088487330263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dcde7d53063f25%3A0xe539462589574d75!2s19800%20MacArthur%20Blvd%20STE%20570%2C%20Irvine%2C%20CA%2092612!5e0!3m2!1sen!2sus!4v1731711168671!5m2!1sen!2sus",
+    },
+  ];
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      {/* Header section */}
-      <div className="flex items-center justify-between mb-12">
-        <div className="flex-1">
-          <h2 className="text-8xl font-bold text-teal-600">{t('title')}</h2>
-          <div className="w-20 h-1 bg-amber-400 mt-2"></div>
-          <div className="mt-4 text-gray-600 max-w-2xl mx-auto">
-            <div className="flex items-center gap-2">
-              <span className="text-xl">{t('office-hours')}</span>
-            </div>
-            <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-xl">{t('phone-label')}</span>
-              <a href={`tel:${t('sf-phone')}`} className="text-xl hover:text-teal-400">
-                {t('sf-phone')}
+    <>
+      <section className="bg-slate-950 text-white">
+        <div className="container mx-auto grid gap-8 px-4 py-14 md:grid-cols-[1fr_0.8fr] md:items-center lg:px-8">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-teal-300">
+              Jiahua US Accounting
+            </p>
+            <h1 className="mt-3 text-4xl font-bold md:text-6xl">
+              {t("title")}
+            </h1>
+            <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-300">
+              {t("description")}
+            </p>
+            <div className="mt-6 grid gap-3 text-sm sm:grid-cols-2">
+              <a
+                href="tel:+19493004828"
+                className="flex items-center gap-2 hover:text-teal-300"
+              >
+                <Phone className="h-4 w-4" aria-hidden="true" />
+                (949) 300-4828
               </a>
-              <span className="text-gray-400">|</span>
-              <a href={`tel:${t('la-phone')}`} className="text-xl hover:text-teal-400">
-                {t('la-phone')}
+              <a
+                href={`mailto:${t("email")}`}
+                className="flex items-center gap-2 hover:text-teal-300"
+              >
+                <Mail className="h-4 w-4" aria-hidden="true" />
+                {t("email")}
               </a>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <span className="text-xl">{t('email-label')}</span>
-              <a href={`mailto:${t('email')}`} className="text-xl hover:text-teal-400">
-                {t('email')}
-              </a>
+              <p className="flex items-center gap-2 sm:col-span-2">
+                <Clock className="h-4 w-4" aria-hidden="true" />
+                {t("office-hours")}
+              </p>
             </div>
           </div>
-
-        </div>
-        <div className="relative w-1/2 h-[420px]">
-          <Image
-            src="/contact-now.jpg"
-            alt="Contact Now Banner"
-            fill
-            className="object-cover rounded-lg"
-          />
-        </div>
-      </div>
-
-      {/* Contact information with map and form */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
-        <div className="bg-white p-8 rounded-lg shadow-lg">
-          <h3 className="text-2xl font-semibold mb-6">{t('sf-office-title')}</h3>
-          <h3 className="text-2xl font-semibold mb-6 h-[4rem]">{t('sf-office')}</h3>
-          {/* Add an embedded map here */}
-          <div className="h-[300px] bg-gray-100 rounded-lg mb-6 overflow-hidden">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3161.3037456101515!2d-122.3689848233769!3d37.595009772031176!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808f762d9dc55555%3A0x3c741222537f6a6e!2s851%20Burlway%20Rd%20Ste%20605%2C%20Burlingame%2C%20CA%2094010!5e0!3m2!1sen!2sus!4v1731711023360!5m2!1sen!2sus"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
+          <div className="relative hidden min-h-72 overflow-hidden rounded-2xl md:block">
+            <Image
+              src="/contact-now.jpg"
+              alt="Jiahua Accounting offices"
+              fill
+              className="object-cover"
             />
           </div>
-          {/* Office phone */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-2 text-gray-700">
-              <span className="font-medium">{t('phone-label')}</span>
-              <a href={`tel:${t('sf-phone')}`} className="hover:text-teal-600 transition-colors">
-                {t('sf-phone')}
-              </a>
-            </div>
-          </div>
         </div>
+      </section>
 
-        <div className="bg-white p-8 rounded-lg shadow-lg">
-          <h3 className="text-2xl font-semibold mb-6">{t('la-office-title')}</h3>
-          <h3 className="text-2xl font-semibold mb-6 h-[4rem]">{t('la-office')}</h3>
-          {/* Add an embedded map here */}
-          <div className="h-[300px] bg-gray-100 rounded-lg mb-6 overflow-hidden flex items-center justify-center text-gray-500">
-            {/* Placeholder for LA Office Map */}
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3320.9893541738743!2d-117.86467612450893!3d33.67088487330263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dcde7d53063f25%3A0xe539462589574d75!2s19800%20MacArthur%20Blvd%20STE%20570%2C%20Irvine%2C%20CA%2092612!5e0!3m2!1sen!2sus!4v1731711168671!5m2!1sen!2sus"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
+      <section className="bg-slate-50 py-16">
+        <div className="container mx-auto grid gap-7 px-4 md:grid-cols-2 lg:px-8">
+          {offices.map((office) => (
+            <article
+              key={office.key}
+              className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"
+            >
+              <div className="p-6">
+                <p className="text-sm font-semibold uppercase tracking-[0.15em] text-teal-700">
+                  {office.title}
+                </p>
+                <h2 className="mt-2 flex items-start gap-2 text-xl font-bold text-slate-900">
+                  <MapPin
+                    className="mt-0.5 h-5 w-5 shrink-0 text-amber-500"
+                    aria-hidden="true"
+                  />
+                  {office.address}
+                </h2>
+              </div>
+              <iframe
+                src={office.map}
+                width="100%"
+                height="320"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title={`${office.title} Google Map`}
+              />
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="py-16">
+        <div className="container mx-auto grid gap-8 px-4 lg:grid-cols-[0.55fr_1.45fr] lg:px-8">
+          <aside className="rounded-2xl bg-slate-950 p-7 text-center text-white">
+            <h2 className="text-2xl font-bold">{fundingT("wechat.title")}</h2>
+            <p className="mt-2 text-slate-300">
+              {fundingT("wechat.description")}
+            </p>
+            <Image
+              src="/QR-code.png"
+              alt={fundingT("wechat.title")}
+              width={220}
+              height={220}
+              className="mx-auto mt-6 rounded-xl bg-white p-2"
             />
-          </div>
-          {/* Office phone */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-2 text-gray-700">
-              <span className="font-medium">{t('phone-label')}</span>
-              <a href={`tel:${t('la-phone')}`} className="hover:text-teal-600 transition-colors">
-                {t('la-phone')}
-              </a>
-            </div>
+          </aside>
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
+            <h2 className="text-3xl font-bold text-slate-900">
+              {formT("title")}
+            </h2>
+            <p className="mb-8 mt-2 text-slate-600">{formT("description")}</p>
+            <ContactForm translations={contactFormTranslations} />
           </div>
         </div>
-
-        <div className="bg-white p-8 rounded-lg shadow-lg">
-          <h3 className="text-2xl font-semibold mb-6">{t('miami-office-title')}</h3>
-          <h3 className="text-2xl font-semibold mb-6 h-[4rem]">{t('miami-office')}</h3>
-          {/* Add an embedded map here */}
-          <div className="h-[300px] bg-gray-100 rounded-lg mb-6 overflow-hidden">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3597.308721601592!2d-80.34370852375291!3d25.627877377436235!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d9c69fb4299d93%3A0xb454cb3e5515c4c9!2s15321%20S%20Dixie%20Hwy%20%23302b%2C%20Palmetto%20Bay%2C%20FL%2033157!5e0!3m2!1sen!2sus!4v1731711168671!5m2!1sen!2sus"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-          </div>
-          {/* Office phone */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-2 text-gray-700">
-              <span className="font-medium">{t('phone-label')}</span>
-              <a href={`tel:${t('la-phone')}`} className="hover:text-teal-600 transition-colors">
-                {t('la-phone')}
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Contact Form section */}
-      <div className="mt-16">
-        <div className="bg-white p-8 rounded-lg shadow-lg max-w-4xl mx-auto">
-          <h3 className="text-2xl font-semibold mb-6">{formT('title')}</h3>
-          <p className="text-gray-600 mb-8">{formT('description')}</p>
-          <ContactForm translations={contactFormTranslations} />
-        </div>
-      </div>
-    </div>
-  )
+      </section>
+    </>
+  );
 }

@@ -1,10 +1,16 @@
-import Header from "@/app/components/Header"
-import Footer from "@/app/components/Footer"
-import "@/app/globals.css"
-import { getTranslations, setRequestLocale } from "next-intl/server"
+import Header from "@/app/components/Header";
+import Footer from "@/app/components/Footer";
+import "@/app/globals.css";
+import { NextIntlClientProvider } from "next-intl";
+import {
+  getMessages,
+  getTranslations,
+  setRequestLocale,
+} from "next-intl/server";
 import { type Locale, locales } from "@/i18n.config";
-import Script from 'next/script'
-import { Toaster } from "@/app/components/ui/toaster"
+import Script from "next/script";
+import { Toaster } from "@/app/components/ui/toaster";
+import FloatingContactBar from "@/app/components/FloatingContactBar";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -14,7 +20,7 @@ export function generateStaticParams() {
  * We pull in the current locale
  * generated from `generateStaticParms`
  * or the current request route.
-*/
+ */
 export async function generateMetadata({
   params: { locale },
 }: {
@@ -61,7 +67,7 @@ export async function generateMetadata({
     },
     appleWebApp: {
       title: t("siteName"),
-      statusBarStyle: 'default',
+      statusBarStyle: "default",
       capable: true,
     },
   };
@@ -79,15 +85,17 @@ export default async function RootLayout({
     locale,
     namespace: "Layout.metaData",
   });
+  const messages = await getMessages();
 
   return (
     <html lang={locale}>
       <body className="flex flex-col min-h-screen">
-        <Header />
-        <main className="flex-1">
-          {children}
-        </main>
-        <Footer />
+        <NextIntlClientProvider messages={messages}>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <FloatingContactBar />
+        </NextIntlClientProvider>
         <Script
           id="schema-org"
           type="application/ld+json"
@@ -96,52 +104,47 @@ export default async function RootLayout({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
               "@id": t("siteUrl"),
-              "name": t("siteName"),
-              "description": t("description"),
-              "url": t("siteUrl"),
-              "logo": `${t("siteUrl")}${t("siteLogo")}`,
-              "image": `${t("siteUrl")}${t("socialBanner")}`,
-              "email": t("email"),
-              "telephone": ["+1 (650) 226-8118", "+1 (949) 300-4828"],
-              "address": [{
-                "@type": "PostalAddress",
-                "addressLocality": "Burlingame",
-                "addressRegion": "CA",
-                "postalCode": "94010",
-                "streetAddress": "851 Burlway Rd, Ste 605",
-                "addressCountry": "US",
-                "telephone": "+1 (650) 226-8118"
-              }, {
-                "@type": "PostalAddress",
-                "addressLocality": "Irvine",
-                "addressRegion": "CA",
-                "postalCode": "92612",
-                "streetAddress": "19800 Macarthur Blvd Ste 570",
-                "addressCountry": "US",
-                "telephone": "+1 (949) 300-4828"
-              }, {
-                "@type": "PostalAddress",
-                "addressLocality": "Palmetto Bay",
-                "addressRegion": "FL",
-                "postalCode": "33157",
-                "streetAddress": "15321 South Dixie Highway, Suite 302B",
-                "addressCountry": "US",
-                "telephone": "+1 (949) 300-4828"
-              }],
-              "openingHours": "Mo-Fr 09:30-17:30",
-              "areaServed": {
+              name: t("siteName"),
+              description: t("description"),
+              url: t("siteUrl"),
+              logo: `${t("siteUrl")}${t("siteLogo")}`,
+              image: `${t("siteUrl")}${t("socialBanner")}`,
+              email: t("email"),
+              telephone: "+1 (949) 300-4828",
+              address: [
+                {
+                  "@type": "PostalAddress",
+                  addressLocality: "Irvine",
+                  addressRegion: "CA",
+                  postalCode: "92612",
+                  streetAddress: "19800 Macarthur Blvd Ste 570",
+                  addressCountry: "US",
+                  telephone: "+1 (949) 300-4828",
+                },
+                {
+                  "@type": "PostalAddress",
+                  addressLocality: "Palmetto Bay",
+                  addressRegion: "FL",
+                  postalCode: "33157",
+                  streetAddress: "15321 South Dixie Highway, Suite 302B",
+                  addressCountry: "US",
+                  telephone: "+1 (949) 300-4828",
+                },
+              ],
+              openingHours: "Mo-Fr 09:30-17:30",
+              areaServed: {
                 "@type": "Country",
-                "name": "United States"
+                name: "United States",
               },
-              "sameAs": [
+              sameAs: [
                 // Add your social media URLs here
               ],
-              "priceRange": "$$",
-            })
+              priceRange: "$$",
+            }),
           }}
         />
         <Toaster />
       </body>
     </html>
-  )
+  );
 }

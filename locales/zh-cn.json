@@ -7,26 +7,17 @@
       "outsourcing-tax-and-accounting": "税务外包",
       "tax-credits": {
         "title": "税务减免",
-        "_comment1": "Since those 2 are children of Tax Credits, add '• ' before it",
-        "_comment2": "TODO: Format should be implement in Header.tsx",
         "rd-tax-credits": "• 研发税减免",
-        "self-employed-tax-credits": "• 自雇税减免",
-        "erc-application": "• ERC 申请",
-        "real-estate-broker-commission-claim": "• 房产经纪人佣金索赔",
-        "erc-application-card": {
-          "title": "ERC 申请",
-          "description": "Jiahua 的专家会计师、法学博士和薪资专家团队，凭借在会计和专业服务领域的数十年经验，结合深厚的技术专长，开发了一个尖端平台，简化 ERC 申请流程，同时帮助获得过第一轮和/或第二轮 PPP 贷款的雇主最大化申请员工保留税收抵免。"
-        },
-        "real-estate-broker-commission-claim-card": {
-          "title": "房产经纪人佣金索赔",
-          "description": "Jiahua 会计师事务所深度研究全国房地产经纪人协会（NAR）10亿美元和解协议，为在2014年4月至2024年2月期间出售房产并支付佣金的房主提供全程专业申请服务。"
-        }
+        "self-employed-tax-credits": "• 自雇税减免"
       },
       "company-formation": "公司注册",
       "itin-application": "ITIN 申请",
       "unclaimed-property-reporting-and-consulting": "未认领财产报告与咨询",
       "boi-reporting": "BOI 申报"
     },
+    "government-funding": "政府资金与补贴",
+    "assessment-cta": "48小时免费初评",
+    "wechat": "微信客服",
     "news": "资讯",
     "contact-now": "现在联系",
     "recruitment": "招聘计划",
@@ -35,13 +26,11 @@
   "Footer": {
     "contact": {
       "title": "联系我们",
-      "sf-office": "旧金山办公室：851 Burlway Rd, Ste 605, Burlingame, CA, 94010",
-      "la-office": "洛杉矶办公室：19800 Macarthur Blvd Ste 570, Irvine, CA 92612",
-      "miami-office": "迈阿密办公室：15321 South Dixie Highway, Suite 302B, Palmetto Bay, FL, 33157",
+      "la-office": "加州尔湾办公室：19800 Macarthur Blvd Ste 570, Irvine, CA 92612",
+      "miami-office": "佛州总部：15321 South Dixie Highway, Suite 302B, Palmetto Bay, FL, 33157",
       "office-hours": "太平洋时间：上午9：30 - 下午5：30",
       "phone-label": "电话：",
       "email-label": "邮箱：",
-      "sf-phone": "+1 (650) 226-8118",
       "la-phone": "+1 (949) 300-4828",
       "email": "info@jhaccounting.org"
     },
@@ -121,62 +110,119 @@
       }
     }
   },
+  "Funding": {
+    "metaData": {
+      "title": "政府资金、补贴与税收优惠",
+      "description": "通过 AI 智能政策检索与资深财税专家复核，为企业匹配政府补贴、税收优惠与低息资金。"
+    },
+    "hero": {
+      "eyebrow": "政府资金与财税规划",
+      "title": "全美企业政府补贴与财税规划专家",
+      "description": "基于“AI 智能检索数据库 + 资深财税专家把关”双重机制，精准匹配联邦及各州 Grants、研发税/自雇税减免与低息贷款。",
+      "primaryCta": "开始48小时免费资格初评",
+      "secondaryCta": "了解政府补贴服务",
+      "trustLine": "AI 智能查找政策 · 财税专家审核 · 服务全美企业"
+    },
+    "services": {
+      "eyebrow": "三大核心服务",
+      "title": "为企业下一阶段匹配合适资金",
+      "grants": {
+        "title": "政府专项补贴",
+        "description": "针对联邦、各州及地方政府专项扶持资金，提供从 AI 智能匹配、符合性评估到申请材料提交的全流程服务，无需偿还。"
+      },
+      "taxCredits": {
+        "title": "税务减免与退税规划",
+        "description": "深挖研发税减免、自雇人士税收补贴及各行业专项税收优惠，协助符合条件的企业与个人依法合规取得可用优惠。"
+      },
+      "loans": {
+        "title": "企业低息 / 无息贷款",
+        "description": "协助匹配 SBA 商业贷款、地方政府扶持低息贷款及无息贴息项目，优化企业现金流。"
+      }
+    },
+    "faq": {
+      "eyebrow": "常见问题",
+      "title": "申请前先把问题说明白",
+      "items": {
+        "ai": {
+          "question": "佳华是用 AI 办理申请吗？靠谱吗？",
+          "answer": "我们采用“AI 智能检索 + 财税专家把关”的双重机制。AI 系统负责全美数万条政策数据的实时搜索与初筛；每一份正式申请材料均由资深财税专家进行人工审核。系统负责“找得全”，专家负责“报得准”。"
+        },
+        "fees": {
+          "question": "收费模式是怎样的？是否有隐藏费用？",
+          "answer": "我们采取“低前期咨询费 + 成功获批后支付主体服务费”的合作模式。前期仅收取基础评估与材料整理费，主要服务费用在资金到账或项目获批后支付，所有费用均在协议中明文约定。"
+        },
+        "retired": {
+          "question": "为什么不再提供 ERC 与房产佣金索赔业务？",
+          "answer": "ERC 申请时效已经结束。佳华目前集中服务政府 Grants、研发税及其他税收优惠、企业融资项目和基础财税，房产佣金索赔等非核心项目不再公开推广。"
+        }
+      }
+    },
+    "form": {
+      "eyebrow": "免费资格评估",
+      "title": "获取48小时资金匹配初评",
+      "description": "请提供企业基本情况，我们将初步筛查政府补贴、税收优惠与融资项目，并与您沟通下一步。",
+      "businessName": "企业名称",
+      "contactName": "联系人姓名",
+      "email": "电子邮箱",
+      "phoneWechat": "电话或微信",
+      "stateCity": "企业所在州与城市",
+      "industry": "行业类别",
+      "employeeCount": "W-2 员工人数",
+      "annualRevenue": "年营业额规模",
+      "primaryNeed": "主要意向需求（至少选择一项）",
+      "selectPlaceholder": "请选择",
+      "industryOptions": {
+        "hospitality": "餐饮酒店",
+        "logistics": "物流运输",
+        "manufacturing": "制造加工",
+        "retail": "零售电商",
+        "technology": "科技研发",
+        "agriculture": "农业",
+        "other": "其他"
+      },
+      "employeeOptions": {
+        "oneToFive": "1-5人",
+        "sixToTwenty": "6-20人",
+        "twentyOneToFifty": "21-50人",
+        "moreThanFifty": "50人以上"
+      },
+      "revenueOptions": {
+        "under500k": "50万美元以下",
+        "from500kTo2m": "50万-200万美元",
+        "from2mTo5m": "200万-500万美元",
+        "over5m": "500万美元以上"
+      },
+      "needOptions": {
+        "grants": "政府补贴 Grants",
+        "taxCredits": "研发税 / 自雇税减免",
+        "loans": "低息 / 无息贷款"
+      },
+      "needRequired": "请至少选择一项主要需求。",
+      "submit": "提交信息 · 免费获取评估报告",
+      "submitting": "正在提交…",
+      "success": "感谢提交。我们的团队会尽快与您联系。",
+      "error": "暂时无法提交，请拨打 (949) 300-4828 或发送邮件至 info@jhaccounting.org。"
+    },
+    "conversion": {
+      "title": "想知道您的企业符合哪些政府补贴或减免政策？",
+      "description": "提交企业信息，获取清晰、可执行的初步评估建议。",
+      "button": "立即免费评估"
+    },
+    "floating": {
+      "phone": "电话直拨",
+      "wechat": "微信客服",
+      "assessment": "免费评估",
+      "top": "返回顶部"
+    },
+    "wechat": {
+      "title": "微信客服",
+      "description": "扫描二维码添加客服微信。"
+    }
+  },
   "Services": {
     "title": "服务",
     "description": "我们自始至终帮助您完成整个过程",
     "backToServices": "返回服务"
-  },
-  "ERC-Application": {
-    "title": "ERC 申请",
-    "description": "我们自始至终帮助您完成整个过程",
-    "introduction-section": {
-      "title1": "Jiahua 的专家会计师、法学博士和薪资专家团队在会计和专业服务行业拥有数十年的经验",
-      "description1": "他们将这些经验与深厚的技术专长相结合，开发了一个尖端的平台，旨在简化ERC流程，同时最大限度地提高已获得第一轮和/或第二轮PPP贷款的雇主的员工保留税收抵免抵免。",
-      "title2": "收到抵免款再付服务费",
-      "description2": "通过我们仔细审查和分析 COVID-19 立法救济项目和数百页的国税局指导，我们的技术专家提供的策略，帮助许多即使获得了第一和/或第二轮PPP贷款的雇主能申请到上限，即每个员工 26000 美元。我们对我们的专业方法非常有信心，我们的服务保证”收到抵免款再付服务费”。"
-    },
-    "why-choose-us-section": {
-      "title": "我们的优势",
-      "description": "我们会自始至终帮助您完成整个过程",
-      "part1": {
-        "title": "经验",
-        "description": "Jiahua 利用在会计和专业服务行业的多年经验，并将其用于帮助企业主充分利用这一高度复杂的 COVID-19 救援措施。EZ-ERC 的财务专家帮助了数百家企业完成了 ERC 流程并获得了他们的税收减免！"
-      },
-      "part2": {
-        "title": "专业",
-        "description": "我们的团队仔细审查了《CARES法案》、《综合拨款法案》和《美国救援计划》，以确保我们完全遵守伦理委员会的规定，同时确保我们的客户充分享受员工保留税收抵免的好处。"
-      },
-      "part3": {
-        "title": "效率",
-        "description": "EZ-ERC 的流动性策略和快速周转时间确保您快速获得您的信用。Jiahua为符合条件的客户提供额外收款选项，这些客户有资格提前收到他们的员工保留税收抵免。我们的目标是让您尽快收到您的抵免款!"
-      }
-    }
-  },
-  "Real-Estate-Broker-Commission-Claim": {
-    "title": "房产经纪人佣金索赔",
-    "description": "我们自始至终帮助您完成整个过程",
-    "introduction-section": {
-      "title1": "Jiahua 会计师事务所助您追回卖房佣金！",
-      "description1": "🏡 您是否在 2014年4月至2024年2月 期间出售过房产？\n🏡 您是否在MLS挂牌销售，并支付了房地产经纪人佣金？\n🏡 您可能符合全美房地产经纪人协会（NAR）10亿美元和解协议的退款资格！\n\n重大变革！ 美国房地产市场迎来历史性调整，传统5-6%的高额经纪人佣金制度即将终结！如果您在符合条件的日期范围内出售了房产，您可能有资格申请部分佣金退款！",
-      "title2": "不成功，不收费",
-      "description2": "Jiahua会计师事务所 作为专业财税咨询机构，全程为您办理佣金退款申请，让您的权益得到最大化保障！\n✅ 免费预评估，确认资格！\n✅ 专业团队，高效申请！\n✅ 全程无忧，一对一服务！\n\n申请截止时间：2025年4月底，抓住机会，尽早申请！名额有限，立即联系我们，获取您的佣金退款！"
-    },
-    "why-choose-us-section": {
-      "title": "选择 Jiahua 会计师事务所，三大优势助您成功追回卖房佣金！",
-      "description": "Jiahua 会计师事务所 —— 您的房地产佣金退款专家！\n 我们深度研究全国房地产经纪人协会（NAR）10亿美元和解协议，精准匹配符合条件的卖家，\n为在2014年4月至2024年2月期间出售房产并支付佣金的房主提供全程专业申请服务。",
-      "part1": {
-        "title": "经验丰富，成功案例众多！",
-        "description": "Jiahua会计师事务所在美国财税和法律咨询领域深耕多年，积累了大量成功案例。我们熟悉房地产行业规则，深入研究NAR和解协议，精准把握佣金退款政策，确保您的申请符合官方要求，让您的权益得到最大保障！"
-      },
-      "part2": {
-        "title": "专业团队，全程精细化服务！",
-        "description": "我们的团队由财税专家、法律顾问和房地产行业资深人士组成，能够为每一位客户提供个性化咨询和指导。我们不仅帮助您整理申请材料，还会严格审核文件，确保所有信息完整准确，大幅提高成功获批的可能性！"
-      },
-      "part3": {
-        "title": "高效办理，快速提交申请！",
-        "description": "我们深知时间就是金钱，因此建立了一套高效、系统化的处理流程。从资格预评估到正式递交申请，我们全程代办，帮助您省去繁琐的手续，让您的退款申请尽快进入审批阶段。我们承诺，不成功不收费，在最短时间内帮您完成申请，让您安心等待官方审批！"
-      }
-    }
   },
   "News": {
     "title": "资讯",
@@ -188,14 +234,11 @@
     "title": "现在联系",
     "description": "联系 Jiahua 会计师事务所，经验丰富的团队随时准备为实现您的财务目标提供支持。",
     "office-hours": "太平洋时间：上午9：30 - 下午5：30",
-    "sf-office-title": "旧金山办公室",
-    "sf-office": "851 Burlway Rd, Ste 605, Burlingame, CA, 94010",
-    "la-office-title": "洛杉矶办公室",
+    "la-office-title": "加州尔湾办公室",
     "la-office": "19800 Macarthur Blvd Ste 570, Irvine, CA 92612",
-    "miami-office-title": "迈阿密办公室",
+    "miami-office-title": "佛州总部",
     "miami-office": "15321 South Dixie Highway, Suite 302B, Palmetto Bay, FL, 33157",
     "phone-label": "电话：",
-    "sf-phone": "+1 (650) 226-8118",
     "la-phone": "+1 (949) 300-4828",
     "email-label": "邮箱：",
     "email": "info@jhaccounting.org",

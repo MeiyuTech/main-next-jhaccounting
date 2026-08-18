@@ -1,18 +1,22 @@
 import createMiddleware from "next-intl/middleware";
 import { locales } from "@/i18n.config";
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
 // Define redirect mappings
 const redirects = new Map([
-  ['/en-us/pages_43', '/en-us'],
-  ['/en-us/en', '/en-us/erc-application'],
-  ['/en-us/en/aboutus', '/en-us'],
-  ['/en-us/en/Services', '/en-us/services'],
-  ['/zh-cn/pages_43', '/zh-cn'],
-  ['/zh-cn/en', '/zh-cn/erc-application'],
-  ['/zh-cn/en/aboutus', '/zh-cn'],
-  ['/zh-cn/en/Services', '/zh-cn/services'],
+  ["/en-us/pages_43", "/en-us"],
+  ["/en-us/en", "/en-us"],
+  ["/en-us/en/aboutus", "/en-us"],
+  ["/en-us/en/Services", "/en-us/services"],
+  ["/en-us/erc-application", "/en-us/government-funding"],
+  ["/en-us/real-estate-broker-commission-claim", "/en-us/government-funding"],
+  ["/zh-cn/pages_43", "/zh-cn"],
+  ["/zh-cn/en", "/zh-cn"],
+  ["/zh-cn/en/aboutus", "/zh-cn"],
+  ["/zh-cn/en/Services", "/zh-cn/services"],
+  ["/zh-cn/erc-application", "/zh-cn/government-funding"],
+  ["/zh-cn/real-estate-broker-commission-claim", "/zh-cn/government-funding"],
   // Add more redirects here if needed
 ]);
 
@@ -30,12 +34,12 @@ const handleI18nRouting = createMiddleware({
   // we cover locale detection.
   localeDetection: true,
   /**
-   * For SEO or usability, some consider localizing their pathnames, 
+   * For SEO or usability, some consider localizing their pathnames,
    * such as translating /ar-eg/about to /ar-eg/نبذة-عنا.
-   * For details on how to set this up and ensure proper navigation, 
+   * For details on how to set this up and ensure proper navigation,
    * check out the Localizing pathnames section in the next-intl documentation.
    */
-  localePrefix: "always"
+  localePrefix: "always",
 });
 
 // Main middleware function to handle both redirects and i18n routing
@@ -68,6 +72,6 @@ export const config = {
     "/zh-cn/pages_43",
     "/zh-cn/en",
     "/zh-cn/en/aboutus",
-    "/zh-cn/en/Services"
+    "/zh-cn/en/Services",
   ],
 };

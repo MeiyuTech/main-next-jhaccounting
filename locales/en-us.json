@@ -7,26 +7,17 @@
       "outsourcing-tax-and-accounting": "Outsourcing Tax & Accounting",
       "tax-credits": {
         "title": "Tax Credits",
-        "_comment1": "Since those 2 are children of Tax Credits, add '• ' before it",
-        "_comment2": "TODO: Format should be implement in Header.tsx",
         "rd-tax-credits": "• R&D Tax Credits",
-        "self-employed-tax-credits": "• Self-Employed Tax Credits",
-        "erc-application": "• ERC Application",
-        "real-estate-broker-commission-claim": "• Real Estate Broker Commission Claim",
-        "erc-application-card": {
-          "title": "ERC Application",
-          "description": "The team of Accountants, JDs, and payroll experts at Jiahua leverage decades of experience in accounting and professional services, combined with deep technical expertise, to develop a cutting-edge platform that simplifies the ERC process while maximizing refundable credits for employers who took one or both PPP loans."
-        },
-        "real-estate-broker-commission-claim-card": {
-          "title": "Real Estate Broker Commission Claim",
-          "description": "Jiahua takes an in-depth look at the National Association of Realtors (NAR) $1 billion settlement agreement and provides full professional application services for homeowners who sold their property between April 2014 and February 2024 and paid a commission."
-        }
+        "self-employed-tax-credits": "• Self-Employed Tax Credits"
       },
       "company-formation": "Company Formation Services",
       "itin-application": "ITIN Application",
       "unclaimed-property-reporting-and-consulting": "Unclaimed Property Reporting & Consulting",
       "boi-reporting": "BOI Reporting"
     },
+    "government-funding": "Government Funding",
+    "assessment-cta": "48-Hour Free Assessment",
+    "wechat": "WeChat",
     "news": "News",
     "contact-now": "Contact Now",
     "recruitment": "Recruitment",
@@ -35,13 +26,11 @@
   "Footer": {
     "contact": {
       "title": "Contact Us",
-      "sf-office": "San Francisco Office: 851 Burlway Rd, Ste 605, Burlingame, CA, 94010",
-      "la-office": "Los Angeles Office: 19800 Macarthur Blvd Ste 570, Irvine, CA 92612",
-      "miami-office": "Miami Office: 15321 South Dixie Highway, Suite 302B, Palmetto Bay, FL, 33157",
+      "la-office": "Irvine Office: 19800 Macarthur Blvd Ste 570, Irvine, CA 92612",
+      "miami-office": "Florida Headquarters: 15321 South Dixie Highway, Suite 302B, Palmetto Bay, FL, 33157",
       "office-hours": "Pacific Time: 9:30 AM - 5:30 PM",
       "phone-label": "Phone:",
       "email-label": "Email:",
-      "sf-phone": "+1 (650) 226-8118",
       "la-phone": "+1 (949) 300-4828",
       "email": "info@jhaccounting.org"
     },
@@ -121,62 +110,119 @@
       }
     }
   },
+  "Funding": {
+    "metaData": {
+      "title": "Government Funding & Tax Incentives",
+      "description": "Match your business with grants, tax incentives, and low-interest funding through AI-powered research and expert review."
+    },
+    "hero": {
+      "eyebrow": "Government Funding & Tax Planning",
+      "title": "Government Funding and Tax Planning Experts for U.S. Businesses",
+      "description": "Our AI-powered program database and experienced tax professionals work together to match your business with federal and state grants, R&D and self-employed tax incentives, and low-interest funding.",
+      "primaryCta": "Start My Free 48-Hour Assessment",
+      "secondaryCta": "Explore Funding Services",
+      "trustLine": "AI-powered program discovery. Expert-reviewed applications. Nationwide coverage."
+    },
+    "services": {
+      "eyebrow": "Three ways we help",
+      "title": "Find the right capital for your next stage",
+      "grants": {
+        "title": "Government Grants",
+        "description": "We identify relevant federal, state, and local programs, assess eligibility, and support the application process for non-repayable funding."
+      },
+      "taxCredits": {
+        "title": "Tax Credits & Incentives",
+        "description": "We evaluate R&D tax credits, self-employed tax incentives, and industry-specific programs so qualified businesses and individuals can claim available benefits compliantly."
+      },
+      "loans": {
+        "title": "Low-Interest & 0% Loans",
+        "description": "We match businesses with SBA products, local economic-development loans, and subsidized or interest-free programs to strengthen cash flow."
+      }
+    },
+    "faq": {
+      "eyebrow": "Frequently asked questions",
+      "title": "Clear answers before you apply",
+      "items": {
+        "ai": {
+          "question": "Does Jiahua use AI to prepare applications, and is it reliable?",
+          "answer": "We use a dual-review process: AI searches and screens thousands of federal, state, and local programs, while experienced tax and accounting professionals review every formal application. The system helps us search broadly; our experts make sure the filing is accurate."
+        },
+        "fees": {
+          "question": "How does Jiahua charge for these services?",
+          "answer": "Our model combines a low initial evaluation fee with a success-aligned service fee paid after approval or fund disbursement. Every fee and condition is stated clearly in the service agreement, with no hidden costs."
+        },
+        "retired": {
+          "question": "Why are ERC and real-estate commission claim services no longer offered?",
+          "answer": "The ERC filing window has expired, and Jiahua has focused its public services on government grants, R&D and other tax incentives, funding programs, and core tax and accounting work."
+        }
+      }
+    },
+    "form": {
+      "eyebrow": "Free eligibility review",
+      "title": "Get your 48-hour funding assessment",
+      "description": "Tell us about your business. Our team will review potential grants, tax incentives, and funding options and contact you with next steps.",
+      "businessName": "Business name",
+      "contactName": "Contact name",
+      "email": "Email",
+      "phoneWechat": "Phone or WeChat",
+      "stateCity": "State and city",
+      "industry": "Industry",
+      "employeeCount": "Number of W-2 employees",
+      "annualRevenue": "Annual revenue",
+      "primaryNeed": "Primary need (select at least one)",
+      "selectPlaceholder": "Select an option",
+      "industryOptions": {
+        "hospitality": "Restaurants and hospitality",
+        "logistics": "Logistics and transportation",
+        "manufacturing": "Manufacturing",
+        "retail": "Retail and e-commerce",
+        "technology": "Technology and R&D",
+        "agriculture": "Agriculture",
+        "other": "Other"
+      },
+      "employeeOptions": {
+        "oneToFive": "1-5",
+        "sixToTwenty": "6-20",
+        "twentyOneToFifty": "21-50",
+        "moreThanFifty": "More than 50"
+      },
+      "revenueOptions": {
+        "under500k": "Under $500K",
+        "from500kTo2m": "$500K-$2M",
+        "from2mTo5m": "$2M-$5M",
+        "over5m": "Over $5M"
+      },
+      "needOptions": {
+        "grants": "Government grants",
+        "taxCredits": "R&D / self-employed tax incentives",
+        "loans": "Low-interest / 0% loans"
+      },
+      "needRequired": "Select at least one funding need.",
+      "submit": "Submit · Get My Free Assessment",
+      "submitting": "Submitting…",
+      "success": "Thank you. Your information was submitted and our team will follow up.",
+      "error": "We could not submit the form. Please call (949) 300-4828 or email info@jhaccounting.org."
+    },
+    "conversion": {
+      "title": "Which grants or tax incentives could your business qualify for?",
+      "description": "Get a focused review of your business and a clear next-step recommendation.",
+      "button": "Get My Free Assessment"
+    },
+    "floating": {
+      "phone": "Call",
+      "wechat": "WeChat",
+      "assessment": "Free assessment",
+      "top": "Back to top"
+    },
+    "wechat": {
+      "title": "WeChat customer service",
+      "description": "Scan the QR code to connect with our team."
+    }
+  },
   "Services": {
     "title": "Services",
     "description": "We will help you through the entire process",
     "backToServices": "Back to Services"
-  },
-  "ERC-Application": {
-    "title": "ERC Application",
-    "description": "We will help you through the entire process",
-    "introduction-section": {
-      "title1": "Jiahua's team of CPAs, JDs, and payroll specialists have decades of experience in the accounting and professional services industry",
-      "description1": "They have combined this experience with their deep technical expertise to develop a cutting-edge platform designed to streamline the ERC process, while strategically maximizing the refundable credit for employers that took one or both PPP loans.",
-      "title2": "Pay Us After You Get Paid",
-      "description2": "Through our careful and calculated review and analysis of COVID-19 legislative relief packages and hundreds of pages of IRS guidance, our technical experts have developed a carefully supported strategy that has allowed many employers to access the full ERC – up to $26,000 per employee – even when they took a first and/or second-round PPP loan. We are so confident in our specialized approach, that our services are offered with a \"Pay Us After You Get Paid\" guaranteed."
-    },
-    "why-choose-us-section": {
-      "title": "What Makes Us Stand Out?",
-      "description": "We will help you through the entire process",
-      "part1": {
-        "title": "Experience",
-        "description": "We have used our years of experience in accounting and professional services and channeled this expertise towards helping business owners take full advantage of this highly complex COVID-19 relief measure. Our financial experts at EZ-ERC have helped hundreds of businesses navigate the ERC process and claim their tax credits!"
-      },
-      "part2": {
-        "title": "Expertise",
-        "description": "Our team has meticulously reviewed the CARES Act, Consolidated Appropriations Act, and American Rescue Plan to ensure that we are in full compliance with the ERC rules while ensuring that our clients take advantage of the full ERC benefits!"
-      },
-      "part3": {
-        "title": "Efficiency",
-        "description": "EZ-ERC's liquidity strategies and fast turnaround time ensure that you get your credit fast. EZ-ERC, qualifying clients, have an additional payment option not offered anywhere else and they may be eligible for an advance payment of their ERC through one of our advanced lending partners. Our goal is to get you your credit, fast!"
-      }
-    }
-  },
-  "Real-Estate-Broker-Commission-Claim": {
-    "title": "Real Estate Broker Commission Claim",
-    "description": "We will help you through the entire process",
-    "introduction-section": {
-      "title1": "Jiahua Accounting Helps You Recover Your Real Estate Commission!",
-      "description1": "🏡 Did you sell property between April 2014 and February 2024?\n🏡 Did you list on MLS and pay real estate broker commission?\n🏡 You may be eligible for a refund under the National Association of Realtors (NAR) $1 billion settlement agreement!\n\nMajor change! The US real estate market is undergoing a historic adjustment, and the traditional 5-6% high broker commission system is coming to an end! If you sold property within the eligible date range, you may qualify to apply for a partial commission refund!",
-      "title2": "No Success, No Fee",
-      "description2": "Jiahua Accounting, as a professional tax consulting firm, handles your commission refund application from start to finish, maximizing your rights and benefits!\n✅ Free pre-assessment to confirm eligibility!\n✅ Professional team, efficient application process!\n✅ Worry-free, one-on-one service!\n\nApplication deadline: End of April 2025. Seize the opportunity and apply early! Limited spots available - contact us now to get your commission refund!"
-    },
-    "why-choose-us-section": {
-      "title": "Choose Jiahua Accounting - Three Major Advantages!",
-      "description": "Jiahua - Your Real Estate Commission Refund Expert!\n We have thoroughly researched the National Association of Realtors (NAR) $1 billion settlement agreement, precisely matching eligible sellers, providing full professional application services for homeowners who sold property and paid commissions between April 2014 and February 2024.",
-      "part1": {
-        "title": "Rich Experience, Numerous Success Stories!",
-        "description": "Jiahua Accounting has been deeply rooted in US tax and legal consulting for many years, accumulating numerous success stories. We are familiar with real estate industry rules, have thoroughly studied the NAR settlement agreement, and precisely understand commission refund policies to ensure your application meets official requirements, maximizing the protection of your rights and interests!"
-      },
-      "part2": {
-        "title": "Professional Team, Comprehensive Service!",
-        "description": "Our team consists of tax experts, legal advisors, and real estate industry veterans who provide personalized consultation and guidance to each client. We not only help you organize application materials but also strictly review documents to ensure all information is complete and accurate, greatly increasing the likelihood of successful approval!"
-      },
-      "part3": {
-        "title": "Efficient Processing, Fast Application Submission!",
-        "description": "We understand that time is money, so we've established an efficient, systematic processing workflow. From eligibility pre-assessment to formal application submission, we handle everything, helping you avoid complicated procedures and getting your refund application into the approval process quickly. We promise: no success, no fee - we'll complete your application in the shortest time possible, allowing you to wait for official approval with peace of mind!"
-      }
-    }
   },
   "News": {
     "title": "News",
@@ -188,14 +234,11 @@
     "title": "Contact Now",
     "description": "Contact Jiahua Accounting Services, our experienced team is ready to support you in achieving your financial goals.",
     "office-hours": "Pacific Time: 9:30 AM - 5:30 PM",
-    "sf-office-title": "San Francisco Office",
-    "sf-office": "851 Burlway Rd, Ste 605, Burlingame, CA, 94010",
-    "la-office-title": "Los Angeles Office",
+    "la-office-title": "Irvine Office",
     "la-office": "19800 Macarthur Blvd Ste 570, Irvine, CA 92612",
-    "miami-office-title": "Miami Office",
+    "miami-office-title": "Florida Headquarters",
     "miami-office": "15321 South Dixie Highway, Suite 302B, Palmetto Bay, FL, 33157",
     "phone-label": "Phone:",
-    "sf-phone": "+1 (650) 226-8118",
     "la-phone": "+1 (949) 300-4828",
     "email-label": "Email:",
     "email": "info@jhaccounting.org",
