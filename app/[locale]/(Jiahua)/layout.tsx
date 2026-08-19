@@ -131,7 +131,7 @@ export default async function RootLayout({
                   telephone: "+1 (949) 300-4828",
                 },
               ],
-              openingHours: "Mo-Fr 09:30-17:30",
+              openingHours: "Mo-Fr 09:00-17:00",
               areaServed: {
                 "@type": "Country",
                 name: "United States",

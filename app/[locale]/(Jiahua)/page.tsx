@@ -1,32 +1,27 @@
-/**
- * Home Page
- */
 import Image from "next/image";
-import { setRequestLocale, getTranslations } from "next-intl/server";
-import { Card, CardContent } from "@/app/components/ui/card";
-import { HandCoins, Landmark, ReceiptText } from "lucide-react";
+import {
+  ArrowRight,
+  BadgeCheck,
+  Bot,
+  HandCoins,
+  Handshake,
+  Landmark,
+  ReceiptText,
+} from "lucide-react";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+
 import EligibilityForm from "@/app/components/EligibilityForm";
+import FundingContactBox from "@/app/components/FundingContactBox";
+import { Card, CardContent } from "@/app/components/ui/card";
 import { Link } from "@/i18n.config";
 
-/*
- * We pull in the current locale
- * generated from `generateStaticParms`
- * or the current request route.
- */
 export async function generateMetadata({
   params: { locale },
 }: {
   params: { locale: string };
 }) {
-  const t = await getTranslations({
-    locale,
-    namespace: "Home.metaData",
-  });
-
-  return {
-    title: t("title"),
-    description: t("description"),
-  };
+  const t = await getTranslations({ locale, namespace: "Home.metaData" });
+  return { title: t("title"), description: t("description") };
 }
 
 export default async function Home({
@@ -37,31 +32,39 @@ export default async function Home({
   setRequestLocale(locale);
   const t = await getTranslations("Home");
   const fundingT = await getTranslations("Funding");
-
   const fundingServices = [
     { key: "grants", icon: Landmark },
     { key: "taxCredits", icon: ReceiptText },
     { key: "loans", icon: HandCoins },
   ] as const;
+  const advantages = [
+    { key: "matching", icon: Bot },
+    { key: "review", icon: BadgeCheck },
+    { key: "fees", icon: Handshake },
+  ] as const;
+  const faqItems = [
+    "ai",
+    "fees",
+    "smallBusiness",
+    "applicationProcess",
+    "applicationImpact",
+  ] as const;
 
   return (
     <>
-      {/* Hero Section */}
       <section className="relative overflow-hidden bg-slate-950 text-white">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/handshake.jpg"
-            alt="Hero background"
-            fill
-            priority
-            className="object-cover"
-            quality={85}
-          />
-        </div>
-        <div className="absolute inset-0 z-10 bg-slate-950/80" />
-        <div className="container relative z-20 mx-auto grid gap-10 px-4 py-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:px-8 lg:py-16">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-teal-300">
+        <Image
+          src="/handshake.jpg"
+          alt=""
+          fill
+          priority
+          className="object-cover opacity-20"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(13,148,136,0.3),_transparent_46%)]" />
+        <div className="container relative mx-auto px-4 py-16 lg:px-8 lg:py-24">
+          <div className="max-w-5xl">
+            <p className="max-w-full break-words text-xs font-semibold uppercase tracking-[0.14em] text-teal-300 sm:text-sm sm:tracking-[0.22em]">
               {fundingT("hero.eyebrow")}
             </p>
             <h1 className="mt-4 text-4xl font-bold leading-tight text-white md:text-6xl">
@@ -73,23 +76,25 @@ export default async function Home({
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
                 href="#eligibility-form"
-                className="rounded-lg bg-amber-400 px-5 py-3 text-center font-bold text-slate-950 hover:bg-amber-300"
+                className="rounded-lg bg-amber-400 px-5 py-3 text-center font-bold text-slate-950 transition hover:bg-amber-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
               >
                 {fundingT("hero.primaryCta")}
               </a>
               <Link
                 href="/government-funding"
-                className="rounded-lg border border-white/40 px-5 py-3 text-center font-semibold text-white hover:bg-white/10"
+                className="rounded-lg border border-white/40 px-5 py-3 text-center font-semibold text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
               >
                 {fundingT("hero.secondaryCta")}
               </Link>
             </div>
+            <p className="mt-6 text-sm text-slate-300">
+              {fundingT("hero.trustLine")}
+            </p>
           </div>
-          <EligibilityForm />
         </div>
       </section>
 
-      <section className="bg-slate-50 py-16">
+      <section className="bg-slate-50 py-16 md:py-24">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-teal-700">
@@ -98,176 +103,123 @@ export default async function Home({
             <h2 className="mt-3 text-3xl font-bold text-slate-900 md:text-5xl">
               {fundingT("services.title")}
             </h2>
+            <p className="mt-4 leading-7 text-slate-600">
+              {fundingT("services.description")}
+            </p>
           </div>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {fundingServices.map(({ key, icon: Icon }) => (
-              <Card key={key} className="border-slate-200 bg-white">
+              <Card key={key} className="border-slate-200 bg-white shadow-sm">
                 <CardContent className="p-7">
-                  <Icon className="h-9 w-9 text-teal-700" aria-hidden="true" />
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-teal-50 text-teal-700">
+                    <Icon className="h-6 w-6" aria-hidden="true" />
+                  </div>
                   <h3 className="mt-5 text-2xl font-bold text-slate-900">
                     {fundingT(`services.${key}.title`)}
                   </h3>
                   <p className="mt-3 leading-7 text-slate-600">
-                    {fundingT(`services.${key}.description`)}
+                    {fundingT(`services.${key}.summary`)}
                   </p>
                 </CardContent>
               </Card>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Consultation Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="relative">
-              <Image
-                src="/consultation.png"
-                alt="Financial consultation"
-                width={800}
-                height={600}
-                className="rounded-lg"
-              />
-            </div>
-            <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-teal-600 mb-6">
-                {t("consultation-section.title1")}
-                <br />
-                {t("consultation-section.title2")}
-              </h2>
-              <p className="mb-6 text-gray-700">
-                {t("consultation-section.description1")}
-              </p>
-              <p className="mb-6 text-gray-700">
-                {t("consultation-section.description2")}
-              </p>
-              <ul className="space-y-4 text-gray-700">
-                <li className="flex items-start gap-2">
-                  <span className="text-teal-600">•</span>
-                  {t("consultation-section.question1")}
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-teal-600">•</span>
-                  {t("consultation-section.question2")}
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-teal-600">•</span>
-                  {t("consultation-section.question3")}
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-teal-600">•</span>
-                  {t("consultation-section.question4")}
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-teal-600">•</span>
-                  {t("consultation-section.question5")}
-                </li>
-              </ul>
-            </div>
+          <div className="mt-8 text-center">
+            <Link
+              href="/government-funding#funding-services"
+              className="inline-flex items-center gap-2 font-bold text-teal-700 hover:text-teal-900"
+            >
+              {fundingT("services.detailsLink")}
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Process Section */}
-      <section className="py-16 bg-slate-800 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-6xl font-bold mb-4 text-amber-400">
-            {t("process-section.title")}
-          </h2>
-          <p className="text-2xl mb-12 text-gray-300">
-            {t("process-section.description")}
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
-            {[
-              {
-                step: 1,
-                title: t("process-section.step1.title"),
-                description: t("process-section.step1.description"),
-              },
-              {
-                step: 2,
-                title: t("process-section.step2.title"),
-                description: t("process-section.step2.description"),
-              },
-              {
-                step: 3,
-                title: t("process-section.step3.title"),
-                description: t("process-section.step3.description"),
-              },
-              {
-                step: 4,
-                title: t("process-section.step4.title"),
-                description: t("process-section.step4.description"),
-              },
-              {
-                step: 5,
-                title: t("process-section.step5.title"),
-                description: t("process-section.step5.description"),
-              },
-            ].map((item, index) => (
-              <div key={index} className="flex flex-col items-center">
-                <div className="w-16 h-16 rounded-full bg-white text-slate-800 flex items-center justify-center text-2xl font-bold mb-4">
-                  {item.step}
-                </div>
-                <h3 className="text-3xl font-bold mb-2 min-h-[4rem]">
-                  {item.title}
+      <section className="py-16 md:py-24">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-teal-700">
+              {fundingT("advantages.eyebrow")}
+            </p>
+            <h2 className="mt-3 text-3xl font-bold text-slate-900 md:text-5xl">
+              {fundingT("advantages.title")}
+            </h2>
+          </div>
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {advantages.map(({ key, icon: Icon }) => (
+              <article
+                key={key}
+                className="rounded-2xl border border-slate-200 p-7"
+              >
+                <Icon className="h-9 w-9 text-teal-700" aria-hidden="true" />
+                <h3 className="mt-5 text-xl font-bold text-slate-900">
+                  {fundingT(`advantages.${key}.title`)}
                 </h3>
-                <p className="text-xl text-gray-300">{item.description}</p>
-              </div>
+                <p className="mt-3 leading-7 text-slate-600">
+                  {fundingT(`advantages.${key}.description`)}
+                </p>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Why Us Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-6xl font-bold mb-4 text-teal-600">
-            {t("why-choose-us-section.title")}
-          </h2>
-          <p className="text-2xl mb-12 text-gray-400">
-            {t("why-choose-us-section.description")}
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                image: "/icon-why-1.png",
-                title: t("why-choose-us-section.part1.title"),
-                description: t("why-choose-us-section.part1.description"),
-              },
-              {
-                image: "/icon-why-2.png",
-                title: t("why-choose-us-section.part2.title"),
-                description: t("why-choose-us-section.part2.description"),
-              },
-              {
-                image: "/icon-why-3.png",
-                title: t("why-choose-us-section.part3.title"),
-                description: t("why-choose-us-section.part3.description"),
-              },
-            ].map((item, index) => (
-              <Card key={index} className="bg-gray-50">
-                <CardContent className="p-6">
-                  <div className="relative w-16 h-16 mx-auto mb-4">
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      loading="lazy"
-                      className="object-contain"
-                    />
-                  </div>
-                  <h3 className="text-3xl font-bold mb-2 min-h-[4rem]">
-                    {item.title}
-                  </h3>
-                  <p className="text-xl text-gray-600 mb-4">
-                    {item.description}
-                  </p>
-                </CardContent>
-              </Card>
+      <section className="bg-slate-950 py-16 text-white md:py-24">
+        <div className="container mx-auto grid gap-10 px-4 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-teal-300">
+              {fundingT("faq.eyebrow")}
+            </p>
+            <h2 className="mt-3 text-3xl font-bold md:text-5xl">
+              {fundingT("faq.title")}
+            </h2>
+            <p className="mt-5 leading-7 text-slate-300">
+              {t("faqDescription")}
+            </p>
+            <Link
+              href="/about"
+              className="mt-6 inline-flex items-center gap-2 font-bold text-amber-300 hover:text-amber-200"
+            >
+              {t("contactCta")}
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </div>
+          <div className="space-y-4">
+            {faqItems.map((key) => (
+              <details
+                key={key}
+                className="group rounded-xl border border-white/15 bg-white/5 p-5 open:bg-white/10"
+              >
+                <summary className="cursor-pointer list-none pr-8 text-lg font-bold marker:hidden">
+                  {fundingT(`faq.items.${key}.question`)}
+                </summary>
+                <p className="mt-4 leading-7 text-slate-300">
+                  {fundingT(`faq.items.${key}.answer`)}
+                </p>
+              </details>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="bg-teal-950 py-16 text-white md:py-24">
+        <div className="container mx-auto grid gap-8 px-4 lg:grid-cols-[0.8fr_1.2fr] lg:items-start lg:px-8">
+          <div className="min-w-0 lg:sticky lg:top-40">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-teal-200">
+              {fundingT("homeForm.eyebrow")}
+            </p>
+            <h2 className="mt-3 text-3xl font-bold md:text-5xl">
+              {fundingT("homeForm.title")}
+            </h2>
+            <p className="mt-5 max-w-xl leading-7 text-teal-50/80">
+              {fundingT("homeForm.description")}
+            </p>
+            <div className="mt-8">
+              <FundingContactBox />
+            </div>
+          </div>
+          <EligibilityForm className="min-w-0" />
         </div>
       </section>
     </>

@@ -80,6 +80,8 @@ export default async function ContactNowPage({
               src="/contact-now.jpg"
               alt="Jiahua Accounting offices"
               fill
+              priority
+              sizes="(min-width: 768px) 44vw, 100vw"
               className="object-cover"
             />
           </div>

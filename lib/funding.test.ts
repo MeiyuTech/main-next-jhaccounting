@@ -3,24 +3,25 @@ import { describe, expect, it } from "vitest";
 import { buildFundingLeadMessage } from "./funding";
 
 describe("buildFundingLeadMessage", () => {
-  it("serializes every eligibility field into the contact message", () => {
+  it("serializes the V4 eligibility fields into the contact message", () => {
     const message = buildFundingLeadMessage({
       businessName: "Acme Logistics",
       contactName: "Jamie Chen",
       email: "jamie@example.com",
-      phoneWechat: "949-555-0100",
-      stateCity: "Irvine, CA",
+      phone: "949-555-0100",
+      state: "CA",
       industry: "Logistics and transportation",
-      employeeCount: "6-20",
-      annualRevenue: "$500K-$2M",
       primaryNeeds: ["Government grants", "Tax credits"],
     });
 
     expect(message).toContain("Business name: Acme Logistics");
-    expect(message).toContain("Location: Irvine, CA");
+    expect(message).toContain("Contact name: Jamie Chen");
+    expect(message).toContain("Email: jamie@example.com");
+    expect(message).toContain("Phone: 949-555-0100");
+    expect(message).toContain("State: CA");
     expect(message).toContain("Industry: Logistics and transportation");
-    expect(message).toContain("W-2 employees: 6-20");
-    expect(message).toContain("Annual revenue: $500K-$2M");
     expect(message).toContain("Primary needs: Government grants, Tax credits");
+    expect(message).not.toContain("W-2 employees");
+    expect(message).not.toContain("Annual revenue");
   });
 });

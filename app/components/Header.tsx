@@ -14,6 +14,7 @@ import {
   Sheet,
   SheetClose,
   SheetContent,
+  SheetDescription,
   SheetTitle,
   SheetTrigger,
 } from "@/app/components/ui/sheet";
@@ -35,8 +36,8 @@ export default function Header() {
   const navItems: NavItem[] = [
     { href: "/government-funding", label: t("government-funding") },
     {
-      href: "/services",
-      label: t("services.title"),
+      href: "/core-services",
+      label: t("core-services"),
       children: [
         {
           href: "/services/1-accounting-services",
@@ -73,7 +74,7 @@ export default function Header() {
       ],
     },
     { href: "/news", label: t("news") },
-    { href: "/contact-now", label: t("contact-now") },
+    { href: "/about", label: t("about") },
     { href: "/recruitment", label: t("recruitment") },
   ];
 
@@ -204,6 +205,9 @@ export default function Header() {
                   <SheetTitle className="text-2xl font-bold text-teal-800">
                     {t("menu")}
                   </SheetTitle>
+                  <SheetDescription className="sr-only">
+                    {t("menu-description")}
+                  </SheetDescription>
                   <nav
                     className="mt-5 flex flex-col"
                     aria-label="Mobile navigation"

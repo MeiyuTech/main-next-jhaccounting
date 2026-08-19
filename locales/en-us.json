@@ -16,19 +16,22 @@
       "boi-reporting": "BOI Reporting"
     },
     "government-funding": "Government Funding",
-    "assessment-cta": "48-Hour Free Assessment",
+    "core-services": "Core Services",
+    "about": "About & Contact",
+    "assessment-cta": "Free Eligibility Check",
     "wechat": "WeChat",
     "news": "News",
     "contact-now": "Contact Now",
     "recruitment": "Recruitment",
-    "menu": "Toggle menu"
+    "menu": "Toggle menu",
+    "menu-description": "Navigate to Jiahua services, resources, and contact options."
   },
   "Footer": {
     "contact": {
       "title": "Contact Us",
       "la-office": "Irvine Office: 19800 Macarthur Blvd Ste 570, Irvine, CA 92612",
       "miami-office": "Florida Headquarters: 15321 South Dixie Highway, Suite 302B, Palmetto Bay, FL, 33157",
-      "office-hours": "Pacific Time: 9:30 AM - 5:30 PM",
+      "office-hours": "Monday-Friday: 9:00 AM - 5:00 PM (PST)",
       "phone-label": "Phone:",
       "email-label": "Email:",
       "la-phone": "+1 (949) 300-4828",
@@ -50,9 +53,11 @@
   },
   "Home": {
     "metaData": {
-      "title": "Home | Jiahua US Accounting",
-      "description": "The home page of Jiahua US Accounting"
+      "title": "Government Funding, Tax Credits & Accounting | Jiahua",
+      "description": "AI-powered program research and expert-reviewed grants, tax credits, business funding, and core accounting services for U.S. businesses."
     },
+    "faqDescription": "Understand how our research, professional review, and fee structure work before you share your business details.",
+    "contactCta": "Contact Jiahua",
     "hero-section": {
       "title": "Superior Tax and Accounting Services",
       "description": "A team of seasoned professionals offering efficient, tailored financial and accounting solutions for businesses. From financial planning to tax filing, we provide seamless support every step of the way.",
@@ -117,26 +122,78 @@
     },
     "hero": {
       "eyebrow": "Government Funding & Tax Planning",
-      "title": "Government Funding and Tax Planning Experts for U.S. Businesses",
-      "description": "Our AI-powered program database and experienced tax professionals work together to match your business with federal and state grants, R&D and self-employed tax incentives, and low-interest funding.",
-      "primaryCta": "Start My Free 48-Hour Assessment",
-      "secondaryCta": "Explore Funding Services",
+      "title": "AI-Powered Intelligence + Tax Expertise for U.S. Government Funding",
+      "description": "Jiahua helps restaurants, logistics companies, manufacturers, and other small and midsize businesses explore non-dilutive grants, tax credits, and low-interest loans.",
+      "primaryCta": "Get Free Funding Eligibility Assessment",
+      "secondaryCta": "Explore Government Funding Programs",
       "trustLine": "AI-powered program discovery. Expert-reviewed applications. Nationwide coverage."
+    },
+    "subpageHero": {
+      "title": "End-to-End Government Funding & Tax Credit Advisory",
+      "description": "Bridge the information gap with AI-assisted research and improve application quality through experienced tax and accounting review. One coordinated process for grants, tax credits, and business loans."
+    },
+    "homeForm": {
+      "eyebrow": "Start with a focused review",
+      "title": "Tell us what your business needs",
+      "description": "Complete the short form at the end of the homepage. Our team will review your funding interests and contact you about practical next steps."
     },
     "services": {
       "eyebrow": "Three ways we help",
-      "title": "Find the right capital for your next stage",
+      "title": "Government funding support for your next stage",
+      "description": "Explore three complementary funding categories, then work with our team to evaluate eligibility and next steps.",
+      "detailsLink": "View program details and process",
       "grants": {
         "title": "Government Grants",
-        "description": "We identify relevant federal, state, and local programs, assess eligibility, and support the application process for non-repayable funding."
+        "summary": "Explore non-repayable federal, state, and local funding opportunities.",
+        "description": "Government grants may provide non-repayable funding without equity dilution. We research programs including innovation grants, state expansion incentives, and sector-specific opportunities, then support eligibility review and submission preparation."
       },
       "taxCredits": {
-        "title": "Tax Credits & Incentives",
-        "description": "We evaluate R&D tax credits, self-employed tax incentives, and industry-specific programs so qualified businesses and individuals can claim available benefits compliantly."
+        "title": "Tax Credits & Refunds",
+        "summary": "Evaluate R&D and other tax incentives with professional review.",
+        "description": "We evaluate R&D tax credits and applicable industry incentives for software, manufacturing, engineering, and process improvements. Eligibility and tax treatment depend on each taxpayer's facts and current rules."
       },
       "loans": {
-        "title": "Low-Interest & 0% Loans",
-        "description": "We match businesses with SBA products, local economic-development loans, and subsidized or interest-free programs to strengthen cash flow."
+        "title": "Government-Backed Low-Interest Loans",
+        "summary": "Compare SBA and regional programs that may support business cash flow.",
+        "description": "We help businesses evaluate SBA 7(a), SBA 504, and regional subsidized-loan programs for expansion, equipment, and working-capital needs. Final terms and approval are determined by the applicable lender or agency."
+      }
+    },
+    "advantages": {
+      "eyebrow": "AI research + professional review",
+      "title": "Technology for coverage, people for judgment",
+      "matching": {
+        "title": "AI-Assisted Policy Matching",
+        "description": "Structured research helps screen federal, state, and local programs efficiently and surface potentially relevant opportunities."
+      },
+      "review": {
+        "title": "Experienced Professional Review",
+        "description": "Tax and accounting professionals review eligibility assumptions, financial information, and formal application materials before filing."
+      },
+      "fees": {
+        "title": "Transparent, Aligned Fees",
+        "description": "The service agreement explains evaluation fees, success-aligned fees, scope, and payment conditions before work begins."
+      }
+    },
+    "process": {
+      "eyebrow": "How it works",
+      "title": "A clear four-step application process",
+      "steps": {
+        "one": {
+          "title": "Submit Business Details",
+          "description": "Share your state, industry, contact information, and funding interests through the short online form."
+        },
+        "two": {
+          "title": "AI-Assisted Match",
+          "description": "We screen active federal, state, and local program information to identify potential options."
+        },
+        "three": {
+          "title": "Professional Evaluation",
+          "description": "Our team reviews eligibility, discusses supporting records, and defines the proposed engagement."
+        },
+        "four": {
+          "title": "Prepare, File & Follow Up",
+          "description": "After engagement, we help organize materials, support filing, and track agency or lender follow-up."
+        }
       }
     },
     "faq": {
@@ -144,61 +201,60 @@
       "title": "Clear answers before you apply",
       "items": {
         "ai": {
-          "question": "Does Jiahua use AI to prepare applications, and is it reliable?",
-          "answer": "We use a dual-review process: AI searches and screens thousands of federal, state, and local programs, while experienced tax and accounting professionals review every formal application. The system helps us search broadly; our experts make sure the filing is accurate."
+          "question": "How does Jiahua combine AI technology with professional tax services?",
+          "answer": "We utilize our proprietary AI platform for real-time policy searching and data matching across thousands of federal, state, and local programs—an extent impossible via manual effort. However, every official application submitted to government agencies is rigorously reviewed and processed by our experienced tax and accounting professionals. Our AI ensures comprehensiveness, while our experts ensure accuracy and compliance."
         },
         "fees": {
-          "question": "How does Jiahua charge for these services?",
-          "answer": "Our model combines a low initial evaluation fee with a success-aligned service fee paid after approval or fund disbursement. Every fee and condition is stated clearly in the service agreement, with no hidden costs."
+          "question": "What is Jiahua’s fee structure? Are there any hidden fees?",
+          "answer": "We operate on a low initial evaluation fee combined with a performance fee charged only upon approval or fund disbursement. All terms and fee details are explicitly outlined in our service agreements with zero hidden costs."
         },
-        "retired": {
-          "question": "Why are ERC and real-estate commission claim services no longer offered?",
-          "answer": "The ERC filing window has expired, and Jiahua has focused its public services on government grants, R&D and other tax incentives, funding programs, and core tax and accounting work."
+        "smallBusiness": {
+          "question": "My business is small or newly established. Are we still eligible for government grants or tax credits?",
+          "answer": "Absolutely! Numerous federal, state, and local programs are specifically designed to support small businesses, minority-owned enterprises, and startups. Eligibility is often based on specific criteria such as industry type, payroll, or qualified expenses, rather than company size alone. Our AI system efficiently identifies programs tailored to your specific situation."
+        },
+        "applicationProcess": {
+          "question": "Is the application process complicated or time-consuming for business owners?",
+          "answer": "Not at all. We provide a full-service, turnkey solution. You only need to provide basic operational documents (such as tax returns or payroll reports) during the initial stage. Our team handles all subsequent steps, including policy matching, document drafting, submission, and government follow-ups, minimizing any disruption to your day-to-day operations."
+        },
+        "applicationImpact": {
+          "question": "If an application is not approved, will it affect my company’s tax status or credit score?",
+          "answer": "Definitely not. All our advisory and filing processes strictly adhere to IRS guidelines and relevant federal and state regulations, thoroughly vetted by licensed CPAs. Applying for government incentive programs in full compliance with the law is a legitimate corporate right and will have zero negative impact on your routine tax filings or business credit profile."
         }
       }
     },
     "form": {
       "eyebrow": "Free eligibility review",
-      "title": "Get your 48-hour funding assessment",
+      "title": "Get Your Free Government Funding & Tax Credit Matching Report",
       "description": "Tell us about your business. Our team will review potential grants, tax incentives, and funding options and contact you with next steps.",
       "businessName": "Business name",
       "contactName": "Contact name",
       "email": "Email",
-      "phoneWechat": "Phone or WeChat",
-      "stateCity": "State and city",
+      "phone": "Phone number",
+      "state": "Business state",
       "industry": "Industry",
-      "employeeCount": "Number of W-2 employees",
-      "annualRevenue": "Annual revenue",
-      "primaryNeed": "Primary need (select at least one)",
+      "primaryNeed": "Funding type needed",
       "selectPlaceholder": "Select an option",
       "industryOptions": {
         "hospitality": "Restaurants and hospitality",
         "logistics": "Logistics and transportation",
         "manufacturing": "Manufacturing",
         "retail": "Retail and e-commerce",
-        "technology": "Technology and R&D",
-        "agriculture": "Agriculture",
+        "healthcare": "Healthcare and professional services",
         "other": "Other"
       },
-      "employeeOptions": {
-        "oneToFive": "1-5",
-        "sixToTwenty": "6-20",
-        "twentyOneToFifty": "21-50",
-        "moreThanFifty": "More than 50"
-      },
-      "revenueOptions": {
-        "under500k": "Under $500K",
-        "from500kTo2m": "$500K-$2M",
-        "from2mTo5m": "$2M-$5M",
-        "over5m": "Over $5M"
+      "stateOptions": {
+        "CA": "California (CA)",
+        "MO": "Missouri (MO)",
+        "TX": "Texas (TX)",
+        "NY": "New York (NY)",
+        "other": "Other state"
       },
       "needOptions": {
         "grants": "Government grants",
         "taxCredits": "R&D / self-employed tax incentives",
         "loans": "Low-interest / 0% loans"
       },
-      "needRequired": "Select at least one funding need.",
-      "submit": "Submit · Get My Free Assessment",
+      "submit": "Submit Info · Get Free Assessment Report",
       "submitting": "Submitting…",
       "success": "Thank you. Your information was submitted and our team will follow up.",
       "error": "We could not submit the form. Please call (949) 300-4828 or email info@jhaccounting.org."
@@ -217,12 +273,46 @@
     "wechat": {
       "title": "WeChat customer service",
       "description": "Scan the QR code to connect with our team."
+    },
+    "contact": {
+      "eyebrow": "Official contact",
+      "title": "Prefer to speak with our team?",
+      "hours": "Monday-Friday, 9:00 AM-5:00 PM (PST)",
+      "offices": "Irvine office and Florida headquarters"
     }
   },
   "Services": {
     "title": "Services",
     "description": "We will help you through the entire process",
     "backToServices": "Back to Services"
+  },
+  "CoreServices": {
+    "metaTitle": "Core Tax & Accounting Services | Jiahua",
+    "metaDescription": "Bookkeeping, company formation, individual and business tax preparation, and financial planning for U.S. businesses and individuals.",
+    "eyebrow": "Core tax & accounting",
+    "title": "The financial foundation your business relies on",
+    "description": "Practical bookkeeping, tax, formation, and planning support designed to help businesses maintain accurate records and make informed decisions.",
+    "items": {
+      "bookkeeping": {
+        "title": "Bookkeeping & Financial Reports",
+        "description": "Organized books, reconciliations, and clear financial reporting that support routine operations and tax preparation."
+      },
+      "formation": {
+        "title": "Company Formation",
+        "description": "Support with entity setup, registration, and the accounting steps needed to begin operating responsibly."
+      },
+      "tax": {
+        "title": "Individual & Business Tax",
+        "description": "Tax preparation and planning support based on the taxpayer's facts, records, and applicable filing requirements."
+      },
+      "planning": {
+        "title": "Financial Planning & Advisory",
+        "description": "Cash-flow, budgeting, and financial-analysis support to help owners understand performance and prepare for growth."
+      }
+    },
+    "ctaTitle": "Ready to discuss your accounting needs?",
+    "contactCta": "Contact Jiahua",
+    "allServicesCta": "View all service details"
   },
   "News": {
     "title": "News",
@@ -231,9 +321,9 @@
     "backToNews": "Back to News"
   },
   "ContactNow": {
-    "title": "Contact Now",
-    "description": "Contact Jiahua Accounting Services, our experienced team is ready to support you in achieving your financial goals.",
-    "office-hours": "Pacific Time: 9:30 AM - 5:30 PM",
+    "title": "About & Contact Jiahua",
+    "description": "Connect with Jiahua US Accounting at our Irvine office or Florida headquarters for government funding, tax, and accounting support.",
+    "office-hours": "Monday-Friday: 9:00 AM - 5:00 PM (PST)",
     "la-office-title": "Irvine Office",
     "la-office": "19800 Macarthur Blvd Ste 570, Irvine, CA 92612",
     "miami-office-title": "Florida Headquarters",

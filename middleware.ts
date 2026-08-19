@@ -7,14 +7,14 @@ import type { NextRequest } from "next/server";
 const redirects = new Map([
   ["/en-us/pages_43", "/en-us"],
   ["/en-us/en", "/en-us"],
-  ["/en-us/en/aboutus", "/en-us"],
-  ["/en-us/en/Services", "/en-us/services"],
+  ["/en-us/en/aboutus", "/en-us/about"],
+  ["/en-us/en/Services", "/en-us/core-services"],
   ["/en-us/erc-application", "/en-us/government-funding"],
   ["/en-us/real-estate-broker-commission-claim", "/en-us/government-funding"],
   ["/zh-cn/pages_43", "/zh-cn"],
   ["/zh-cn/en", "/zh-cn"],
-  ["/zh-cn/en/aboutus", "/zh-cn"],
-  ["/zh-cn/en/Services", "/zh-cn/services"],
+  ["/zh-cn/en/aboutus", "/zh-cn/about"],
+  ["/zh-cn/en/Services", "/zh-cn/core-services"],
   ["/zh-cn/erc-application", "/zh-cn/government-funding"],
   ["/zh-cn/real-estate-broker-commission-claim", "/zh-cn/government-funding"],
   // Add more redirects here if needed

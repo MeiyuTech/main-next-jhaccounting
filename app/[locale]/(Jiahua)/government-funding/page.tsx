@@ -1,7 +1,16 @@
-import { HandCoins, Landmark, ReceiptText, SearchCheck } from "lucide-react";
+import {
+  BadgeCheck,
+  Bot,
+  HandCoins,
+  Handshake,
+  Landmark,
+  ReceiptText,
+  SearchCheck,
+} from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import EligibilityForm from "@/app/components/EligibilityForm";
+import FundingContactBox from "@/app/components/FundingContactBox";
 import { Link } from "@/i18n.config";
 
 export async function generateMetadata({
@@ -10,11 +19,7 @@ export async function generateMetadata({
   params: { locale: string };
 }) {
   const t = await getTranslations({ locale, namespace: "Funding.metaData" });
-
-  return {
-    title: t("title"),
-    description: t("description"),
-  };
+  return { title: t("title"), description: t("description") };
 }
 
 export default async function GovernmentFundingPage({
@@ -24,14 +29,24 @@ export default async function GovernmentFundingPage({
 }) {
   setRequestLocale(locale);
   const t = await getTranslations("Funding");
-
   const services = [
     { key: "grants", icon: Landmark },
     { key: "taxCredits", icon: ReceiptText },
     { key: "loans", icon: HandCoins },
   ] as const;
-
-  const faqItems = ["ai", "fees", "retired"] as const;
+  const advantages = [
+    { key: "matching", icon: Bot },
+    { key: "review", icon: BadgeCheck },
+    { key: "fees", icon: Handshake },
+  ] as const;
+  const processSteps = ["one", "two", "three", "four"] as const;
+  const faqItems = [
+    "ai",
+    "fees",
+    "smallBusiness",
+    "applicationProcess",
+    "applicationImpact",
+  ] as const;
 
   return (
     <>
@@ -39,14 +54,14 @@ export default async function GovernmentFundingPage({
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(13,148,136,0.28),_transparent_42%),radial-gradient(circle_at_bottom_right,_rgba(251,191,36,0.16),_transparent_40%)]" />
         <div className="container relative mx-auto grid gap-10 px-4 py-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:px-8 lg:py-20">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-teal-300">
+            <p className="max-w-full break-words text-xs font-semibold uppercase tracking-[0.14em] text-teal-300 sm:text-sm sm:tracking-[0.22em]">
               {t("hero.eyebrow")}
             </p>
             <h1 className="mt-4 text-4xl font-bold leading-tight text-white md:text-6xl">
-              {t("hero.title")}
+              {t("subpageHero.title")}
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-200">
-              {t("hero.description")}
+              {t("subpageHero.description")}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
@@ -70,7 +85,10 @@ export default async function GovernmentFundingPage({
               {t("hero.trustLine")}
             </p>
           </div>
-          <EligibilityForm />
+          <div className="space-y-4">
+            <EligibilityForm />
+            <FundingContactBox />
+          </div>
         </div>
       </section>
 
@@ -86,6 +104,9 @@ export default async function GovernmentFundingPage({
             <h2 className="mt-3 text-3xl font-bold text-slate-900 md:text-5xl">
               {t("services.title")}
             </h2>
+            <p className="mt-4 leading-7 text-slate-600">
+              {t("services.description")}
+            </p>
           </div>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {services.map(({ key, icon: Icon }) => (
@@ -109,6 +130,66 @@ export default async function GovernmentFundingPage({
       </section>
 
       <section className="py-16 md:py-24">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-teal-700">
+              {t("advantages.eyebrow")}
+            </p>
+            <h2 className="mt-3 text-3xl font-bold text-slate-900 md:text-5xl">
+              {t("advantages.title")}
+            </h2>
+          </div>
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {advantages.map(({ key, icon: Icon }) => (
+              <article
+                key={key}
+                className="rounded-2xl border border-slate-200 p-7"
+              >
+                <Icon className="h-9 w-9 text-teal-700" aria-hidden="true" />
+                <h3 className="mt-5 text-xl font-bold text-slate-900">
+                  {t(`advantages.${key}.title`)}
+                </h3>
+                <p className="mt-3 leading-7 text-slate-600">
+                  {t(`advantages.${key}.description`)}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-slate-950 py-16 text-white md:py-24">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-teal-300">
+              {t("process.eyebrow")}
+            </p>
+            <h2 className="mt-3 text-3xl font-bold md:text-5xl">
+              {t("process.title")}
+            </h2>
+          </div>
+          <ol className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {processSteps.map((key, index) => (
+              <li
+                key={key}
+                className="rounded-2xl border border-white/15 bg-white/5 p-6"
+              >
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-400 font-bold text-slate-950">
+                  {index + 1}
+                </span>
+                <h3 className="mt-5 text-xl font-bold">
+                  {t(`process.steps.${key}.title`)}
+                </h3>
+                <p className="mt-3 leading-7 text-slate-300">
+                  {t(`process.steps.${key}.description`)}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24">
         <div className="container mx-auto grid gap-10 px-4 lg:grid-cols-[0.75fr_1.25fr] lg:px-8">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-teal-700">
@@ -118,7 +199,7 @@ export default async function GovernmentFundingPage({
               {t("faq.title")}
             </h2>
             <Link
-              href="/contact-now"
+              href="/about"
               className="mt-6 inline-flex font-semibold text-teal-700 underline-offset-4 hover:underline"
             >
               info@jhaccounting.org

@@ -15,23 +15,10 @@ const industryOptions = [
   "logistics",
   "manufacturing",
   "retail",
-  "technology",
-  "agriculture",
+  "healthcare",
   "other",
 ] as const;
-
-const employeeOptions = [
-  "oneToFive",
-  "sixToTwenty",
-  "twentyOneToFifty",
-  "moreThanFifty",
-] as const;
-const revenueOptions = [
-  "under500k",
-  "from500kTo2m",
-  "from2mTo5m",
-  "over5m",
-] as const;
+const stateOptions = ["CA", "MO", "TX", "NY", "other"] as const;
 const needOptions = ["grants", "taxCredits", "loans"] as const;
 
 type SubmissionState = "idle" | "submitting" | "success" | "error";
@@ -40,7 +27,6 @@ export default function EligibilityForm({ className }: { className?: string }) {
   const t = useTranslations("Funding.form");
   const [submissionState, setSubmissionState] =
     useState<SubmissionState>("idle");
-  const [needError, setNeedError] = useState(false);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -48,23 +34,15 @@ export default function EligibilityForm({ className }: { className?: string }) {
     const formData = new FormData(form);
     const primaryNeeds = formData.getAll("primaryNeeds").map(String);
 
-    if (primaryNeeds.length === 0) {
-      setNeedError(true);
-      return;
-    }
-
-    setNeedError(false);
     setSubmissionState("submitting");
 
     const lead: FundingLead = {
       businessName: String(formData.get("businessName") ?? ""),
       contactName: String(formData.get("contactName") ?? ""),
       email: String(formData.get("email") ?? ""),
-      phoneWechat: String(formData.get("phoneWechat") ?? ""),
-      stateCity: String(formData.get("stateCity") ?? ""),
+      phone: String(formData.get("phone") ?? ""),
+      state: String(formData.get("state") ?? ""),
       industry: String(formData.get("industry") ?? ""),
-      employeeCount: String(formData.get("employeeCount") ?? ""),
-      annualRevenue: String(formData.get("annualRevenue") ?? ""),
       primaryNeeds,
     };
 
@@ -72,9 +50,9 @@ export default function EligibilityForm({ className }: { className?: string }) {
       await createContactSubmission({
         name: lead.contactName,
         email: lead.email,
-        phone: lead.phoneWechat,
-        wechat: lead.phoneWechat,
-        address: lead.stateCity,
+        phone: lead.phone,
+        wechat: "",
+        address: lead.state,
         message: buildFundingLeadMessage(lead),
       });
       form.reset();
@@ -86,14 +64,14 @@ export default function EligibilityForm({ className }: { className?: string }) {
   }
 
   const selectClassName =
-    "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2";
+    "flex h-10 min-w-0 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2";
 
   return (
     <form
       id="eligibility-form"
       onSubmit={handleSubmit}
       className={cn(
-        "rounded-2xl bg-white p-5 text-slate-900 shadow-2xl md:p-7",
+        "scroll-mt-40 rounded-2xl bg-white p-5 text-slate-900 shadow-2xl md:p-7",
         className,
       )}
     >
@@ -116,7 +94,6 @@ export default function EligibilityForm({ className }: { className?: string }) {
             id="businessName"
             name="businessName"
             autoComplete="organization"
-            required
           />
         </div>
         <div className="space-y-2">
@@ -125,7 +102,6 @@ export default function EligibilityForm({ className }: { className?: string }) {
             id="contactName"
             name="contactName"
             autoComplete="name"
-            required
           />
         </div>
         <div className="space-y-2">
@@ -139,22 +115,35 @@ export default function EligibilityForm({ className }: { className?: string }) {
           />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="phoneWechat">{t("phoneWechat")}</Label>
+          <Label htmlFor="phone">{t("phone")}</Label>
           <Input
-            id="phoneWechat"
-            name="phoneWechat"
+            id="phone"
+            name="phone"
+            type="tel"
             autoComplete="tel"
             required
           />
         </div>
-        <div className="space-y-2 sm:col-span-2">
-          <Label htmlFor="stateCity">{t("stateCity")}</Label>
-          <Input
-            id="stateCity"
-            name="stateCity"
-            autoComplete="address-level2"
-            required
-          />
+        <div className="space-y-2">
+          <Label htmlFor="state">{t("state")}</Label>
+          <select
+            id="state"
+            name="state"
+            className={selectClassName}
+            defaultValue=""
+          >
+            <option value="" disabled>
+              {t("selectPlaceholder")}
+            </option>
+            {stateOptions.map((option) => (
+              <option
+                key={option}
+                value={option === "other" ? t("stateOptions.other") : option}
+              >
+                {t(`stateOptions.${option}`)}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="space-y-2">
           <Label htmlFor="industry">{t("industry")}</Label>
@@ -163,7 +152,6 @@ export default function EligibilityForm({ className }: { className?: string }) {
             name="industry"
             className={selectClassName}
             defaultValue=""
-            required
           >
             <option value="" disabled>
               {t("selectPlaceholder")}
@@ -171,44 +159,6 @@ export default function EligibilityForm({ className }: { className?: string }) {
             {industryOptions.map((option) => (
               <option key={option} value={t(`industryOptions.${option}`)}>
                 {t(`industryOptions.${option}`)}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="employeeCount">{t("employeeCount")}</Label>
-          <select
-            id="employeeCount"
-            name="employeeCount"
-            className={selectClassName}
-            defaultValue=""
-            required
-          >
-            <option value="" disabled>
-              {t("selectPlaceholder")}
-            </option>
-            {employeeOptions.map((option) => (
-              <option key={option} value={t(`employeeOptions.${option}`)}>
-                {t(`employeeOptions.${option}`)}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="space-y-2 sm:col-span-2">
-          <Label htmlFor="annualRevenue">{t("annualRevenue")}</Label>
-          <select
-            id="annualRevenue"
-            name="annualRevenue"
-            className={selectClassName}
-            defaultValue=""
-            required
-          >
-            <option value="" disabled>
-              {t("selectPlaceholder")}
-            </option>
-            {revenueOptions.map((option) => (
-              <option key={option} value={t(`revenueOptions.${option}`)}>
-                {t(`revenueOptions.${option}`)}
               </option>
             ))}
           </select>
@@ -233,9 +183,6 @@ export default function EligibilityForm({ className }: { className?: string }) {
             </label>
           ))}
         </div>
-        {needError && (
-          <p className="mt-2 text-sm text-red-600">{t("needRequired")}</p>
-        )}
       </fieldset>
 
       <Button
