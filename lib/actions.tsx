@@ -3,6 +3,7 @@
 import { createClient } from '@/utils/supabase/server'
 import { FormData } from '@/app/components/FCE-Form/types'
 import { formatUtils } from '@/app/components/FCE-Form/utils'
+import { sendContactSubmissionNotification } from '@/lib/email'
 
 // Define the type for form data
 type ContactSubmission = {
@@ -34,7 +35,18 @@ export async function createContactSubmission(formData: ContactSubmission) {
       throw new Error('Failed to create contact submission')
     }
 
-    return { success: true }
+    let emailNotificationSent = false
+
+    try {
+      const notification = await sendContactSubmissionNotification(submission)
+      emailNotificationSent = notification.sent
+    } catch (error) {
+      // The Supabase record is the source of truth. Do not lose a valid lead
+      // or show a false submission failure when only the email alert fails.
+      console.error('Contact notification error:', error)
+    }
+
+    return { success: true, emailNotificationSent }
   } catch (error) {
     console.error('Submission error:', error)
     throw new Error('Failed to create contact submission')

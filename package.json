@@ -51,6 +51,7 @@
     "react-select-country-list": "^2.2.3",
     "rehype": "^13.0.2",
     "remark-gfm": "^4.0.0",
+    "resend": "^6.21.0",
     "stripe": "^17.4.0",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7",

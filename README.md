@@ -50,7 +50,16 @@ Copy `.env.local.example` to `.env.local` and fill in the following variables:
 NEXT_PUBLIC_SUPABASE_URL=<your_supabase_project_url>
 NEXT_PUBLIC_SUPABASE_ANON_KEY=<your_supabase_anon_key>
 SUPABASE_SERVICE_ROLE_KEY=<your_supabase_service_role_key>
+RESEND_API_KEY=<your_resend_api_key>
+CONTACT_FORM_EMAIL_FROM="Jiahua Website <forms@jhaccounting.org>"
+CONTACT_FORM_EMAIL_TO="info@jhaccounting.org"
 ```
+
+Form submissions are first saved to the Supabase `contact_submissions` table.
+When `RESEND_API_KEY` is configured, the server also sends an immediate email
+notification to `CONTACT_FORM_EMAIL_TO`. The submitter's email is used as the
+message Reply-To address. An email failure does not discard a successfully
+saved Supabase record.
 
 ## Supabase Configuration
 
