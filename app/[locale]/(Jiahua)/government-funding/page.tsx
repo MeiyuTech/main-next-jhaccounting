@@ -52,8 +52,8 @@ export default async function GovernmentFundingPage({
     <>
       <section className="relative overflow-hidden bg-slate-950 text-white">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(13,148,136,0.28),_transparent_42%),radial-gradient(circle_at_bottom_right,_rgba(251,191,36,0.16),_transparent_40%)]" />
-        <div className="container relative mx-auto grid gap-10 px-4 py-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:px-8 lg:py-20">
-          <div>
+        <div className="container relative mx-auto px-4 py-16 lg:px-8 lg:py-24">
+          <div className="max-w-5xl">
             <p className="max-w-full break-words text-xs font-semibold uppercase tracking-[0.14em] text-teal-300 sm:text-sm sm:tracking-[0.22em]">
               {t("hero.eyebrow")}
             </p>
@@ -84,10 +84,6 @@ export default async function GovernmentFundingPage({
               />
               {t("hero.trustLine")}
             </p>
-          </div>
-          <div className="space-y-4">
-            <EligibilityForm />
-            <FundingContactBox />
           </div>
         </div>
       </section>
@@ -186,6 +182,26 @@ export default async function GovernmentFundingPage({
               </li>
             ))}
           </ol>
+        </div>
+      </section>
+
+      <section className="bg-teal-950 py-16 text-white md:py-24">
+        <div className="container mx-auto grid gap-8 px-4 lg:grid-cols-[0.8fr_1.2fr] lg:items-start lg:px-8">
+          <div className="min-w-0 lg:sticky lg:top-40">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-teal-200">
+              {t("homeForm.eyebrow")}
+            </p>
+            <h2 className="mt-3 text-3xl font-bold md:text-5xl">
+              {t("homeForm.title")}
+            </h2>
+            <p className="mt-5 max-w-xl leading-7 text-teal-50/80">
+              {t("homeForm.description")}
+            </p>
+            <div className="mt-8">
+              <FundingContactBox />
+            </div>
+          </div>
+          <EligibilityForm className="min-w-0" />
         </div>
       </section>
 

@@ -10,8 +10,6 @@ import {
 } from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
-import EligibilityForm from "@/app/components/EligibilityForm";
-import FundingContactBox from "@/app/components/FundingContactBox";
 import { Card, CardContent } from "@/app/components/ui/card";
 import { Link } from "@/i18n.config";
 
@@ -74,12 +72,12 @@ export default async function Home({
               {fundingT("hero.description")}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a
-                href="#eligibility-form"
+              <Link
+                href="/government-funding#eligibility-form"
                 className="rounded-lg bg-amber-400 px-5 py-3 text-center font-bold text-slate-950 transition hover:bg-amber-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
               >
                 {fundingT("hero.primaryCta")}
-              </a>
+              </Link>
               <Link
                 href="/government-funding"
                 className="rounded-lg border border-white/40 px-5 py-3 text-center font-semibold text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
@@ -200,26 +198,6 @@ export default async function Home({
               </details>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="bg-teal-950 py-16 text-white md:py-24">
-        <div className="container mx-auto grid gap-8 px-4 lg:grid-cols-[0.8fr_1.2fr] lg:items-start lg:px-8">
-          <div className="min-w-0 lg:sticky lg:top-40">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-teal-200">
-              {fundingT("homeForm.eyebrow")}
-            </p>
-            <h2 className="mt-3 text-3xl font-bold md:text-5xl">
-              {fundingT("homeForm.title")}
-            </h2>
-            <p className="mt-5 max-w-xl leading-7 text-teal-50/80">
-              {fundingT("homeForm.description")}
-            </p>
-            <div className="mt-8">
-              <FundingContactBox />
-            </div>
-          </div>
-          <EligibilityForm className="min-w-0" />
         </div>
       </section>
     </>
