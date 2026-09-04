@@ -36,7 +36,7 @@ export default async function ContactNowPage({
       key: "irvine",
       title: t("la-office-title"),
       address: t("la-office"),
-      map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3320.9893541738743!2d-117.86467612450893!3d33.67088487330263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dcde7d53063f25%3A0xe539462589574d75!2s19800%20MacArthur%20Blvd%20STE%20570%2C%20Irvine%2C%20CA%2092612!5e0!3m2!1sen!2sus!4v1731711168671!5m2!1sen!2sus",
+      map: "https://www.google.com/maps?q=17802%20Sky%20Park%20Circle%2C%20Suite%20205%2C%20Irvine%2C%20CA%2092614&output=embed",
     },
   ];
 
