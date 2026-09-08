@@ -114,10 +114,10 @@ export default async function RootLayout({
               address: [
                 {
                   "@type": "PostalAddress",
-                  addressLocality: "Irvine",
+                  addressLocality: "IRVINE",
                   addressRegion: "CA",
-                  postalCode: "92614",
-                  streetAddress: "17802 Sky Park Circle, Suite 205",
+                  postalCode: "92614-6403",
+                  streetAddress: "17802 Sky Park Cir, Suite 205",
                   addressCountry: "US",
                   telephone: "+1 (949) 300-4828",
                 },

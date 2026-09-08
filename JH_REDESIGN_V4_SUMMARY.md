@@ -26,7 +26,7 @@
 | 英文名称 | Jiahua US Accounting Services, Corp. |
 | 电话 | `(949) 300-4828` |
 | 邮箱 | `info@jhaccounting.org` |
-| 加州尔湾办公室 | 17802 Sky Park Circle, Suite 205, Irvine, CA 92614 |
+| 加州尔湾办公室 | 17802 Sky Park Cir, Suite 205, IRVINE, CA 92614-6403, United States |
 | 佛罗里达总部 | 15321 South Dixie Highway, Suite 302B, Palmetto Bay, FL 33157 |
 | 营业时间 | 周一至周五 9:00 AM–5:00 PM (PST) / Monday–Friday, 9:00 AM–5:00 PM (PST) |
 | 语言 | 中文 / English |

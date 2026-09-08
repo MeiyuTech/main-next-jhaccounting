@@ -36,7 +36,7 @@ export default async function ContactNowPage({
       key: "irvine",
       title: t("la-office-title"),
       address: t("la-office"),
-      map: "https://www.google.com/maps?q=17802%20Sky%20Park%20Circle%2C%20Suite%20205%2C%20Irvine%2C%20CA%2092614&output=embed",
+      map: "https://www.google.com/maps?q=17802%20Sky%20Park%20Cir%2C%20Suite%20205%2C%20IRVINE%2C%20CA%2092614-6403%2C%20United%20States&output=embed",
     },
   ];
 
