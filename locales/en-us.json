@@ -339,7 +339,7 @@
     "description": "Join Jiahua Accounting Services, and grow with us",
     "accountant": {
       "title": "Accountant",
-      "location": "San Francisco Office",
+      "location": "Irvine Office",
       "duties_title": "Job Duties and Responsibilities:",
       "duties": {
         "1": "Maintaining and managing the financial records of the company",
@@ -365,7 +365,7 @@
     },
     "office-assistant": {
       "title": "Office Assistant",
-      "location": "San Francisco Office",
+      "location": "Irvine Office",
       "duties_title": "Job Duties and Responsibilities:",
       "duties": {
         "1": "Organizing and maintaining files and records",
@@ -387,7 +387,7 @@
     },
     "managerial-accountant": {
       "title": "Managerial Accountant",
-      "location": "San Francisco Office",
+      "location": "Irvine Office",
       "duties_title": "Job Description:",
       "duties": {
         "1": "Examine client bookkeeping records (P&L, Balance Sheet, Cash Flow) and financial statements to identify trends, cost drivers, opportunities, and areas of concern.",
@@ -413,7 +413,7 @@
       "how_to_apply": {
         "1": "Interested Candidates may submit their cover letter and resume to",
         "2": "Jiahua US Accounting Services, Corp",
-        "3": "851 Burlway Rd, Ste 605, Burlingame, CA, 94010"
+        "3": "17802 Sky Park Cir, Suite 205, Irvine, CA 92614-6403, United States"
       }
     }
   },
